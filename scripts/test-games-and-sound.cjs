@@ -17,6 +17,8 @@ const statements = [
   ['Female Vietnamese voice prioritized when available', engine.includes("hoai.?my") && engine.includes("rankVoice(b) - rankVoice(a)")],
   ['Voice picker and preview are wired', read('src/components/SoundControls.tsx').includes("previewVietnameseVoice()") && read('src/components/SoundControls.tsx').includes("getVietnameseVoices()")],
   ['Chosen voice is saved across sessions', prefs.includes("voiceId: 'auto'") && prefs.includes("localStorage.setItem(STORAGE_KEY")],
+  ['Bundled Piper voice prioritized on devices with no native Vietnamese voice', engine.includes("PIPER_VOICE_READY") && engine.includes("if (PIPER_VOICE_READY) return 'vi-piper'") && engine.includes("playRecordedPraise")],
+  ['Voice selector can preview bundled MP3', read('src/components/SoundControls.tsx').includes("Giọng nữ VAIS1000") && read('src/components/SoundControls.tsx').includes("!PIPER_VOICE_READY && voices.length===0")],
   ['Voice flag matches presence of all eight local MP3s', (() => {
     const installed = voice.includes('CENTRAL_VOICE_READY = true');
     const clips = Array.from({length:8},(_,i)=>`public/audio/vi-central/praise-${String(i+1).padStart(2,'0')}.mp3`);

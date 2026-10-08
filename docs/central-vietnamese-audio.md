@@ -10,6 +10,17 @@
 - Nhạc nền tắt mặc định. Lời khen, nhạc, hiệu ứng và đọc giải thích có công tắc, âm lượng tùy chỉnh và lưu trên máy.
 - Trên điện thoại, danh sách giọng có thể khác với máy tính. Chỉ những giọng được thiết bị liệt kê mới sử dụng được. Không bảo đảm phương ngữ miền Trung nếu không có giọng thực tế tương ứng.
 
+## Giọng tiếng Việt có sẵn – chạy ngay trên mọi thiết bị
+
+GitHub Actions tự sinh 8 câu khen bằng mô hình **Piper vi_VN-vais1000-medium**, nguồn `rhasspy/piper-voices`. Các file MP3 được đóng gói trong `/hocvui/audio/vi-piper/` ở mỗi lần phát hành. Website tự ưu tiên bộ giọng này; không cần Web Speech API, FPT.AI, Firebase Functions, hay API key.
+
+- Giọng VAIS1000 là nữ tiếng Việt, chưa được xác nhận có phương ngữ miền Trung. Người sử dụng có thể nghe thử trong cài đặt.
+- Model: https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/vi/vi_VN/vais1000/medium
+- Corpus: VAIS-1000 Vietnamese Speech Synthesis Corpus, giấy phép **CC BY 4.0**, https://creativecommons.org/licenses/by/4.0/.
+- Trong website có đường dẫn ghi công và thông tin giấy phép ở `audio/vi-piper/ATTRIBUTION.txt`.
+- Model ONNX chỉ tải về GitHub Actions để tổng hợp, không chuyển 63 MB mô hình tới máy bé.
+- Giọng Mỹ An/FPT.AI vẫn là tùy chọn bổ sung nếu sau này được cấp phép và kích hoạt.
+
 ## Tùy chọn nâng cao: bộ MP3 giọng Mỹ An miền Trung
 
 Tài khoản FPT.AI và khóa API **không cần thiết để dùng chế độ giọng có sẵn**. Chỉ cần khi muốn mọi thiết bị phát cùng một giọng miền Trung đã được cấp phép. Quy trình dưới đây là tùy chọn.
