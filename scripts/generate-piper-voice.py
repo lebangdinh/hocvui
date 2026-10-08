@@ -14,6 +14,7 @@ import wave
 from pathlib import Path
 
 from piper import PiperVoice, SynthesisConfig
+from imageio_ffmpeg import get_ffmpeg_exe
 
 PHRASES = (
     "Giỏi lắm, con!",
@@ -47,7 +48,7 @@ def main() -> None:
                 if audio.getnframes() < audio.getframerate() // 5:
                     raise RuntimeError(f"Generated speech is too short: {number}")
             subprocess.run([
-                "ffmpeg", "-nostdin", "-hide_banner", "-loglevel", "error", "-y",
+                get_ffmpeg_exe(), "-nostdin", "-hide_banner", "-loglevel", "error", "-y",
                 "-i", str(wav_path),
                 "-af", "loudnorm=I=-22:TP=-3:LRA=7",
                 "-codec:a", "libmp3lame", "-b:a", "64k",
@@ -55,11 +56,10 @@ def main() -> None:
             ], check=True)
             if not mp3_path.is_file() or mp3_path.stat().st_size < 1500:
                 raise RuntimeError(f"Speech clip is missing or too short: {number}")
-            subprocess.run([
-                "ffprobe", "-v", "error", "-select_streams", "a:0",
-                "-show_entries", "stream=codec_name", "-of", "default=noprint_wrappers=1",
-                str(mp3_path)
-            ], check=True, stdout=subprocess.DEVNULL)
+            with open(mp3_path, "rb") as clip:
+                header = clip.read(4)
+            if not (header.startswith(b"ID3") or header[0] == 255):
+                raise RuntimeError(f"Not an MP3 file: {mp3_path.name}")
             print(f"PASS: generated {mp3_path.name} ({mp3_path.stat().st_size} bytes)", flush=True)
     (OUT / "ATTRIBUTION.txt").write_text(
         "Voice: Piper vi_VN-vais1000-medium (Vietnamese, one speaker).\n"
