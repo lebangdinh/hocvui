@@ -67,7 +67,7 @@ export const SoundControls: React.FC<{ compact?: boolean }> = ({ compact = false
         <select id="hocvui-voice" value={pref.voiceId} onChange={e=>setVoice(e.target.value)}
           className="w-full rounded-xl border border-indigo-100 bg-white px-2 py-2 text-xs font-semibold text-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500">
           <option value="auto">{PIPER_VOICE_READY ? 'Cô giáo tiếng Việt (có sẵn trên website)' : 'Tự chọn giọng Việt phù hợp nhất'}</option>
-          {PIPER_VOICE_READY && <option value="piper-vi">Giọng nữ VAIS1000 – bản ghi tiếng Việt</option>}
+          {PIPER_VOICE_READY && <option value="piper-vi">Giọng nữ VAIS1000 (MP3 tạo sẵn)</option>}
           {CENTRAL_VOICE_READY && <option value="central-pack">Cô Mỹ An – miền Trung (MP3)</option>}
           {voices.map((voice,i)=><option key={voice.voiceURI+'-'+i} value={voice.voiceURI}>{voice.name}{voice.localService ? ' · trên máy' : ' · qua mạng'}</option>)}
         </select>
@@ -82,9 +82,15 @@ export const SoundControls: React.FC<{ compact?: boolean }> = ({ compact = false
           </p>
         )}
         {PIPER_VOICE_READY && (
-          <p className="mt-2 text-[11px] leading-relaxed text-emerald-700">
-            Đã có bộ giọng nữ tiếng Việt thu sẵn trong website, không cần cài giọng trên máy. Bấm “Nghe thử giọng” để phát một câu khen.
-          </p>
+          <div className="mt-2 space-y-1">
+            <p className="text-[11px] leading-relaxed text-emerald-700">
+              Website đã có sẵn 8 câu khen bằng giọng nữ tiếng Việt, không cần cài giọng trên máy. Bấm “Nghe thử giọng” để nghe ngay.
+            </p>
+            <a href={`${import.meta.env.BASE_URL}audio/vi-piper/ATTRIBUTION.txt`} target="_blank" rel="noopener noreferrer"
+              className="inline-block text-[11px] text-indigo-600 underline underline-offset-2">
+              Ghi công giọng VAIS1000 · CC BY 4.0
+            </a>
+          </div>
         )}
         {voices.length>0 && (
           <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
