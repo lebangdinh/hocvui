@@ -30,6 +30,7 @@ import { EditorialAdmin } from './components/EditorialAdmin';
 import SubjectDetailView from './components/SubjectDetailView';
 import { getGradeSubjects, CURRICULUM_META } from './constants/curriculum';
 import { describeProfileDeletionError } from './services/profileDeletion';
+import { ProfileTrashPanel } from './components/ProfileTrashPanel';
 
 const ProfileSelector = () => {
   const { profiles, profilesError, addProfile, selectProfile, deleteProfile, logout, role } = useAuth();
@@ -73,13 +74,13 @@ const ProfileSelector = () => {
 
   const handleDeleteProfile = async (studentId: string, displayName: string) => {
     if (deletingProfileId) return;
-    if (!window.confirm(`Xóa vĩnh viễn hồ sơ và toàn bộ lịch sử học tập của bé ${displayName}? Thao tác này không thể hoàn tác.`)) return;
+    if (!window.confirm(`Chuyển hồ sơ bé ${displayName} vào Thùng rác trong 30 ngày? Điểm và lịch sử được giữ nguyên để khôi phục khi cần.`)) return;
     setDeletingProfileId(studentId);
     setDeleteError(null);
     setDeleteSuccess(null);
     try {
       await deleteProfile(studentId);
-      setDeleteSuccess(`Đã xóa hồ sơ ${displayName} và lịch sử học tập trên Firebase.`);
+      setDeleteSuccess(`Đã chuyển hồ sơ ${displayName} vào Thùng rác. Có thể khôi phục trong 30 ngày.`);
     } catch (error) {
       console.warn('Student profile deletion failed:', error instanceof Error ? error.message : 'unknown');
       setDeleteError(describeProfileDeletionError(error));
@@ -114,6 +115,7 @@ const ProfileSelector = () => {
         {profilesError && <div role="alert" className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">{profilesError}</div>}
         {deleteError && <div role="alert" className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">{deleteError}</div>}
         {deleteSuccess && <div role="status" className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-semibold text-emerald-800">{deleteSuccess}</div>}
+        <ProfileTrashPanel />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {profiles.map(p => (
             <div key={p.id} className="group relative">
@@ -144,7 +146,7 @@ const ProfileSelector = () => {
               <button
                 type="button"
                 aria-label={`Xóa hồ sơ ${p.displayName}`}
-                title={`Xóa hồ sơ ${p.displayName}`}
+                title={`Chuyển bé ${p.displayName} vào Thùng rác 30 ngày`}
                 onClick={() => { void handleDeleteProfile(p.id, p.displayName); }}
                 disabled={deletingProfileId !== null}
                 className="absolute -top-2 -right-2 rounded-full border border-red-100 bg-white p-2 text-red-500 shadow-sm transition-opacity hover:text-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500 disabled:cursor-wait disabled:opacity-50 sm:opacity-0 sm:group-hover:opacity-100 sm:focus-visible:opacity-100"
@@ -528,7 +530,7 @@ const Dashboard = () => {
                         className="w-full flex items-center justify-center gap-2 p-3 text-red-500 hover:bg-red-50 rounded-xl transition-colors font-bold border border-red-100"
                       >
                         <Trash2 size={18} />
-                        Xóa hồ sơ này
+                        Chuyển hồ sơ vào Thùng rác
                       </button>
                       <button 
                         onClick={() => { setDeleteError(null); setShowDeleteConfirm('account'); }}
@@ -560,11 +562,11 @@ const Dashboard = () => {
                         <Trash2 size={32} className="text-red-500" />
                       </div>
                       <h3 className="text-xl font-bold text-gray-800 mb-2">
-                        {showDeleteConfirm === 'profile' ? 'Xóa hồ sơ?' : 'Xóa tài khoản?'}
+                        {showDeleteConfirm === 'profile' ? 'Chuyển vào Thùng rác?' : 'Xóa tài khoản?'}
                       </h3>
                       <p className="text-gray-500 mb-6">
                         {showDeleteConfirm === 'profile' 
-                          ? 'Mọi tiến độ học tập của bé sẽ bị xóa vĩnh viễn. Bé có chắc không?' 
+                          ? 'Hồ sơ sẽ được giữ trong Thùng rác 30 ngày, có thể khôi phục điểm, huy hiệu và lịch sử học tập.' 
                           : 'Tất cả hồ sơ và dữ liệu học tập sẽ biến mất mãi mãi. Bé có chắc không?'}
                       </p>
                       {deleteError && <p role="alert" className="mb-4 rounded-xl bg-red-50 p-3 text-sm font-semibold text-red-700">{deleteError}</p>}
@@ -575,7 +577,7 @@ const Dashboard = () => {
                           onClick={() => { void handleConfirmedDeletion(); }}
                           className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-2xl transition-colors disabled:cursor-wait disabled:opacity-60"
                         >
-                          {isDeleting ? 'Đang xóa trên Firebase...' : 'Đồng ý xóa'}
+                          {isDeleting ? 'Đang xử lý trên Firebase...' : showDeleteConfirm === 'profile' ? 'Chuyển vào Thùng rác' : 'Đồng ý xóa'}
                         </button>
                         <button
                           type="button"
