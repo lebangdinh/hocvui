@@ -27,6 +27,7 @@ import { makeLocalQuiz, hasLocalQuestionBank } from '../services/questionBank';
 import { useTopicApproval } from '../services/liveApproval';
 import confetti from 'canvas-confetti';
 import { SoundControls } from './SoundControls';
+import { getComparisonVisual } from '../services/comparisonVisual';
 import { playEffect, playPraise, PRAISES, speakExplanation, stopSpokenAudio } from '../services/soundEngine';
 
 interface LearningModuleProps {
@@ -389,9 +390,16 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
   const comparisonMatch = (contentSource === 'reviewed' || contentSource === 'bank') && subject === 'math'
     ? currentQuestion.text.match(/(\d+)\s+\?\s+(\d+)/)
     : null;
+  const comparisonSides = comparisonMatch
+    ? [getComparisonVisual(comparisonMatch[1]), getComparisonVisual(comparisonMatch[2])]
+    : null;
+  const compactComparison = comparisonSides?.every(Boolean) ?? false;
+  const comparisonOptions = compactComparison
+    && currentQuestion.options.length === 3
+    && currentQuestion.options.every(option => ['<', '>', '='].includes(option.trim()));
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
+    <div className="max-w-2xl mx-auto bg-white p-4 sm:p-7 rounded-3xl shadow-xl relative overflow-hidden">
       <div className="text-[11px] text-gray-500 mb-4 pr-24">
         {contentSource === 'bank' ? 'Ngân hàng bài luyện tự biên soạn · chưa đối chiếu từng bài SGK/chưa được giáo viên thẩm định' : contentSource === 'reviewed' ? 'Bài có hồ sơ giáo viên duyệt · cần kiểm tra xác thực trước khi dùng chính thức' : 'Câu hỏi do AI tạo theo chủ đề · phụ huynh nên rà soát đáp án'}
       </div>
@@ -411,7 +419,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
         </div>
       </div>
 
-      <div className="flex justify-between items-center mb-8">
+      <div className={`flex flex-wrap justify-between items-center gap-2 ${compactComparison ? 'mb-4' : 'mb-8'}`}>
         <div className="flex items-center gap-4">
           <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">
             Câu hỏi {currentIndex + 1} / {questions.length}
@@ -473,22 +481,36 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.3 }}
         >
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 leading-relaxed text-center">
-            {comparisonMatch ? 'Điền dấu thích hợp giữa hai số:' : currentQuestion.text}
+          <h2 className={`font-bold text-gray-800 leading-relaxed text-center ${compactComparison ? 'text-lg sm:text-xl mb-3' : 'text-2xl mb-6'}`}>
+            {compactComparison ? 'Điền dấu thích hợp giữa hai số:' : currentQuestion.text}
           </h2>
-          {comparisonMatch && (
-            <div className="grid grid-cols-[1fr_65px_1fr] gap-2 sm:gap-4 items-stretch mb-7">
-              {[comparisonMatch[1], '?', comparisonMatch[2]].map((number, side) => side === 1 ? (
-                <div key="question-mark" className="flex items-center justify-center text-5xl font-black text-indigo-500">?</div>
-              ) : (
-                <div key={side} className={`min-h-44 rounded-3xl p-3 border-2 ${side === 0 ? 'bg-blue-50 border-blue-100' : 'bg-amber-50 border-amber-100'} flex flex-col items-center justify-center gap-3`}>
-                  <span className="text-5xl font-black text-gray-800">{number}</span>
-                  <div className="max-w-36 flex flex-wrap justify-center gap-1.5" aria-hidden="true">
-                    {Array.from({ length: Number(number) }, (_, dot) => (
-                      <span key={dot} className={`w-2.5 h-2.5 rounded-full ${side === 0 ? 'bg-blue-500' : 'bg-amber-500'}`} />
-                    ))}
+          {compactComparison && comparisonSides && (
+            <div className="mb-4 grid grid-cols-[minmax(0,1fr)_32px_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_44px_minmax(0,1fr)] sm:gap-3" aria-label="Hai số cần so sánh">
+              {comparisonSides.map((visual, side) => visual && (
+                <React.Fragment key={side}>
+                  {side === 1 && <div className="flex items-center justify-center text-3xl font-black text-indigo-600 sm:text-4xl" aria-hidden="true">?</div>}
+                  <div className={`flex min-h-[100px] min-w-0 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-2 py-3 sm:min-h-[116px] sm:px-3 ${side === 0 ? 'border-blue-100 bg-blue-50' : 'border-amber-100 bg-amber-50'}`}>
+                    <span className="max-w-full break-words text-center text-[clamp(1.5rem,4vw,2.5rem)] font-black leading-tight tracking-tight text-slate-800 tabular-nums">{visual.display}</span>
+                    {visual.useDots ? (
+                      visual.dots === 0
+                        ? <span className="text-xs font-semibold text-slate-500">Không có chấm</span>
+                        : <div className="flex max-w-[145px] flex-wrap justify-center gap-1.5" aria-label={`${visual.dots} chấm minh họa`}>
+                            {Array.from({ length: visual.dots }, (_, dot) => (
+                              <span key={dot} className={`h-2.5 w-2.5 rounded-full ${side === 0 ? 'bg-blue-500' : 'bg-amber-500'}`} aria-hidden="true" />
+                            ))}
+                          </div>
+                    ) : (
+                      <div className="flex max-w-full flex-col items-center gap-1" aria-label={`Số có ${visual.digitCount} chữ số`}>
+                        <div className="flex max-w-full flex-wrap justify-center gap-0.5 sm:gap-1" aria-hidden="true">
+                          {visual.digits.map((digit, i) => (
+                            <span key={i} className={`flex h-7 w-6 items-center justify-center rounded-md border border-white bg-white/80 text-sm font-extrabold tabular-nums shadow-sm sm:h-8 sm:w-7 sm:text-base ${side === 0 ? 'text-blue-700' : 'text-amber-700'}`}>{digit}</span>
+                          ))}
+                        </div>
+                        <span className="text-[11px] font-semibold text-slate-500">{visual.digitCount} chữ số · So từ hàng lớn nhất</span>
+                      </div>
+                    )}
                   </div>
-                </div>
+                </React.Fragment>
               ))}
             </div>
           )}
@@ -511,7 +533,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
             )}
           </AnimatePresence>
 
-          <div className="grid grid-cols-1 gap-4 mb-8">
+          <div className={`grid mb-6 ${comparisonOptions ? 'grid-cols-3 gap-2 sm:gap-3' : 'grid-cols-1 gap-4'}`}>
             {currentQuestion.options.map((option, idx) => (
               <motion.button
                 key={idx}
@@ -533,7 +555,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                 }
                 onClick={() => handleOptionSelect(option)}
                 disabled={!!selectedOption}
-                className={`p-4 rounded-2xl border-2 text-left transition-all flex items-center justify-between ${
+                className={`${comparisonOptions ? 'px-2 py-3 text-center justify-center sm:py-4' : 'p-4 text-left justify-between'} rounded-2xl border-2 transition-all flex items-center ${
                   selectedOption === option
                     ? isCorrect 
                       ? 'border-green-500 bg-green-50' 
@@ -546,7 +568,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-xl font-bold">{option}</span>
+                  <span className={`${comparisonOptions ? 'text-3xl sm:text-4xl' : 'text-xl'} font-bold`}>{option}</span>
                   {hintUsed && option === currentQuestion.correctAnswer && !selectedOption && (
                     <motion.div
                       initial={{ scale: 0 }}
