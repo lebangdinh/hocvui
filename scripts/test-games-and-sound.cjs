@@ -13,6 +13,7 @@ const statements = [
   ['Short gentle praise and no automatic browser TTS', learning.includes('playPraise(praiseIndex)') && !learning.includes('window.speechSynthesis.speak(')],
   ['Explanation requires explicit opt-in and Vietnamese voice', engine.includes("type === 'praise' ? pref.praise : pref.explanation") && engine.includes("getPreferredVietnameseVoice()")],
   ['No fallback to English voice for Vietnamese', engine.includes("filter(v => /^vi") && engine.includes("if (!voice || !synth) return false;")],
+  ['Effect cues synthesized quietly on-device', engine.includes("new ctor()") && engine.includes("oscillator.type = 'sine'") && !engine.includes('assets.mixkit.co')],
   ['Female Vietnamese voice prioritized when available', engine.includes("hoai.?my") && engine.includes("rankVoice(b) - rankVoice(a)")],
   ['Voice picker and preview are wired', read('src/components/SoundControls.tsx').includes("previewVietnameseVoice()") && read('src/components/SoundControls.tsx').includes("getVietnameseVoices()")],
   ['Chosen voice is saved across sessions', prefs.includes("voiceId: 'auto'") && prefs.includes("localStorage.setItem(STORAGE_KEY")],
