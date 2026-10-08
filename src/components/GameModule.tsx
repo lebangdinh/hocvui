@@ -211,6 +211,12 @@ const PuzzleGame = ({ theme }: { theme: Theme }) => {
   const [started, setStarted] = useState(false);
 
   const { addPoints, awardBadge } = useAuth();
+  const tileStyles = [
+    ['#ffb25e','#ef6b3b'], ['#7de5da','#1e9eb2'], ['#d5a8ff','#8b65d9'],
+    ['#9fe993','#4fab75'], ['#ffc5d3','#e56896'], ['#91befb','#537fe2'],
+    ['#ffe68a','#e8a94a'], ['#9de6f3','#53adbf']
+  ] as const;
+
 
   useEffect(() => {
     if (started) {
@@ -288,7 +294,7 @@ const PuzzleGame = ({ theme }: { theme: Theme }) => {
           </div>
           <div className="text-center">
             <h3 className={`text-2xl font-black ${theme.textColor}`}>Xếp hình trí tuệ</h3>
-            <p className={`${theme.secondaryTextColor} mt-1`}>Sắp xếp các ô số theo thứ tự từ 1 đến 8 nhé!</p>
+            <p className={`${theme.secondaryTextColor} mt-1`}>Xếp những mảnh màu sắc từ 1 đến 8. Mỗi bước đưa bé tới chiến thắng!</p>
           </div>
           <button 
             onClick={() => setStarted(true)}
@@ -299,36 +305,40 @@ const PuzzleGame = ({ theme }: { theme: Theme }) => {
         </div>
       ) : (
         <>
-          <div className="flex justify-between w-full max-w-[300px] items-center">
-            <div className="text-sm font-bold text-gray-500">Số bước: <span className="text-orange-500">{moves}</span></div>
-            <button onClick={shuffle} className="text-xs font-bold text-blue-500 hover:underline">Trộn lại</button>
+          <div className="flex w-full max-w-[365px] items-center justify-between rounded-2xl border border-amber-100 bg-gradient-to-r from-amber-50 to-sky-50 px-4 py-3">
+            <span className="text-sm font-black text-slate-700">🧩 Số bước <span className="text-orange-600">{moves}</span></span>
+            <span className="text-xs font-extrabold text-emerald-700">✓ {tiles.filter((n, i) => n > 0 && n === i + 1).length}/8</span>
+            <button onClick={shuffle} className="rounded-full bg-white px-3 py-1.5 text-xs font-extrabold text-blue-600 shadow-sm hover:bg-blue-50">Trộn lại ↻</button>
           </div>
           
-          <div className="grid grid-cols-3 gap-2 bg-gray-100 p-2 rounded-2xl shadow-inner">
-            {tiles.map((tile, i) => (
-              <motion.button
-                key={i}
-                layout
-                whileHover={tile !== 0 ? { scale: 1.05, zIndex: 10 } : {}}
-                whileTap={tile !== 0 ? { scale: 0.95 } : {}}
-                animate={tile !== 0 ? (tile === (i + 1) % 9 ? { scale: [1, 1.02, 1], transition: { repeat: Infinity, duration: 2 } } : { scale: 1 }) : {}}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                onClick={() => moveTile(i)}
-                className={`w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-black transition-all relative overflow-hidden ${
-                  tile === 0 
-                    ? 'bg-gray-200/50 shadow-inner' 
-                    : 'bg-white text-orange-500 shadow-[0_6px_0_0_rgba(249,115,22,0.2)] border-2 border-orange-100'
-                } ${tile !== 0 && tile === (i + 1) % 9 ? 'ring-4 ring-green-400 ring-inset' : ''}`}
-              >
-                {tile !== 0 && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent pointer-events-none" />
-                    <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/30 to-transparent rotate-45 animate-[shine_3s_infinite] pointer-events-none" />
-                    {tile}
-                  </>
-                )}
-              </motion.button>
-            ))}
+          <div className="w-full max-w-[365px] rounded-[32px] border-[7px] border-orange-100 bg-gradient-to-br from-orange-50 via-amber-50 to-violet-100 p-3 shadow-[inset_0_5px_12px_rgba(82,58,110,.10),0_18px_40px_rgba(233,154,76,.20)]">
+            <div className="grid grid-cols-3 gap-2.5">
+            {tiles.map((tile, i) => {
+              const correct = tile !== 0 && tile === i + 1;
+              const [light, dark] = tile ? tileStyles[tile - 1] : ['#e5d8c6', '#ddd0c0'];
+              const blank = tile === 0;
+              return (
+                <motion.button
+                  key={i}
+                  type="button"
+                  aria-label={blank ? 'Ô trống' : `Ô số ${tile}`}
+                  disabled={blank || isWon}
+                  whileHover={!blank ? { scale: 1.06, y: -3 } : {}}
+                  whileTap={!blank ? { scale: .95, y: 2 } : {}}
+                  onClick={() => moveTile(i)}
+                  className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-[21px] border-2 transition-shadow focus-visible:outline focus-visible:outline-[4px] focus-visible:outline-offset-1 focus-visible:outline-blue-500 ${blank ? 'border-white/30 bg-stone-200/50 shadow-inner' : 'border-white/90 shadow-[0_6px_0_rgba(44,35,73,.18)]'}`}
+                  style={blank ? undefined : { background: `linear-gradient(155deg, ${light}, ${dark})` }}
+                >
+                  {!blank && <>
+                    <span className="absolute left-2 top-2 h-3 w-10 rotate-[-24deg] rounded-full bg-white/35 blur-[1px]" />
+                    <span className="absolute inset-x-[15%] bottom-0 h-4 rounded-full bg-white/10" />
+                    <span className="relative text-[34px] font-black text-white drop-shadow-[0_3px_0_rgba(32,36,64,.3)] sm:text-[44px]">{tile}</span>
+                    {correct && <span className="absolute right-1.5 top-1.5 rounded-full bg-emerald-500 px-1.5 py-0.5 text-[10px] font-black text-white shadow-sm">✓</span>}
+                  </>}
+                </motion.button>
+              );
+            })}
+            </div>
           </div>
 
           {isWon && (
@@ -1177,11 +1187,15 @@ const MemoryGame = ({ theme }: { theme: Theme }) => {
   const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
 
   const [mismatchIndices, setMismatchIndices] = useState<number[]>([]);
+  const flipTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (flipTimer.current) clearTimeout(flipTimer.current); }, []);
 
   const initGame = () => {
     const deck = [...emojis, ...emojis]
       .sort(() => Math.random() - 0.5)
       .map((emoji, index) => ({ id: index, emoji, flipped: false, matched: false }));
+    if (flipTimer.current) clearTimeout(flipTimer.current);
+    flipTimer.current = null;
     setCards(deck);
     setFlippedIndices([]);
     setMismatchIndices([]);
@@ -1205,7 +1219,7 @@ const MemoryGame = ({ theme }: { theme: Theme }) => {
       } else {
         setMismatchIndices([first, second]);
         playSound('incorrect');
-        setTimeout(() => {
+        flipTimer.current = setTimeout(() => {
           setCards(prev => prev.map((card, i) => 
             (i === first || i === second) ? { ...card, flipped: false } : card
           ));
@@ -1261,7 +1275,7 @@ const MemoryGame = ({ theme }: { theme: Theme }) => {
       ) : (
         <>
           {/* Floating Background Particles */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             {[...Array(10)].map((_, i) => (
               <motion.div
                 key={i}
@@ -1284,49 +1298,43 @@ const MemoryGame = ({ theme }: { theme: Theme }) => {
             ))}
           </div>
 
-          <div className="flex justify-between w-full max-w-[400px] items-center relative z-10">
-            <div className={`text-sm font-bold ${theme.secondaryTextColor}`}>Số bước: <span className={`text-${theme.accentColor}-500`}>{moves}</span></div>
+          <div className="flex justify-between w-full max-w-[460px] items-center relative z-10 rounded-2xl border border-pink-100 bg-pink-50 px-4 py-3">
+            <div className={`text-sm font-bold ${theme.secondaryTextColor}`}>🃏 Lượt lật: <span className={`text-${theme.accentColor}-500`}>{moves}</span></div>
             <button onClick={initGame} className="text-xs font-bold text-blue-500 hover:underline">Chơi lại</button>
           </div>
 
-          <div className="grid grid-cols-4 gap-3">
-            {cards.map((card, i) => (
-              <motion.button
+          <div className="grid w-full max-w-[460px] grid-cols-4 gap-2 rounded-[28px] border-4 border-pink-100 bg-gradient-to-br from-rose-50 to-violet-100 p-3 shadow-[0_18px_42px_rgba(115,70,140,.16)] sm:gap-3 sm:p-4">
+            {cards.map((card, i) => {
+              const visible = card.flipped || card.matched;
+              const colors = [
+                'linear-gradient(145deg,#f9a8d4,#e468a9)',
+                'linear-gradient(145deg,#93c5fd,#6c77db)',
+                'linear-gradient(145deg,#fde68a,#f59e66)',
+                'linear-gradient(145deg,#a7f3d0,#4dc8a1)'
+              ];
+              return <motion.button
                 key={card.id}
-                whileHover={!card.flipped && !card.matched ? { scale: 1.05 } : {}}
-                whileTap={!card.flipped && !card.matched ? { scale: 0.95 } : {}}
-                animate={
-                  card.matched 
-                    ? { scale: [1, 1.2, 1], transition: { duration: 0.3 } }
-                    : mismatchIndices.includes(i)
-                    ? { x: [-5, 5, -5, 5, 0], transition: { duration: 0.4 } }
-                    : {}
-                }
+                type="button"
+                aria-label={visible ? 'Hình ' + card.emoji : 'Lật thẻ số ' + (i + 1)}
+                disabled={card.matched || isWon || flippedIndices.length === 2}
+                whileHover={!visible ? { y: -4, scale: 1.05 } : {}}
+                whileTap={!visible ? { scale: .94 } : {}}
+                animate={card.matched ? { scale: [1, 1.08, 1] } : mismatchIndices.includes(i) ? { x: [-4,4,-4,4,0] } : {}}
+                transition={{ duration: .24 }}
                 onClick={() => handleCardClick(i)}
-                className={`w-16 h-20 sm:w-20 sm:h-24 rounded-2xl flex items-center justify-center text-3xl transition-all relative preserve-3d ${
-                  card.flipped || card.matched
-                    ? 'bg-white shadow-lg rotate-y-180'
-                    : `bg-${theme.accentColor}-500 shadow-[0_6px_0_0_rgba(0,0,0,0.2)]`
-                } ${card.matched ? `ring-4 ring-${theme.accentColor}-300 ring-offset-2` : ''}`}
+                className="relative aspect-[.81] w-full min-w-0 overflow-hidden rounded-[15px] border-[3px] border-white shadow-[0_6px_0_rgba(83,69,114,.22)] transition-[filter] focus-visible:outline focus-visible:outline-4 focus-visible:outline-blue-500 sm:rounded-[20px]"
+                style={{ background: visible ? 'linear-gradient(145deg,#ffffff,#fdf0fc)' : colors[i % 4] }}
               >
-                <div className={`absolute inset-0 flex items-center justify-center backface-hidden ${card.flipped || card.matched ? 'opacity-100' : 'opacity-0'}`}>
-                  <div className="relative">
-                    {card.emoji}
-                    {card.matched && (
-                      <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                        className={`absolute -inset-2 bg-${theme.accentColor}-400/30 rounded-full blur-md`}
-                      />
-                    )}
-                  </div>
-                </div>
-                <div className={`absolute inset-0 flex items-center justify-center backface-hidden ${card.flipped || card.matched ? 'opacity-0' : 'opacity-100'}`}>
-                  <Star className="text-white/50" size={32} />
-                </div>
-              </motion.button>
-            ))}
+                <span className="absolute left-1.5 top-1.5 h-4 w-5 rotate-[-35deg] rounded-full bg-white/45" />
+                {visible ?
+                  <>
+                    <span className="relative text-[27px] drop-shadow-sm sm:text-[40px]">{card.emoji}</span>
+                    {card.matched && <span className="absolute bottom-1 right-1 rounded-full bg-emerald-500 px-1.5 text-[11px] font-bold text-white">✓</span>}
+                  </>
+                  : <span className="relative flex h-full w-full items-center justify-center"><Star size={31} strokeWidth={2.7} className="text-white drop-shadow-md" fill="rgba(255,255,255,.4)" /></span>
+                }
+              </motion.button>;
+            })}
           </div>
 
           {isWon && (
