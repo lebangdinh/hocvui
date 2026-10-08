@@ -1,5 +1,5 @@
 import { getSoundPreferences } from './soundPreferences';
-import { CENTRAL_VOICE_READY, PIPER_VOICE_READY } from './voicePack';
+import { CENTRAL_VOICE_READY, SOUTHERN_VOICE_READY } from './voicePack';
 
 export const PRAISES = [
   'Giỏi lắm, con!',
@@ -100,7 +100,7 @@ function rankVoice(voice: SpeechSynthesisVoice): number {
 export function getPreferredVietnameseVoice(): SpeechSynthesisVoice | null {
   const voices = getVietnameseVoices();
   const preferred = getSoundPreferences().voiceId;
-  return (preferred === 'auto' || preferred === 'central-pack' || preferred === 'piper-vi'
+  return (preferred === 'auto' || preferred === 'central-pack' || preferred === 'south-vi' || preferred === 'piper-vi'
     ? null : voices.find(v => v.voiceURI === preferred)) || voices[0] || null;
 }
 
@@ -141,15 +141,16 @@ function speakVietnamese(text: string, type: 'praise' | 'explanation', force = f
   }
 }
 
-type RecordedVoice = 'vi-central' | 'vi-piper';
+type RecordedVoice = 'vi-central' | 'vi-south';
 
 function recordedPackChoice(): RecordedVoice | null {
   const pref = getSoundPreferences();
-  if (pref.voiceId === 'central-pack') return CENTRAL_VOICE_READY ? 'vi-central' : null;
-  if (pref.voiceId === 'piper-vi') return PIPER_VOICE_READY ? 'vi-piper' : null;
+  if (pref.voiceId === 'central-pack') return CENTRAL_VOICE_READY ? 'vi-central' : (SOUTHERN_VOICE_READY ? 'vi-south' : null);
+  // Old piper-vi selection is migrated transparently to the southern voice.
+  if (pref.voiceId === 'south-vi' || pref.voiceId === 'piper-vi') return SOUTHERN_VOICE_READY ? 'vi-south' : null;
   if (pref.voiceId !== 'auto') return null;
+  if (SOUTHERN_VOICE_READY) return 'vi-south';
   if (CENTRAL_VOICE_READY) return 'vi-central';
-  if (PIPER_VOICE_READY) return 'vi-piper';
   return null;
 }
 
