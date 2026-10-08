@@ -63,14 +63,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     let unsubscribeProfiles: (() => void) | null = null;
+    let trashCleanupTimer: ReturnType<typeof setInterval> | null = null;
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       let cleanupRequested = false;
+      if (trashCleanupTimer) { clearInterval(trashCleanupTimer); trashCleanupTimer = null; }
       if (unsubscribeProfiles) { unsubscribeProfiles(); unsubscribeProfiles = null; }
       setUser(firebaseUser);
       setProfilesError(null);
       setIsAuthReady(true);
       
       if (firebaseUser) {
+        // If the tab stays open for a long time, recheck expiry hourly.
+        trashCleanupTimer = setInterval(() => {
+          if (auth.currentUser?.uid !== firebaseUser.uid) return;
+          void purgeExpiredTrashForSignedInParent()
+            .then(() => setTrashError(null))
+            .catch(error => setTrashError(error instanceof Error ? error.message : 'Chưa dọn được Thùng rác quá hạn.'));
+        }, 60 * 60 * 1000);
         try {
           const token = await firebaseUser.getIdTokenResult();
           setRole(token.claims.role === 'admin' ? 'admin' : token.claims.role === 'reviewer' ? 'reviewer' : 'parent');
@@ -118,7 +127,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     });
 
-    return () => { unsubscribe(); if (unsubscribeProfiles) unsubscribeProfiles(); };
+    return () => {
+      unsubscribe();
+      if (unsubscribeProfiles) unsubscribeProfiles();
+      if (trashCleanupTimer) clearInterval(trashCleanupTimer);
+    };
   }, []);
 
   const selectProfile = (p: UserProfile | null) => {
