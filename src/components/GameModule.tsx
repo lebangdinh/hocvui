@@ -1803,7 +1803,7 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
               theme={currentTheme}
             />
             <GameCard 
-              title="Đại Chiến Xe Tăng"
+              title="Robot Vệ Binh"
               description="Thử phản xạ và bảo vệ căn cứ trong thế giới robot."
               icon={<Shield size={21} strokeWidth={2.6} />}
               color="indigo"
@@ -1844,6 +1844,19 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
               <ChevronLeft size={20} />
               Quay lại {onClose && !initialGame ? 'khu vui chơi' : 'trang chủ'}
             </button>
+
+            {selectedGame && (
+              <div className="relative mb-7 h-28 overflow-hidden rounded-[24px] sm:h-36">
+                <GameSceneArt type={selectedGame} className="h-full w-full" />
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 via-slate-900/15 to-transparent" />
+                <div className="absolute inset-y-0 left-5 flex flex-col justify-center sm:left-7">
+                  <span className="text-[10px] font-extrabold uppercase tracking-[0.19em] text-white/85">✨ Sẵn sàng thử sức?</span>
+                  <span className="mt-1 text-xl font-black text-white drop-shadow-md sm:text-2xl">
+                    {{ puzzle: 'Xếp Hình Trí Tuệ', chicken: 'Bắn Gà Vui Nhộn', airplane: 'Phi Đội Gà Bay', racing: 'Đua Xe Tốc Độ', tank: 'Robot Vệ Binh', memory: 'Thử Thách Trí Nhớ' }[selectedGame]}
+                  </span>
+                </div>
+              </div>
+            )}
 
             {selectedGame === 'puzzle' && <PuzzleGame theme={currentTheme} />}
             {(selectedGame === 'chicken' || selectedGame === 'airplane' || selectedGame === 'tank') && (
