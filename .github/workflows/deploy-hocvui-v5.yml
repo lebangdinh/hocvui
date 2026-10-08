@@ -74,7 +74,7 @@ jobs:
           site="https://lebangdinh.github.io/hocvui/"
           for attempt in {1..12}; do
             html="$(curl -fsSL --connect-timeout 10 --max-time 25 "$site" || true)"
-            js="$(printf '%s' "$html" | grep -oE '/hocvui/assets/[^"]+\\.js' | head -n1 || true)"
+            js="$(printf '%s' "$html" | grep -oE '/hocvui/assets/[^"]+\.js' | head -n1 || true)"
             if [[ -n "$js" ]] && curl -fsSL --connect-timeout 10 --max-time 35 -o /dev/null "https://lebangdinh.github.io$js"; then
               echo "PASS: Học Vui V5 HTML and JS reachable at $site"
               exit 0
