@@ -18,6 +18,7 @@ import { BADGES } from '../constants/badges';
 import confetti from 'canvas-confetti';
 import { GameSceneArt, type GameArtType } from './GameSceneArt';
 import { drawRacingTrack, drawRacingCar } from './RacingArt';
+import { drawArcadeBackground, drawArcadeHero, drawArcadeEnemy, drawArcadeProjectile } from './ArcadeArt';
 
 const SOUNDS = {
   correct: 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3',
@@ -358,10 +359,14 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
   const [mode, setMode] = useState<'single' | 'multi' | null>(null);
   const shakeRef = React.useRef(0);
   const keys = React.useRef<Record<string, boolean>>({});
+  const holdKey = (key: string, down: boolean) => { keys.current[key] = down; };
   const { addPoints, awardBadge } = useAuth();
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => { keys.current[e.code] = true; };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'Space'].includes(e.code)) e.preventDefault();
+      keys.current[e.code] = true;
+    };
     const handleKeyUp = (e: KeyboardEvent) => { keys.current[e.code] = false; };
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
@@ -465,205 +470,11 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
     };
 
     const drawPlayer = (x: number, y: number, playerIndex: number) => {
-      ctx.save();
-      ctx.translate(x, y);
-      
-      // Add a subtle glow to the player
-      ctx.shadowBlur = 15;
-      ctx.shadowColor = playerIndex === 1 ? (type === 'tank' ? '#22c55e' : '#3b82f6') : '#a855f7';
-
-      if (type === 'tank') {
-        // Tank Body
-        const grad = ctx.createLinearGradient(-22, 0, 22, 0);
-        const baseColor = playerIndex === 1 ? '#22c55e' : '#a855f7';
-        const darkColor = playerIndex === 1 ? '#166534' : '#6b21a8';
-        grad.addColorStop(0, darkColor);
-        grad.addColorStop(0.3, baseColor);
-        grad.addColorStop(0.7, baseColor);
-        grad.addColorStop(1, darkColor);
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.roundRect(-22, 0, 44, 30, 8);
-        ctx.fill();
-        
-        // Camouflage pattern
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-        ctx.fillRect(-15, 5, 10, 10);
-        ctx.fillRect(5, 15, 12, 8);
-        
-        // Turret
-        const tGrad = ctx.createRadialGradient(0, 5, 0, 0, 5, 15);
-        tGrad.addColorStop(0, baseColor);
-        tGrad.addColorStop(1, darkColor);
-        ctx.fillStyle = tGrad;
-        ctx.beginPath();
-        ctx.arc(0, 5, 15, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Barrel with details
-        ctx.fillStyle = darkColor;
-        ctx.fillRect(-5, -20, 10, 25);
-        ctx.fillStyle = '#000';
-        ctx.fillRect(-6, -22, 12, 5); // Muzzle brake
-        
-        // Tracks detail
-        ctx.fillStyle = '#111';
-        ctx.fillRect(-25, 5, 10, 25);
-        ctx.fillRect(15, 5, 10, 25);
-      } else {
-        // Spaceship/Airplane - More futuristic
-        const grad = ctx.createLinearGradient(-25, 0, 25, 0);
-        const baseColor = playerIndex === 1 ? '#60a5fa' : '#d8b4fe';
-        const darkColor = playerIndex === 1 ? '#1e40af' : '#7e22ce';
-        grad.addColorStop(0, darkColor);
-        grad.addColorStop(0.5, baseColor);
-        grad.addColorStop(1, darkColor);
-        ctx.fillStyle = grad;
-        
-        // Wings with detail
-        ctx.beginPath();
-        ctx.moveTo(-30, 25);
-        ctx.lineTo(30, 25);
-        ctx.lineTo(0, -15);
-        ctx.closePath();
-        ctx.fill();
-        
-        // Wing tips
-        ctx.fillStyle = '#ef4444';
-        ctx.fillRect(-32, 20, 4, 8);
-        ctx.fillRect(28, 20, 4, 8);
-        
-        // Body
-        const bGrad = ctx.createLinearGradient(0, -20, 0, 30);
-        bGrad.addColorStop(0, '#f8fafc');
-        bGrad.addColorStop(1, '#cbd5e1');
-        ctx.fillStyle = bGrad;
-        ctx.beginPath();
-        ctx.ellipse(0, 5, 10, 30, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Cockpit with reflection
-        const cGrad = ctx.createRadialGradient(-2, -8, 0, 0, -5, 8);
-        cGrad.addColorStop(0, '#bae6fd');
-        cGrad.addColorStop(1, '#0ea5e9');
-        ctx.fillStyle = cGrad;
-        ctx.beginPath();
-        ctx.arc(0, -5, 7, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Engine fire - Multi-layered
-        if (frameCount % 4 < 3) {
-          // Outer flame
-          ctx.fillStyle = '#f97316';
-          ctx.beginPath();
-          ctx.moveTo(-8, 30);
-          ctx.lineTo(8, 30);
-          ctx.lineTo(0, 45 + Math.random() * 15);
-          ctx.fill();
-          
-          // Inner flame
-          ctx.fillStyle = '#fbbf24';
-          ctx.beginPath();
-          ctx.moveTo(-4, 30);
-          ctx.lineTo(4, 30);
-          ctx.lineTo(0, 38 + Math.random() * 8);
-          ctx.fill();
-        }
-
-        // Shield Visual
-        ctx.strokeStyle = playerIndex === 1 ? 'rgba(59, 130, 246, 0.3)' : 'rgba(168, 85, 247, 0.3)';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([5, 5]);
-        ctx.lineDashOffset = frameCount;
-        ctx.beginPath();
-        ctx.arc(0, 5, 40, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      }
-      ctx.restore();
+      drawArcadeHero(ctx, type, x, y, playerIndex, frameCount);
     };
 
-    const drawEnemy = (enemy: any) => {
-      ctx.save();
-      ctx.translate(enemy.x, enemy.y);
-      
-      // Subtle enemy glow
-      ctx.shadowBlur = 20;
-      ctx.shadowColor = enemy.color;
-
-      if (type === 'chicken') {
-        const grad = ctx.createRadialGradient(-enemy.size/3, -enemy.size/3, 2, 0, 0, enemy.size);
-        grad.addColorStop(0, '#fff');
-        grad.addColorStop(0.2, '#fef08a');
-        grad.addColorStop(0.8, '#eab308');
-        grad.addColorStop(1, '#a16207');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(0, 0, enemy.size, 0, Math.PI * 2);
-        ctx.fill();
-        
-        ctx.fillStyle = '#fef08a';
-        ctx.strokeStyle = '#eab308';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.ellipse(-enemy.size * 0.8, 0, enemy.size/2, enemy.size/3, Math.PI/4, 0, Math.PI*2);
-        ctx.fill();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.ellipse(enemy.size * 0.8, 0, enemy.size/2, enemy.size/3, -Math.PI/4, 0, Math.PI*2);
-        ctx.fill();
-        ctx.stroke();
-        
-        ctx.fillStyle = '#ef4444';
-        for(let i = -2; i <= 2; i++) {
-          const xOffset = i * 4;
-          const yOffset = -enemy.size + Math.abs(i) * 2;
-          const radius = 5 - Math.abs(i);
-          ctx.beginPath();
-          ctx.arc(xOffset, yOffset, radius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        
-        ctx.fillStyle = '#f97316';
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(14, 4);
-        ctx.lineTo(0, 6);
-        ctx.fill();
-        
-        ctx.fillStyle = '#fff';
-        ctx.beginPath();
-        ctx.arc(-6, -4, 5, 0, Math.PI * 2);
-        ctx.arc(6, -4, 5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#000';
-        ctx.beginPath();
-        ctx.arc(-6, -4, 3, 0, Math.PI * 2);
-        ctx.arc(6, -4, 3, 0, Math.PI * 2);
-        ctx.fill();
-      } else {
-        const grad = ctx.createRadialGradient(0, -5, 2, 0, 0, enemy.size);
-        grad.addColorStop(0, '#f87171');
-        grad.addColorStop(0.6, '#ef4444');
-        grad.addColorStop(1, '#7f1d1d');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, enemy.size, enemy.size / 1.8, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        ctx.strokeStyle = '#450a0a';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        
-        const glassGrad = ctx.createLinearGradient(0, -enemy.size/2, 0, 0);
-        glassGrad.addColorStop(0, '#fee2e2');
-        glassGrad.addColorStop(1, '#f87171');
-        ctx.fillStyle = glassGrad;
-        ctx.beginPath();
-        ctx.arc(0, -4, enemy.size/2.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.restore();
+    const drawEnemy = (enemy: { x: number; y: number; size: number }) => {
+      drawArcadeEnemy(ctx, type, enemy.x, enemy.y, enemy.size, frameCount);
     };
 
     const gameLoop = () => {
@@ -706,20 +517,7 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
         ctx.translate((Math.random() - 0.5) * shakeRef.current, (Math.random() - 0.5) * shakeRef.current);
       }
       
-      ctx.fillStyle = theme.gameBg;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Draw Stars
-      stars.forEach(star => {
-        star.y += star.speed;
-        if (star.y > canvas.height) star.y = 0;
-        ctx.globalAlpha = star.alpha + Math.sin(frameCount * 0.05 + star.x) * 0.2;
-        ctx.fillStyle = theme.id === 'light' || theme.id === 'candy' ? 'rgba(0,0,0,0.1)' : '#fff';
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.globalAlpha = 1.0;
+      drawArcadeBackground(ctx, type, canvas.width, canvas.height, frameCount);
 
       // Draw Players
       drawPlayer(player1X, playerY, 1);
@@ -757,17 +555,7 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
       // Update & Draw Bullets
       for (let i = bullets.length - 1; i >= 0; i--) {
         bullets[i].y -= 6;
-        const bGrad = ctx.createRadialGradient(bullets[i].x, bullets[i].y, 0, bullets[i].x, bullets[i].y, 12);
-        bGrad.addColorStop(0, bullets[i].player === 1 ? '#fbbf24' : '#d8b4fe');
-        bGrad.addColorStop(1, 'transparent');
-        ctx.fillStyle = bGrad;
-        ctx.beginPath();
-        ctx.arc(bullets[i].x, bullets[i].y, 12, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#fff';
-        ctx.beginPath();
-        ctx.arc(bullets[i].x, bullets[i].y, 5, 0, Math.PI * 2);
-        ctx.fill();
+        drawArcadeProjectile(ctx, bullets[i].x, bullets[i].y, bullets[i].player, frameCount);
         if (bullets[i].y < 0) bullets.splice(i, 1);
       }
 
@@ -812,7 +600,7 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
 
     const handleInput = (clientX: number, rect: DOMRect) => {
       if (mode === 'multi') return;
-      const x = clientX - rect.left;
+      const x = (clientX - rect.left) * canvas.width / rect.width;
       player1X = Math.max(30, Math.min(canvas.width - 30, x));
     };
 
@@ -823,6 +611,7 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
 
     const handleTouchMove = (e: TouchEvent) => {
       const rect = canvas.getBoundingClientRect();
+      if (e.cancelable) e.preventDefault();
       handleInput(e.touches[0].clientX, rect);
     };
 
@@ -907,9 +696,9 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="flex justify-between w-full max-w-[400px] items-center px-4">
+      <div className="flex justify-between w-full max-w-[480px] items-center rounded-2xl bg-sky-50 px-4 py-3 border border-sky-100">
         {mode === 'single' ? (
-          <div className={`text-lg font-black text-${theme.accentColor}-500`}>Điểm: {score}</div>
+          <div className={`text-lg font-black text-${theme.accentColor}-500`}>⭐ Điểm: {score}</div>
         ) : (
           <div className="flex justify-between w-full">
             <div className="text-sm font-black text-blue-500">Người 1: {score}</div>
@@ -918,12 +707,12 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
         )}
         {gameOver && <button onClick={() => { setGameOver(false); setScore(0); setScore2(0); }} className="text-sm font-bold text-blue-500">Chơi lại</button>}
       </div>
-      <div className="relative w-full max-w-[400px] aspect-[4/5] touch-none">
+      <div className="relative w-full max-w-[480px] aspect-[4/5] touch-none">
         <canvas 
           ref={canvasRef} 
           width={400} 
           height={500} 
-          className={`bg-gray-900 rounded-3xl shadow-2xl w-full h-full object-contain ${theme.id === 'space' ? 'ring-2 ring-purple-500/50' : ''}`}
+          className={`rounded-3xl border-[5px] border-white shadow-[0_22px_60px_rgba(14,48,83,.24)] w-full h-full object-contain ${theme.id === 'space' ? 'ring-2 ring-purple-500/50' : ''}`}
         />
         
         {gameOver && (
@@ -951,6 +740,27 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
           </div>
         )}
       </div>
+      <div className="flex w-full max-w-[480px] items-center gap-3 select-none">
+        <button aria-label="Di chuyển sang trái" type="button"
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); holdKey(mode === 'single' ? 'ArrowLeft' : 'KeyA', true); }}
+          onPointerUp={() => holdKey(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          onPointerCancel={() => holdKey(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          onLostPointerCapture={() => holdKey(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          className="flex-1 rounded-2xl bg-sky-500 py-4 text-2xl font-black text-white shadow-[0_5px_0_#2360a4] active:translate-y-1 active:shadow-none touch-none">◀</button>
+        <button aria-label="Bắn tia sáng" type="button"
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); holdKey(mode === 'single' ? 'Space' : 'KeyW', true); }}
+          onPointerUp={() => holdKey(mode === 'single' ? 'Space' : 'KeyW', false)}
+          onPointerCancel={() => holdKey(mode === 'single' ? 'Space' : 'KeyW', false)}
+          onLostPointerCapture={() => holdKey(mode === 'single' ? 'Space' : 'KeyW', false)}
+          className="flex-[1.4] rounded-2xl bg-amber-400 py-4 text-lg font-black text-amber-950 shadow-[0_5px_0_#c38319] active:translate-y-1 active:shadow-none touch-none">✨ BẮN</button>
+        <button aria-label="Di chuyển sang phải" type="button"
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); holdKey(mode === 'single' ? 'ArrowRight' : 'KeyD', true); }}
+          onPointerUp={() => holdKey(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          onPointerCancel={() => holdKey(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          onLostPointerCapture={() => holdKey(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          className="flex-1 rounded-2xl bg-sky-500 py-4 text-2xl font-black text-white shadow-[0_5px_0_#2360a4] active:translate-y-1 active:shadow-none touch-none">▶</button>
+      </div>
+      {mode === 'multi' && <p className="text-center text-xs text-slate-500">Người 2 dùng phím ← → và Enter trên bàn phím.</p>}
     </div>
   );
 };
