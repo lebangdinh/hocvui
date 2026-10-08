@@ -17,6 +17,8 @@ import { useAuth } from '../AuthContext';
 import { BADGES } from '../constants/badges';
 import confetti from 'canvas-confetti';
 import { GameSceneArt, type GameArtType } from './GameSceneArt';
+import { drawRacingTrack, drawRacingCar } from './RacingArt';
+import { drawArcadeBackground, drawArcadeHero, drawArcadeEnemy, drawArcadeProjectile } from './ArcadeArt';
 
 const SOUNDS = {
   correct: 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3',
@@ -209,6 +211,12 @@ const PuzzleGame = ({ theme }: { theme: Theme }) => {
   const [started, setStarted] = useState(false);
 
   const { addPoints, awardBadge } = useAuth();
+  const tileStyles = [
+    ['#ffb25e','#ef6b3b'], ['#7de5da','#1e9eb2'], ['#d5a8ff','#8b65d9'],
+    ['#9fe993','#4fab75'], ['#ffc5d3','#e56896'], ['#91befb','#537fe2'],
+    ['#ffe68a','#e8a94a'], ['#9de6f3','#53adbf']
+  ] as const;
+
 
   useEffect(() => {
     if (started) {
@@ -286,7 +294,7 @@ const PuzzleGame = ({ theme }: { theme: Theme }) => {
           </div>
           <div className="text-center">
             <h3 className={`text-2xl font-black ${theme.textColor}`}>Xếp hình trí tuệ</h3>
-            <p className={`${theme.secondaryTextColor} mt-1`}>Sắp xếp các ô số theo thứ tự từ 1 đến 8 nhé!</p>
+            <p className={`${theme.secondaryTextColor} mt-1`}>Xếp những mảnh màu sắc từ 1 đến 8. Mỗi bước đưa bé tới chiến thắng!</p>
           </div>
           <button 
             onClick={() => setStarted(true)}
@@ -297,36 +305,40 @@ const PuzzleGame = ({ theme }: { theme: Theme }) => {
         </div>
       ) : (
         <>
-          <div className="flex justify-between w-full max-w-[300px] items-center">
-            <div className="text-sm font-bold text-gray-500">Số bước: <span className="text-orange-500">{moves}</span></div>
-            <button onClick={shuffle} className="text-xs font-bold text-blue-500 hover:underline">Trộn lại</button>
+          <div className="flex w-full max-w-[365px] items-center justify-between rounded-2xl border border-amber-100 bg-gradient-to-r from-amber-50 to-sky-50 px-4 py-3">
+            <span className="text-sm font-black text-slate-700">🧩 Số bước <span className="text-orange-600">{moves}</span></span>
+            <span className="text-xs font-extrabold text-emerald-700">✓ {tiles.filter((n, i) => n > 0 && n === i + 1).length}/8</span>
+            <button onClick={shuffle} className="rounded-full bg-white px-3 py-1.5 text-xs font-extrabold text-blue-600 shadow-sm hover:bg-blue-50">Trộn lại ↻</button>
           </div>
           
-          <div className="grid grid-cols-3 gap-2 bg-gray-100 p-2 rounded-2xl shadow-inner">
-            {tiles.map((tile, i) => (
-              <motion.button
-                key={i}
-                layout
-                whileHover={tile !== 0 ? { scale: 1.05, zIndex: 10 } : {}}
-                whileTap={tile !== 0 ? { scale: 0.95 } : {}}
-                animate={tile !== 0 ? (tile === (i + 1) % 9 ? { scale: [1, 1.02, 1], transition: { repeat: Infinity, duration: 2 } } : { scale: 1 }) : {}}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                onClick={() => moveTile(i)}
-                className={`w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-black transition-all relative overflow-hidden ${
-                  tile === 0 
-                    ? 'bg-gray-200/50 shadow-inner' 
-                    : 'bg-white text-orange-500 shadow-[0_6px_0_0_rgba(249,115,22,0.2)] border-2 border-orange-100'
-                } ${tile !== 0 && tile === (i + 1) % 9 ? 'ring-4 ring-green-400 ring-inset' : ''}`}
-              >
-                {tile !== 0 && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent pointer-events-none" />
-                    <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/30 to-transparent rotate-45 animate-[shine_3s_infinite] pointer-events-none" />
-                    {tile}
-                  </>
-                )}
-              </motion.button>
-            ))}
+          <div className="w-full max-w-[365px] rounded-[32px] border-[7px] border-orange-100 bg-gradient-to-br from-orange-50 via-amber-50 to-violet-100 p-3 shadow-[inset_0_5px_12px_rgba(82,58,110,.10),0_18px_40px_rgba(233,154,76,.20)]">
+            <div className="grid grid-cols-3 gap-2.5">
+            {tiles.map((tile, i) => {
+              const correct = tile !== 0 && tile === i + 1;
+              const [light, dark] = tile ? tileStyles[tile - 1] : ['#e5d8c6', '#ddd0c0'];
+              const blank = tile === 0;
+              return (
+                <motion.button
+                  key={i}
+                  type="button"
+                  aria-label={blank ? 'Ô trống' : `Ô số ${tile}`}
+                  disabled={blank || isWon}
+                  whileHover={!blank ? { scale: 1.06, y: -3 } : {}}
+                  whileTap={!blank ? { scale: .95, y: 2 } : {}}
+                  onClick={() => moveTile(i)}
+                  className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-[21px] border-2 transition-shadow focus-visible:outline focus-visible:outline-[4px] focus-visible:outline-offset-1 focus-visible:outline-blue-500 ${blank ? 'border-white/30 bg-stone-200/50 shadow-inner' : 'border-white/90 shadow-[0_6px_0_rgba(44,35,73,.18)]'}`}
+                  style={blank ? undefined : { background: `linear-gradient(155deg, ${light}, ${dark})` }}
+                >
+                  {!blank && <>
+                    <span className="absolute left-2 top-2 h-3 w-10 rotate-[-24deg] rounded-full bg-white/35 blur-[1px]" />
+                    <span className="absolute inset-x-[15%] bottom-0 h-4 rounded-full bg-white/10" />
+                    <span className="relative text-[34px] font-black text-white drop-shadow-[0_3px_0_rgba(32,36,64,.3)] sm:text-[44px]">{tile}</span>
+                    {correct && <span className="absolute right-1.5 top-1.5 rounded-full bg-emerald-500 px-1.5 py-0.5 text-[10px] font-black text-white shadow-sm">✓</span>}
+                  </>}
+                </motion.button>
+              );
+            })}
+            </div>
           </div>
 
           {isWon && (
@@ -357,10 +369,14 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
   const [mode, setMode] = useState<'single' | 'multi' | null>(null);
   const shakeRef = React.useRef(0);
   const keys = React.useRef<Record<string, boolean>>({});
+  const holdKey = (key: string, down: boolean) => { keys.current[key] = down; };
   const { addPoints, awardBadge } = useAuth();
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => { keys.current[e.code] = true; };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'Space'].includes(e.code)) e.preventDefault();
+      keys.current[e.code] = true;
+    };
     const handleKeyUp = (e: KeyboardEvent) => { keys.current[e.code] = false; };
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
@@ -464,205 +480,11 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
     };
 
     const drawPlayer = (x: number, y: number, playerIndex: number) => {
-      ctx.save();
-      ctx.translate(x, y);
-      
-      // Add a subtle glow to the player
-      ctx.shadowBlur = 15;
-      ctx.shadowColor = playerIndex === 1 ? (type === 'tank' ? '#22c55e' : '#3b82f6') : '#a855f7';
-
-      if (type === 'tank') {
-        // Tank Body
-        const grad = ctx.createLinearGradient(-22, 0, 22, 0);
-        const baseColor = playerIndex === 1 ? '#22c55e' : '#a855f7';
-        const darkColor = playerIndex === 1 ? '#166534' : '#6b21a8';
-        grad.addColorStop(0, darkColor);
-        grad.addColorStop(0.3, baseColor);
-        grad.addColorStop(0.7, baseColor);
-        grad.addColorStop(1, darkColor);
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.roundRect(-22, 0, 44, 30, 8);
-        ctx.fill();
-        
-        // Camouflage pattern
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-        ctx.fillRect(-15, 5, 10, 10);
-        ctx.fillRect(5, 15, 12, 8);
-        
-        // Turret
-        const tGrad = ctx.createRadialGradient(0, 5, 0, 0, 5, 15);
-        tGrad.addColorStop(0, baseColor);
-        tGrad.addColorStop(1, darkColor);
-        ctx.fillStyle = tGrad;
-        ctx.beginPath();
-        ctx.arc(0, 5, 15, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Barrel with details
-        ctx.fillStyle = darkColor;
-        ctx.fillRect(-5, -20, 10, 25);
-        ctx.fillStyle = '#000';
-        ctx.fillRect(-6, -22, 12, 5); // Muzzle brake
-        
-        // Tracks detail
-        ctx.fillStyle = '#111';
-        ctx.fillRect(-25, 5, 10, 25);
-        ctx.fillRect(15, 5, 10, 25);
-      } else {
-        // Spaceship/Airplane - More futuristic
-        const grad = ctx.createLinearGradient(-25, 0, 25, 0);
-        const baseColor = playerIndex === 1 ? '#60a5fa' : '#d8b4fe';
-        const darkColor = playerIndex === 1 ? '#1e40af' : '#7e22ce';
-        grad.addColorStop(0, darkColor);
-        grad.addColorStop(0.5, baseColor);
-        grad.addColorStop(1, darkColor);
-        ctx.fillStyle = grad;
-        
-        // Wings with detail
-        ctx.beginPath();
-        ctx.moveTo(-30, 25);
-        ctx.lineTo(30, 25);
-        ctx.lineTo(0, -15);
-        ctx.closePath();
-        ctx.fill();
-        
-        // Wing tips
-        ctx.fillStyle = '#ef4444';
-        ctx.fillRect(-32, 20, 4, 8);
-        ctx.fillRect(28, 20, 4, 8);
-        
-        // Body
-        const bGrad = ctx.createLinearGradient(0, -20, 0, 30);
-        bGrad.addColorStop(0, '#f8fafc');
-        bGrad.addColorStop(1, '#cbd5e1');
-        ctx.fillStyle = bGrad;
-        ctx.beginPath();
-        ctx.ellipse(0, 5, 10, 30, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Cockpit with reflection
-        const cGrad = ctx.createRadialGradient(-2, -8, 0, 0, -5, 8);
-        cGrad.addColorStop(0, '#bae6fd');
-        cGrad.addColorStop(1, '#0ea5e9');
-        ctx.fillStyle = cGrad;
-        ctx.beginPath();
-        ctx.arc(0, -5, 7, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Engine fire - Multi-layered
-        if (frameCount % 4 < 3) {
-          // Outer flame
-          ctx.fillStyle = '#f97316';
-          ctx.beginPath();
-          ctx.moveTo(-8, 30);
-          ctx.lineTo(8, 30);
-          ctx.lineTo(0, 45 + Math.random() * 15);
-          ctx.fill();
-          
-          // Inner flame
-          ctx.fillStyle = '#fbbf24';
-          ctx.beginPath();
-          ctx.moveTo(-4, 30);
-          ctx.lineTo(4, 30);
-          ctx.lineTo(0, 38 + Math.random() * 8);
-          ctx.fill();
-        }
-
-        // Shield Visual
-        ctx.strokeStyle = playerIndex === 1 ? 'rgba(59, 130, 246, 0.3)' : 'rgba(168, 85, 247, 0.3)';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([5, 5]);
-        ctx.lineDashOffset = frameCount;
-        ctx.beginPath();
-        ctx.arc(0, 5, 40, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      }
-      ctx.restore();
+      drawArcadeHero(ctx, type, x, y, playerIndex, frameCount);
     };
 
-    const drawEnemy = (enemy: any) => {
-      ctx.save();
-      ctx.translate(enemy.x, enemy.y);
-      
-      // Subtle enemy glow
-      ctx.shadowBlur = 20;
-      ctx.shadowColor = enemy.color;
-
-      if (type === 'chicken') {
-        const grad = ctx.createRadialGradient(-enemy.size/3, -enemy.size/3, 2, 0, 0, enemy.size);
-        grad.addColorStop(0, '#fff');
-        grad.addColorStop(0.2, '#fef08a');
-        grad.addColorStop(0.8, '#eab308');
-        grad.addColorStop(1, '#a16207');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(0, 0, enemy.size, 0, Math.PI * 2);
-        ctx.fill();
-        
-        ctx.fillStyle = '#fef08a';
-        ctx.strokeStyle = '#eab308';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.ellipse(-enemy.size * 0.8, 0, enemy.size/2, enemy.size/3, Math.PI/4, 0, Math.PI*2);
-        ctx.fill();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.ellipse(enemy.size * 0.8, 0, enemy.size/2, enemy.size/3, -Math.PI/4, 0, Math.PI*2);
-        ctx.fill();
-        ctx.stroke();
-        
-        ctx.fillStyle = '#ef4444';
-        for(let i = -2; i <= 2; i++) {
-          const xOffset = i * 4;
-          const yOffset = -enemy.size + Math.abs(i) * 2;
-          const radius = 5 - Math.abs(i);
-          ctx.beginPath();
-          ctx.arc(xOffset, yOffset, radius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        
-        ctx.fillStyle = '#f97316';
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(14, 4);
-        ctx.lineTo(0, 6);
-        ctx.fill();
-        
-        ctx.fillStyle = '#fff';
-        ctx.beginPath();
-        ctx.arc(-6, -4, 5, 0, Math.PI * 2);
-        ctx.arc(6, -4, 5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#000';
-        ctx.beginPath();
-        ctx.arc(-6, -4, 3, 0, Math.PI * 2);
-        ctx.arc(6, -4, 3, 0, Math.PI * 2);
-        ctx.fill();
-      } else {
-        const grad = ctx.createRadialGradient(0, -5, 2, 0, 0, enemy.size);
-        grad.addColorStop(0, '#f87171');
-        grad.addColorStop(0.6, '#ef4444');
-        grad.addColorStop(1, '#7f1d1d');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, enemy.size, enemy.size / 1.8, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        ctx.strokeStyle = '#450a0a';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        
-        const glassGrad = ctx.createLinearGradient(0, -enemy.size/2, 0, 0);
-        glassGrad.addColorStop(0, '#fee2e2');
-        glassGrad.addColorStop(1, '#f87171');
-        ctx.fillStyle = glassGrad;
-        ctx.beginPath();
-        ctx.arc(0, -4, enemy.size/2.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.restore();
+    const drawEnemy = (enemy: { x: number; y: number; size: number }) => {
+      drawArcadeEnemy(ctx, type, enemy.x, enemy.y, enemy.size, frameCount);
     };
 
     const gameLoop = () => {
@@ -705,20 +527,7 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
         ctx.translate((Math.random() - 0.5) * shakeRef.current, (Math.random() - 0.5) * shakeRef.current);
       }
       
-      ctx.fillStyle = theme.gameBg;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Draw Stars
-      stars.forEach(star => {
-        star.y += star.speed;
-        if (star.y > canvas.height) star.y = 0;
-        ctx.globalAlpha = star.alpha + Math.sin(frameCount * 0.05 + star.x) * 0.2;
-        ctx.fillStyle = theme.id === 'light' || theme.id === 'candy' ? 'rgba(0,0,0,0.1)' : '#fff';
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.globalAlpha = 1.0;
+      drawArcadeBackground(ctx, type, canvas.width, canvas.height, frameCount);
 
       // Draw Players
       drawPlayer(player1X, playerY, 1);
@@ -756,17 +565,7 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
       // Update & Draw Bullets
       for (let i = bullets.length - 1; i >= 0; i--) {
         bullets[i].y -= 6;
-        const bGrad = ctx.createRadialGradient(bullets[i].x, bullets[i].y, 0, bullets[i].x, bullets[i].y, 12);
-        bGrad.addColorStop(0, bullets[i].player === 1 ? '#fbbf24' : '#d8b4fe');
-        bGrad.addColorStop(1, 'transparent');
-        ctx.fillStyle = bGrad;
-        ctx.beginPath();
-        ctx.arc(bullets[i].x, bullets[i].y, 12, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#fff';
-        ctx.beginPath();
-        ctx.arc(bullets[i].x, bullets[i].y, 5, 0, Math.PI * 2);
-        ctx.fill();
+        drawArcadeProjectile(ctx, bullets[i].x, bullets[i].y, bullets[i].player, frameCount);
         if (bullets[i].y < 0) bullets.splice(i, 1);
       }
 
@@ -811,7 +610,7 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
 
     const handleInput = (clientX: number, rect: DOMRect) => {
       if (mode === 'multi') return;
-      const x = clientX - rect.left;
+      const x = (clientX - rect.left) * canvas.width / rect.width;
       player1X = Math.max(30, Math.min(canvas.width - 30, x));
     };
 
@@ -822,6 +621,7 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
 
     const handleTouchMove = (e: TouchEvent) => {
       const rect = canvas.getBoundingClientRect();
+      if (e.cancelable) e.preventDefault();
       handleInput(e.touches[0].clientX, rect);
     };
 
@@ -906,9 +706,9 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="flex justify-between w-full max-w-[400px] items-center px-4">
+      <div className="flex justify-between w-full max-w-[480px] items-center rounded-2xl bg-sky-50 px-4 py-3 border border-sky-100">
         {mode === 'single' ? (
-          <div className={`text-lg font-black text-${theme.accentColor}-500`}>Điểm: {score}</div>
+          <div className={`text-lg font-black text-${theme.accentColor}-500`}>⭐ Điểm: {score}</div>
         ) : (
           <div className="flex justify-between w-full">
             <div className="text-sm font-black text-blue-500">Người 1: {score}</div>
@@ -917,12 +717,12 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
         )}
         {gameOver && <button onClick={() => { setGameOver(false); setScore(0); setScore2(0); }} className="text-sm font-bold text-blue-500">Chơi lại</button>}
       </div>
-      <div className="relative w-full max-w-[400px] aspect-[4/5] touch-none">
+      <div className="relative w-full max-w-[480px] aspect-[4/5] touch-none">
         <canvas 
           ref={canvasRef} 
           width={400} 
           height={500} 
-          className={`bg-gray-900 rounded-3xl shadow-2xl w-full h-full object-contain ${theme.id === 'space' ? 'ring-2 ring-purple-500/50' : ''}`}
+          className={`rounded-3xl border-[5px] border-white shadow-[0_22px_60px_rgba(14,48,83,.24)] w-full h-full object-contain ${theme.id === 'space' ? 'ring-2 ring-purple-500/50' : ''}`}
         />
         
         {gameOver && (
@@ -950,6 +750,27 @@ const ShooterGame = ({ type, theme }: { type: 'chicken' | 'airplane' | 'tank', t
           </div>
         )}
       </div>
+      <div className="flex w-full max-w-[480px] items-center gap-3 select-none">
+        <button aria-label="Di chuyển sang trái" type="button"
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); holdKey(mode === 'single' ? 'ArrowLeft' : 'KeyA', true); }}
+          onPointerUp={() => holdKey(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          onPointerCancel={() => holdKey(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          onLostPointerCapture={() => holdKey(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          className="flex-1 rounded-2xl bg-sky-500 py-4 text-2xl font-black text-white shadow-[0_5px_0_#2360a4] active:translate-y-1 active:shadow-none touch-none">◀</button>
+        <button aria-label="Bắn tia sáng" type="button"
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); holdKey(mode === 'single' ? 'Space' : 'KeyW', true); }}
+          onPointerUp={() => holdKey(mode === 'single' ? 'Space' : 'KeyW', false)}
+          onPointerCancel={() => holdKey(mode === 'single' ? 'Space' : 'KeyW', false)}
+          onLostPointerCapture={() => holdKey(mode === 'single' ? 'Space' : 'KeyW', false)}
+          className="flex-[1.4] rounded-2xl bg-amber-400 py-4 text-lg font-black text-amber-950 shadow-[0_5px_0_#c38319] active:translate-y-1 active:shadow-none touch-none">✨ BẮN</button>
+        <button aria-label="Di chuyển sang phải" type="button"
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); holdKey(mode === 'single' ? 'ArrowRight' : 'KeyD', true); }}
+          onPointerUp={() => holdKey(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          onPointerCancel={() => holdKey(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          onLostPointerCapture={() => holdKey(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          className="flex-1 rounded-2xl bg-sky-500 py-4 text-2xl font-black text-white shadow-[0_5px_0_#2360a4] active:translate-y-1 active:shadow-none touch-none">▶</button>
+      </div>
+      {mode === 'multi' && <p className="text-center text-xs text-slate-500">Người 2 dùng phím ← → và Enter trên bàn phím.</p>}
     </div>
   );
 };
@@ -967,11 +788,17 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
   const [carColor2, setCarColor2] = useState('#3b82f6');
   const [carPattern2, setCarPattern2] = useState<'none' | 'stripes' | 'dots' | 'flames' | 'lightning'>('dots');
   const [customizingPlayer, setCustomizingPlayer] = useState(1);
+  const moveButton = (key: string, pressed: boolean) => { keys.current[key] = pressed; };
   const keys = React.useRef<Record<string, boolean>>({});
   const { addPoints, awardBadge } = useAuth();
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => { keys.current[e.code] = true; };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space'].includes(e.code)) {
+        e.preventDefault();
+      }
+      keys.current[e.code] = true;
+    };
     const handleKeyUp = (e: KeyboardEvent) => { keys.current[e.code] = false; };
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
@@ -1020,161 +847,47 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
     let roadOffset = 0;
 
     const drawCar = (x: number, y: number, color: string, pattern: string, isPlayer: boolean) => {
-      ctx.save();
-      ctx.translate(x, y);
-      
-      // Dust effect for player
-      if (isPlayer && frameCount % 5 === 0) {
-        particles.push({
-          x: x + (Math.random() - 0.5) * 20,
-          y: y + 50,
-          vx: (Math.random() - 0.5) * 2,
-          vy: 2 + Math.random() * 2,
-          life: 0.5,
-          color: 'rgba(255, 255, 255, 0.3)'
-        });
-      }
-
-      // Shadow
-      ctx.fillStyle = 'rgba(0,0,0,0.4)';
-      ctx.beginPath();
-      ctx.roundRect(-20, 8, 40, 60, 12);
-      ctx.fill();
-
-      // Body - More aerodynamic shape
-      const grad = ctx.createLinearGradient(-18, 0, 18, 0);
-      grad.addColorStop(0, color);
-      grad.addColorStop(0.3, '#fff');
-      grad.addColorStop(0.7, '#fff');
-      grad.addColorStop(1, color);
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.roundRect(-18, 0, 36, 55, 10);
-      ctx.fill();
-
-      // Patterns
-      ctx.save();
-      ctx.clip();
-      ctx.fillStyle = 'rgba(0,0,0,0.2)';
-      if (pattern === 'stripes') {
-        for(let i=0; i<5; i++) ctx.fillRect(-20 + i*10, 0, 4, 60);
-      } else if (pattern === 'dots') {
-        for(let i=0; i<10; i++) {
-          ctx.beginPath();
-          ctx.arc((Math.random()-0.5)*30, Math.random()*50, 3, 0, Math.PI*2);
-          ctx.fill();
-        }
-      } else if (pattern === 'flames') {
-        ctx.fillStyle = 'rgba(255,100,0,0.4)';
-        ctx.beginPath();
-        ctx.moveTo(-15, 55);
-        ctx.lineTo(-10, 30); ctx.lineTo(-5, 45); ctx.lineTo(0, 20);
-        ctx.lineTo(5, 45); ctx.lineTo(10, 30); ctx.lineTo(15, 55);
-        ctx.fill();
-      } else if (pattern === 'lightning') {
-        ctx.strokeStyle = 'rgba(255,255,255,0.6)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(0, 10); ctx.lineTo(-10, 25); ctx.lineTo(5, 25); ctx.lineTo(-5, 45);
-        ctx.stroke();
-      }
-      ctx.restore();
-
-      // Windows
-      ctx.fillStyle = '#1e293b';
-      ctx.beginPath();
-      ctx.roundRect(-14, 10, 28, 15, 4); // Front
-      ctx.roundRect(-14, 35, 28, 10, 2); // Back
-      ctx.fill();
-      
-      // Window shine
-      ctx.fillStyle = 'rgba(255,255,255,0.2)';
-      ctx.fillRect(-10, 12, 4, 8);
-
-      // Lights
-      ctx.fillStyle = '#fff'; // Front lights
-      ctx.beginPath();
-      ctx.arc(-12, 5, 4, 0, Math.PI * 2);
-      ctx.arc(12, 5, 4, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Light glow
-      const lGrad = ctx.createRadialGradient(-12, 5, 0, -12, 5, 15);
-      lGrad.addColorStop(0, 'rgba(255,255,255,0.4)');
-      lGrad.addColorStop(1, 'transparent');
-      ctx.fillStyle = lGrad;
-      ctx.beginPath(); ctx.arc(-12, 5, 15, 0, Math.PI*2); ctx.fill();
-      ctx.beginPath(); ctx.arc(12, 5, 15, 0, Math.PI*2); ctx.fill();
-
-      ctx.fillStyle = '#ef4444'; // Rear lights
-      ctx.fillRect(-14, 50, 6, 3);
-      ctx.fillRect(8, 50, 6, 3);
-
-      // Wheels
-      ctx.fillStyle = '#111';
-      ctx.fillRect(-22, 10, 6, 12);
-      ctx.fillRect(16, 10, 6, 12);
-      ctx.fillRect(-22, 35, 6, 12);
-      ctx.fillRect(16, 35, 6, 12);
-
-      ctx.restore();
+      drawRacingCar(ctx, x, y, color, pattern, isPlayer, frameCount);
     };
 
     const gameLoop = () => {
       frameCount++;
-      roadOffset = (roadOffset + 8) % 100;
+      roadOffset += 8;
 
       // Handle Keyboard Input
       if (mode === 'single') {
-        if (keys.current['ArrowLeft'] || keys.current['KeyA']) player1X = Math.max(80, player1X - 6);
-        if (keys.current['ArrowRight'] || keys.current['KeyD']) player1X = Math.min(canvas.width - 80, player1X + 6);
+        if (keys.current['ArrowLeft'] || keys.current['KeyA']) player1X = Math.max(87, player1X - 6);
+        if (keys.current['ArrowRight'] || keys.current['KeyD']) player1X = Math.min(canvas.width - 87, player1X + 6);
       } else {
         // Player 1 (A/D)
         if (isP1Alive) {
-          if (keys.current['KeyA']) player1X = Math.max(80, player1X - 6);
-          if (keys.current['KeyD']) player1X = Math.min(canvas.width - 80, player1X + 6);
+          if (keys.current['KeyA']) player1X = Math.max(87, player1X - 6);
+          if (keys.current['KeyD']) player1X = Math.min(canvas.width - 87, player1X + 6);
         }
         // Player 2 (Arrows)
         if (isP2Alive) {
-          if (keys.current['ArrowLeft']) player2X = Math.max(80, player2X - 6);
-          if (keys.current['ArrowRight']) player2X = Math.min(canvas.width - 80, player2X + 6);
+          if (keys.current['ArrowLeft']) player2X = Math.max(87, player2X - 6);
+          if (keys.current['ArrowRight']) player2X = Math.min(canvas.width - 87, player2X + 6);
         }
       }
 
-      // Draw Road
-      ctx.fillStyle = '#334155';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Grass/Shoulders
-      ctx.fillStyle = theme.id === 'space' ? '#0f172a' : '#15803d';
-      ctx.fillRect(0, 0, 60, canvas.height);
-      ctx.fillRect(canvas.width - 60, 0, 60, canvas.height);
-      
-      // Road lines
-      ctx.strokeStyle = '#fff';
-      ctx.setLineDash([40, 40]);
-      ctx.lineDashOffset = -roadOffset;
-      ctx.lineWidth = 6;
-      ctx.beginPath();
-      ctx.moveTo(canvas.width / 2, 0);
-      ctx.lineTo(canvas.width / 2, canvas.height);
-      ctx.stroke();
-      
-      // Side lines
-      ctx.setLineDash([]);
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.moveTo(65, 0); ctx.lineTo(65, canvas.height);
-      ctx.moveTo(canvas.width - 65, 0); ctx.lineTo(canvas.width - 65, canvas.height);
-      ctx.stroke();
+      // Layered cartoon track with moving shoulders, foliage and racing curbs.
+      drawRacingTrack(ctx, canvas.width, canvas.height, roadOffset, frameCount, theme.id);
+      // Count actual distance over time, not just the number of traffic cars passed.
+      if (frameCount % 8 === 0) {
+        if (isP1Alive) setScore(m => m + 3);
+        if (isP2Alive) setScore2(m => m + 3);
+      }
 
-      // Spawn Obstacles
-      if (frameCount % 60 === 0) {
+      // Bright traffic enters one of three lanes. Difficulty rises gently.
+      if (frameCount % 76 === 0) {
+        const lanes = [117, canvas.width / 2, canvas.width - 117];
+        const lane = Math.floor(Math.random() * lanes.length);
         obstacles.push({
-          x: Math.random() * (canvas.width - 160) + 80,
-          y: -100,
-          speed: 4 + Math.random() * 3,
-          color: ['#1e293b', '#475569', '#94a3b8'][Math.floor(Math.random() * 3)],
+          x: lanes[lane],
+          y: -90,
+          speed: 4.3 + Math.min(3, frameCount / 2200) + Math.random() * 1.2,
+          color: ['#ffc857', '#8e82ec', '#ff8199', '#5fd1e3'][Math.floor(Math.random() * 4)],
           type: Math.floor(Math.random() * 3)
         });
       }
@@ -1209,10 +922,7 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
 
         if (obstacles[i].y > canvas.height) {
           obstacles.splice(i, 1);
-          if (!gameOver) {
-            if (isP1Alive) setScore(s => s + 1);
-            if (isP2Alive) setScore2(s => s + 1);
-          }
+
         }
       }
 
@@ -1237,7 +947,7 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
     const handleInput = (clientX: number, rect: DOMRect) => {
       if (mode === 'multi') return;
       const x = clientX - rect.left;
-      player1X = Math.max(80, Math.min(canvas.width - 80, x));
+      player1X = Math.max(87, Math.min(canvas.width - 87, x));
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -1392,9 +1102,9 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="flex justify-between w-full max-w-[400px] items-center px-4">
+      <div className="flex justify-between w-full max-w-[480px] items-center px-4 rounded-2xl bg-gradient-to-r from-sky-50 to-amber-50 py-3 border border-sky-100">
         {mode === 'single' ? (
-          <div className={`text-lg font-black text-${theme.accentColor}-500`}>Quãng đường: {score}m</div>
+          <div className={`text-lg font-black text-${theme.accentColor}-500`}>🏁 Quãng đường: {score}m</div>
         ) : (
           <div className="flex justify-between w-full">
             <div className="text-sm font-black text-blue-500">Người 1: {score}m</div>
@@ -1403,17 +1113,17 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
         )}
         {gameOver && <button onClick={() => { setGameOver(false); setScore(0); setScore2(0); }} className="text-sm font-bold text-blue-500">Chơi lại</button>}
       </div>
-      <div className="relative w-full max-w-[400px] aspect-[4/5] touch-none">
+      <div className="relative w-full max-w-[480px] aspect-[4/5] touch-none">
         <canvas 
           ref={canvasRef} 
           width={400} 
           height={500} 
-          className="bg-slate-800 rounded-3xl shadow-2xl w-full h-full object-contain"
+          className="bg-sky-200 rounded-3xl shadow-[0_22px_60px_rgba(14,48,83,.25)] border-[5px] border-white w-full h-full object-contain"
         />
         
         {gameOver && (
           <div className="absolute inset-0 bg-black/70 rounded-3xl flex flex-col items-center justify-center text-white p-6 text-center">
-            <h3 className="text-3xl font-black mb-2">Tai nạn rồi!</h3>
+            <h3 className="text-3xl font-black mb-2">🏁 Hoàn thành lượt đua!</h3>
             {mode === 'single' ? (
               <p className="text-xl mb-6">Bé đã đi được {score} mét.</p>
             ) : (
@@ -1435,6 +1145,21 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
             </button>
           </div>
         )}
+      </div>
+      <div className="flex w-full max-w-[480px] justify-between gap-3 select-none">
+        <button type="button" aria-label={mode === 'single' ? 'Rẽ trái' : 'Người 1 rẽ trái'}
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); moveButton(mode === 'single' ? 'ArrowLeft' : 'KeyA', true); }}
+          onPointerUp={() => moveButton(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          onPointerCancel={() => moveButton(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          onLostPointerCapture={() => moveButton(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          className="flex-1 rounded-2xl bg-sky-500 py-4 text-2xl font-black text-white shadow-[0_5px_0_#2360a4] active:translate-y-1 active:shadow-none touch-none">◀</button>
+        {mode === 'multi' && <span className="self-center text-xs font-black text-slate-500">P1 • P2: phím ← →</span>}
+        <button type="button" aria-label={mode === 'single' ? 'Rẽ phải' : 'Người 1 rẽ phải'}
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); moveButton(mode === 'single' ? 'ArrowRight' : 'KeyD', true); }}
+          onPointerUp={() => moveButton(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          onPointerCancel={() => moveButton(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          onLostPointerCapture={() => moveButton(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          className="flex-1 rounded-2xl bg-sky-500 py-4 text-2xl font-black text-white shadow-[0_5px_0_#2360a4] active:translate-y-1 active:shadow-none touch-none">▶</button>
       </div>
       <div className="text-center text-sm opacity-70">
         {mode === 'single' ? (
@@ -1462,11 +1187,15 @@ const MemoryGame = ({ theme }: { theme: Theme }) => {
   const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
 
   const [mismatchIndices, setMismatchIndices] = useState<number[]>([]);
+  const flipTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (flipTimer.current) clearTimeout(flipTimer.current); }, []);
 
   const initGame = () => {
     const deck = [...emojis, ...emojis]
       .sort(() => Math.random() - 0.5)
       .map((emoji, index) => ({ id: index, emoji, flipped: false, matched: false }));
+    if (flipTimer.current) clearTimeout(flipTimer.current);
+    flipTimer.current = null;
     setCards(deck);
     setFlippedIndices([]);
     setMismatchIndices([]);
@@ -1490,7 +1219,7 @@ const MemoryGame = ({ theme }: { theme: Theme }) => {
       } else {
         setMismatchIndices([first, second]);
         playSound('incorrect');
-        setTimeout(() => {
+        flipTimer.current = setTimeout(() => {
           setCards(prev => prev.map((card, i) => 
             (i === first || i === second) ? { ...card, flipped: false } : card
           ));
@@ -1546,7 +1275,7 @@ const MemoryGame = ({ theme }: { theme: Theme }) => {
       ) : (
         <>
           {/* Floating Background Particles */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             {[...Array(10)].map((_, i) => (
               <motion.div
                 key={i}
@@ -1569,49 +1298,43 @@ const MemoryGame = ({ theme }: { theme: Theme }) => {
             ))}
           </div>
 
-          <div className="flex justify-between w-full max-w-[400px] items-center relative z-10">
-            <div className={`text-sm font-bold ${theme.secondaryTextColor}`}>Số bước: <span className={`text-${theme.accentColor}-500`}>{moves}</span></div>
+          <div className="flex justify-between w-full max-w-[460px] items-center relative z-10 rounded-2xl border border-pink-100 bg-pink-50 px-4 py-3">
+            <div className={`text-sm font-bold ${theme.secondaryTextColor}`}>🃏 Lượt lật: <span className={`text-${theme.accentColor}-500`}>{moves}</span></div>
             <button onClick={initGame} className="text-xs font-bold text-blue-500 hover:underline">Chơi lại</button>
           </div>
 
-          <div className="grid grid-cols-4 gap-3">
-            {cards.map((card, i) => (
-              <motion.button
+          <div className="grid w-full max-w-[460px] grid-cols-4 gap-2 rounded-[28px] border-4 border-pink-100 bg-gradient-to-br from-rose-50 to-violet-100 p-3 shadow-[0_18px_42px_rgba(115,70,140,.16)] sm:gap-3 sm:p-4">
+            {cards.map((card, i) => {
+              const visible = card.flipped || card.matched;
+              const colors = [
+                'linear-gradient(145deg,#f9a8d4,#e468a9)',
+                'linear-gradient(145deg,#93c5fd,#6c77db)',
+                'linear-gradient(145deg,#fde68a,#f59e66)',
+                'linear-gradient(145deg,#a7f3d0,#4dc8a1)'
+              ];
+              return <motion.button
                 key={card.id}
-                whileHover={!card.flipped && !card.matched ? { scale: 1.05 } : {}}
-                whileTap={!card.flipped && !card.matched ? { scale: 0.95 } : {}}
-                animate={
-                  card.matched 
-                    ? { scale: [1, 1.2, 1], transition: { duration: 0.3 } }
-                    : mismatchIndices.includes(i)
-                    ? { x: [-5, 5, -5, 5, 0], transition: { duration: 0.4 } }
-                    : {}
-                }
+                type="button"
+                aria-label={visible ? 'Hình ' + card.emoji : 'Lật thẻ số ' + (i + 1)}
+                disabled={card.matched || isWon || flippedIndices.length === 2}
+                whileHover={!visible ? { y: -4, scale: 1.05 } : {}}
+                whileTap={!visible ? { scale: .94 } : {}}
+                animate={card.matched ? { scale: [1, 1.08, 1] } : mismatchIndices.includes(i) ? { x: [-4,4,-4,4,0] } : {}}
+                transition={{ duration: .24 }}
                 onClick={() => handleCardClick(i)}
-                className={`w-16 h-20 sm:w-20 sm:h-24 rounded-2xl flex items-center justify-center text-3xl transition-all relative preserve-3d ${
-                  card.flipped || card.matched
-                    ? 'bg-white shadow-lg rotate-y-180'
-                    : `bg-${theme.accentColor}-500 shadow-[0_6px_0_0_rgba(0,0,0,0.2)]`
-                } ${card.matched ? `ring-4 ring-${theme.accentColor}-300 ring-offset-2` : ''}`}
+                className="relative aspect-[.81] w-full min-w-0 overflow-hidden rounded-[15px] border-[3px] border-white shadow-[0_6px_0_rgba(83,69,114,.22)] transition-[filter] focus-visible:outline focus-visible:outline-4 focus-visible:outline-blue-500 sm:rounded-[20px]"
+                style={{ background: visible ? 'linear-gradient(145deg,#ffffff,#fdf0fc)' : colors[i % 4] }}
               >
-                <div className={`absolute inset-0 flex items-center justify-center backface-hidden ${card.flipped || card.matched ? 'opacity-100' : 'opacity-0'}`}>
-                  <div className="relative">
-                    {card.emoji}
-                    {card.matched && (
-                      <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                        className={`absolute -inset-2 bg-${theme.accentColor}-400/30 rounded-full blur-md`}
-                      />
-                    )}
-                  </div>
-                </div>
-                <div className={`absolute inset-0 flex items-center justify-center backface-hidden ${card.flipped || card.matched ? 'opacity-0' : 'opacity-100'}`}>
-                  <Star className="text-white/50" size={32} />
-                </div>
-              </motion.button>
-            ))}
+                <span className="absolute left-1.5 top-1.5 h-4 w-5 rotate-[-35deg] rounded-full bg-white/45" />
+                {visible ?
+                  <>
+                    <span className="relative text-[27px] drop-shadow-sm sm:text-[40px]">{card.emoji}</span>
+                    {card.matched && <span className="absolute bottom-1 right-1 rounded-full bg-emerald-500 px-1.5 text-[11px] font-bold text-white">✓</span>}
+                  </>
+                  : <span className="relative flex h-full w-full items-center justify-center"><Star size={31} strokeWidth={2.7} className="text-white drop-shadow-md" fill="rgba(255,255,255,.4)" /></span>
+                }
+              </motion.button>;
+            })}
           </div>
 
           {isWon && (
