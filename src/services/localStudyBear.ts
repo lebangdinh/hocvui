@@ -60,10 +60,10 @@ export function getLocalStudyReply(input: string, grade: number): LocalStudyRepl
   // Strictly two small integers and one operator. Never evaluate arbitrary
   // expressions, guess word problems, or send private content anywhere.
   const mathText = msg
-    .replace(/\b(cộng|cong)\b/g, '+')
-    .replace(/\b(trừ|tru)\b/g, '-')
-    .replace(/\b(nhân|nhan)\b/g, '×')
-    .replace(/\b(chia)\b/g, '÷');
+    .replace(/(^|\s)(cộng|cong)(?=\s|$)/g, '$1+')
+    .replace(/(^|\s)(trừ|tru)(?=\s|$)/g, '$1-')
+    .replace(/(^|\s)(nhân|nhan)(?=\s|$)/g, '$1×')
+    .replace(/(^|\s)(chia)(?=\s|$)/g, '$1÷');
   const found = mathText.match(/^(?:(?:tính|tinh|cho gấu biết|gấu ơi,?)\s*)?(\d{1,5})\s*([+\-−×x*÷/:])\s*(\d{1,5})(?:\s*(?:bằng bao nhiêu|bang bao nhieu|bằng mấy|là mấy|là bao nhiêu|=|\?))?$/);
   if (found) {
     const left = Number(found[1]);
