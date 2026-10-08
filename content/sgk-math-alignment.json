@@ -1,0 +1,599 @@
+{
+  "scope": "17 nhóm chủ đề Toán lớp 1–5 có đầu mục SGK tham chiếu (mức gợi ý, chưa duyệt)",
+  "officialProgram": "https://moet.gov.vn/content/tintuc/Lists/News/Attachments/8421/chuong-trinh-tong-the-ctgdpt-2018.pdf",
+  "bookPublisher": "https://sachdientu.nxbgd.vn/",
+  "academicYear": "2026-2027",
+  "sources": {
+    "1": {
+      "url": "https://montoan.com.vn/toan-lop-1-tap-1-ket-noi-tri-thuc-31681",
+      "label": "Mục lục Toán 1 tập 1 (nguồn tra cứu thứ cấp)"
+    },
+    "2": {
+      "url": "https://giaokhoaonline.com/toan-lop-2-tap-1-ket-noi-tri-thuc/",
+      "label": "Mục lục Toán 2 tập 1 (nguồn tra cứu thứ cấp)"
+    },
+    "3": {
+      "url": "https://sgkvn.com/lop-3-9/ket-noi-tri-thuc-voi-cuoc-song-3/toan-3-tap-mot-1070.html",
+      "label": "Mục lục Toán 3 tập 1 (nguồn tra cứu thứ cấp)"
+    },
+    "4": {
+      "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-lop-4-tap-1-tap-2-bo.html",
+      "label": "Mục lục Toán 4 tập 1–2 (nguồn tra cứu thứ cấp)"
+    },
+    "5": {
+      "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-5-tap-1-tap-2-bo-sach.html",
+      "label": "Mục lục Toán 5 tập 1–2 (nguồn tra cứu thứ cấp)"
+    }
+  },
+  "matchCount": 17,
+  "mappings": [
+    {
+      "grade": 1,
+      "subject": "math",
+      "topicId": "1-math-1",
+      "topicName": "So sánh các số trong phạm vi 20",
+      "scope": "So sánh số tự nhiên từ 0 đến 20; dấu >, <, =.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 1: Các số từ 0 đến 10",
+      "sgkLesson": "Bài 3: Nhiều hơn, ít hơn, bằng nhau; Bài 4: So sánh số",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "So sánh số tự nhiên từ 0 đến 20; dấu >, <, =.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 3: Nhiều hơn, ít hơn, bằng nhau",
+        "Bài 4: So sánh số"
+      ],
+      "sgkEvidence": {
+        "url": "https://montoan.com.vn/toan-lop-1-tap-1-ket-noi-tri-thuc-31681",
+        "label": "Mục lục Toán 1 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Mục lục học kì 1 chỉ phản ánh phần trong phạm vi 10; bài của ứng dụng còn luyện đến 20."
+    },
+    {
+      "grade": 1,
+      "subject": "math",
+      "topicId": "1-math-2",
+      "topicName": "Cộng, trừ trong phạm vi 10",
+      "scope": "Phép cộng, phép trừ với kết quả trong phạm vi 10.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 3: Phép cộng, phép trừ trong phạm vi 10",
+      "sgkLesson": "Bài 10: Phép cộng trong phạm vi 10; Bài 11: Phép trừ trong phạm vi 10",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Phép cộng, phép trừ với kết quả trong phạm vi 10.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 10: Phép cộng trong phạm vi 10",
+        "Bài 11: Phép trừ trong phạm vi 10"
+      ],
+      "sgkEvidence": {
+        "url": "https://montoan.com.vn/toan-lop-1-tap-1-ket-noi-tri-thuc-31681",
+        "label": "Mục lục Toán 1 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Cần đối chiếu sự phân phối bài tập thực tế."
+    },
+    {
+      "grade": 1,
+      "subject": "math",
+      "topicId": "1-math-3",
+      "topicName": "Hình vuông, tròn, tam giác, chữ nhật",
+      "scope": "Nhận biết hình phẳng quen thuộc.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 2: Làm quen với một số hình phẳng",
+      "sgkLesson": "Bài 7: Hình vuông, hình tròn, hình tam giác, hình chữ nhật",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Nhận biết hình phẳng quen thuộc.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 7: Hình vuông, hình tròn, hình tam giác, hình chữ nhật"
+      ],
+      "sgkEvidence": {
+        "url": "https://montoan.com.vn/toan-lop-1-tap-1-ket-noi-tri-thuc-31681",
+        "label": "Mục lục Toán 1 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Bài tự biên soạn nhận biết hình; không sao chép bài sách."
+    },
+    {
+      "grade": 2,
+      "subject": "math",
+      "topicId": "2-math-1",
+      "topicName": "Số trong phạm vi 1000",
+      "scope": "Đọc, viết, so sánh số trong phạm vi 1000.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 1: Ôn tập và bổ sung",
+      "sgkLesson": "Bài 1: Ôn tập các số đến 100; Bài 2: Tia số. Số liền trước, số liền sau",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Đọc, viết, so sánh số trong phạm vi 1000.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 1: Ôn tập các số đến 100",
+        "Bài 2: Tia số. Số liền trước, số liền sau"
+      ],
+      "sgkEvidence": {
+        "url": "https://giaokhoaonline.com/toan-lop-2-tap-1-ket-noi-tri-thuc/",
+        "label": "Mục lục Toán 2 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Ứng dụng luyện tới 1000, mục lục tập 1 chưa xác minh phần dạy đến 1000."
+    },
+    {
+      "grade": 2,
+      "subject": "math",
+      "topicId": "2-math-2",
+      "topicName": "Cộng, trừ có nhớ",
+      "scope": "Tính cộng trừ trong phạm vi 1000.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 20",
+      "sgkLesson": "Bài 7: Phép cộng (qua 10) trong phạm vi 20; Bài 11: Phép trừ (qua 10) trong phạm vi 20",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Tính cộng trừ trong phạm vi 1000.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 7: Phép cộng (qua 10) trong phạm vi 20",
+        "Bài 11: Phép trừ (qua 10) trong phạm vi 20"
+      ],
+      "sgkEvidence": {
+        "url": "https://giaokhoaonline.com/toan-lop-2-tap-1-ket-noi-tri-thuc/",
+        "label": "Mục lục Toán 2 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Bài ứng dụng có thể vượt phạm vi 20: chỉ liên hệ theo mạch năng lực, chưa khớp từng bài."
+    },
+    {
+      "grade": 2,
+      "subject": "math",
+      "topicId": "2-math-4",
+      "topicName": "Đo lường và hình học",
+      "scope": "Độ dài, khối lượng, thời gian và hình phẳng phù hợp lớp 2.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 3: Làm quen với khối lượng, dung tích",
+      "sgkLesson": "Bài 15: Ki-lô-gam",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Độ dài, khối lượng, thời gian và hình phẳng phù hợp lớp 2.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 15: Ki-lô-gam"
+      ],
+      "sgkEvidence": {
+        "url": "https://giaokhoaonline.com/toan-lop-2-tap-1-ket-noi-tri-thuc/",
+        "label": "Mục lục Toán 2 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Chỉ đối chiếu một phần đo lường, chưa kiểm tra đầy đủ hình học/thời gian."
+    },
+    {
+      "grade": 3,
+      "subject": "math",
+      "topicId": "3-math-1",
+      "topicName": "Số đến 100 000",
+      "scope": "Đọc, viết, so sánh các số đến 100 000.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 1: Ôn tập và bổ sung",
+      "sgkLesson": "Bài 1: Ôn tập các số đến 1 000",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Đọc, viết, so sánh các số đến 100 000.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 1: Ôn tập các số đến 1 000"
+      ],
+      "sgkEvidence": {
+        "url": "https://sgkvn.com/lop-3-9/ket-noi-tri-thuc-voi-cuoc-song-3/toan-3-tap-mot-1070.html",
+        "label": "Mục lục Toán 3 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Ứng dụng có bài số đến 100 000 nên chưa khớp bài này hoàn toàn."
+    },
+    {
+      "grade": 3,
+      "subject": "math",
+      "topicId": "3-math-2",
+      "topicName": "Nhân và chia",
+      "scope": "Nhân, chia số tự nhiên trong phạm vi lớp 3.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 2: Bảng nhân, bảng chia",
+      "sgkLesson": "Bài 9: Bảng nhân 6, bảng chia 6; Bài 10: Bảng nhân 7, bảng chia 7",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Nhân, chia số tự nhiên trong phạm vi lớp 3.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 9: Bảng nhân 6, bảng chia 6",
+        "Bài 10: Bảng nhân 7, bảng chia 7"
+      ],
+      "sgkEvidence": {
+        "url": "https://sgkvn.com/lop-3-9/ket-noi-tri-thuc-voi-cuoc-song-3/toan-3-tap-mot-1070.html",
+        "label": "Mục lục Toán 3 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Cần duyệt dạng bài nhân/chia theo kĩ năng lớp 3."
+    },
+    {
+      "grade": 3,
+      "subject": "math",
+      "topicId": "3-math-3",
+      "topicName": "Phân số qua hình ảnh",
+      "scope": "Nhận biết phần bằng nhau đơn giản của một đơn vị.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 2: Bảng nhân, bảng chia",
+      "sgkLesson": "Bài 14: Một phần mấy",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Nhận biết phần bằng nhau đơn giản của một đơn vị.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 14: Một phần mấy"
+      ],
+      "sgkEvidence": {
+        "url": "https://sgkvn.com/lop-3-9/ket-noi-tri-thuc-voi-cuoc-song-3/toan-3-tap-mot-1070.html",
+        "label": "Mục lục Toán 3 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Liên hệ thao tác nhận biết phần bằng nhau, chưa phải SGK dạy phép toán phân số."
+    },
+    {
+      "grade": 3,
+      "subject": "math",
+      "topicId": "3-math-4",
+      "topicName": "Chu vi, diện tích",
+      "scope": "Tính chu vi và diện tích hình chữ nhật, hình vuông.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 1: Ôn tập và bổ sung",
+      "sgkLesson": "Bài 7: Ôn tập hình học và đo lường",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Tính chu vi và diện tích hình chữ nhật, hình vuông.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 7: Ôn tập hình học và đo lường"
+      ],
+      "sgkEvidence": {
+        "url": "https://sgkvn.com/lop-3-9/ket-noi-tri-thuc-voi-cuoc-song-3/toan-3-tap-mot-1070.html",
+        "label": "Mục lục Toán 3 tập 1 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Chỉ liên hệ mạch hình học/đo lường; chưa khớp bài chu vi, diện tích chi tiết."
+    },
+    {
+      "grade": 4,
+      "subject": "math",
+      "topicId": "4-math-1",
+      "topicName": "Số tự nhiên và phép tính",
+      "scope": "Số đến lớp triệu, bốn phép tính với số tự nhiên.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 1: Ôn tập và bổ sung",
+      "sgkLesson": "Bài 1: Ôn tập các số đến 100 000; Bài 2: Ôn tập các phép tính trong phạm vi 100 000",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Số đến lớp triệu, bốn phép tính với số tự nhiên.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 1: Ôn tập các số đến 100 000",
+        "Bài 2: Ôn tập các phép tính trong phạm vi 100 000"
+      ],
+      "sgkEvidence": {
+        "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-lop-4-tap-1-tap-2-bo.html",
+        "label": "Mục lục Toán 4 tập 1–2 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Bài ứng dụng có số lớn hơn, cần đối chiếu thêm tập 2."
+    },
+    {
+      "grade": 4,
+      "subject": "math",
+      "topicId": "4-math-2",
+      "topicName": "Phân số",
+      "scope": "So sánh và thực hiện phép tính phân số phù hợp lớp 4.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 10: Phân số",
+      "sgkLesson": "Phân số",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "So sánh và thực hiện phép tính phân số phù hợp lớp 4.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Phân số"
+      ],
+      "sgkEvidence": {
+        "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-lop-4-tap-1-tap-2-bo.html",
+        "label": "Mục lục Toán 4 tập 1–2 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Mới đối chiếu tên chủ đề; cần xác định đúng bài trong tập 2."
+    },
+    {
+      "grade": 4,
+      "subject": "math",
+      "topicId": "4-math-4",
+      "topicName": "Dữ liệu và biểu đồ",
+      "scope": "Đọc và biểu diễn thông tin qua bảng, biểu đồ.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 9: Làm quen với thống kê, xác suất",
+      "sgkLesson": "Làm quen với thống kê, xác suất",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Đọc và biểu diễn thông tin qua bảng, biểu đồ.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Làm quen với thống kê, xác suất"
+      ],
+      "sgkEvidence": {
+        "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-lop-4-tap-1-tap-2-bo.html",
+        "label": "Mục lục Toán 4 tập 1–2 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Chỉ đối chiếu chủ đề, chưa khớp từng bài SGK."
+    },
+    {
+      "grade": 5,
+      "subject": "math",
+      "topicId": "5-math-1",
+      "topicName": "Số thập phân",
+      "scope": "Đọc, viết, so sánh và tính toán với số thập phân.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 4: Các phép tính với số thập phân",
+      "sgkLesson": "Bài 19: Phép cộng số thập phân; Bài 20: Phép trừ số thập phân",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Đọc, viết, so sánh và tính toán với số thập phân.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Bài 19: Phép cộng số thập phân",
+        "Bài 20: Phép trừ số thập phân"
+      ],
+      "sgkEvidence": {
+        "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-5-tap-1-tap-2-bo-sach.html",
+        "label": "Mục lục Toán 5 tập 1–2 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Các dạng cộng/trừ ứng dụng liên hệ trực tiếp, cần duyệt độ khó."
+    },
+    {
+      "grade": 5,
+      "subject": "math",
+      "topicId": "5-math-2",
+      "topicName": "Tỉ số phần trăm",
+      "scope": "Tính tỉ số phần trăm ở các tình huống thực tế.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 7: Tỉ số và các bài toán liên quan",
+      "sgkLesson": "Tỉ số và các bài toán liên quan",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Tính tỉ số phần trăm ở các tình huống thực tế.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Tỉ số và các bài toán liên quan"
+      ],
+      "sgkEvidence": {
+        "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-5-tap-1-tap-2-bo-sach.html",
+        "label": "Mục lục Toán 5 tập 1–2 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Cần bổ sung bài cụ thể về tỉ số phần trăm; chưa khẳng định ghép chính xác."
+    },
+    {
+      "grade": 5,
+      "subject": "math",
+      "topicId": "5-math-3",
+      "topicName": "Hình học và thể tích",
+      "scope": "Diện tích, thể tích của hình hộp chữ nhật, hình lập phương.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 9: Diện tích và thể tích của một số khối",
+      "sgkLesson": "Diện tích và thể tích của một số khối",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Diện tích, thể tích của hình hộp chữ nhật, hình lập phương.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Diện tích và thể tích của một số khối"
+      ],
+      "sgkEvidence": {
+        "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-5-tap-1-tap-2-bo-sach.html",
+        "label": "Mục lục Toán 5 tập 1–2 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Mới đối chiếu tên chủ đề; chưa có số bài chính thức."
+    },
+    {
+      "grade": 5,
+      "subject": "math",
+      "topicId": "5-math-4",
+      "topicName": "Chuyển động đều và đo lường",
+      "scope": "Các bài toán về vận tốc, thời gian, quãng đường phù hợp lớp 5.",
+      "questionMode": "local_bank",
+      "questionsPerSession": 10,
+      "sgkBook": "Kết nối tri thức với cuộc sống",
+      "sgkUnit": "Chủ đề 10: Số đo thời gian, vận tốc. Các bài toán liên quan đến chuyển động đều",
+      "sgkLesson": "Số đo thời gian, vận tốc. Các bài toán liên quan đến chuyển động đều",
+      "sgkPages": null,
+      "requiredLearningOutcomeCode": null,
+      "alignment": "topic_level_only",
+      "teacherReview": "pending",
+      "reviewer": null,
+      "reviewDate": null,
+      "reviewEvidence": null,
+      "reviewedBankVersion": null,
+      "yccdTextDraft": "Các bài toán về vận tốc, thời gian, quãng đường phù hợp lớp 5.",
+      "yccdVerification": "pending_official_subject_curriculum_check",
+      "sgkTocVerification": "external_toc_candidate",
+      "alignmentConfidence": "partial",
+      "sgkLessonCandidates": [
+        "Số đo thời gian, vận tốc. Các bài toán liên quan đến chuyển động đều"
+      ],
+      "sgkEvidence": {
+        "url": "https://www.mathvn.com/2026/08/muc-luc-sgk-toan-5-tap-1-tap-2-bo-sach.html",
+        "label": "Mục lục Toán 5 tập 1–2 (nguồn tra cứu thứ cấp)",
+        "publisherVerified": false
+      },
+      "alignmentNote": "Mới đối chiếu tên chủ đề; cần xác minh bài và yêu cầu cần đạt."
+    }
+  ]
+}

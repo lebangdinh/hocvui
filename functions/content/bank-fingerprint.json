@@ -1,0 +1,5 @@
+{
+  "hash": "7c5690b09f199853cd617ad2e956ba406be2d5e35a0d430f77d3ce41e7c87131",
+  "version": "V5",
+  "purpose": "Invalidates approvals whenever question or curriculum source changes"
+}

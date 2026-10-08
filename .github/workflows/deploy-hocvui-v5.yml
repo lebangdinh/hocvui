@@ -1,83 +1,64 @@
-name: Deploy Học Vui V5 to GitHub Pages
+name: Verify and deploy Học Vui V5
 
 on:
+  push:
+    branches: [main, v5-deploy-review]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: github-pages
-  cancel-in-progress: false
+  group: hocvui-v5-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  verify:
+    name: Verify source and build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download pinned V5 source archive
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          mkdir -p app
-          gh release download v5-source-20261008 \
-            --repo "$GITHUB_REPOSITORY" \
-            --pattern "Hoc_Vui_V5_KetNoi_Firebase_hoc-vui-tieu-hoc-2026.zip" \
-            --dir "$RUNNER_TEMP"
-          printf '%s  %s\n' \
-            'e2c1488490ebf7cf356f9f56679d25dbe55b34ac21caecd336cb2ce68b2cb3ad' \
-            "$RUNNER_TEMP/Hoc_Vui_V5_KetNoi_Firebase_hoc-vui-tieu-hoc-2026.zip" | sha256sum -c -
-          unzip -q "$RUNNER_TEMP/Hoc_Vui_V5_KetNoi_Firebase_hoc-vui-tieu-hoc-2026.zip" -d app
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-          cache-dependency-path: app/package-lock.json
-
-      - name: Validate Firebase project isolation
-        working-directory: app
+      - name: Verify isolated Firebase project
         env:
           HOC_VUI_STAGING_PROJECT_ID: hoc-vui-tieu-hoc-2026
-        run: node scripts/assert-deploy-config.cjs
-
-      - name: Install dependencies
-        working-directory: app
+        run: npm run check:deploy
+      - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
-
-      - name: Test content and permissions (mocked)
-        working-directory: app
+      - name: Test content and mocked permissions
         run: npm run test:offline
-
-      - name: Type-check V5
-        working-directory: app
+      - name: Type-check
         run: npm run lint
-
-      - name: Build for /hocvui/
-        working-directory: app
+      - name: Build website at /hocvui/
         env:
           VITE_BASE_PATH: /hocvui/
           VITE_USE_FIREBASE_EMULATORS: 'false'
         run: |
           npm run build
-          test -f dist/index.html
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
+          test -s dist/index.html
+          if grep -REn 'GEMINI_API_KEY|sk-[a-zA-Z0-9]{12,}' dist/assets; then
+            echo 'Found possible secret in static bundle'; exit 1
+          fi
+      - name: Upload compiled site for Pages
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: app/dist
+          path: dist
 
-      - name: Deploy Pages
+  deploy:
+    name: Publish GitHub Pages
+    needs: verify
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
         id: deployment
-        uses: actions/deploy-pages@v4

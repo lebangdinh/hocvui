@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function loggedIn() { return request.auth != null; }
+    function owner(uid) { return loggedIn() && request.auth.uid == uid; }
+    // Roles come ONLY from Firebase Admin custom claims; NEVER editable user documents/email.
+    function staff() { return loggedIn() && request.auth.token.role in ['admin', 'reviewer']; }
+    function isAdmin() { return loggedIn() && request.auth.token.role == 'admin'; }
+    function goodGrade(g) { return g is int && g >= 1 && g <= 5; }
+    function goodProfile(d, uid, profileId) {
+      return d.keys().hasAll(['id', 'uid', 'displayName', 'grade', 'totalPoints', 'level'])
+        && d.id == profileId && d.uid == uid
+        && d.displayName is string && d.displayName.size() >= 1 && d.displayName.size() <= 100
+        && goodGrade(d.grade) && d.totalPoints is number && d.totalPoints >= 0
+        && d.level is number && d.level >= 1
+        && (!('badges' in d) || d.badges is list);
+    }
+    // Parents own student profiles but cannot assign any staff roles.
+    match /users/{uid} {
+      allow read: if owner(uid) || isAdmin();
+      allow create, update, delete: if false;
+      match /profiles/{profileId} {
+        allow read: if owner(uid) || isAdmin();
+        allow create: if owner(uid) && goodProfile(request.resource.data, uid, profileId)
+          && request.resource.data.keys().hasOnly(['id','uid','displayName','email','grade','totalPoints','level','createdAt','badges','favoriteBadge','subjectPoints']);
+        allow update: if owner(uid) && goodProfile(request.resource.data, uid, profileId)
+          && request.resource.data.uid == resource.data.uid && request.resource.data.id == resource.data.id
+          && request.resource.data.keys().hasOnly(['id','uid','displayName','email','grade','totalPoints','level','createdAt','badges','favoriteBadge','subjectPoints']);
+        allow delete: if false; // Deletion requires callable to remove associated learning history.
+      }
+    }
+    match /activities/{id} {
+      function valid(a) {
+        return loggedIn() && a.keys().hasAll(['userId','profileId','subject','score','totalQuestions','grade','timestamp'])
+          && a.userId == request.auth.uid && a.profileId is string && a.profileId.size() <= 128
+          && exists(/databases/$(database)/documents/users/$(request.auth.uid)/profiles/$(a.profileId))
+          && get(/databases/$(database)/documents/users/$(request.auth.uid)/profiles/$(a.profileId)).data.grade == a.grade
+          && a.subject in ['math','vietnamese','english','ethics','nature','science','history_geo','it','physical','arts','experiential']
+          && goodGrade(a.grade) && a.score is int && a.score >= 0
+          && a.totalQuestions is int && a.totalQuestions > 0 && a.totalQuestions <= 30 && a.score <= a.totalQuestions
+          && a.timestamp is string && a.timestamp.size() <= 40;
+      }
+      allow get, list: if loggedIn() && resource.data.userId == request.auth.uid;
+      allow create: if valid(request.resource.data);
+      allow update: if false;
+      allow delete: if loggedIn() && resource.data.userId == request.auth.uid;
+    }
+    // Only backend (Admin SDK) can publish/revoke. Parents only READ a topic's approval.
+    match /contentApprovals/{topicId} {
+      allow get: if loggedIn();
+      allow list: if staff();
+      allow write: if false;
+    }
+    match /contentReviewAudit/{eventId} {
+      allow read: if staff();
+      allow write: if false;
+    }
+    match /privateRateLimits/{key} {
+      allow read, write: if false;
+    }
+    match /{path=**} { allow read, write: if false; }
+  }
+}

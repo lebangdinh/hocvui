@@ -1,0 +1,25 @@
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const read=p=>fs.readFileSync(p,'utf8');
+const rules=read('firestore.rules'),client=read('src/services/geminiService.ts'),vite=read('vite.config.ts'),server=read('functions/index.js');
+assert.ok(!/process\.env\.GEMINI_API_KEY|import\s*\{\s*GoogleGenAI/.test(client+vite),'Gemini secret or SDK leaked into client');
+assert.ok(/defineSecret\('GEMINI_API_KEY'\)/.test(server));
+assert.ok(/request\.auth\.token\.role/.test(rules),'RBAC must use immutable custom claims');
+assert.ok(!/get\(\/databases\/\$\(database\)\/documents\/users\/\$\(request\.auth\.uid\)\)\.data\.role/.test(rules),'Do not trust editable role docs');
+assert.ok(/allow write: if false/.test(rules));
+assert.ok(/reviewChecklist\.answersVerified/.test(server),'Backend must require per-question review attestation');
+assert.ok(/getFirestore\(app\)/.test(server),'Server must use isolated project default database');
+assert.ok(!/ai-studio-c5dfab48-772e-419e-8168-c0df76fbb7ac/.test(server),'No borrowed database ID');
+for(const op of ['generatePracticeQuestions','askStudyBear','reviewCurriculumTopic','deleteChildProfile','deleteMyAccount'])assert.ok(server.includes(`exports.${op} = onCall`));
+const index=JSON.parse(read('content/alignment-review-queue.json'));const bank=JSON.parse(read('content/extra-practice-bank.json'));
+const live=JSON.parse(read('functions/content/alignment-review-queue.json'));
+assert.equal(live.items.length,index.items.length);
+const expectedHash=JSON.parse(read('content/bank-fingerprint.json')).hash;
+assert.equal(expectedHash,JSON.parse(read('functions/content/bank-fingerprint.json')).hash);
+const topics=new Set(bank.topics.map(t=>t.topicId));
+assert.equal(topics.size,bank.topics.length);
+let coverage=0, verified=0;
+for(const t of index.items){if(t.questionMode==='local_bank')coverage++;if(t.teacherReview==='approved')verified++;}
+assert.equal(coverage,102);assert.equal(verified,0);
+assert.equal(bank.topics.reduce((n,t)=>n+t.items.length,0),350);
+console.log('PASS security static: no Gemini key in frontend, Firebase custom claims, 5 callable functions.');
+console.log(`PASS curriculum coverage: ${coverage}/${index.items.length} local practice topics; ${verified} teacher-approved.`);

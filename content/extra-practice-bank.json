@@ -1,0 +1,5181 @@
+{
+  "version": "5.0",
+  "origin": "Original practice questions authored for Học Vui; not copied from the textbooks",
+  "reviewNote": "V5: 102/102 chủ đề có bài bổ trợ soạn sẵn. Toàn bộ câu hỏi V5 chờ giáo viên duyệt. Trắc nghiệm chỉ đánh giá nhận biết từng phần, không thay thế năng lực viết, nói hay thực hành.",
+  "topics": [
+    {
+      "topicId": "1-nature-2",
+      "grade": 1,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-nature-2-q01",
+          "text": "Bộ phận nào giúp em nhìn thấy đồ vật?",
+          "correctAnswer": "Mắt",
+          "options": [
+            "Mắt",
+            "Tai",
+            "Mũi",
+            "Lưỡi"
+          ],
+          "explanation": "Đáp án phù hợp: Mắt.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-nature-2-q02",
+          "text": "Trước khi ăn, em nên làm gì?",
+          "correctAnswer": "Rửa tay sạch",
+          "options": [
+            "Rửa tay sạch",
+            "Chạy thật nhanh",
+            "Chạm tay lên mắt",
+            "Bỏ bữa"
+          ],
+          "explanation": "Đáp án phù hợp: Rửa tay sạch.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-nature-2-q03",
+          "text": "Khi đánh răng, em sử dụng vật gì?",
+          "correctAnswer": "Bàn chải đánh răng",
+          "options": [
+            "Bàn chải đánh răng",
+            "Chiếc lược",
+            "Cái thước",
+            "Viên phấn"
+          ],
+          "explanation": "Đáp án phù hợp: Bàn chải đánh răng.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-nature-2-q04",
+          "text": "Để nghe tiếng trống trường, em dùng giác quan nào?",
+          "correctAnswer": "Thính giác",
+          "options": [
+            "Thính giác",
+            "Vị giác",
+            "Khứu giác",
+            "Xúc giác"
+          ],
+          "explanation": "Đáp án phù hợp: Thính giác.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-nature-2-q05",
+          "text": "Khi bị đau bụng nhiều, em nên làm gì?",
+          "correctAnswer": "Báo người lớn",
+          "options": [
+            "Báo người lớn",
+            "Giấu đi",
+            "Tự uống thuốc lạ",
+            "Tiếp tục chạy nhảy"
+          ],
+          "explanation": "Đáp án phù hợp: Báo người lớn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "1-nature-1",
+      "grade": 1,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-nature-1-q01",
+          "text": "Ai là người cùng em học tập trong lớp?",
+          "correctAnswer": "Bạn cùng lớp",
+          "options": [
+            "Bạn cùng lớp",
+            "Khách du lịch",
+            "Người bán hàng",
+            "Bác tài xế"
+          ],
+          "explanation": "Đáp án phù hợp: Bạn cùng lớp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-nature-1-q02",
+          "text": "Khi vào lớp, em nên làm gì?",
+          "correctAnswer": "Chào thầy cô",
+          "options": [
+            "Chào thầy cô",
+            "La hét",
+            "Xô đẩy bạn",
+            "Chạy trên bàn"
+          ],
+          "explanation": "Đáp án phù hợp: Chào thầy cô.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-nature-1-q03",
+          "text": "Nếu không tìm thấy người thân, em nên làm gì?",
+          "correctAnswer": "Nhờ người lớn đáng tin cậy giúp",
+          "options": [
+            "Nhờ người lớn đáng tin cậy giúp",
+            "Đi theo người lạ",
+            "Chạy ra đường",
+            "Tự ý bỏ đi xa"
+          ],
+          "explanation": "Đáp án phù hợp: Nhờ người lớn đáng tin cậy giúp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-nature-1-q04",
+          "text": "Nơi nào để học sinh đọc sách ở trường?",
+          "correctAnswer": "Thư viện",
+          "options": [
+            "Thư viện",
+            "Nhà xe",
+            "Sân bóng",
+            "Nhà bếp"
+          ],
+          "explanation": "Đáp án phù hợp: Thư viện.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-nature-1-q05",
+          "text": "Trong gia đình, mọi người nên đối xử với nhau thế nào?",
+          "correctAnswer": "Quan tâm và tôn trọng",
+          "options": [
+            "Quan tâm và tôn trọng",
+            "Chế giễu nhau",
+            "Tranh giành mọi thứ",
+            "Không lắng nghe"
+          ],
+          "explanation": "Đáp án phù hợp: Quan tâm và tôn trọng.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "2-nature-1",
+      "grade": 2,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-nature-1-q01",
+          "text": "Cây xanh thường cần điều gì để lớn lên?",
+          "correctAnswer": "Nước và ánh sáng phù hợp",
+          "options": [
+            "Nước và ánh sáng phù hợp",
+            "Khói bụi",
+            "Rác nhựa",
+            "Không khí ô nhiễm"
+          ],
+          "explanation": "Đáp án phù hợp: Nước và ánh sáng phù hợp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-nature-1-q02",
+          "text": "Cá thường sống ở đâu?",
+          "correctAnswer": "Dưới nước",
+          "options": [
+            "Dưới nước",
+            "Trên cây",
+            "Trong sa mạc",
+            "Trên mái nhà"
+          ],
+          "explanation": "Đáp án phù hợp: Dưới nước.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-nature-1-q03",
+          "text": "Khi nhìn thấy rác ở sân trường, em nên làm gì?",
+          "correctAnswer": "Bỏ vào thùng đúng nơi",
+          "options": [
+            "Bỏ vào thùng đúng nơi",
+            "Ném xuống hồ",
+            "Giấu trong bụi cây",
+            "Để giữa lối đi"
+          ],
+          "explanation": "Đáp án phù hợp: Bỏ vào thùng đúng nơi.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-nature-1-q04",
+          "text": "Bộ phận nào của cây thường hút nước từ đất?",
+          "correctAnswer": "Rễ",
+          "options": [
+            "Rễ",
+            "Hoa",
+            "Quả",
+            "Lá khô"
+          ],
+          "explanation": "Đáp án phù hợp: Rễ.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-nature-1-q05",
+          "text": "Vật nuôi cần được chăm sóc ra sao?",
+          "correctAnswer": "Cho ăn uống phù hợp",
+          "options": [
+            "Cho ăn uống phù hợp",
+            "Bỏ đói",
+            "Trêu chọc liên tục",
+            "Nhốt nơi nóng bức"
+          ],
+          "explanation": "Đáp án phù hợp: Cho ăn uống phù hợp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "2-nature-2",
+      "grade": 2,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-nature-2-q01",
+          "text": "Trước khi ăn cơm, việc nào giúp giữ vệ sinh?",
+          "correctAnswer": "Rửa tay với xà phòng",
+          "options": [
+            "Rửa tay với xà phòng",
+            "Chạm tay bẩn vào thức ăn",
+            "Không rửa tay",
+            "Dùng tay bốc đất"
+          ],
+          "explanation": "Đáp án phù hợp: Rửa tay với xà phòng.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-nature-2-q02",
+          "text": "Để răng khỏe, em nên làm gì?",
+          "correctAnswer": "Đánh răng đều đặn",
+          "options": [
+            "Đánh răng đều đặn",
+            "Ăn nhiều kẹo rồi đi ngủ",
+            "Không chải răng",
+            "Dùng đồ sắc nhọn xỉa răng"
+          ],
+          "explanation": "Đáp án phù hợp: Đánh răng đều đặn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-nature-2-q03",
+          "text": "Khi qua đường, em nên làm gì?",
+          "correctAnswer": "Đi theo người lớn và quan sát",
+          "options": [
+            "Đi theo người lớn và quan sát",
+            "Chạy băng qua ngay",
+            "Đùa nghịch giữa đường",
+            "Nhắm mắt đi"
+          ],
+          "explanation": "Đáp án phù hợp: Đi theo người lớn và quan sát.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-nature-2-q04",
+          "text": "Nước uống hằng ngày cần như thế nào?",
+          "correctAnswer": "Sạch và an toàn",
+          "options": [
+            "Sạch và an toàn",
+            "Lấy từ vũng nước",
+            "Có nhiều rác",
+            "Không rõ nguồn gốc"
+          ],
+          "explanation": "Đáp án phù hợp: Sạch và an toàn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-nature-2-q05",
+          "text": "Khi ho, em nên làm gì?",
+          "correctAnswer": "Che miệng đúng cách",
+          "options": [
+            "Che miệng đúng cách",
+            "Ho vào mặt bạn",
+            "Dùng chung khăn bẩn",
+            "Đứng sát người khác"
+          ],
+          "explanation": "Đáp án phù hợp: Che miệng đúng cách.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "3-nature-1",
+      "grade": 3,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-nature-1-q01",
+          "text": "Cơ quan nào giúp ta hít thở?",
+          "correctAnswer": "Phổi",
+          "options": [
+            "Phổi",
+            "Dạ dày",
+            "Xương đùi",
+            "Móng tay"
+          ],
+          "explanation": "Đáp án phù hợp: Phổi.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-nature-1-q02",
+          "text": "Để cơ thể khỏe mạnh, em nên làm gì?",
+          "correctAnswer": "Ăn uống cân đối và vận động",
+          "options": [
+            "Ăn uống cân đối và vận động",
+            "Thức khuya thường xuyên",
+            "Nhịn ăn cả ngày",
+            "Chỉ uống nước ngọt"
+          ],
+          "explanation": "Đáp án phù hợp: Ăn uống cân đối và vận động.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-nature-1-q03",
+          "text": "Khi bị sốt, em nên báo ai?",
+          "correctAnswer": "Cha mẹ hoặc người chăm sóc",
+          "options": [
+            "Cha mẹ hoặc người chăm sóc",
+            "Một bạn nhỏ bất kì",
+            "Người bán đồ chơi",
+            "Không báo ai"
+          ],
+          "explanation": "Đáp án phù hợp: Cha mẹ hoặc người chăm sóc.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-nature-1-q04",
+          "text": "Động tác nào giúp bảo vệ mắt khi đọc?",
+          "correctAnswer": "Đọc nơi đủ sáng",
+          "options": [
+            "Đọc nơi đủ sáng",
+            "Đọc trong bóng tối",
+            "Đưa sách sát mắt",
+            "Nhìn màn hình liên tục"
+          ],
+          "explanation": "Đáp án phù hợp: Đọc nơi đủ sáng.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-nature-1-q05",
+          "text": "Khi gặp thuốc không rõ loại, em nên làm gì?",
+          "correctAnswer": "Không tự ý uống",
+          "options": [
+            "Không tự ý uống",
+            "Uống thử cho biết",
+            "Chia cho bạn",
+            "Nếm rồi bỏ"
+          ],
+          "explanation": "Đáp án phù hợp: Không tự ý uống.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "3-nature-2",
+      "grade": 3,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-nature-2-q01",
+          "text": "Lá cây thường thực hiện quá trình nào nhờ ánh sáng?",
+          "correctAnswer": "Quang hợp",
+          "options": [
+            "Quang hợp",
+            "Nấu cơm",
+            "Đốt nhiên liệu",
+            "Sản xuất nhựa"
+          ],
+          "explanation": "Đáp án phù hợp: Quang hợp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-nature-2-q02",
+          "text": "Để cây trong chậu không héo, em cần làm gì?",
+          "correctAnswer": "Tưới nước phù hợp",
+          "options": [
+            "Tưới nước phù hợp",
+            "Đổ dầu ăn",
+            "Bẻ hết lá",
+            "Không cho tiếp xúc ánh sáng"
+          ],
+          "explanation": "Đáp án phù hợp: Tưới nước phù hợp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-nature-2-q03",
+          "text": "Động vật nào phát triển từ nòng nọc?",
+          "correctAnswer": "Ếch",
+          "options": [
+            "Ếch",
+            "Mèo",
+            "Gà",
+            "Bướm"
+          ],
+          "explanation": "Đáp án phù hợp: Ếch.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-nature-2-q04",
+          "text": "Hoa có thể phát triển thành bộ phận nào ở nhiều loài cây?",
+          "correctAnswer": "Quả",
+          "options": [
+            "Quả",
+            "Rễ",
+            "Đá",
+            "Đất"
+          ],
+          "explanation": "Đáp án phù hợp: Quả.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-nature-2-q05",
+          "text": "Việc nào góp phần bảo vệ môi trường sống của động vật?",
+          "correctAnswer": "Không phá tổ chim",
+          "options": [
+            "Không phá tổ chim",
+            "Đốt rừng",
+            "Vứt rác xuống sông",
+            "Săn bắt bừa bãi"
+          ],
+          "explanation": "Đáp án phù hợp: Không phá tổ chim.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "1-ethics-1",
+      "grade": 1,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-ethics-1-q01",
+          "text": "Khi được giúp đỡ, em nên nói gì?",
+          "correctAnswer": "Em cảm ơn ạ",
+          "options": [
+            "Em cảm ơn ạ",
+            "Đi đi!",
+            "Không cần đâu!",
+            "Kệ bạn"
+          ],
+          "explanation": "Đáp án phù hợp: Em cảm ơn ạ.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-ethics-1-q02",
+          "text": "Khi làm bạn buồn vì lỗi của mình, em nên làm gì?",
+          "correctAnswer": "Xin lỗi bạn",
+          "options": [
+            "Xin lỗi bạn",
+            "Đổ lỗi cho bạn",
+            "Cười nhạo bạn",
+            "Bỏ đi không nói"
+          ],
+          "explanation": "Đáp án phù hợp: Xin lỗi bạn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-ethics-1-q03",
+          "text": "Thấy bạn bị ngã, em nên làm gì?",
+          "correctAnswer": "Hỏi thăm và nhờ người lớn giúp",
+          "options": [
+            "Hỏi thăm và nhờ người lớn giúp",
+            "Đứng cười",
+            "Chạy qua",
+            "Trêu bạn"
+          ],
+          "explanation": "Đáp án phù hợp: Hỏi thăm và nhờ người lớn giúp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-ethics-1-q04",
+          "text": "Khi gặp thầy cô, em nên làm gì?",
+          "correctAnswer": "Chào hỏi lễ phép",
+          "options": [
+            "Chào hỏi lễ phép",
+            "Quay mặt đi",
+            "La hét",
+            "Chen lấn"
+          ],
+          "explanation": "Đáp án phù hợp: Chào hỏi lễ phép.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "1-ethics-1-q05",
+          "text": "Khi bạn đang nói, em nên làm gì?",
+          "correctAnswer": "Lắng nghe",
+          "options": [
+            "Lắng nghe",
+            "Cắt lời liên tục",
+            "Nói thật to",
+            "Bỏ đi giữa câu"
+          ],
+          "explanation": "Đáp án phù hợp: Lắng nghe.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "2-ethics-1",
+      "grade": 2,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-ethics-1-q01",
+          "text": "Bạn quên bút, em có bút dự phòng. Em nên làm gì?",
+          "correctAnswer": "Cho bạn mượn nếu có thể",
+          "options": [
+            "Cho bạn mượn nếu có thể",
+            "Giấu hết bút",
+            "Chê cười bạn",
+            "Xé vở bạn"
+          ],
+          "explanation": "Đáp án phù hợp: Cho bạn mượn nếu có thể.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-ethics-1-q02",
+          "text": "Người thân mệt, em có thể làm gì?",
+          "correctAnswer": "Hỏi thăm và giúp việc phù hợp",
+          "options": [
+            "Hỏi thăm và giúp việc phù hợp",
+            "Gây ồn lớn",
+            "Đòi chơi ngay",
+            "Không quan tâm"
+          ],
+          "explanation": "Đáp án phù hợp: Hỏi thăm và giúp việc phù hợp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-ethics-1-q03",
+          "text": "Khi bạn có ý kiến khác, em nên làm gì?",
+          "correctAnswer": "Lắng nghe và trao đổi lịch sự",
+          "options": [
+            "Lắng nghe và trao đổi lịch sự",
+            "Quát bạn",
+            "Chế giễu",
+            "Giật đồ của bạn"
+          ],
+          "explanation": "Đáp án phù hợp: Lắng nghe và trao đổi lịch sự.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-ethics-1-q04",
+          "text": "Làm rơi sách của bạn, em nên làm gì?",
+          "correctAnswer": "Nhặt lên và xin lỗi",
+          "options": [
+            "Nhặt lên và xin lỗi",
+            "Giẫm lên",
+            "Bỏ chạy",
+            "Ném ra xa"
+          ],
+          "explanation": "Đáp án phù hợp: Nhặt lên và xin lỗi.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "2-ethics-1-q05",
+          "text": "Cách nào thể hiện sự quan tâm tới ông bà?",
+          "correctAnswer": "Hỏi thăm sức khỏe",
+          "options": [
+            "Hỏi thăm sức khỏe",
+            "Tranh lời",
+            "Không chào hỏi",
+            "Bỏ mặc khi cần giúp"
+          ],
+          "explanation": "Đáp án phù hợp: Hỏi thăm sức khỏe.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "3-ethics-1",
+      "grade": 3,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-ethics-1-q01",
+          "text": "Em đã hứa trả sách đúng ngày. Em nên làm gì?",
+          "correctAnswer": "Trả sách đúng hẹn",
+          "options": [
+            "Trả sách đúng hẹn",
+            "Giấu sách",
+            "Quên luôn lời hứa",
+            "Cho bạn khác mà không hỏi"
+          ],
+          "explanation": "Đáp án phù hợp: Trả sách đúng hẹn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-ethics-1-q02",
+          "text": "Khi không thể giữ lời hứa vì lý do chính đáng, em nên làm gì?",
+          "correctAnswer": "Giải thích và xin lỗi",
+          "options": [
+            "Giải thích và xin lỗi",
+            "Im lặng biến mất",
+            "Đổ lỗi vô cớ",
+            "Nói dối"
+          ],
+          "explanation": "Đáp án phù hợp: Giải thích và xin lỗi.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-ethics-1-q03",
+          "text": "Bạn giao em trực nhật, em nên làm gì?",
+          "correctAnswer": "Thực hiện phần việc được giao",
+          "options": [
+            "Thực hiện phần việc được giao",
+            "Bỏ qua",
+            "Đẩy hết cho bạn",
+            "Làm cho có lệ"
+          ],
+          "explanation": "Đáp án phù hợp: Thực hiện phần việc được giao.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-ethics-1-q04",
+          "text": "Thấy mình làm sai bài nhóm, em nên làm gì?",
+          "correctAnswer": "Thừa nhận và sửa lại",
+          "options": [
+            "Thừa nhận và sửa lại",
+            "Đổ lỗi cho bạn",
+            "Xóa bài của nhóm",
+            "Giấu đi"
+          ],
+          "explanation": "Đáp án phù hợp: Thừa nhận và sửa lại.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-ethics-1-q05",
+          "text": "Khi nhặt được đồ của người khác, em nên làm gì?",
+          "correctAnswer": "Tìm cách trả lại",
+          "options": [
+            "Tìm cách trả lại",
+            "Giữ luôn",
+            "Bán đi",
+            "Vứt đi"
+          ],
+          "explanation": "Đáp án phù hợp: Tìm cách trả lại.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "4-ethics-1",
+      "grade": 4,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-ethics-1-q01",
+          "text": "Để hoàn thành việc học được giao, em nên làm gì?",
+          "correctAnswer": "Lập kế hoạch phù hợp",
+          "options": [
+            "Lập kế hoạch phù hợp",
+            "Chờ sát giờ mới làm",
+            "Bỏ hẳn",
+            "Chép của bạn"
+          ],
+          "explanation": "Đáp án phù hợp: Lập kế hoạch phù hợp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-ethics-1-q02",
+          "text": "Khi nhóm phân công nhiệm vụ, em nên làm gì?",
+          "correctAnswer": "Hoàn thành phần mình",
+          "options": [
+            "Hoàn thành phần mình",
+            "Mặc kệ nhóm",
+            "Nói dối đã làm",
+            "Đòi bạn làm hết"
+          ],
+          "explanation": "Đáp án phù hợp: Hoàn thành phần mình.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-ethics-1-q03",
+          "text": "Thấy khu vực chung bị bẩn, em có thể làm gì?",
+          "correctAnswer": "Tham gia vệ sinh an toàn",
+          "options": [
+            "Tham gia vệ sinh an toàn",
+            "Xả thêm rác",
+            "Chê người khác",
+            "Phớt lờ mọi việc"
+          ],
+          "explanation": "Đáp án phù hợp: Tham gia vệ sinh an toàn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-ethics-1-q04",
+          "text": "Khi phạm lỗi, điều gì thể hiện trách nhiệm?",
+          "correctAnswer": "Nhận lỗi và tìm cách khắc phục",
+          "options": [
+            "Nhận lỗi và tìm cách khắc phục",
+            "Đổ lỗi",
+            "Che giấu",
+            "Lặp lại lỗi"
+          ],
+          "explanation": "Đáp án phù hợp: Nhận lỗi và tìm cách khắc phục.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-ethics-1-q05",
+          "text": "Cách sử dụng điện tiết kiệm là gì?",
+          "correctAnswer": "Tắt đèn khi không cần",
+          "options": [
+            "Tắt đèn khi không cần",
+            "Bật đèn cả ngày",
+            "Mở mọi thiết bị",
+            "Dùng thiết bị hỏng"
+          ],
+          "explanation": "Đáp án phù hợp: Tắt đèn khi không cần.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "5-ethics-1",
+      "grade": 5,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-ethics-1-q01",
+          "text": "Khi gặp thông tin chưa được kiểm chứng, em nên làm gì?",
+          "correctAnswer": "Hỏi người lớn và kiểm tra nguồn",
+          "options": [
+            "Hỏi người lớn và kiểm tra nguồn",
+            "Chia sẻ ngay",
+            "Thêm tin đồn",
+            "Tin mọi thứ"
+          ],
+          "explanation": "Đáp án phù hợp: Hỏi người lớn và kiểm tra nguồn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-ethics-1-q02",
+          "text": "Bạn rủ bỏ học để chơi, em nên làm gì?",
+          "correctAnswer": "Từ chối và đi học",
+          "options": [
+            "Từ chối và đi học",
+            "Đi ngay",
+            "Rủ thêm người",
+            "Giấu cha mẹ"
+          ],
+          "explanation": "Đáp án phù hợp: Từ chối và đi học.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-ethics-1-q03",
+          "text": "Khi có mâu thuẫn trong nhóm, em nên làm gì?",
+          "correctAnswer": "Trao đổi bình tĩnh",
+          "options": [
+            "Trao đổi bình tĩnh",
+            "Dọa nạt",
+            "Đánh nhau",
+            "Đăng bài xúc phạm"
+          ],
+          "explanation": "Đáp án phù hợp: Trao đổi bình tĩnh.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-ethics-1-q04",
+          "text": "Điều gì thể hiện tự chủ khi tức giận?",
+          "correctAnswer": "Kiềm chế và tìm cách nói chuyện",
+          "options": [
+            "Kiềm chế và tìm cách nói chuyện",
+            "Ném đồ",
+            "Mắng bạn",
+            "Đập bàn"
+          ],
+          "explanation": "Đáp án phù hợp: Kiềm chế và tìm cách nói chuyện.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-ethics-1-q05",
+          "text": "Khi có nhiệm vụ chung, em nên làm gì?",
+          "correctAnswer": "Chủ động góp sức phù hợp",
+          "options": [
+            "Chủ động góp sức phù hợp",
+            "Đùn đẩy",
+            "Bỏ cuộc",
+            "Làm qua loa"
+          ],
+          "explanation": "Đáp án phù hợp: Chủ động góp sức phù hợp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "3-it-1",
+      "grade": 3,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-it-1-q01",
+          "text": "Thiết bị nào thường dùng để nhập chữ vào máy tính?",
+          "correctAnswer": "Bàn phím",
+          "options": [
+            "Bàn phím",
+            "Màn hình",
+            "Loa",
+            "Máy chiếu"
+          ],
+          "explanation": "Đáp án phù hợp: Bàn phím.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-it-1-q02",
+          "text": "Thiết bị nào thường hiển thị hình ảnh của máy tính?",
+          "correctAnswer": "Màn hình",
+          "options": [
+            "Màn hình",
+            "Chuột",
+            "Micro",
+            "Bàn phím"
+          ],
+          "explanation": "Đáp án phù hợp: Màn hình.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-it-1-q03",
+          "text": "Để điều khiển con trỏ, em thường dùng gì?",
+          "correctAnswer": "Chuột máy tính",
+          "options": [
+            "Chuột máy tính",
+            "Quyển vở",
+            "Thước kẻ",
+            "Bình nước"
+          ],
+          "explanation": "Đáp án phù hợp: Chuột máy tính.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-it-1-q04",
+          "text": "Khi ngồi học máy tính, em nên làm gì?",
+          "correctAnswer": "Ngồi đúng tư thế",
+          "options": [
+            "Ngồi đúng tư thế",
+            "Ghé mắt sát màn hình",
+            "Ngồi lệch quá lâu",
+            "Chạm tay ướt vào ổ điện"
+          ],
+          "explanation": "Đáp án phù hợp: Ngồi đúng tư thế.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "3-it-1-q05",
+          "text": "Khi máy tính bị lỗi, em nên làm gì?",
+          "correctAnswer": "Báo thầy cô hoặc người lớn",
+          "options": [
+            "Báo thầy cô hoặc người lớn",
+            "Tự tháo máy",
+            "Đổ nước vào máy",
+            "Giật dây điện"
+          ],
+          "explanation": "Đáp án phù hợp: Báo thầy cô hoặc người lớn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "4-it-2",
+      "grade": 4,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-it-2-q01",
+          "text": "Mật khẩu tài khoản nên được chia sẻ với ai?",
+          "correctAnswer": "Cha mẹ hoặc người giám hộ khi cần",
+          "options": [
+            "Cha mẹ hoặc người giám hộ khi cần",
+            "Người lạ trên mạng",
+            "Mọi bạn trong lớp",
+            "Người nhắn tin xin mật khẩu"
+          ],
+          "explanation": "Đáp án phù hợp: Cha mẹ hoặc người giám hộ khi cần.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-it-2-q02",
+          "text": "Nhận đường dẫn lạ, em nên làm gì?",
+          "correctAnswer": "Hỏi người lớn trước khi mở",
+          "options": [
+            "Hỏi người lớn trước khi mở",
+            "Nhấp ngay",
+            "Gửi cho tất cả bạn",
+            "Nhập mật khẩu ngay"
+          ],
+          "explanation": "Đáp án phù hợp: Hỏi người lớn trước khi mở.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-it-2-q03",
+          "text": "Thông tin nào không nên đăng công khai?",
+          "correctAnswer": "Địa chỉ nhà cụ thể",
+          "options": [
+            "Địa chỉ nhà cụ thể",
+            "Tên loài cây",
+            "Một phép toán",
+            "Màu sắc yêu thích"
+          ],
+          "explanation": "Đáp án phù hợp: Địa chỉ nhà cụ thể.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-it-2-q04",
+          "text": "Nếu bị người lạ quấy rối trên mạng, em nên làm gì?",
+          "correctAnswer": "Báo người lớn đáng tin cậy",
+          "options": [
+            "Báo người lớn đáng tin cậy",
+            "Tiếp tục tranh cãi",
+            "Gửi hình riêng tư",
+            "Làm theo yêu cầu"
+          ],
+          "explanation": "Đáp án phù hợp: Báo người lớn đáng tin cậy.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-it-2-q05",
+          "text": "Cách nào giúp bảo vệ tài khoản?",
+          "correctAnswer": "Mật khẩu khó đoán",
+          "options": [
+            "Mật khẩu khó đoán",
+            "Mật khẩu 123456",
+            "Cho người lạ đăng nhập",
+            "Ghi công khai mật khẩu"
+          ],
+          "explanation": "Đáp án phù hợp: Mật khẩu khó đoán.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "5-it-2",
+      "grade": 5,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-it-2-q01",
+          "text": "Trước khi đăng ảnh bạn lên mạng, em nên làm gì?",
+          "correctAnswer": "Xin phép bạn",
+          "options": [
+            "Xin phép bạn",
+            "Đăng ngay",
+            "Gắn địa chỉ nhà bạn",
+            "Chế giễu bạn"
+          ],
+          "explanation": "Đáp án phù hợp: Xin phép bạn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-it-2-q02",
+          "text": "Khi đọc tin trên mạng, em nên làm gì?",
+          "correctAnswer": "Kiểm tra nguồn và độ tin cậy",
+          "options": [
+            "Kiểm tra nguồn và độ tin cậy",
+            "Tin mọi tiêu đề",
+            "Chia sẻ ngay",
+            "Chỉ xem ảnh"
+          ],
+          "explanation": "Đáp án phù hợp: Kiểm tra nguồn và độ tin cậy.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-it-2-q03",
+          "text": "Gặp lời bình luận ác ý, em nên làm gì?",
+          "correctAnswer": "Không đáp trả công kích, báo người lớn",
+          "options": [
+            "Không đáp trả công kích, báo người lớn",
+            "Công kích lại",
+            "Lộ mật khẩu",
+            "Gửi thêm tin xấu"
+          ],
+          "explanation": "Đáp án phù hợp: Không đáp trả công kích, báo người lớn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-it-2-q04",
+          "text": "Khi dùng tài liệu trên mạng để làm bài, em nên làm gì?",
+          "correctAnswer": "Ghi rõ nguồn phù hợp",
+          "options": [
+            "Ghi rõ nguồn phù hợp",
+            "Nhận là của mình",
+            "Sao chép không đọc",
+            "Sửa tên tác giả"
+          ],
+          "explanation": "Đáp án phù hợp: Ghi rõ nguồn phù hợp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-it-2-q05",
+          "text": "Một biểu hiện dùng Internet có trách nhiệm là gì?",
+          "correctAnswer": "Tôn trọng quyền riêng tư",
+          "options": [
+            "Tôn trọng quyền riêng tư",
+            "Phát tán tin đồn",
+            "Đánh cắp mật khẩu",
+            "Đăng thông tin người khác"
+          ],
+          "explanation": "Đáp án phù hợp: Tôn trọng quyền riêng tư.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "4-science-1",
+      "grade": 4,
+      "subject": "science",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-science-1-q01",
+          "text": "Chất nào có thể tồn tại ở thể rắn, lỏng và khí trong tự nhiên?",
+          "correctAnswer": "Nước",
+          "options": [
+            "Nước",
+            "Cát",
+            "Gỗ",
+            "Sắt"
+          ],
+          "explanation": "Đáp án phù hợp: Nước.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-science-1-q02",
+          "text": "Hiện tượng nào làm nước lỏng thành hơi nước?",
+          "correctAnswer": "Bay hơi",
+          "options": [
+            "Bay hơi",
+            "Đóng băng",
+            "Nóng chảy của sắt",
+            "Kết tủa"
+          ],
+          "explanation": "Đáp án phù hợp: Bay hơi.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-science-1-q03",
+          "text": "Nguồn sáng tự nhiên nào giúp Trái Đất nhận ánh sáng ban ngày?",
+          "correctAnswer": "Mặt Trời",
+          "options": [
+            "Mặt Trời",
+            "Đèn pin",
+            "Đèn bàn",
+            "Nến"
+          ],
+          "explanation": "Đáp án phù hợp: Mặt Trời.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-science-1-q04",
+          "text": "Âm thanh thường do đâu tạo ra?",
+          "correctAnswer": "Vật dao động",
+          "options": [
+            "Vật dao động",
+            "Bóng tối",
+            "Màu sắc",
+            "Mùi hương"
+          ],
+          "explanation": "Đáp án phù hợp: Vật dao động.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-science-1-q05",
+          "text": "Không khí cần thiết cho hoạt động nào của con người?",
+          "correctAnswer": "Hô hấp",
+          "options": [
+            "Hô hấp",
+            "Nhìn màu",
+            "Đọc chữ",
+            "Nghe nhạc"
+          ],
+          "explanation": "Đáp án phù hợp: Hô hấp.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "5-science-2",
+      "grade": 5,
+      "subject": "science",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-science-2-q01",
+          "text": "Cách nào sử dụng điện an toàn?",
+          "correctAnswer": "Không chạm thiết bị bằng tay ướt",
+          "options": [
+            "Không chạm thiết bị bằng tay ướt",
+            "Chạm ổ cắm khi tay ướt",
+            "Tháo ổ điện đang có điện",
+            "Dùng dây điện hở"
+          ],
+          "explanation": "Đáp án phù hợp: Không chạm thiết bị bằng tay ướt.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-science-2-q02",
+          "text": "Nguồn năng lượng nào đến từ ánh sáng Mặt Trời?",
+          "correctAnswer": "Năng lượng mặt trời",
+          "options": [
+            "Năng lượng mặt trời",
+            "Than đá",
+            "Xăng",
+            "Dầu mỏ"
+          ],
+          "explanation": "Đáp án phù hợp: Năng lượng mặt trời.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-science-2-q03",
+          "text": "Khi ra khỏi phòng không có ai, em nên làm gì với đèn?",
+          "correctAnswer": "Tắt khi không cần",
+          "options": [
+            "Tắt khi không cần",
+            "Bật hết",
+            "Để sáng suốt ngày",
+            "Bật thêm đèn"
+          ],
+          "explanation": "Đáp án phù hợp: Tắt khi không cần.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-science-2-q04",
+          "text": "Vật nào giúp chuyển ánh sáng thành điện năng?",
+          "correctAnswer": "Tấm pin mặt trời",
+          "options": [
+            "Tấm pin mặt trời",
+            "Cục tẩy",
+            "Cái thước",
+            "Quyển vở"
+          ],
+          "explanation": "Đáp án phù hợp: Tấm pin mặt trời.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-science-2-q05",
+          "text": "Cách nào giúp giảm lãng phí nước?",
+          "correctAnswer": "Khóa vòi sau khi dùng",
+          "options": [
+            "Khóa vòi sau khi dùng",
+            "Để vòi chảy liên tục",
+            "Mở vòi khi không dùng",
+            "Xả nước tùy ý"
+          ],
+          "explanation": "Đáp án phù hợp: Khóa vòi sau khi dùng.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "4-history_geo-1",
+      "grade": 4,
+      "subject": "history_geo",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-history_geo-1-q01",
+          "text": "Dụng cụ nào giúp xác định phương hướng khi đi thực địa?",
+          "correctAnswer": "La bàn",
+          "options": [
+            "La bàn",
+            "Thước đo góc trên giấy",
+            "Cục tẩy",
+            "Đồng hồ cát"
+          ],
+          "explanation": "Đáp án phù hợp: La bàn.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-history_geo-1-q02",
+          "text": "Trên bản đồ, kí hiệu thường dùng để làm gì?",
+          "correctAnswer": "Thể hiện đối tượng địa lí",
+          "options": [
+            "Thể hiện đối tượng địa lí",
+            "Trang trí tùy ý",
+            "Thay tất cả chữ",
+            "Đếm số người đọc"
+          ],
+          "explanation": "Đáp án phù hợp: Thể hiện đối tượng địa lí.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-history_geo-1-q03",
+          "text": "Khi tìm hiểu di tích địa phương, em nên làm gì?",
+          "correctAnswer": "Giữ gìn và không vẽ bậy",
+          "options": [
+            "Giữ gìn và không vẽ bậy",
+            "Khắc tên lên tường",
+            "Bẻ cây trong khuôn viên",
+            "Vứt rác"
+          ],
+          "explanation": "Đáp án phù hợp: Giữ gìn và không vẽ bậy.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-history_geo-1-q04",
+          "text": "Muốn biết vị trí một địa điểm trên bản đồ, em nên xem gì?",
+          "correctAnswer": "Kí hiệu và chú giải",
+          "options": [
+            "Kí hiệu và chú giải",
+            "Màu bìa sách",
+            "Tên người bán sách",
+            "Số trang cuối"
+          ],
+          "explanation": "Đáp án phù hợp: Kí hiệu và chú giải.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "4-history_geo-1-q05",
+          "text": "Để hiểu lịch sử quê hương, em có thể làm gì?",
+          "correctAnswer": "Tìm hiểu qua bảo tàng và tư liệu đáng tin cậy",
+          "options": [
+            "Tìm hiểu qua bảo tàng và tư liệu đáng tin cậy",
+            "Bịa thêm sự kiện",
+            "Tin mọi lời đồn",
+            "Bỏ qua tư liệu"
+          ],
+          "explanation": "Đáp án phù hợp: Tìm hiểu qua bảo tàng và tư liệu đáng tin cậy.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "5-history_geo-1",
+      "grade": 5,
+      "subject": "history_geo",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-history_geo-1-q01",
+          "text": "Đất nước Việt Nam thuộc châu lục nào?",
+          "correctAnswer": "Châu Á",
+          "options": [
+            "Châu Á",
+            "Châu Âu",
+            "Châu Phi",
+            "Châu Mĩ"
+          ],
+          "explanation": "Đáp án phù hợp: Châu Á.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-history_geo-1-q02",
+          "text": "Biển nào nằm ở phía đông Việt Nam?",
+          "correctAnswer": "Biển Đông",
+          "options": [
+            "Biển Đông",
+            "Biển Đỏ",
+            "Biển Đen",
+            "Biển Caribe"
+          ],
+          "explanation": "Đáp án phù hợp: Biển Đông.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-history_geo-1-q03",
+          "text": "Thủ đô Việt Nam hiện nay là thành phố nào?",
+          "correctAnswer": "Hà Nội",
+          "options": [
+            "Hà Nội",
+            "Huế",
+            "Đà Nẵng",
+            "Cần Thơ"
+          ],
+          "explanation": "Đáp án phù hợp: Hà Nội.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-history_geo-1-q04",
+          "text": "Trên bản đồ, đường biên giới dùng để thể hiện gì?",
+          "correctAnswer": "Ranh giới lãnh thổ",
+          "options": [
+            "Ranh giới lãnh thổ",
+            "Mực nước sông",
+            "Nhiệt độ",
+            "Độ sâu của biển"
+          ],
+          "explanation": "Đáp án phù hợp: Ranh giới lãnh thổ.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        },
+        {
+          "id": "5-history_geo-1-q05",
+          "text": "Bản đồ hành chính giúp em tìm hiểu điều gì?",
+          "correctAnswer": "Đơn vị hành chính và vị trí",
+          "options": [
+            "Đơn vị hành chính và vị trí",
+            "Món ăn yêu thích",
+            "Bài hát",
+            "Thời khóa biểu"
+          ],
+          "explanation": "Đáp án phù hợp: Đơn vị hành chính và vị trí.",
+          "hint": "Em đọc từng phương án và chọn cách đúng nhất."
+        }
+      ]
+    },
+    {
+      "topicId": "1-vietnamese-2",
+      "grade": 1,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-vietnamese-2-v4q01",
+          "text": "Câu nào là câu hỏi?",
+          "options": [
+            "Em tên là gì?",
+            "Em tên là An.",
+            "Em đang học.",
+            "Em thích đọc sách."
+          ],
+          "correctAnswer": "Em tên là gì?",
+          "explanation": "Câu hỏi thường dùng để hỏi và có dấu chấm hỏi.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-vietnamese-2-v4q02",
+          "text": "Trong câu “Bé tưới cây.”, ai tưới cây?",
+          "options": [
+            "Bé",
+            "Cây",
+            "Mẹ",
+            "Chim"
+          ],
+          "correctAnswer": "Bé",
+          "explanation": "Chủ thể thực hiện việc tưới cây là bé.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-vietnamese-2-v4q03",
+          "text": "Trong câu “Mèo ngủ trên ghế.”, con vật nào được nhắc đến?",
+          "options": [
+            "Mèo",
+            "Chó",
+            "Cá",
+            "Gà"
+          ],
+          "correctAnswer": "Mèo",
+          "explanation": "Từ mèo gọi tên con vật trong câu.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-vietnamese-2-v4q04",
+          "text": "Dấu nào kết thúc câu hỏi?",
+          "options": [
+            "Dấu chấm hỏi (?)",
+            "Dấu chấm (.)",
+            "Dấu phẩy (,)",
+            "Dấu hai chấm (:)"
+          ],
+          "correctAnswer": "Dấu chấm hỏi (?)",
+          "explanation": "Câu hỏi thường kết thúc bằng dấu chấm hỏi.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-vietnamese-2-v4q05",
+          "text": "Câu nào nói về hoạt động học tập?",
+          "options": [
+            "Em đọc sách.",
+            "Mưa đang rơi.",
+            "Hoa đã nở.",
+            "Gió đang thổi."
+          ],
+          "correctAnswer": "Em đọc sách.",
+          "explanation": "Đọc sách là hoạt động học tập.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "2-vietnamese-1",
+      "grade": 2,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-vietnamese-1-v4q01",
+          "text": "Trong câu “Bạn Lan chăm sóc cây hoa.”, Lan làm gì?",
+          "options": [
+            "Chăm sóc cây hoa",
+            "Đi xe đạp",
+            "Đọc truyện",
+            "Đá bóng"
+          ],
+          "correctAnswer": "Chăm sóc cây hoa",
+          "explanation": "Cụm từ chăm sóc cây hoa chỉ việc làm của Lan.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-vietnamese-1-v4q02",
+          "text": "Câu “Sau giờ học, Minh đến thư viện đọc sách.” cho biết Minh đến đâu?",
+          "options": [
+            "Thư viện",
+            "Sân vận động",
+            "Nhà bếp",
+            "Bến xe"
+          ],
+          "correctAnswer": "Thư viện",
+          "explanation": "Câu văn nói rõ Minh đến thư viện.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-vietnamese-1-v4q03",
+          "text": "Nhân vật nào được nhắc đến trong câu “Mẹ cùng bé gói quà”?",
+          "options": [
+            "Mẹ và bé",
+            "Ông và bà",
+            "Thầy và trò",
+            "Bạn và cô"
+          ],
+          "correctAnswer": "Mẹ và bé",
+          "explanation": "Câu văn nêu mẹ cùng bé gói quà.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-vietnamese-1-v4q04",
+          "text": "Từ nào chỉ cảm xúc vui vẻ?",
+          "options": [
+            "Hớn hở",
+            "Lo lắng",
+            "Buồn bã",
+            "Sợ hãi"
+          ],
+          "correctAnswer": "Hớn hở",
+          "explanation": "Hớn hở diễn tả niềm vui.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-vietnamese-1-v4q05",
+          "text": "Sau khi đọc truyện, cách nào giúp em hiểu nội dung tốt hơn?",
+          "options": [
+            "Kể lại những việc chính",
+            "Bỏ qua đoạn cuối",
+            "Chỉ đếm số chữ",
+            "Không đọc tên truyện"
+          ],
+          "correctAnswer": "Kể lại những việc chính",
+          "explanation": "Kể lại các sự việc giúp kiểm tra mình đã hiểu câu chuyện.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "3-vietnamese-1",
+      "grade": 3,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-vietnamese-1-v4q01",
+          "text": "Đoạn “Buổi sáng, Nam nhặt rác ở sân trường. Sân trường sạch hơn.” nêu việc gì?",
+          "options": [
+            "Nam giữ vệ sinh sân trường",
+            "Nam trồng hoa ở nhà",
+            "Nam đang đá bóng",
+            "Nam đi mua sách"
+          ],
+          "correctAnswer": "Nam giữ vệ sinh sân trường",
+          "explanation": "Nam nhặt rác khiến sân trường sạch hơn.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-vietnamese-1-v4q02",
+          "text": "Từ nào thể hiện thái độ biết ơn?",
+          "options": [
+            "Cảm ơn",
+            "Im lặng",
+            "Tránh mặt",
+            "Than phiền"
+          ],
+          "correctAnswer": "Cảm ơn",
+          "explanation": "Cảm ơn thể hiện sự trân trọng khi được giúp đỡ.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-vietnamese-1-v4q03",
+          "text": "Một đoạn văn thường gồm gì?",
+          "options": [
+            "Các câu liên kết về một ý",
+            "Các chữ không liên quan",
+            "Chỉ một dấu câu",
+            "Những phép tính riêng lẻ"
+          ],
+          "correctAnswer": "Các câu liên kết về một ý",
+          "explanation": "Các câu trong đoạn cùng diễn đạt một ý chính.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-vietnamese-1-v4q04",
+          "text": "Trong câu “Gió nhẹ làm lá cây rung rinh”, điều gì khiến lá rung rinh?",
+          "options": [
+            "Gió nhẹ",
+            "Mặt trời",
+            "Mưa đá",
+            "Đất khô"
+          ],
+          "correctAnswer": "Gió nhẹ",
+          "explanation": "Câu văn nêu gió nhẹ khiến lá cây rung rinh.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-vietnamese-1-v4q05",
+          "text": "Sau khi đọc bài, câu hỏi nào giúp xác định ý chính?",
+          "options": [
+            "Bài chủ yếu nói về điều gì?",
+            "Bài có bao nhiêu dấu phẩy?",
+            "Dòng đầu dài bao nhiêu cm?",
+            "Trang sách có màu gì?"
+          ],
+          "correctAnswer": "Bài chủ yếu nói về điều gì?",
+          "explanation": "Tìm nội dung chủ yếu giúp hiểu ý chính.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "4-vietnamese-1",
+      "grade": 4,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-vietnamese-1-v4q01",
+          "text": "Ý chính của đoạn “Mọi người cùng trồng cây, tưới nước. Con đường làng trở nên xanh mát.” là gì?",
+          "options": [
+            "Mọi người làm đẹp cảnh quan",
+            "Mọi người chuẩn bị đi học",
+            "Mọi người sửa đường",
+            "Mọi người đi câu cá"
+          ],
+          "correctAnswer": "Mọi người làm đẹp cảnh quan",
+          "explanation": "Các hành động trồng và chăm cây làm đẹp cảnh quan.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-vietnamese-1-v4q02",
+          "text": "Khi muốn tìm thông tin quan trọng trong một bài đọc, em nên làm gì?",
+          "options": [
+            "Xác định từ khóa và ý chính",
+            "Chỉ nhìn hình minh họa",
+            "Bỏ qua tiêu đề",
+            "Đọc ngẫu nhiên một câu"
+          ],
+          "correctAnswer": "Xác định từ khóa và ý chính",
+          "explanation": "Từ khóa và ý chính giúp nắm nội dung văn bản.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-vietnamese-1-v4q03",
+          "text": "Câu nào thể hiện ý kiến cá nhân?",
+          "options": [
+            "Theo em, đọc sách rất bổ ích.",
+            "Hôm nay là thứ ba.",
+            "Cây có lá xanh.",
+            "Lớp có bảng viết."
+          ],
+          "correctAnswer": "Theo em, đọc sách rất bổ ích.",
+          "explanation": "Cụm từ theo em báo hiệu người nói đang nêu ý kiến.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-vietnamese-1-v4q04",
+          "text": "Từ “vì” trong câu “Em đi sớm vì trời sắp mưa” gợi quan hệ gì?",
+          "options": [
+            "Nguyên nhân",
+            "So sánh",
+            "Liệt kê",
+            "Đối lập"
+          ],
+          "correctAnswer": "Nguyên nhân",
+          "explanation": "Từ vì nêu nguyên nhân của việc đi sớm.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-vietnamese-1-v4q05",
+          "text": "Trong văn bản thông tin, tiêu đề có tác dụng chủ yếu nào?",
+          "options": [
+            "Gợi nội dung chính",
+            "Thay cho toàn bộ nội dung",
+            "Làm câu văn dài hơn",
+            "Chỉ để trang trí"
+          ],
+          "correctAnswer": "Gợi nội dung chính",
+          "explanation": "Tiêu đề giúp người đọc dự đoán nội dung.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "5-vietnamese-1",
+      "grade": 5,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-vietnamese-1-v4q01",
+          "text": "Câu “Bởi trời mưa lớn, trận đấu được hoãn.” nêu quan hệ nào?",
+          "options": [
+            "Nguyên nhân và kết quả",
+            "So sánh hai sự vật",
+            "Liệt kê đồ vật",
+            "Lựa chọn màu sắc"
+          ],
+          "correctAnswer": "Nguyên nhân và kết quả",
+          "explanation": "Mưa lớn là nguyên nhân, hoãn trận đấu là kết quả.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-vietnamese-1-v4q02",
+          "text": "Thông điệp của đoạn “Bạn nhỏ trả lại ví nhặt được cho người mất” gần nhất là gì?",
+          "options": [
+            "Trung thực trong cuộc sống",
+            "Chỉ làm việc khi có thưởng",
+            "Không quan tâm người khác",
+            "Giữ đồ nhặt được cho mình"
+          ],
+          "correctAnswer": "Trung thực trong cuộc sống",
+          "explanation": "Trả lại đồ nhặt được thể hiện tính trung thực.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-vietnamese-1-v4q03",
+          "text": "Khi đọc một bài giới thiệu sự kiện, thông tin nào nên xác định?",
+          "options": [
+            "Thời gian, địa điểm và sự việc",
+            "Chỉ số dòng văn bản",
+            "Chỉ số dấu chấm",
+            "Chỉ kiểu chữ"
+          ],
+          "correctAnswer": "Thời gian, địa điểm và sự việc",
+          "explanation": "Thời gian, địa điểm và sự việc là dữ kiện quan trọng.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-vietnamese-1-v4q04",
+          "text": "Câu nào nêu nhận xét thay vì chỉ kể sự việc?",
+          "options": [
+            "Buổi biểu diễn thật ấn tượng.",
+            "Buổi diễn bắt đầu lúc 8 giờ.",
+            "Sân khấu có ba chiếc ghế.",
+            "Có bốn tiết mục."
+          ],
+          "correctAnswer": "Buổi biểu diễn thật ấn tượng.",
+          "explanation": "Cụm thật ấn tượng thể hiện đánh giá.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-vietnamese-1-v4q05",
+          "text": "Khi tóm tắt bài đọc, em nên giữ gì?",
+          "options": [
+            "Các ý chính và mối liên hệ",
+            "Mọi từ lặp lại",
+            "Chỉ câu cuối cùng",
+            "Các chi tiết không liên quan"
+          ],
+          "correctAnswer": "Các ý chính và mối liên hệ",
+          "explanation": "Bản tóm tắt cần giữ lại những ý chính.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "1-english-1",
+      "grade": 1,
+      "subject": "english",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-english-1-v4q01",
+          "text": "Câu chào buổi sáng trong tiếng Anh là gì?",
+          "options": [
+            "Good morning",
+            "Good night",
+            "Goodbye",
+            "See you"
+          ],
+          "correctAnswer": "Good morning",
+          "explanation": "Good morning là lời chào buổi sáng.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-english-1-v4q02",
+          "text": "How are you? – Chọn câu trả lời phù hợp.",
+          "options": [
+            "I am fine, thank you.",
+            "My name is a pen.",
+            "It is a red.",
+            "There are blue."
+          ],
+          "correctAnswer": "I am fine, thank you.",
+          "explanation": "I am fine, thank you dùng để trả lời hỏi thăm sức khỏe.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-english-1-v4q03",
+          "text": "Từ nào dùng để chào tạm biệt?",
+          "options": [
+            "Goodbye",
+            "Hello",
+            "Hi",
+            "Good morning"
+          ],
+          "correctAnswer": "Goodbye",
+          "explanation": "Goodbye có nghĩa là tạm biệt.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-english-1-v4q04",
+          "text": "Hello có nghĩa là gì?",
+          "options": [
+            "Xin chào",
+            "Cảm ơn",
+            "Xin lỗi",
+            "Chúc ngủ ngon"
+          ],
+          "correctAnswer": "Xin chào",
+          "explanation": "Hello là lời chào.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-english-1-v4q05",
+          "text": "Tên em là Mai. Chọn câu giới thiệu.",
+          "options": [
+            "My name is Mai.",
+            "I am a cat.",
+            "This is red.",
+            "Good night."
+          ],
+          "correctAnswer": "My name is Mai.",
+          "explanation": "My name is Mai nghĩa là tên của em là Mai.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "2-english-2",
+      "grade": 2,
+      "subject": "english",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-english-2-v4q01",
+          "text": "What is your name? – Câu trả lời phù hợp là gì?",
+          "options": [
+            "My name is Nam.",
+            "It is blue.",
+            "I am eight books.",
+            "This is two."
+          ],
+          "correctAnswer": "My name is Nam.",
+          "explanation": "My name is ... dùng để giới thiệu tên.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-english-2-v4q02",
+          "text": "How old are you? – Chọn câu đúng.",
+          "options": [
+            "I am seven years old.",
+            "I am a school.",
+            "My name is yellow.",
+            "It is a bag."
+          ],
+          "correctAnswer": "I am seven years old.",
+          "explanation": "How old hỏi tuổi.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-english-2-v4q03",
+          "text": "Is this your pencil? – Chọn câu trả lời đồng ý.",
+          "options": [
+            "Yes, it is.",
+            "Yes, I do.",
+            "It is two.",
+            "I am fine."
+          ],
+          "correctAnswer": "Yes, it is.",
+          "explanation": "Với Is this ... có thể trả lời Yes, it is.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-english-2-v4q04",
+          "text": "What color is it? – It is ...",
+          "options": [
+            "green",
+            "seven",
+            "pencil",
+            "hello"
+          ],
+          "correctAnswer": "green",
+          "explanation": "Green là tên một màu sắc.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-english-2-v4q05",
+          "text": "Where is the book? – It is on the table. Cuốn sách ở đâu?",
+          "options": [
+            "Trên bàn",
+            "Dưới gầm giường",
+            "Trong ba lô",
+            "Bên cạnh cửa sổ"
+          ],
+          "correctAnswer": "Trên bàn",
+          "explanation": "On the table nghĩa là ở trên bàn.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "3-english-2",
+      "grade": 3,
+      "subject": "english",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-english-2-v4q01",
+          "text": "This is my _____. (đây là cây bút chì của em)",
+          "options": [
+            "pencil",
+            "teacher",
+            "window",
+            "chair"
+          ],
+          "correctAnswer": "pencil",
+          "explanation": "Pencil là bút chì.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-english-2-v4q02",
+          "text": "Where is the ruler? It is ___ the desk. (ở trên bàn)",
+          "options": [
+            "on",
+            "seven",
+            "blue",
+            "hello"
+          ],
+          "correctAnswer": "on",
+          "explanation": "On chỉ vị trí ở trên.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-english-2-v4q03",
+          "text": "Từ tiếng Anh nào có nghĩa là tẩy?",
+          "options": [
+            "eraser",
+            "window",
+            "door",
+            "board"
+          ],
+          "correctAnswer": "eraser",
+          "explanation": "Eraser là cục tẩy.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-english-2-v4q04",
+          "text": "What is this? – It is a _____. (quyển sách)",
+          "options": [
+            "book",
+            "cat",
+            "tree",
+            "sun"
+          ],
+          "correctAnswer": "book",
+          "explanation": "Book là quyển sách.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-english-2-v4q05",
+          "text": "How many pencils? – Three _____.",
+          "options": [
+            "pencils",
+            "pencil is",
+            "blue",
+            "hello"
+          ],
+          "correctAnswer": "pencils",
+          "explanation": "Danh từ số nhiều thường thêm s: three pencils.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "4-english-2",
+      "grade": 4,
+      "subject": "english",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-english-2-v4q01",
+          "text": "Where is the library? – It is next to the school. Thư viện ở đâu?",
+          "options": [
+            "Cạnh trường học",
+            "Trong công viên",
+            "Sau bưu điện",
+            "Trên núi"
+          ],
+          "correctAnswer": "Cạnh trường học",
+          "explanation": "Next to nghĩa là ở cạnh.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-english-2-v4q02",
+          "text": "Turn left nghĩa là gì?",
+          "options": [
+            "Rẽ trái",
+            "Rẽ phải",
+            "Đi thẳng",
+            "Dừng lại"
+          ],
+          "correctAnswer": "Rẽ trái",
+          "explanation": "Left là bên trái.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-english-2-v4q03",
+          "text": "Go straight nghĩa là gì?",
+          "options": [
+            "Đi thẳng",
+            "Quay lại",
+            "Rẽ trái",
+            "Bước xuống"
+          ],
+          "correctAnswer": "Đi thẳng",
+          "explanation": "Go straight là đi thẳng.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-english-2-v4q04",
+          "text": "Excuse me, where is the ____? (hỏi đường đến bệnh viện)",
+          "options": [
+            "hospital",
+            "happy",
+            "yellow",
+            "swim"
+          ],
+          "correctAnswer": "hospital",
+          "explanation": "Hospital là bệnh viện.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-english-2-v4q05",
+          "text": "The park is opposite the bank. Công viên ở đâu?",
+          "options": [
+            "Đối diện ngân hàng",
+            "Bên trong ngân hàng",
+            "Phía sau thư viện",
+            "Bên dưới lớp học"
+          ],
+          "correctAnswer": "Đối diện ngân hàng",
+          "explanation": "Opposite nghĩa là đối diện.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "5-english-1",
+      "grade": 5,
+      "subject": "english",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-english-1-v4q01",
+          "text": "What did you do yesterday? – I _____ football.",
+          "options": [
+            "played",
+            "play now",
+            "plays",
+            "playing now"
+          ],
+          "correctAnswer": "played",
+          "explanation": "Yesterday diễn tả quá khứ; played là dạng quá khứ của play.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-english-1-v4q02",
+          "text": "I ____ my grandparents last Sunday.",
+          "options": [
+            "visited",
+            "visits",
+            "visiting",
+            "visit tomorrow"
+          ],
+          "correctAnswer": "visited",
+          "explanation": "Last Sunday là thời gian trong quá khứ; visited phù hợp.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-english-1-v4q03",
+          "text": "Which word means “hôm qua”?",
+          "options": [
+            "yesterday",
+            "tomorrow",
+            "today",
+            "always"
+          ],
+          "correctAnswer": "yesterday",
+          "explanation": "Yesterday nghĩa là hôm qua.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-english-1-v4q04",
+          "text": "What do you do every morning? – I _____ my teeth.",
+          "options": [
+            "brush",
+            "brushes",
+            "brushed yesterday",
+            "brushing now"
+          ],
+          "correctAnswer": "brush",
+          "explanation": "Với chủ ngữ I ở hiện tại đơn dùng brush.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-english-1-v4q05",
+          "text": "We went to the zoo. Chúng em đã đi đâu?",
+          "options": [
+            "Sở thú",
+            "Thư viện",
+            "Nhà ga",
+            "Sân bóng"
+          ],
+          "correctAnswer": "Sở thú",
+          "explanation": "Zoo nghĩa là sở thú.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "1-ethics-2",
+      "grade": 1,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-ethics-2-v4q01",
+          "text": "Khi qua đường, bé nên làm gì?",
+          "options": [
+            "Đi cùng người lớn và quan sát tín hiệu",
+            "Chạy thật nhanh qua đường",
+            "Mải nhìn điện thoại",
+            "Băng qua chỗ nào cũng được"
+          ],
+          "correctAnswer": "Đi cùng người lớn và quan sát tín hiệu",
+          "explanation": "Trẻ nhỏ nên qua đường ở nơi an toàn và theo hướng dẫn.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-ethics-2-v4q02",
+          "text": "Thấy ổ điện hở dây, bé nên làm gì?",
+          "options": [
+            "Tránh xa và báo người lớn",
+            "Chạm tay vào dây",
+            "Dùng nước rửa ổ điện",
+            "Lấy que chọc vào"
+          ],
+          "correctAnswer": "Tránh xa và báo người lớn",
+          "explanation": "Ổ điện hở rất nguy hiểm; báo người lớn xử lý.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-ethics-2-v4q03",
+          "text": "Khi có cháy, bé nên làm gì?",
+          "options": [
+            "Báo người lớn và rời nơi nguy hiểm",
+            "Trốn vào tủ",
+            "Quay lại lấy đồ chơi",
+            "Tự chạm vào lửa"
+          ],
+          "correctAnswer": "Báo người lớn và rời nơi nguy hiểm",
+          "explanation": "Cần thoát khỏi chỗ nguy hiểm và nhờ người lớn hỗ trợ.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-ethics-2-v4q04",
+          "text": "Khi người lạ rủ đi mà bố mẹ chưa đồng ý, bé nên làm gì?",
+          "options": [
+            "Từ chối và tìm người lớn tin cậy",
+            "Đi ngay",
+            "Giữ bí mật với bố mẹ",
+            "Nhận quà rồi đi"
+          ],
+          "correctAnswer": "Từ chối và tìm người lớn tin cậy",
+          "explanation": "Bé cần bảo vệ an toàn và hỏi người lớn tin cậy.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "1-ethics-2-v4q05",
+          "text": "Khi đi xe máy cùng người lớn, bé nên làm gì?",
+          "options": [
+            "Đội mũ bảo hiểm phù hợp",
+            "Đứng lên trên xe",
+            "Bỏ mũ bảo hiểm",
+            "Đùa nghịch trên xe"
+          ],
+          "correctAnswer": "Đội mũ bảo hiểm phù hợp",
+          "explanation": "Mũ bảo hiểm giúp bảo vệ đầu.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "2-ethics-2",
+      "grade": 2,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-ethics-2-v4q01",
+          "text": "Nội quy yêu cầu xếp hàng khi vào lớp. Em nên làm gì?",
+          "options": [
+            "Xếp hàng đúng thứ tự",
+            "Chen lên trước",
+            "Đẩy bạn",
+            "Đùa giỡn trong hàng"
+          ],
+          "correctAnswer": "Xếp hàng đúng thứ tự",
+          "explanation": "Xếp hàng thể hiện tôn trọng nội quy.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-ethics-2-v4q02",
+          "text": "Khi đến thư viện, em nên làm gì?",
+          "options": [
+            "Giữ trật tự",
+            "Nói thật to",
+            "Xé trang sách",
+            "Ném sách lên bàn"
+          ],
+          "correctAnswer": "Giữ trật tự",
+          "explanation": "Giữ trật tự giúp mọi người tập trung đọc.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-ethics-2-v4q03",
+          "text": "Nếu đến lớp muộn, em nên làm gì?",
+          "options": [
+            "Xin phép thầy cô và rút kinh nghiệm",
+            "Chạy ồn vào lớp",
+            "Đổ lỗi cho bạn",
+            "Không vào lớp"
+          ],
+          "correctAnswer": "Xin phép thầy cô và rút kinh nghiệm",
+          "explanation": "Xin phép và tìm cách đúng giờ thể hiện trách nhiệm.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-ethics-2-v4q04",
+          "text": "Khi mượn bút của bạn, em nên làm gì?",
+          "options": [
+            "Xin phép trước và trả lại",
+            "Tự lấy không hỏi",
+            "Làm hỏng rồi bỏ đi",
+            "Giấu bút"
+          ],
+          "correctAnswer": "Xin phép trước và trả lại",
+          "explanation": "Hỏi mượn và trả là tôn trọng tài sản của bạn.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "2-ethics-2-v4q05",
+          "text": "Thấy giấy vụn trên sàn lớp, em nên làm gì?",
+          "options": [
+            "Nhặt bỏ đúng chỗ",
+            "Đá sang lớp khác",
+            "Giấu dưới bàn",
+            "Bỏ mặc"
+          ],
+          "correctAnswer": "Nhặt bỏ đúng chỗ",
+          "explanation": "Giữ vệ sinh lớp là thực hiện nội quy chung.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "3-ethics-2",
+      "grade": 3,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-ethics-2-v4q01",
+          "text": "Trong làm việc nhóm, em nên làm gì?",
+          "options": [
+            "Lắng nghe ý kiến của bạn",
+            "Chỉ mình được nói",
+            "Chê bai bạn",
+            "Bỏ nhóm không báo"
+          ],
+          "correctAnswer": "Lắng nghe ý kiến của bạn",
+          "explanation": "Lắng nghe giúp hợp tác hiệu quả.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-ethics-2-v4q02",
+          "text": "Thấy bạn gặp khó khăn trong học tập, em nên làm gì?",
+          "options": [
+            "Hỏi xem có thể giúp gì",
+            "Chọc ghẹo bạn",
+            "Bỏ đi luôn",
+            "Lấy sách của bạn"
+          ],
+          "correctAnswer": "Hỏi xem có thể giúp gì",
+          "explanation": "Quan tâm và giúp đỡ phù hợp là ứng xử tốt.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-ethics-2-v4q03",
+          "text": "Khi cùng nhóm có ý kiến khác nhau, em nên làm gì?",
+          "options": [
+            "Thảo luận lịch sự",
+            "La hét",
+            "Đánh nhau",
+            "Không cho bạn phát biểu"
+          ],
+          "correctAnswer": "Thảo luận lịch sự",
+          "explanation": "Thảo luận lịch sự giúp tìm tiếng nói chung.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-ethics-2-v4q04",
+          "text": "Khi tham gia hoạt động chung, em nên làm gì?",
+          "options": [
+            "Hoàn thành phần việc được giao",
+            "Chỉ chơi một mình",
+            "Để người khác làm hết",
+            "Về sớm không báo"
+          ],
+          "correctAnswer": "Hoàn thành phần việc được giao",
+          "explanation": "Hoàn thành phần việc là tinh thần trách nhiệm.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-ethics-2-v4q05",
+          "text": "Nhìn thấy bạn mới ở lớp chưa có ai chơi cùng, em nên làm gì?",
+          "options": [
+            "Chào và mời bạn cùng tham gia",
+            "Trêu chọc bạn",
+            "Không cho bạn chơi",
+            "Nói xấu bạn"
+          ],
+          "correctAnswer": "Chào và mời bạn cùng tham gia",
+          "explanation": "Chào đón bạn mới thể hiện sự thân thiện.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "4-ethics-2",
+      "grade": 4,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-ethics-2-v4q01",
+          "text": "Khi bạn kể chuyện riêng và nhờ giữ kín, em nên làm gì?",
+          "options": [
+            "Tôn trọng chuyện riêng tư phù hợp",
+            "Đăng lên mạng",
+            "Kể ngay với cả lớp",
+            "Chế giễu bạn"
+          ],
+          "correctAnswer": "Tôn trọng chuyện riêng tư phù hợp",
+          "explanation": "Tôn trọng đời sống riêng tư là ứng xử văn minh; nếu bạn gặp nguy hiểm cần báo người lớn tin cậy.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-ethics-2-v4q02",
+          "text": "Khi bạn có sở thích khác mình, em nên làm gì?",
+          "options": [
+            "Tôn trọng sở thích của bạn",
+            "Chê bạn kỳ lạ",
+            "Ép bạn giống mình",
+            "Tẩy chay bạn"
+          ],
+          "correctAnswer": "Tôn trọng sở thích của bạn",
+          "explanation": "Mỗi người có sở thích riêng đáng được tôn trọng.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-ethics-2-v4q03",
+          "text": "Trong tranh luận, câu nào lịch sự nhất?",
+          "options": [
+            "Mình có ý kiến khác, chúng ta cùng xem nhé.",
+            "Bạn sai hoàn toàn!",
+            "Chỉ mình đúng!",
+            "Đừng nói nữa!"
+          ],
+          "correctAnswer": "Mình có ý kiến khác, chúng ta cùng xem nhé.",
+          "explanation": "Nêu ý kiến khác một cách lịch sự giúp trao đổi tích cực.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-ethics-2-v4q04",
+          "text": "Khi vô ý làm bạn buồn, em nên làm gì?",
+          "options": [
+            "Xin lỗi và tìm cách sửa sai",
+            "Đổ hết lỗi cho bạn",
+            "Tránh mặt mãi",
+            "Tiếp tục trêu"
+          ],
+          "correctAnswer": "Xin lỗi và tìm cách sửa sai",
+          "explanation": "Nhận lỗi và sửa sai là cách ứng xử có trách nhiệm.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-ethics-2-v4q05",
+          "text": "Khi thấy bạn bị bắt nạt, em nên làm gì?",
+          "options": [
+            "Tìm người lớn tin cậy để giúp đỡ",
+            "Đứng cổ vũ",
+            "Quay video để trêu",
+            "Tham gia bắt nạt"
+          ],
+          "correctAnswer": "Tìm người lớn tin cậy để giúp đỡ",
+          "explanation": "Cần tìm sự giúp đỡ an toàn để bảo vệ bạn.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "5-ethics-2",
+      "grade": 5,
+      "subject": "ethics",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-ethics-2-v4q01",
+          "text": "Nếu chứng kiến hành vi gian lận, em nên làm gì?",
+          "options": [
+            "Không tham gia và báo thầy cô phù hợp",
+            "Làm theo cho giống bạn",
+            "Cổ vũ gian lận",
+            "Giữ lại để làm sau"
+          ],
+          "correctAnswer": "Không tham gia và báo thầy cô phù hợp",
+          "explanation": "Trung thực và tìm người lớn hỗ trợ là cách bảo vệ điều đúng.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-ethics-2-v4q02",
+          "text": "Khi có người nói xấu bạn trên mạng, em nên làm gì?",
+          "options": [
+            "Không chia sẻ và báo người lớn tin cậy",
+            "Chia sẻ tiếp",
+            "Viết lời xúc phạm",
+            "Dọa lại người đó"
+          ],
+          "correctAnswer": "Không chia sẻ và báo người lớn tin cậy",
+          "explanation": "Không lan truyền nội dung bắt nạt trên mạng.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-ethics-2-v4q03",
+          "text": "Khi thấy việc làm gây hại môi trường, em nên làm gì?",
+          "options": [
+            "Góp ý lịch sự hoặc báo người có trách nhiệm",
+            "Làm theo",
+            "Giả vờ không thấy",
+            "Xả thêm rác"
+          ],
+          "correctAnswer": "Góp ý lịch sự hoặc báo người có trách nhiệm",
+          "explanation": "Có thể bảo vệ điều đúng bằng cách góp ý phù hợp.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-ethics-2-v4q04",
+          "text": "Khi bất đồng với bạn, cách xử lý nào phù hợp?",
+          "options": [
+            "Lắng nghe và trao đổi trên tinh thần tôn trọng",
+            "Dùng bạo lực",
+            "Bêu xấu bạn",
+            "Không cho bạn giải thích"
+          ],
+          "correctAnswer": "Lắng nghe và trao đổi trên tinh thần tôn trọng",
+          "explanation": "Tôn trọng và trao đổi giúp giải quyết bất đồng.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-ethics-2-v4q05",
+          "text": "Khi bị yêu cầu chia sẻ mật khẩu, em nên làm gì?",
+          "options": [
+            "Từ chối và hỏi người lớn tin cậy",
+            "Gửi mật khẩu ngay",
+            "Đăng công khai",
+            "Cho người lạ mượn tài khoản"
+          ],
+          "correctAnswer": "Từ chối và hỏi người lớn tin cậy",
+          "explanation": "Mật khẩu là thông tin cần giữ bí mật.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "3-it-2",
+      "grade": 3,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-it-2-v4q01",
+          "text": "Dữ liệu nào là dạng âm thanh?",
+          "options": [
+            "Tiếng chim hót",
+            "Bức tranh",
+            "Chữ viết trên bảng",
+            "Hình tam giác"
+          ],
+          "correctAnswer": "Tiếng chim hót",
+          "explanation": "Tiếng chim hót là thông tin dạng âm thanh.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-it-2-v4q02",
+          "text": "Thông tin nào ở dạng hình ảnh?",
+          "options": [
+            "Bức ảnh chụp lớp",
+            "Lời nói",
+            "Tiếng trống",
+            "Giai điệu"
+          ],
+          "correctAnswer": "Bức ảnh chụp lớp",
+          "explanation": "Bức ảnh cung cấp thông tin bằng hình ảnh.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-it-2-v4q03",
+          "text": "Muốn biết hôm nay trời mưa hay nắng, nguồn nào trực tiếp quan sát được?",
+          "options": [
+            "Nhìn bầu trời từ nơi an toàn",
+            "Đếm số trang sách",
+            "Nghe một bài hát",
+            "Xem màu cặp sách"
+          ],
+          "correctAnswer": "Nhìn bầu trời từ nơi an toàn",
+          "explanation": "Quan sát bầu trời có thể cho biết dấu hiệu thời tiết.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-it-2-v4q04",
+          "text": "Khi nhập văn bản vào máy tính, thiết bị nào thường dùng?",
+          "options": [
+            "Bàn phím",
+            "Loa",
+            "Màn hình",
+            "Máy chiếu"
+          ],
+          "correctAnswer": "Bàn phím",
+          "explanation": "Bàn phím giúp nhập ký tự.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "3-it-2-v4q05",
+          "text": "Khi nghe bài học qua máy tính, thiết bị nào phát ra âm thanh?",
+          "options": [
+            "Loa",
+            "Chuột",
+            "Bàn phím",
+            "Máy quét"
+          ],
+          "correctAnswer": "Loa",
+          "explanation": "Loa phát âm thanh.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "4-science-2",
+      "grade": 4,
+      "subject": "science",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-science-2-v4q01",
+          "text": "Cây xanh cần yếu tố nào để quang hợp?",
+          "options": [
+            "Ánh sáng",
+            "Đồ nhựa",
+            "Sỏi màu",
+            "Thức ăn nấu chín"
+          ],
+          "correctAnswer": "Ánh sáng",
+          "explanation": "Ánh sáng là điều kiện để cây xanh quang hợp.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-science-2-v4q02",
+          "text": "Rễ cây thường có vai trò nào?",
+          "options": [
+            "Hút nước và muối khoáng",
+            "Tạo âm thanh",
+            "Phát sáng",
+            "Tạo bóng tối"
+          ],
+          "correctAnswer": "Hút nước và muối khoáng",
+          "explanation": "Rễ giúp cây lấy nước và chất khoáng từ đất.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-science-2-v4q03",
+          "text": "Yếu tố nào cần thiết cho đa số cây xanh phát triển?",
+          "options": [
+            "Nước",
+            "Khói bụi",
+            "Nước bẩn",
+            "Nhựa nóng"
+          ],
+          "correctAnswer": "Nước",
+          "explanation": "Nước cần cho các hoạt động sống của cây.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-science-2-v4q04",
+          "text": "Động vật cần gì để sống?",
+          "options": [
+            "Nước, thức ăn và không khí phù hợp",
+            "Chỉ đồ chơi",
+            "Chỉ đá cuội",
+            "Chỉ giấy màu"
+          ],
+          "correctAnswer": "Nước, thức ăn và không khí phù hợp",
+          "explanation": "Động vật cần điều kiện sống phù hợp.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-science-2-v4q05",
+          "text": "Việc nào giúp chăm sóc cây trong lớp?",
+          "options": [
+            "Tưới nước vừa đủ",
+            "Bẻ lá hàng ngày",
+            "Nhổ rễ lên xem",
+            "Đổ nước xà phòng vào chậu"
+          ],
+          "correctAnswer": "Tưới nước vừa đủ",
+          "explanation": "Tưới nước hợp lí giúp cây sinh trưởng.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "5-science-3",
+      "grade": 5,
+      "subject": "science",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-science-3-v4q01",
+          "text": "Cây có hoa có thể tạo hạt nhờ quá trình nào?",
+          "options": [
+            "Thụ phấn và thụ tinh",
+            "Đóng băng nước",
+            "Bào mòn đá",
+            "Đốt cháy giấy"
+          ],
+          "correctAnswer": "Thụ phấn và thụ tinh",
+          "explanation": "Thụ phấn và thụ tinh góp phần hình thành hạt.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-science-3-v4q02",
+          "text": "Bộ phận nào chứa hạt ở nhiều loại cây có hoa?",
+          "options": [
+            "Quả",
+            "Lá non",
+            "Rễ cái",
+            "Thân cây"
+          ],
+          "correctAnswer": "Quả",
+          "explanation": "Ở nhiều cây có hoa, hạt nằm trong quả.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-science-3-v4q03",
+          "text": "Động vật con thường nhận đặc điểm từ đâu?",
+          "options": [
+            "Bố mẹ của chúng",
+            "Viên đá",
+            "Giọt nước",
+            "Tia sáng"
+          ],
+          "correctAnswer": "Bố mẹ của chúng",
+          "explanation": "Con non thừa hưởng nhiều đặc điểm từ bố mẹ.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-science-3-v4q04",
+          "text": "Để giữ vệ sinh phòng bệnh, em nên làm gì?",
+          "options": [
+            "Rửa tay bằng xà phòng đúng cách",
+            "Dùng chung khăn bẩn",
+            "Không che miệng khi ho",
+            "Ăn thức ăn ôi thiu"
+          ],
+          "correctAnswer": "Rửa tay bằng xà phòng đúng cách",
+          "explanation": "Vệ sinh tay giúp giảm nguy cơ lây nhiễm bệnh.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-science-3-v4q05",
+          "text": "Khi bị sốt kéo dài, em nên làm gì?",
+          "options": [
+            "Báo người lớn để được chăm sóc y tế",
+            "Tự uống thuốc lạ",
+            "Đi chơi dưới nắng",
+            "Giấu người lớn"
+          ],
+          "correctAnswer": "Báo người lớn để được chăm sóc y tế",
+          "explanation": "Trẻ cần báo người lớn để được chăm sóc phù hợp.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "4-history_geo-2",
+      "grade": 4,
+      "subject": "history_geo",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-history_geo-2-v4q01",
+          "text": "Địa hình nào có độ cao lớn và sườn dốc thường thấy?",
+          "options": [
+            "Núi",
+            "Đồng bằng",
+            "Bãi cát",
+            "Hồ nước"
+          ],
+          "correctAnswer": "Núi",
+          "explanation": "Núi thường có độ cao lớn hơn vùng đất xung quanh.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-history_geo-2-v4q02",
+          "text": "Vùng đồng bằng thường thuận lợi với hoạt động nào?",
+          "options": [
+            "Trồng lúa nước",
+            "Nuôi cá biển xa bờ",
+            "Khai thác băng tuyết",
+            "Leo núi tuyết"
+          ],
+          "correctAnswer": "Trồng lúa nước",
+          "explanation": "Đồng bằng có nhiều điều kiện phù hợp trồng lúa.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-history_geo-2-v4q03",
+          "text": "Hoạt động nào thể hiện giữ gìn nét đẹp văn hóa vùng miền?",
+          "options": [
+            "Tìm hiểu và tôn trọng lễ hội truyền thống",
+            "Chế giễu trang phục khác",
+            "Phá di tích",
+            "Vứt rác nơi lễ hội"
+          ],
+          "correctAnswer": "Tìm hiểu và tôn trọng lễ hội truyền thống",
+          "explanation": "Tìm hiểu, tôn trọng giúp bảo tồn nét đẹp văn hóa.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-history_geo-2-v4q04",
+          "text": "Khi tham quan di tích lịch sử, em nên làm gì?",
+          "options": [
+            "Giữ gìn, không viết vẽ lên di tích",
+            "Khắc tên lên tường",
+            "Bẻ cây trong khuôn viên",
+            "Mang hiện vật đi"
+          ],
+          "correctAnswer": "Giữ gìn, không viết vẽ lên di tích",
+          "explanation": "Bảo vệ di tích là tôn trọng di sản.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "4-history_geo-2-v4q05",
+          "text": "Khí hậu và địa hình ảnh hưởng đến điều gì ở các vùng?",
+          "options": [
+            "Sinh hoạt và sản xuất của người dân",
+            "Bảng chữ cái",
+            "Phép cộng",
+            "Cách viết số"
+          ],
+          "correctAnswer": "Sinh hoạt và sản xuất của người dân",
+          "explanation": "Điều kiện tự nhiên tác động đến đời sống và sản xuất.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "5-history_geo-2",
+      "grade": 5,
+      "subject": "history_geo",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-history_geo-2-v4q01",
+          "text": "Khi tìm hiểu lịch sử, nguồn nào giúp kiểm chứng thông tin?",
+          "options": [
+            "Tài liệu lịch sử có nguồn rõ ràng",
+            "Lời đồn không kiểm chứng",
+            "Trò chơi đoán ngẫu nhiên",
+            "Nội dung bịa đặt"
+          ],
+          "correctAnswer": "Tài liệu lịch sử có nguồn rõ ràng",
+          "explanation": "Nguồn tin đáng tin cậy giúp đối chiếu sự kiện lịch sử.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-history_geo-2-v4q02",
+          "text": "Khi đọc mốc “năm 1945”, đây là thông tin về điều gì?",
+          "options": [
+            "Thời gian",
+            "Địa điểm",
+            "Kích thước",
+            "Màu sắc"
+          ],
+          "correctAnswer": "Thời gian",
+          "explanation": "Năm là cách ghi thời gian.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-history_geo-2-v4q03",
+          "text": "Di tích lịch sử có giá trị chủ yếu nào?",
+          "options": [
+            "Lưu giữ dấu tích quá khứ",
+            "Làm biển quảng cáo",
+            "Thay thế mọi tài liệu",
+            "Chỉ để chơi đùa"
+          ],
+          "correctAnswer": "Lưu giữ dấu tích quá khứ",
+          "explanation": "Di tích giúp tìm hiểu và gìn giữ lịch sử.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-history_geo-2-v4q04",
+          "text": "Khi tìm hiểu một nhân vật lịch sử, nên xem điều gì?",
+          "options": [
+            "Hoàn cảnh và đóng góp của nhân vật",
+            "Chỉ tên riêng",
+            "Chỉ độ dài tên",
+            "Chỉ màu ảnh"
+          ],
+          "correctAnswer": "Hoàn cảnh và đóng góp của nhân vật",
+          "explanation": "Bối cảnh và việc làm giúp hiểu vai trò của nhân vật.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        },
+        {
+          "id": "5-history_geo-2-v4q05",
+          "text": "Khi hai tài liệu ghi khác nhau về một sự kiện, em nên làm gì?",
+          "options": [
+            "Hỏi thầy cô và đối chiếu nguồn đáng tin cậy",
+            "Chọn ngẫu nhiên",
+            "Tin tin đồn",
+            "Bỏ qua mọi tài liệu"
+          ],
+          "correctAnswer": "Hỏi thầy cô và đối chiếu nguồn đáng tin cậy",
+          "explanation": "Đối chiếu nguồn giúp hiểu lịch sử chính xác hơn.",
+          "hint": "Em đọc câu hỏi và thử loại trừ các đáp án chưa phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "1-physical-1",
+      "grade": 1,
+      "subject": "physical",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-physical-1-v4q1",
+          "text": "Trước khi vận động, em nên làm gì?",
+          "correctAnswer": "Khởi động nhẹ nhàng",
+          "options": [
+            "Khởi động nhẹ nhàng",
+            "Ngồi yên rất lâu",
+            "Ăn quá no rồi chạy",
+            "Chạy ngay thật nhanh"
+          ],
+          "explanation": "Khởi động nhẹ nhàng là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-physical-1-v4q2",
+          "text": "Khi thấy mệt hoặc đau lúc vận động, em nên làm gì?",
+          "correctAnswer": "Dừng lại và báo người lớn",
+          "options": [
+            "Dừng lại và báo người lớn",
+            "Cố chạy tiếp",
+            "Giấu thầy cô",
+            "Uống đồ lạ"
+          ],
+          "explanation": "Dừng lại và báo người lớn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-physical-1-v4q3",
+          "text": "Khi chơi trò chơi vận động, em cần làm gì?",
+          "correctAnswer": "Tuân thủ luật chơi",
+          "options": [
+            "Tuân thủ luật chơi",
+            "Đẩy ngã bạn",
+            "Chen lấn",
+            "Làm trái hiệu lệnh"
+          ],
+          "explanation": "Tuân thủ luật chơi là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-physical-1-v4q4",
+          "text": "Nơi nào phù hợp hơn để vận động?",
+          "correctAnswer": "Sân chơi an toàn",
+          "options": [
+            "Sân chơi an toàn",
+            "Giữa lòng đường",
+            "Gần ổ điện hở",
+            "Trên mái nhà"
+          ],
+          "explanation": "Sân chơi an toàn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "2-physical-1",
+      "grade": 2,
+      "subject": "physical",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-physical-1-v4q1",
+          "text": "Để chơi cùng nhóm an toàn, em nên làm gì?",
+          "correctAnswer": "Giữ khoảng cách phù hợp",
+          "options": [
+            "Giữ khoảng cách phù hợp",
+            "Xô đẩy bạn",
+            "Giành mọi lượt",
+            "Chạy ngược hướng bất ngờ"
+          ],
+          "explanation": "Giữ khoảng cách phù hợp là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-physical-1-v4q2",
+          "text": "Khi nghe hiệu lệnh dừng, em nên làm gì?",
+          "correctAnswer": "Dừng theo hướng dẫn",
+          "options": [
+            "Dừng theo hướng dẫn",
+            "Cố chạy tiếp",
+            "Trêu chọc bạn",
+            "Bỏ qua"
+          ],
+          "explanation": "Dừng theo hướng dẫn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-physical-1-v4q3",
+          "text": "Để phòng tránh chấn thương, trước lúc chơi nên?",
+          "correctAnswer": "Khởi động",
+          "options": [
+            "Khởi động",
+            "Nhảy từ nơi cao",
+            "Không mang giày phù hợp",
+            "Chạy trên nền trơn"
+          ],
+          "explanation": "Khởi động là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-physical-1-v4q4",
+          "text": "Khi bạn ngã trong lúc chơi, em nên?",
+          "correctAnswer": "Báo người lớn và giúp theo hướng dẫn",
+          "options": [
+            "Báo người lớn và giúp theo hướng dẫn",
+            "Cười bạn",
+            "Giấu chuyện",
+            "Chạy qua bạn"
+          ],
+          "explanation": "Báo người lớn và giúp theo hướng dẫn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "3-physical-1",
+      "grade": 3,
+      "subject": "physical",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-physical-1-v4q1",
+          "text": "Khi tập thể dục, cách thở nào nên ưu tiên?",
+          "correctAnswer": "Thở đều theo khả năng",
+          "options": [
+            "Thở đều theo khả năng",
+            "Nín thở thật lâu",
+            "Thở gấp cố ý",
+            "Không chú ý hơi thở"
+          ],
+          "explanation": "Thở đều theo khả năng là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-physical-1-v4q2",
+          "text": "Khi tập theo nhóm, em cần?",
+          "correctAnswer": "Tuân thủ hướng dẫn an toàn",
+          "options": [
+            "Tuân thủ hướng dẫn an toàn",
+            "Tranh giành dụng cụ",
+            "Đùa nghịch nguy hiểm",
+            "Cố vượt sức"
+          ],
+          "explanation": "Tuân thủ hướng dẫn an toàn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-physical-1-v4q3",
+          "text": "Sau khi vận động, nên làm gì?",
+          "correctAnswer": "Thả lỏng và uống nước phù hợp",
+          "options": [
+            "Thả lỏng và uống nước phù hợp",
+            "Ngồi ngay giữa sân",
+            "Dùng thuốc lạ",
+            "Chạy thêm dù chóng mặt"
+          ],
+          "explanation": "Thả lỏng và uống nước phù hợp là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-physical-1-v4q4",
+          "text": "Nếu dụng cụ thể thao bị hỏng, cần?",
+          "correctAnswer": "Báo người lớn",
+          "options": [
+            "Báo người lớn",
+            "Cố sử dụng",
+            "Giấu đi",
+            "Đưa cho bạn nhỏ"
+          ],
+          "explanation": "Báo người lớn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "4-physical-1",
+      "grade": 4,
+      "subject": "physical",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-physical-1-v4q1",
+          "text": "Nguyên tắc an toàn khi vận động là gì?",
+          "correctAnswer": "Tập phù hợp sức khỏe",
+          "options": [
+            "Tập phù hợp sức khỏe",
+            "Luôn cố vượt sức",
+            "Không cần nghỉ",
+            "Bỏ qua chấn thương"
+          ],
+          "explanation": "Tập phù hợp sức khỏe là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-physical-1-v4q2",
+          "text": "Tinh thần thể thao tốt thể hiện qua?",
+          "correctAnswer": "Tôn trọng đối thủ",
+          "options": [
+            "Tôn trọng đối thủ",
+            "Chế giễu đối thủ",
+            "Gian lận",
+            "Không tuân thủ luật"
+          ],
+          "explanation": "Tôn trọng đối thủ là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-physical-1-v4q3",
+          "text": "Khi cơ thể mất nước sau vận động, nên?",
+          "correctAnswer": "Bổ sung nước phù hợp",
+          "options": [
+            "Bổ sung nước phù hợp",
+            "Nhịn uống cả ngày",
+            "Dùng đồ uống không rõ nguồn",
+            "Chỉ ăn kẹo"
+          ],
+          "explanation": "Bổ sung nước phù hợp là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-physical-1-v4q4",
+          "text": "Khi gặp chấn thương, việc đầu tiên nên?",
+          "correctAnswer": "Dừng vận động và báo người lớn",
+          "options": [
+            "Dừng vận động và báo người lớn",
+            "Tiếp tục thi đấu",
+            "Tự nắn bẻ khớp",
+            "Giấu người giám sát"
+          ],
+          "explanation": "Dừng vận động và báo người lớn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "5-physical-1",
+      "grade": 5,
+      "subject": "physical",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-physical-1-v4q1",
+          "text": "Luyện tập đều đặn đem lại điều gì?",
+          "correctAnswer": "Góp phần tăng sức khỏe",
+          "options": [
+            "Góp phần tăng sức khỏe",
+            "Thay thế giấc ngủ",
+            "Không cần ăn uống",
+            "Không bao giờ cần nghỉ"
+          ],
+          "explanation": "Góp phần tăng sức khỏe là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-physical-1-v4q2",
+          "text": "Khi chơi thể thao đồng đội, phẩm chất quan trọng là?",
+          "correctAnswer": "Hợp tác",
+          "options": [
+            "Hợp tác",
+            "Ích kỉ",
+            "Đổ lỗi",
+            "Gian lận"
+          ],
+          "explanation": "Hợp tác là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-physical-1-v4q3",
+          "text": "Để tránh quá sức, em nên?",
+          "correctAnswer": "Điều chỉnh cường độ và nghỉ khi cần",
+          "options": [
+            "Điều chỉnh cường độ và nghỉ khi cần",
+            "Không dừng dù đau",
+            "Bỏ khởi động",
+            "Tập khi sốt"
+          ],
+          "explanation": "Điều chỉnh cường độ và nghỉ khi cần là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-physical-1-v4q4",
+          "text": "Khi thấy bạn chơi không đúng luật, em nên?",
+          "correctAnswer": "Nhắc nhở lịch sự",
+          "options": [
+            "Nhắc nhở lịch sự",
+            "Xô đẩy bạn",
+            "Cãi nhau lớn tiếng",
+            "Bỏ mặc luật chơi"
+          ],
+          "explanation": "Nhắc nhở lịch sự là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "1-arts-1",
+      "grade": 1,
+      "subject": "arts",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-arts-1-v4q1",
+          "text": "Màu nào trong các màu sau là màu cơ bản?",
+          "correctAnswer": "Màu đỏ",
+          "options": [
+            "Màu đỏ",
+            "Màu nâu đất",
+            "Màu xám",
+            "Màu hồng nhạt"
+          ],
+          "explanation": "Màu đỏ là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-arts-1-v4q2",
+          "text": "Dụng cụ nào dùng để vẽ tranh?",
+          "correctAnswer": "Bút màu",
+          "options": [
+            "Bút màu",
+            "Bàn chải đánh răng",
+            "Kéo cắt tóc",
+            "Cái thìa"
+          ],
+          "explanation": "Bút màu là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-arts-1-v4q3",
+          "text": "Âm thanh nào do nhạc cụ tạo ra?",
+          "correctAnswer": "Tiếng trống",
+          "options": [
+            "Tiếng trống",
+            "Tiếng mưa",
+            "Tiếng lá rơi",
+            "Tiếng gió"
+          ],
+          "explanation": "Tiếng trống là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-arts-1-v4q4",
+          "text": "Khi nghe bạn hát, em nên làm gì?",
+          "correctAnswer": "Lắng nghe và cổ vũ lịch sự",
+          "options": [
+            "Lắng nghe và cổ vũ lịch sự",
+            "Nói chuyện ồn ào",
+            "Chế giễu bạn",
+            "Gào to át tiếng"
+          ],
+          "explanation": "Lắng nghe và cổ vũ lịch sự là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "2-arts-1",
+      "grade": 2,
+      "subject": "arts",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-arts-1-v4q1",
+          "text": "Âm nhạc có thể được biểu diễn bằng gì?",
+          "correctAnswer": "Giọng hát và nhạc cụ",
+          "options": [
+            "Giọng hát và nhạc cụ",
+            "Chỉ bằng màu vẽ",
+            "Chỉ bằng phép cộng",
+            "Chỉ bằng chữ số"
+          ],
+          "explanation": "Giọng hát và nhạc cụ là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-arts-1-v4q2",
+          "text": "Để giữ gìn tranh vẽ của bạn, em nên?",
+          "correctAnswer": "Không vẽ lên tranh khi chưa được phép",
+          "options": [
+            "Không vẽ lên tranh khi chưa được phép",
+            "Xé tranh",
+            "Bôi bẩn tranh",
+            "Giấu tranh"
+          ],
+          "explanation": "Không vẽ lên tranh khi chưa được phép là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-arts-1-v4q3",
+          "text": "Màu xanh lá cây thường gợi hình ảnh nào?",
+          "correctAnswer": "Lá cây",
+          "options": [
+            "Lá cây",
+            "Than củi",
+            "Mây đen",
+            "Cát vàng"
+          ],
+          "explanation": "Lá cây là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-arts-1-v4q4",
+          "text": "Nhịp đều trong âm nhạc giúp gì?",
+          "correctAnswer": "Giữ tiết tấu ổn định",
+          "options": [
+            "Giữ tiết tấu ổn định",
+            "Làm bài toán nhanh hơn",
+            "Thay lời bài hát",
+            "Biến chữ thành tranh"
+          ],
+          "explanation": "Giữ tiết tấu ổn định là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "3-arts-1",
+      "grade": 3,
+      "subject": "arts",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-arts-1-v4q1",
+          "text": "Trong âm nhạc, tiết tấu gắn với yếu tố nào?",
+          "correctAnswer": "Trường độ âm thanh",
+          "options": [
+            "Trường độ âm thanh",
+            "Độ dài thước",
+            "Số trang vở",
+            "Nhiệt độ"
+          ],
+          "explanation": "Trường độ âm thanh là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-arts-1-v4q2",
+          "text": "Khi tạo sản phẩm mĩ thuật, em có thể?",
+          "correctAnswer": "Kết hợp hình và màu theo ý tưởng",
+          "options": [
+            "Kết hợp hình và màu theo ý tưởng",
+            "Chỉ dùng một cách duy nhất",
+            "Phải chép y hệt mọi bạn",
+            "Không cần giữ an toàn"
+          ],
+          "explanation": "Kết hợp hình và màu theo ý tưởng là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-arts-1-v4q3",
+          "text": "Để thể hiện âm nhạc theo nhóm, cần?",
+          "correctAnswer": "Lắng nghe và phối hợp",
+          "options": [
+            "Lắng nghe và phối hợp",
+            "Ai cũng hát khác nhịp cố ý",
+            "Không luyện tập",
+            "Cười bạn sai"
+          ],
+          "explanation": "Lắng nghe và phối hợp là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-arts-1-v4q4",
+          "text": "Khi sử dụng kéo để làm mĩ thuật, em nên?",
+          "correctAnswer": "Dùng cẩn thận theo hướng dẫn",
+          "options": [
+            "Dùng cẩn thận theo hướng dẫn",
+            "Vung kéo khi chạy",
+            "Đùa nghịch bằng kéo",
+            "Để kéo mở ở ghế"
+          ],
+          "explanation": "Dùng cẩn thận theo hướng dẫn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "4-arts-1",
+      "grade": 4,
+      "subject": "arts",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-arts-1-v4q1",
+          "text": "Trong tranh phong cảnh, yếu tố nào thường tạo chiều sâu?",
+          "correctAnswer": "Vật gần thường lớn hơn vật xa",
+          "options": [
+            "Vật gần thường lớn hơn vật xa",
+            "Mọi vật đều bằng nhau",
+            "Chỉ có một màu",
+            "Không có đường nét"
+          ],
+          "explanation": "Vật gần thường lớn hơn vật xa là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-arts-1-v4q2",
+          "text": "Để hát đồng đều theo nhóm, cần?",
+          "correctAnswer": "Giữ cùng nhịp và lắng nghe",
+          "options": [
+            "Giữ cùng nhịp và lắng nghe",
+            "Mỗi người hát tự do rất nhanh",
+            "Hát át người khác",
+            "Bỏ qua nhịp"
+          ],
+          "explanation": "Giữ cùng nhịp và lắng nghe là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-arts-1-v4q3",
+          "text": "Vật liệu tái sử dụng nào có thể dùng làm sản phẩm mĩ thuật khi an toàn?",
+          "correctAnswer": "Giấy sạch",
+          "options": [
+            "Giấy sạch",
+            "Mảnh kính sắc",
+            "Kim tiêm",
+            "Hóa chất lạ"
+          ],
+          "explanation": "Giấy sạch là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-arts-1-v4q4",
+          "text": "Khi nhận xét tranh của bạn, nên nói?",
+          "correctAnswer": "Nêu điều mình thích một cách lịch sự",
+          "options": [
+            "Nêu điều mình thích một cách lịch sự",
+            "Chê bai cá nhân bạn",
+            "Phá tranh",
+            "Không cho bạn giải thích"
+          ],
+          "explanation": "Nêu điều mình thích một cách lịch sự là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "5-arts-1",
+      "grade": 5,
+      "subject": "arts",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-arts-1-v4q1",
+          "text": "Sáng tạo trong mĩ thuật có thể thể hiện qua?",
+          "correctAnswer": "Cách phối hình và màu có chủ đích",
+          "options": [
+            "Cách phối hình và màu có chủ đích",
+            "Chép tranh mà không hiểu",
+            "Phá sản phẩm bạn",
+            "Bỏ qua ý tưởng"
+          ],
+          "explanation": "Cách phối hình và màu có chủ đích là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-arts-1-v4q2",
+          "text": "Khi biểu diễn nhóm, điều gì quan trọng?",
+          "correctAnswer": "Phối hợp và tôn trọng nhau",
+          "options": [
+            "Phối hợp và tôn trọng nhau",
+            "Chỉ chú ý riêng mình",
+            "Chế giễu bạn",
+            "Không nghe hiệu lệnh"
+          ],
+          "explanation": "Phối hợp và tôn trọng nhau là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-arts-1-v4q3",
+          "text": "Hoạt động nào giúp cảm thụ âm nhạc?",
+          "correctAnswer": "Lắng nghe giai điệu và tiết tấu",
+          "options": [
+            "Lắng nghe giai điệu và tiết tấu",
+            "Chỉ nhìn số trang sách",
+            "Đo chiều dài bàn",
+            "Đếm viên phấn"
+          ],
+          "explanation": "Lắng nghe giai điệu và tiết tấu là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-arts-1-v4q4",
+          "text": "Khi làm thủ công, em nên ưu tiên?",
+          "correctAnswer": "Vật liệu an toàn, sạch",
+          "options": [
+            "Vật liệu an toàn, sạch",
+            "Vật sắc nhọn không có người hướng dẫn",
+            "Dung dịch không rõ nguồn",
+            "Đồ dễ cháy"
+          ],
+          "explanation": "Vật liệu an toàn, sạch là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "1-experiential-1",
+      "grade": 1,
+      "subject": "experiential",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "1-experiential-1-v4q1",
+          "text": "Trước khi đến lớp, em nên?",
+          "correctAnswer": "Chuẩn bị đồ dùng học tập",
+          "options": [
+            "Chuẩn bị đồ dùng học tập",
+            "Bỏ quên cặp",
+            "Giấu sách của bạn",
+            "Đi học không có kế hoạch"
+          ],
+          "explanation": "Chuẩn bị đồ dùng học tập là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-experiential-1-v4q2",
+          "text": "Khi gặp thầy cô, em nên?",
+          "correctAnswer": "Chào hỏi lễ phép",
+          "options": [
+            "Chào hỏi lễ phép",
+            "Bỏ chạy",
+            "La hét",
+            "Ném đồ"
+          ],
+          "explanation": "Chào hỏi lễ phép là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-experiential-1-v4q3",
+          "text": "Khi làm việc nhóm, em nên?",
+          "correctAnswer": "Chia sẻ và hợp tác",
+          "options": [
+            "Chia sẻ và hợp tác",
+            "Giành mọi đồ dùng",
+            "Không nghe bạn",
+            "Chê bai bạn"
+          ],
+          "explanation": "Chia sẻ và hợp tác là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "1-experiential-1-v4q4",
+          "text": "Khi làm đổ nước ở lớp, em nên?",
+          "correctAnswer": "Báo và cùng lau dọn an toàn",
+          "options": [
+            "Báo và cùng lau dọn an toàn",
+            "Bỏ mặc sàn trơn",
+            "Đổ thêm nước",
+            "Đổ lỗi cho bạn"
+          ],
+          "explanation": "Báo và cùng lau dọn an toàn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "2-experiential-1",
+      "grade": 2,
+      "subject": "experiential",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "2-experiential-1-v4q1",
+          "text": "Để tự chuẩn bị đi học, em cần?",
+          "correctAnswer": "Kiểm tra sách vở theo lịch",
+          "options": [
+            "Kiểm tra sách vở theo lịch",
+            "Mang đồ bất kì",
+            "Không xem thời khóa biểu",
+            "Để người khác làm hết"
+          ],
+          "explanation": "Kiểm tra sách vở theo lịch là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-experiential-1-v4q2",
+          "text": "Khi nhóm phân công việc, em nên?",
+          "correctAnswer": "Nhận việc phù hợp và thực hiện",
+          "options": [
+            "Nhận việc phù hợp và thực hiện",
+            "Bỏ đi",
+            "Chỉ ra lệnh",
+            "Không giữ lời"
+          ],
+          "explanation": "Nhận việc phù hợp và thực hiện là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-experiential-1-v4q3",
+          "text": "Khi bàn học bừa bộn, em nên?",
+          "correctAnswer": "Sắp xếp gọn gàng",
+          "options": [
+            "Sắp xếp gọn gàng",
+            "Để rác khắp nơi",
+            "Giấu đồ bạn",
+            "Vẽ lên bàn"
+          ],
+          "explanation": "Sắp xếp gọn gàng là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "2-experiential-1-v4q4",
+          "text": "Nếu không hiểu nhiệm vụ nhóm, em nên?",
+          "correctAnswer": "Hỏi lại rõ ràng",
+          "options": [
+            "Hỏi lại rõ ràng",
+            "Làm đại",
+            "Im lặng rồi bỏ việc",
+            "Đổ lỗi cho bạn"
+          ],
+          "explanation": "Hỏi lại rõ ràng là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "3-experiential-1",
+      "grade": 3,
+      "subject": "experiential",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "3-experiential-1-v4q1",
+          "text": "Thói quen nào thể hiện tự phục vụ?",
+          "correctAnswer": "Tự sắp xếp góc học tập",
+          "options": [
+            "Tự sắp xếp góc học tập",
+            "Chờ nhắc mọi việc",
+            "Bỏ quên đồ dùng",
+            "Không dọn bàn"
+          ],
+          "explanation": "Tự sắp xếp góc học tập là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-experiential-1-v4q2",
+          "text": "Khi nhóm gặp khó khăn, em nên?",
+          "correctAnswer": "Cùng tìm cách giải quyết",
+          "options": [
+            "Cùng tìm cách giải quyết",
+            "Bỏ nhóm",
+            "Chê bạn",
+            "Giấu thông tin"
+          ],
+          "explanation": "Cùng tìm cách giải quyết là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-experiential-1-v4q3",
+          "text": "Trong hoạt động ngoài trời, em nên?",
+          "correctAnswer": "Tuân thủ hướng dẫn an toàn",
+          "options": [
+            "Tuân thủ hướng dẫn an toàn",
+            "Tách khỏi nhóm không báo",
+            "Leo nơi nguy hiểm",
+            "Đi theo người lạ"
+          ],
+          "explanation": "Tuân thủ hướng dẫn an toàn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "3-experiential-1-v4q4",
+          "text": "Muốn góp ý cho bạn, em nên?",
+          "correctAnswer": "Nói nhẹ nhàng, cụ thể",
+          "options": [
+            "Nói nhẹ nhàng, cụ thể",
+            "Chê trước lớp",
+            "Đổ lỗi",
+            "Không nghe giải thích"
+          ],
+          "explanation": "Nói nhẹ nhàng, cụ thể là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "4-experiential-1",
+      "grade": 4,
+      "subject": "experiential",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "4-experiential-1-v4q1",
+          "text": "Khi lập kế hoạch học tập, em nên?",
+          "correctAnswer": "Xác định mục tiêu và thời gian",
+          "options": [
+            "Xác định mục tiêu và thời gian",
+            "Không cần mục tiêu",
+            "Chỉ chơi cả ngày",
+            "Không quan tâm tiến độ"
+          ],
+          "explanation": "Xác định mục tiêu và thời gian là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-experiential-1-v4q2",
+          "text": "Khi tham gia hoạt động cộng đồng, nên?",
+          "correctAnswer": "Làm phần việc phù hợp và an toàn",
+          "options": [
+            "Làm phần việc phù hợp và an toàn",
+            "Tự ý dùng đồ nguy hiểm",
+            "Không xin phép",
+            "Phá đồ chung"
+          ],
+          "explanation": "Làm phần việc phù hợp và an toàn là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-experiential-1-v4q3",
+          "text": "Để giải quyết mâu thuẫn trong nhóm, nên?",
+          "correctAnswer": "Lắng nghe và tìm cách hòa giải",
+          "options": [
+            "Lắng nghe và tìm cách hòa giải",
+            "Cãi vã",
+            "Tẩy chay",
+            "Đổ lỗi"
+          ],
+          "explanation": "Lắng nghe và tìm cách hòa giải là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "4-experiential-1-v4q4",
+          "text": "Khi hoàn thành nhiệm vụ, em nên?",
+          "correctAnswer": "Tự đánh giá và rút kinh nghiệm",
+          "options": [
+            "Tự đánh giá và rút kinh nghiệm",
+            "Không cần xem kết quả",
+            "Che giấu lỗi",
+            "Chê bạn khác"
+          ],
+          "explanation": "Tự đánh giá và rút kinh nghiệm là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "5-experiential-1",
+      "grade": 5,
+      "subject": "experiential",
+      "reviewStatus": "pending",
+      "items": [
+        {
+          "id": "5-experiential-1-v4q1",
+          "text": "Khi chuẩn bị hoạt động chung, em nên?",
+          "correctAnswer": "Lập kế hoạch và phân công hợp lí",
+          "options": [
+            "Lập kế hoạch và phân công hợp lí",
+            "Làm không có kế hoạch",
+            "Bỏ mọi việc cho bạn",
+            "Giấu thông tin"
+          ],
+          "explanation": "Lập kế hoạch và phân công hợp lí là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-experiential-1-v4q2",
+          "text": "Sau một dự án lớp, hoạt động nào giúp tiến bộ?",
+          "correctAnswer": "Nhìn lại điểm tốt và điều cần cải thiện",
+          "options": [
+            "Nhìn lại điểm tốt và điều cần cải thiện",
+            "Không nhận xét",
+            "Đổ lỗi cho một bạn",
+            "Chỉ quan tâm phần thưởng"
+          ],
+          "explanation": "Nhìn lại điểm tốt và điều cần cải thiện là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-experiential-1-v4q3",
+          "text": "Khi xây dựng mục tiêu cá nhân, nên chọn mục tiêu nào?",
+          "correctAnswer": "Rõ ràng và phù hợp khả năng",
+          "options": [
+            "Rõ ràng và phù hợp khả năng",
+            "Không thể thực hiện",
+            "Không có thời hạn",
+            "Không cần theo dõi"
+          ],
+          "explanation": "Rõ ràng và phù hợp khả năng là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        },
+        {
+          "id": "5-experiential-1-v4q4",
+          "text": "Khi tham gia dự án môi trường, nên?",
+          "correctAnswer": "Phân loại rác theo hướng dẫn địa phương",
+          "options": [
+            "Phân loại rác theo hướng dẫn địa phương",
+            "Xả rác bừa bãi",
+            "Đốt rác tùy tiện",
+            "Ném rác xuống sông"
+          ],
+          "explanation": "Phân loại rác theo hướng dẫn địa phương là lựa chọn phù hợp nhất trong tình huống này.",
+          "hint": "Đọc kĩ tình huống và chọn cách an toàn, phù hợp."
+        }
+      ]
+    },
+    {
+      "topicId": "1-vietnamese-3",
+      "grade": 1,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "1-vietnamese-3-q01",
+          "text": "Câu nào viết đúng chữ hoa đầu câu?",
+          "correctAnswer": "Em đi học.",
+          "options": [
+            "Em đi học.",
+            "em đi học.",
+            "EM đi học",
+            "em Đi học."
+          ],
+          "explanation": "Chữ đầu câu được viết hoa và cuối câu có dấu chấm.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "1-vietnamese-3-q02",
+          "text": "Câu nào đã có dấu chấm ở cuối?",
+          "correctAnswer": "Bé tưới cây.",
+          "options": [
+            "Bé tưới cây.",
+            "Bé tưới cây",
+            "Bé tưới cây,",
+            "Bé tưới cây?"
+          ],
+          "explanation": "Câu kể này được kết thúc bằng dấu chấm.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "1-vietnamese-3-q03",
+          "text": "Chọn từ thích hợp: “Em ... sách.”",
+          "correctAnswer": "đọc",
+          "options": [
+            "đọc",
+            "bay",
+            "nở",
+            "mọc"
+          ],
+          "explanation": "Đọc sách là hoạt động phù hợp với chủ ngữ em.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "1-vietnamese-3-q04",
+          "text": "Câu nào nói trọn một ý?",
+          "correctAnswer": "Mẹ nấu cơm.",
+          "options": [
+            "Mẹ nấu cơm.",
+            "Mẹ đang",
+            "Mẹ và",
+            "Trên cái"
+          ],
+          "explanation": "Mẹ nấu cơm là câu đủ ý về hoạt động của mẹ.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "1-vietnamese-3-q05",
+          "text": "Câu nào viết đúng tên riêng của bạn?",
+          "correctAnswer": "Bạn An đọc sách.",
+          "options": [
+            "Bạn An đọc sách.",
+            "Bạn an đọc sách.",
+            "bạn An đọc sách.",
+            "bạn an đọc sách"
+          ],
+          "explanation": "Tên riêng An và chữ đầu câu đều viết hoa.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "1-nature-3",
+      "grade": 1,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "1-nature-3-q01",
+          "text": "Bộ phận nào của cây thường hút nước từ đất?",
+          "correctAnswer": "Rễ",
+          "options": [
+            "Rễ",
+            "Hoa",
+            "Quả",
+            "Lá khô"
+          ],
+          "explanation": "Rễ cây giúp hút nước và chất khoáng từ đất.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "1-nature-3-q02",
+          "text": "Khi trời mưa, em nên mang theo đồ gì?",
+          "correctAnswer": "Áo mưa",
+          "options": [
+            "Áo mưa",
+            "Kính bơi",
+            "Quạt giấy",
+            "Nón sinh nhật"
+          ],
+          "explanation": "Áo mưa giúp che mưa khi ra ngoài.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "1-nature-3-q03",
+          "text": "Con vật nào có cánh và thường biết bay?",
+          "correctAnswer": "Chim sẻ",
+          "options": [
+            "Chim sẻ",
+            "Cá chép",
+            "Giun đất",
+            "Ốc sên"
+          ],
+          "explanation": "Chim sẻ có cánh và thường bay được.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "1-nature-3-q04",
+          "text": "Bầu trời quang đãng ban ngày thường có gì?",
+          "correctAnswer": "Ánh sáng Mặt Trời",
+          "options": [
+            "Ánh sáng Mặt Trời",
+            "Trăng tròn luôn sáng",
+            "Tuyết rơi mọi nơi",
+            "Không có ánh sáng"
+          ],
+          "explanation": "Mặt Trời cung cấp ánh sáng ban ngày.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "1-nature-3-q05",
+          "text": "Việc nào giúp chăm sóc cây xanh?",
+          "correctAnswer": "Tưới nước vừa đủ",
+          "options": [
+            "Tưới nước vừa đủ",
+            "Bẻ cành non",
+            "Nhổ hết rễ",
+            "Đổ rác vào gốc"
+          ],
+          "explanation": "Cây cần nước phù hợp để sinh trưởng.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "grade": 2,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "2-vietnamese-3-q01",
+          "text": "Để viết đoạn văn kể về gia đình, em nên chọn nội dung nào?",
+          "correctAnswer": "Một việc em làm cùng người thân",
+          "options": [
+            "Một việc em làm cùng người thân",
+            "Cách tính phép chia",
+            "Tên các hành tinh",
+            "Danh sách số ngẫu nhiên"
+          ],
+          "explanation": "Đoạn văn kể về gia đình nên có sự việc gần gũi với người thân.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "2-vietnamese-3-q02",
+          "text": "Câu nào phù hợp để mở đầu đoạn tả chiếc cặp?",
+          "correctAnswer": "Em có một chiếc cặp màu xanh.",
+          "options": [
+            "Em có một chiếc cặp màu xanh.",
+            "Hôm qua trời có bão trên biển.",
+            "Em thích đá bóng hơn.",
+            "Bài toán này có hai cách giải."
+          ],
+          "explanation": "Câu mở đầu giới thiệu đúng đối tượng là chiếc cặp.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "2-vietnamese-3-q03",
+          "text": "Câu nào nên đứng sau câu “Em tưới cây mỗi sáng.”?",
+          "correctAnswer": "Nhờ vậy, cây luôn xanh tốt.",
+          "options": [
+            "Nhờ vậy, cây luôn xanh tốt.",
+            "Hôm qua em đi ngủ.",
+            "Cá bơi dưới sông.",
+            "Bánh mì rất ngon."
+          ],
+          "explanation": "Câu tiếp theo nên liên quan việc chăm sóc cây.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "2-vietnamese-3-q04",
+          "text": "Câu nào có thể kết đoạn viết về bạn thân?",
+          "correctAnswer": "Em rất quý bạn Lan.",
+          "options": [
+            "Em rất quý bạn Lan.",
+            "Một trăm cộng hai mươi.",
+            "Trên trời có nhiều sao.",
+            "Bố em đang nấu ăn."
+          ],
+          "explanation": "Câu kết thể hiện tình cảm với người bạn đã giới thiệu.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "2-vietnamese-3-q05",
+          "text": "Khi viết nhiều câu thành đoạn, em cần làm gì?",
+          "correctAnswer": "Sắp xếp các ý theo trình tự hợp lí",
+          "options": [
+            "Sắp xếp các ý theo trình tự hợp lí",
+            "Viết các câu không liên quan",
+            "Bỏ dấu câu ở cuối",
+            "Viết mọi chữ bằng chữ in hoa"
+          ],
+          "explanation": "Các câu trong đoạn cần liên kết và có trình tự.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "2-nature-3",
+      "grade": 2,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "2-nature-3-q01",
+          "text": "Khi thấy người bị ngã ở sân trường, em nên làm gì?",
+          "correctAnswer": "Báo thầy cô để giúp đỡ",
+          "options": [
+            "Báo thầy cô để giúp đỡ",
+            "Cười trêu bạn",
+            "Bỏ chạy ngay",
+            "Tự ý cho bạn uống thuốc"
+          ],
+          "explanation": "Nhờ người lớn hỗ trợ là cách an toàn khi có bạn bị thương.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "2-nature-3-q02",
+          "text": "Nơi nào là nơi học tập của học sinh?",
+          "correctAnswer": "Trường học",
+          "options": [
+            "Trường học",
+            "Trạm xăng",
+            "Bến cảng",
+            "Bãi rác"
+          ],
+          "explanation": "Trường học là nơi thầy cô và học sinh học tập.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "2-nature-3-q03",
+          "text": "Khi sang đường cùng người lớn, em nên làm gì?",
+          "correctAnswer": "Quan sát và đi ở nơi dành cho người đi bộ",
+          "options": [
+            "Quan sát và đi ở nơi dành cho người đi bộ",
+            "Chạy qua thật nhanh",
+            "Mải chơi điện thoại",
+            "Đi giữa lòng đường"
+          ],
+          "explanation": "Đi đúng chỗ và quan sát giúp an toàn khi sang đường.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "2-nature-3-q04",
+          "text": "Ai thường giúp chữa bệnh cho người dân?",
+          "correctAnswer": "Bác sĩ",
+          "options": [
+            "Bác sĩ",
+            "Thợ mộc",
+            "Thợ may",
+            "Người bán hoa"
+          ],
+          "explanation": "Bác sĩ khám và điều trị bệnh.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "2-nature-3-q05",
+          "text": "Việc nào góp phần giữ khu phố sạch đẹp?",
+          "correctAnswer": "Bỏ rác đúng nơi quy định",
+          "options": [
+            "Bỏ rác đúng nơi quy định",
+            "Vứt rác xuống cống",
+            "Bẻ cây ven đường",
+            "Đổ dầu ra sân"
+          ],
+          "explanation": "Giữ vệ sinh giúp môi trường nơi ở sạch hơn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "3-vietnamese-3",
+      "grade": 3,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "3-vietnamese-3-q01",
+          "text": "Đoạn kể về một chuyến đi nên trình bày sự việc theo cách nào?",
+          "correctAnswer": "Theo diễn biến trước rồi sau",
+          "options": [
+            "Theo diễn biến trước rồi sau",
+            "Đảo các sự việc ngẫu nhiên",
+            "Chỉ ghi các số",
+            "Không cần liên kết câu"
+          ],
+          "explanation": "Trình tự thời gian giúp người đọc dễ theo dõi chuyến đi.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-vietnamese-3-q02",
+          "text": "Câu nào có chi tiết miêu tả?",
+          "correctAnswer": "Bông hoa có cánh đỏ tươi.",
+          "options": [
+            "Bông hoa có cánh đỏ tươi.",
+            "Em thích màu đỏ.",
+            "Em đã làm xong bài.",
+            "Ngày mai em sẽ đi học."
+          ],
+          "explanation": "Cánh đỏ tươi giúp người đọc hình dung đặc điểm bông hoa.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-vietnamese-3-q03",
+          "text": "Câu nào thể hiện cảm nghĩ về bạn?",
+          "correctAnswer": "Em rất cảm phục sự chăm chỉ của bạn.",
+          "options": [
+            "Em rất cảm phục sự chăm chỉ của bạn.",
+            "Chiếc bàn dài một mét.",
+            "Sân trường có ba cây.",
+            "Ngày mai là thứ ba."
+          ],
+          "explanation": "Câu văn nói rõ tình cảm và sự đánh giá của người viết.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-vietnamese-3-q04",
+          "text": "Khi viết đoạn văn, câu mở đoạn có vai trò gì?",
+          "correctAnswer": "Giới thiệu nội dung chính",
+          "options": [
+            "Giới thiệu nội dung chính",
+            "Chỉ để đếm số chữ",
+            "Thay cho dấu chấm",
+            "Làm câu không liên quan"
+          ],
+          "explanation": "Câu mở đoạn dẫn người đọc vào nội dung sắp nói.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-vietnamese-3-q05",
+          "text": "Để tả một đồ vật, em nên quan sát điều gì?",
+          "correctAnswer": "Hình dáng, màu sắc và công dụng",
+          "options": [
+            "Hình dáng, màu sắc và công dụng",
+            "Chỉ số điện thoại",
+            "Tên người khác",
+            "Những chuyện không liên quan"
+          ],
+          "explanation": "Quan sát đặc điểm giúp đoạn tả cụ thể và rõ ràng.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "3-nature-3",
+      "grade": 3,
+      "subject": "nature",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "3-nature-3-q01",
+          "text": "Hiện tượng nào thường làm bầu trời sáng vào ban ngày?",
+          "correctAnswer": "Ánh sáng Mặt Trời",
+          "options": [
+            "Ánh sáng Mặt Trời",
+            "Ánh sáng từ đồng hồ",
+            "Ánh sáng đom đóm",
+            "Ánh sáng từ đèn pin"
+          ],
+          "explanation": "Mặt Trời là nguồn sáng tự nhiên chủ yếu vào ban ngày.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-nature-3-q02",
+          "text": "Khi có sấm sét, đâu là nơi trú an toàn hơn?",
+          "correctAnswer": "Bên trong nhà kiên cố",
+          "options": [
+            "Bên trong nhà kiên cố",
+            "Dưới cây cao",
+            "Giữa cánh đồng trống",
+            "Cạnh cột điện"
+          ],
+          "explanation": "Nên vào trong nhà và tránh nơi trống trải hoặc cây cao.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-nature-3-q03",
+          "text": "Nước mưa có thể rơi xuống từ đâu?",
+          "correctAnswer": "Những đám mây",
+          "options": [
+            "Những đám mây",
+            "Mặt đất khô",
+            "Bóng đèn",
+            "Mặt Trăng"
+          ],
+          "explanation": "Mưa hình thành khi các giọt nước trong mây rơi xuống.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-nature-3-q04",
+          "text": "Mặt Trăng thường được quan sát rõ trên bầu trời lúc nào?",
+          "correctAnswer": "Ban đêm",
+          "options": [
+            "Ban đêm",
+            "Chỉ lúc 12 giờ trưa",
+            "Chỉ khi có mưa",
+            "Chỉ lúc trời có bão"
+          ],
+          "explanation": "Mặt Trăng thường dễ quan sát lúc trời tối; đôi khi cũng thấy ban ngày.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-nature-3-q05",
+          "text": "Khi trời nắng gắt, cách bảo vệ sức khoẻ phù hợp là gì?",
+          "correctAnswer": "Đội mũ và uống nước đủ",
+          "options": [
+            "Đội mũ và uống nước đủ",
+            "Đứng ngoài nắng nhiều giờ",
+            "Không uống nước",
+            "Mặc áo thật dày khi chạy"
+          ],
+          "explanation": "Che nắng và bù nước giúp cơ thể an toàn hơn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "3-english-3",
+      "grade": 3,
+      "subject": "english",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "3-english-3-q01",
+          "text": "Chọn câu diễn tả “Em ăn sáng lúc 7 giờ.”",
+          "correctAnswer": "I have breakfast at seven.",
+          "options": [
+            "I have breakfast at seven.",
+            "I go to bed at seven.",
+            "I swim at seven.",
+            "I read at midnight."
+          ],
+          "explanation": "Have breakfast nghĩa là ăn sáng.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-english-3-q02",
+          "text": "“What time do you get up?” hỏi về điều gì?",
+          "correctAnswer": "Giờ thức dậy",
+          "options": [
+            "Giờ thức dậy",
+            "Màu áo",
+            "Tên trường",
+            "Số sách"
+          ],
+          "explanation": "Get up nghĩa là thức dậy.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-english-3-q03",
+          "text": "Chọn từ phù hợp: “I ... my teeth every morning.”",
+          "correctAnswer": "brush",
+          "options": [
+            "brush",
+            "fly",
+            "draw",
+            "swim"
+          ],
+          "explanation": "Brush my teeth nghĩa là đánh răng.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-english-3-q04",
+          "text": "“I go to school in the morning.” nghĩa là gì?",
+          "correctAnswer": "Em đến trường vào buổi sáng.",
+          "options": [
+            "Em đến trường vào buổi sáng.",
+            "Em đi ngủ vào buổi sáng.",
+            "Em đi bơi buổi tối.",
+            "Em ăn tối tại trường."
+          ],
+          "explanation": "In the morning nghĩa là vào buổi sáng.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-english-3-q05",
+          "text": "Chọn câu đúng để nói “Em đi ngủ lúc 9 giờ.”",
+          "correctAnswer": "I go to bed at nine.",
+          "options": [
+            "I go to bed at nine.",
+            "I eat lunch at nine.",
+            "I get up at nine.",
+            "I play football at nine."
+          ],
+          "explanation": "Go to bed nghĩa là đi ngủ.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "3-it-3",
+      "grade": 3,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "3-it-3-q01",
+          "text": "Thiết bị nào thường dùng để chụp ảnh kĩ thuật số?",
+          "correctAnswer": "Máy ảnh",
+          "options": [
+            "Máy ảnh",
+            "Bàn chải",
+            "Cái bát",
+            "Thước kẻ"
+          ],
+          "explanation": "Máy ảnh là thiết bị giúp ghi lại hình ảnh.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-it-3-q02",
+          "text": "Khi máy tính báo lỗi lạ, em nên làm gì?",
+          "correctAnswer": "Nhờ thầy cô hoặc người lớn hỗ trợ",
+          "options": [
+            "Nhờ thầy cô hoặc người lớn hỗ trợ",
+            "Tự mở phần điện bên trong",
+            "Đổ nước lên máy",
+            "Nhấn mọi nút liên tục"
+          ],
+          "explanation": "Nhờ người lớn là cách an toàn khi thiết bị có sự cố.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-it-3-q03",
+          "text": "Đồ vật nào giúp nghe âm thanh từ máy tính?",
+          "correctAnswer": "Loa",
+          "options": [
+            "Loa",
+            "Chuột",
+            "Bàn phím",
+            "Máy in"
+          ],
+          "explanation": "Loa phát âm thanh.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-it-3-q04",
+          "text": "Để nhập chữ vào máy tính, em thường dùng gì?",
+          "correctAnswer": "Bàn phím",
+          "options": [
+            "Bàn phím",
+            "Cái kéo",
+            "Cây bút bi lên màn hình",
+            "Máy ảnh"
+          ],
+          "explanation": "Bàn phím dùng để nhập ký tự.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "3-it-3-q05",
+          "text": "Khi sử dụng thiết bị điện, tay của em nên thế nào?",
+          "correctAnswer": "Khô ráo",
+          "options": [
+            "Khô ráo",
+            "Đang ướt nước",
+            "Dính dầu",
+            "Cầm vật kim loại chọc ổ cắm"
+          ],
+          "explanation": "Tay khô ráo giúp giảm nguy cơ mất an toàn với điện.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "4-vietnamese-3",
+      "grade": 4,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "4-vietnamese-3-q01",
+          "text": "Phần mở bài của bài văn tả cây thường làm gì?",
+          "correctAnswer": "Giới thiệu cây sẽ miêu tả",
+          "options": [
+            "Giới thiệu cây sẽ miêu tả",
+            "Nêu kết quả phép tính",
+            "Kể một chuyện không liên quan",
+            "Chép tên các tháng"
+          ],
+          "explanation": "Mở bài giới thiệu đối tượng miêu tả.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-vietnamese-3-q02",
+          "text": "Chi tiết nào thích hợp đưa vào thân bài tả cây phượng?",
+          "correctAnswer": "Tán lá rộng và chùm hoa đỏ",
+          "options": [
+            "Tán lá rộng và chùm hoa đỏ",
+            "Bạn em thích ăn phở",
+            "Bố đi làm bằng xe đạp",
+            "Em thích môn bóng đá"
+          ],
+          "explanation": "Thân bài mô tả đặc điểm cụ thể của cây phượng.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-vietnamese-3-q03",
+          "text": "Phần kết bài tả con vật có thể nêu gì?",
+          "correctAnswer": "Tình cảm của em với con vật",
+          "options": [
+            "Tình cảm của em với con vật",
+            "Một phép cộng ngẫu nhiên",
+            "Tên của tất cả hành tinh",
+            "Giá tiền chiếc bàn"
+          ],
+          "explanation": "Kết bài có thể nêu suy nghĩ, tình cảm của người viết.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-vietnamese-3-q04",
+          "text": "Trước khi viết bài văn, lập dàn ý giúp ích gì?",
+          "correctAnswer": "Sắp xếp các ý theo bố cục rõ ràng",
+          "options": [
+            "Sắp xếp các ý theo bố cục rõ ràng",
+            "Làm bài dài mà không cần nội dung",
+            "Bỏ qua phần mở bài",
+            "Không cần kiểm tra bài"
+          ],
+          "explanation": "Dàn ý định hướng trình tự ý và bố cục bài văn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-vietnamese-3-q05",
+          "text": "Để đoạn tả cảnh sinh động hơn, em nên làm gì?",
+          "correctAnswer": "Dùng từ ngữ gợi tả âm thanh, màu sắc",
+          "options": [
+            "Dùng từ ngữ gợi tả âm thanh, màu sắc",
+            "Lặp một câu nhiều lần",
+            "Chỉ ghi các con số",
+            "Không dùng dấu câu"
+          ],
+          "explanation": "Chi tiết gợi tả giúp người đọc hình dung cảnh vật.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "4-english-3",
+      "grade": 4,
+      "subject": "english",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "4-english-3-q01",
+          "text": "Đọc câu: “Mai likes reading books.” Mai thích gì?",
+          "correctAnswer": "Đọc sách",
+          "options": [
+            "Đọc sách",
+            "Đi bơi",
+            "Nấu cơm",
+            "Chơi bóng rổ"
+          ],
+          "explanation": "Reading books nghĩa là đọc sách.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-english-3-q02",
+          "text": "Câu nào viết đúng về sở thích?",
+          "correctAnswer": "I like playing badminton.",
+          "options": [
+            "I like playing badminton.",
+            "I likes playing badminton.",
+            "I like play badminton am.",
+            "I reading like badminton."
+          ],
+          "explanation": "Với chủ ngữ I, dùng I like + động từ thêm -ing để nói sở thích.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-english-3-q03",
+          "text": "Chọn câu mô tả thời tiết nắng.",
+          "correctAnswer": "It is sunny today.",
+          "options": [
+            "It is sunny today.",
+            "It is rainy today.",
+            "It is snowy today.",
+            "It is windy and cold."
+          ],
+          "explanation": "Sunny nghĩa là có nắng.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-english-3-q04",
+          "text": "Đọc: “My school is next to a park.” Trường ở đâu?",
+          "correctAnswer": "Bên cạnh công viên",
+          "options": [
+            "Bên cạnh công viên",
+            "Trong siêu thị",
+            "Trên núi",
+            "Bên dưới hồ"
+          ],
+          "explanation": "Next to nghĩa là bên cạnh.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-english-3-q05",
+          "text": "Chọn câu phù hợp để kết thúc thư ngắn cho bạn.",
+          "correctAnswer": "See you soon!",
+          "options": [
+            "See you soon!",
+            "What are two plus three?",
+            "This is my pencil.",
+            "I have three desks."
+          ],
+          "explanation": "See you soon là lời chào cuối thư thân mật.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "4-science-3",
+      "grade": 4,
+      "subject": "science",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "4-science-3-q01",
+          "text": "Chất dinh dưỡng nào giúp xây dựng, phát triển cơ thể?",
+          "correctAnswer": "Chất đạm",
+          "options": [
+            "Chất đạm",
+            "Không khí",
+            "Khói bụi",
+            "Cát"
+          ],
+          "explanation": "Chất đạm cần thiết để xây dựng và duy trì cơ thể.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-science-3-q02",
+          "text": "Rửa tay bằng xà phòng giúp gì?",
+          "correctAnswer": "Giảm nguy cơ lây truyền mầm bệnh",
+          "options": [
+            "Giảm nguy cơ lây truyền mầm bệnh",
+            "Làm tăng bụi bẩn",
+            "Thay việc ăn uống",
+            "Không có tác dụng vệ sinh"
+          ],
+          "explanation": "Rửa tay sạch giúp hạn chế vi khuẩn và vi rút lây lan.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-science-3-q03",
+          "text": "Để bảo vệ răng miệng, em nên làm gì?",
+          "correctAnswer": "Chải răng đều đặn",
+          "options": [
+            "Chải răng đều đặn",
+            "Chỉ ăn đồ ngọt",
+            "Không cần súc miệng",
+            "Dùng chung bàn chải"
+          ],
+          "explanation": "Chải răng đúng cách giúp bảo vệ răng miệng.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-science-3-q04",
+          "text": "Khi cảm thấy không khỏe, cách xử lý phù hợp là gì?",
+          "correctAnswer": "Báo người lớn để được chăm sóc",
+          "options": [
+            "Báo người lớn để được chăm sóc",
+            "Tự uống thuốc của người khác",
+            "Giấu mọi triệu chứng",
+            "Tiếp tục chạy đến kiệt sức"
+          ],
+          "explanation": "Nhờ người lớn tìm hỗ trợ y tế phù hợp.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-science-3-q05",
+          "text": "Bữa ăn cân đối nên có đặc điểm nào?",
+          "correctAnswer": "Đa dạng nhóm thực phẩm phù hợp",
+          "options": [
+            "Đa dạng nhóm thực phẩm phù hợp",
+            "Chỉ ăn một món mỗi ngày",
+            "Bỏ hết rau xanh",
+            "Thay nước lọc bằng nước ngọt"
+          ],
+          "explanation": "Ăn đa dạng giúp cơ thể nhận đủ dưỡng chất.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "4-history_geo-3",
+      "grade": 4,
+      "subject": "history_geo",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "4-history_geo-3-q01",
+          "text": "Ai là người lãnh đạo cuộc khởi nghĩa Hai Bà Trưng?",
+          "correctAnswer": "Trưng Trắc và Trưng Nhị",
+          "options": [
+            "Trưng Trắc và Trưng Nhị",
+            "Đinh Bộ Lĩnh và Lê Hoàn",
+            "Lý Thường Kiệt và Trần Hưng Đạo",
+            "Ngô Quyền và Lý Công Uẩn"
+          ],
+          "explanation": "Hai Bà Trưng là Trưng Trắc và Trưng Nhị.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-history_geo-3-q02",
+          "text": "Chiến thắng Bạch Đằng năm 938 gắn với ai?",
+          "correctAnswer": "Ngô Quyền",
+          "options": [
+            "Ngô Quyền",
+            "Đinh Bộ Lĩnh",
+            "Lý Thái Tổ",
+            "Quang Trung"
+          ],
+          "explanation": "Ngô Quyền lãnh đạo chiến thắng Bạch Đằng năm 938.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-history_geo-3-q03",
+          "text": "Địa danh nào gắn với di tích Văn Miếu - Quốc Tử Giám?",
+          "correctAnswer": "Hà Nội",
+          "options": [
+            "Hà Nội",
+            "Cần Thơ",
+            "Đà Lạt",
+            "Phú Quốc"
+          ],
+          "explanation": "Văn Miếu - Quốc Tử Giám nằm ở Hà Nội.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-history_geo-3-q04",
+          "text": "Để tìm hiểu một di tích lịch sử, nguồn nào đáng tin cậy hơn?",
+          "correctAnswer": "Tư liệu của bảo tàng, cơ quan văn hoá",
+          "options": [
+            "Tư liệu của bảo tàng, cơ quan văn hoá",
+            "Tin đồn không rõ nguồn",
+            "Bài đăng bịa đặt",
+            "Lời kể không kiểm chứng"
+          ],
+          "explanation": "Nguồn chính thống và tư liệu kiểm chứng giúp tìm hiểu lịch sử chính xác hơn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-history_geo-3-q05",
+          "text": "Khi tham quan di tích, em nên làm gì?",
+          "correctAnswer": "Giữ vệ sinh và tôn trọng nội quy",
+          "options": [
+            "Giữ vệ sinh và tôn trọng nội quy",
+            "Viết lên tường cổ",
+            "Bẻ đồ trưng bày",
+            "Xả rác trong khuôn viên"
+          ],
+          "explanation": "Giữ gìn di tích thể hiện tôn trọng di sản.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "4-it-1",
+      "grade": 4,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "4-it-1-q01",
+          "text": "Để lưu văn bản đang soạn thảo, em thường chọn lệnh nào?",
+          "correctAnswer": "Save (Lưu)",
+          "options": [
+            "Save (Lưu)",
+            "Delete (Xóa)",
+            "Close without saving (Đóng không lưu)",
+            "Undo (Hoàn tác)"
+          ],
+          "explanation": "Save dùng để lưu nội dung tài liệu.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-it-1-q02",
+          "text": "Khi tìm thông tin học tập trên mạng, nên chọn nguồn nào?",
+          "correctAnswer": "Trang của nhà trường hoặc tổ chức đáng tin cậy",
+          "options": [
+            "Trang của nhà trường hoặc tổ chức đáng tin cậy",
+            "Trang yêu cầu mật khẩu của bố mẹ",
+            "Quảng cáo không rõ tác giả",
+            "Đường dẫn lạ trong tin nhắn"
+          ],
+          "explanation": "Nguồn rõ ràng giúp thông tin đáng tin cậy và an toàn hơn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-it-1-q03",
+          "text": "Muốn sửa chữ viết sai trong văn bản, em nên làm gì?",
+          "correctAnswer": "Chọn vị trí chữ và chỉnh sửa",
+          "options": [
+            "Chọn vị trí chữ và chỉnh sửa",
+            "Tắt màn hình ngay",
+            "Rút điện không lưu",
+            "Xóa toàn bộ thư mục"
+          ],
+          "explanation": "Văn bản có thể chỉnh bằng bàn phím tại vị trí con trỏ.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-it-1-q04",
+          "text": "Thông tin nào không nên chia sẻ công khai khi tìm kiếm?",
+          "correctAnswer": "Mật khẩu tài khoản",
+          "options": [
+            "Mật khẩu tài khoản",
+            "Tên một loài cây",
+            "Tên phép cộng",
+            "Nội dung bài thơ tự sáng tác"
+          ],
+          "explanation": "Mật khẩu là thông tin bí mật cần bảo vệ.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-it-1-q05",
+          "text": "Dùng dấu ngoặc kép khi tìm kiếm cụm từ có thể giúp gì?",
+          "correctAnswer": "Tìm chính xác cụm từ hơn",
+          "options": [
+            "Tìm chính xác cụm từ hơn",
+            "Tắt kết nối Internet",
+            "Tăng âm lượng máy tính",
+            "Xoá lịch sử học tập"
+          ],
+          "explanation": "Dấu ngoặc kép thường giúp công cụ tìm kiếm ưu tiên cụm từ nguyên vẹn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "4-it-3",
+      "grade": 4,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "4-it-3-q01",
+          "text": "Thiết bị nào giúp in văn bản ra giấy?",
+          "correctAnswer": "Máy in",
+          "options": [
+            "Máy in",
+            "Tai nghe",
+            "Chuột",
+            "Micro"
+          ],
+          "explanation": "Máy in đưa tài liệu từ máy tính ra giấy.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-it-3-q02",
+          "text": "Khi chọn thiết bị học trực tuyến, yếu tố nào quan trọng?",
+          "correctAnswer": "Phù hợp nhu cầu và bảo đảm an toàn",
+          "options": [
+            "Phù hợp nhu cầu và bảo đảm an toàn",
+            "Càng đắt càng tốt",
+            "Chỉ cần màu sắc lạ",
+            "Không cần sự đồng ý của người lớn"
+          ],
+          "explanation": "Thiết bị nên phù hợp độ tuổi, nhu cầu và an toàn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-it-3-q03",
+          "text": "Để máy tính hoạt động tốt, em nên làm gì?",
+          "correctAnswer": "Giữ máy sạch và sử dụng đúng cách",
+          "options": [
+            "Giữ máy sạch và sử dụng đúng cách",
+            "Đặt cốc nước trên bàn phím",
+            "Che kín lỗ tản nhiệt",
+            "Tự tháo pin"
+          ],
+          "explanation": "Bảo quản và sử dụng đúng giúp thiết bị bền hơn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-it-3-q04",
+          "text": "Khi thiết bị quá nóng bất thường, cách nào an toàn?",
+          "correctAnswer": "Ngừng dùng và báo người lớn",
+          "options": [
+            "Ngừng dùng và báo người lớn",
+            "Tiếp tục dùng bằng mọi giá",
+            "Dội nước vào máy",
+            "Đặt dưới chăn dày"
+          ],
+          "explanation": "Thiết bị nóng bất thường cần được kiểm tra an toàn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "4-it-3-q05",
+          "text": "Thiết bị nào giúp ghi lại tiếng nói vào máy tính?",
+          "correctAnswer": "Micro",
+          "options": [
+            "Micro",
+            "Màn hình",
+            "Máy in",
+            "Bàn di chuột"
+          ],
+          "explanation": "Micro thu âm thanh.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "5-vietnamese-3",
+      "grade": 5,
+      "subject": "vietnamese",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "5-vietnamese-3-q01",
+          "text": "Trước khi viết bài trình bày ý kiến, việc nào cần làm?",
+          "correctAnswer": "Xác định rõ ý kiến và lí do",
+          "options": [
+            "Xác định rõ ý kiến và lí do",
+            "Chỉ đếm số dòng giấy",
+            "Chép bài không hiểu",
+            "Bỏ qua nội dung cần nói"
+          ],
+          "explanation": "Bài trình bày ý kiến cần quan điểm và lí do thuyết phục.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-vietnamese-3-q02",
+          "text": "Câu nào nêu ý kiến kèm lí do?",
+          "correctAnswer": "Em nên đọc sách vì sách giúp mở rộng hiểu biết.",
+          "options": [
+            "Em nên đọc sách vì sách giúp mở rộng hiểu biết.",
+            "Em đi học.",
+            "Chiếc bàn màu nâu.",
+            "Ngày mai là thứ sáu."
+          ],
+          "explanation": "Câu này nêu đề xuất và lí do đi kèm.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-vietnamese-3-q03",
+          "text": "Trong bài văn tả cảnh, phần thân bài cần làm gì?",
+          "correctAnswer": "Miêu tả các đặc điểm nổi bật của cảnh",
+          "options": [
+            "Miêu tả các đặc điểm nổi bật của cảnh",
+            "Chỉ ghi tên bài",
+            "Nhắc lại mãi một câu",
+            "Chỉ nêu tên tác giả"
+          ],
+          "explanation": "Thân bài là nơi triển khai chi tiết hình ảnh, âm thanh, đặc điểm.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-vietnamese-3-q04",
+          "text": "Để các đoạn văn liên kết tốt, có thể dùng gì?",
+          "correctAnswer": "Từ ngữ nối phù hợp như “trước hết”, “tiếp theo”",
+          "options": [
+            "Từ ngữ nối phù hợp như “trước hết”, “tiếp theo”",
+            "Các từ không liên quan",
+            "Nhiều kí hiệu bất kì",
+            "Không dùng câu chuyển ý"
+          ],
+          "explanation": "Từ ngữ chuyển ý giúp bài văn mạch lạc.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-vietnamese-3-q05",
+          "text": "Khi hoàn thành bài văn, em cần làm gì trước khi nộp?",
+          "correctAnswer": "Đọc lại để sửa lỗi chính tả và ý diễn đạt",
+          "options": [
+            "Đọc lại để sửa lỗi chính tả và ý diễn đạt",
+            "Nộp ngay không xem lại",
+            "Xóa toàn bộ bài viết",
+            "Đổi nội dung không liên quan"
+          ],
+          "explanation": "Đọc soát giúp phát hiện lỗi và diễn đạt rõ hơn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "5-english-3",
+      "grade": 5,
+      "subject": "english",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "5-english-3-q01",
+          "text": "Đọc: “Lan went to the zoo last Sunday.” Lan đã đi đâu?",
+          "correctAnswer": "Sở thú",
+          "options": [
+            "Sở thú",
+            "Thư viện",
+            "Bãi biển",
+            "Trường học"
+          ],
+          "explanation": "The zoo nghĩa là sở thú.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-english-3-q02",
+          "text": "Chọn câu nói về việc đã xảy ra hôm qua.",
+          "correctAnswer": "I visited my grandparents yesterday.",
+          "options": [
+            "I visited my grandparents yesterday.",
+            "I visit my grandparents tomorrow.",
+            "I am visit yesterday.",
+            "I visiting grandparents yesterday."
+          ],
+          "explanation": "Visited là dạng quá khứ của visit.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-english-3-q03",
+          "text": "Trong câu “The museum opens at nine.”, bảo tàng mở lúc mấy giờ?",
+          "correctAnswer": "9 giờ",
+          "options": [
+            "9 giờ",
+            "6 giờ",
+            "7 giờ",
+            "12 giờ"
+          ],
+          "explanation": "At nine nghĩa là lúc chín giờ.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-english-3-q04",
+          "text": "Chọn lời kết phù hợp cho email ngắn gửi bạn.",
+          "correctAnswer": "Best wishes, Minh",
+          "options": [
+            "Best wishes, Minh",
+            "How many pencils?",
+            "This is a chair.",
+            "My name are Minh."
+          ],
+          "explanation": "Best wishes thường dùng kết thúc thư thân mật.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-english-3-q05",
+          "text": "Đọc: “Please bring a bottle of water.” Cần mang theo gì?",
+          "correctAnswer": "Một chai nước",
+          "options": [
+            "Một chai nước",
+            "Một cái cặp lớn",
+            "Một quyển từ điển",
+            "Một chiếc xe đạp"
+          ],
+          "explanation": "A bottle of water nghĩa là một chai nước.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "5-science-1",
+      "grade": 5,
+      "subject": "science",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "5-science-1-q01",
+          "text": "Khi khuấy đường vào nước và đường tan, ta thu được gì?",
+          "correctAnswer": "Dung dịch nước đường",
+          "options": [
+            "Dung dịch nước đường",
+            "Một chất rắn mới",
+            "Khói",
+            "Không khí khô"
+          ],
+          "explanation": "Đường tan tạo thành dung dịch trong nước.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-science-1-q02",
+          "text": "Hỗn hợp nào có thể tách bằng cách lọc qua giấy lọc?",
+          "correctAnswer": "Nước và cát",
+          "options": [
+            "Nước và cát",
+            "Nước đường đã tan hết",
+            "Không khí",
+            "Nước muối đã tan hết"
+          ],
+          "explanation": "Lọc có thể giữ lại hạt cát không tan trong nước.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-science-1-q03",
+          "text": "Muốn thu muối từ nước muối, có thể dựa vào quá trình nào?",
+          "correctAnswer": "Làm nước bay hơi",
+          "options": [
+            "Làm nước bay hơi",
+            "Bỏ thêm cát",
+            "Đậy kín mãi mãi",
+            "Làm đông bằng giấy"
+          ],
+          "explanation": "Khi nước bay hơi, muối có thể còn lại.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-science-1-q04",
+          "text": "Trộn hai chất mà không tạo chất mới là ví dụ của gì?",
+          "correctAnswer": "Sự trộn lẫn tạo hỗn hợp",
+          "options": [
+            "Sự trộn lẫn tạo hỗn hợp",
+            "Luôn tạo kim loại mới",
+            "Luôn tạo khí độc",
+            "Luôn tạo ra lửa"
+          ],
+          "explanation": "Nhiều trường hợp trộn lẫn chỉ tạo hỗn hợp, không tạo chất mới.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-science-1-q05",
+          "text": "Khi làm thí nghiệm với nước nóng, em nên làm gì?",
+          "correctAnswer": "Thực hiện dưới sự hướng dẫn của người lớn",
+          "options": [
+            "Thực hiện dưới sự hướng dẫn của người lớn",
+            "Tự đun khi không có ai",
+            "Dùng tay không chạm nước sôi",
+            "Đùa nghịch gần bếp"
+          ],
+          "explanation": "Nước nóng có thể gây bỏng nên cần người lớn hướng dẫn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "5-history_geo-3",
+      "grade": 5,
+      "subject": "history_geo",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "5-history_geo-3-q01",
+          "text": "Quốc gia nào có chung đường biên giới trên đất liền với Việt Nam?",
+          "correctAnswer": "Lào",
+          "options": [
+            "Lào",
+            "Nhật Bản",
+            "Australia",
+            "Philippines"
+          ],
+          "explanation": "Việt Nam có đường biên giới trên đất liền với Lào.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-history_geo-3-q02",
+          "text": "Biển nằm ở phía đông phần đất liền Việt Nam thường được gọi là gì?",
+          "correctAnswer": "Biển Đông",
+          "options": [
+            "Biển Đông",
+            "Biển Đỏ",
+            "Biển Đen",
+            "Biển Chết"
+          ],
+          "explanation": "Biển Đông nằm ở phía đông nước ta.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-history_geo-3-q03",
+          "text": "Việc nào giúp giữ gìn môi trường biển?",
+          "correctAnswer": "Thu gom rác đúng nơi quy định",
+          "options": [
+            "Thu gom rác đúng nơi quy định",
+            "Vứt nhựa xuống biển",
+            "Phá san hô",
+            "Đổ dầu xuống nước"
+          ],
+          "explanation": "Thu gom rác giúp bảo vệ hệ sinh thái biển.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-history_geo-3-q04",
+          "text": "Để so sánh vị trí các nước trong khu vực, nên sử dụng gì?",
+          "correctAnswer": "Bản đồ địa lí",
+          "options": [
+            "Bản đồ địa lí",
+            "Đồng hồ báo thức",
+            "Thước đo nhiệt độ",
+            "Máy tính cầm tay"
+          ],
+          "explanation": "Bản đồ thể hiện vị trí và ranh giới tương đối của các quốc gia.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-history_geo-3-q05",
+          "text": "Điều nào thể hiện tôn trọng văn hoá của các nước khác?",
+          "correctAnswer": "Tìm hiểu và cư xử lịch sự với sự khác biệt",
+          "options": [
+            "Tìm hiểu và cư xử lịch sự với sự khác biệt",
+            "Chế giễu trang phục truyền thống",
+            "Phá đồ trưng bày",
+            "Tung tin chưa kiểm chứng"
+          ],
+          "explanation": "Tôn trọng văn hoá khác nhau giúp giao lưu hữu nghị.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "5-it-1",
+      "grade": 5,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "5-it-1-q01",
+          "text": "Muốn lưu bài trình chiếu để dùng lại, em nên làm gì?",
+          "correctAnswer": "Chọn lệnh Lưu và đặt tên tệp rõ ràng",
+          "options": [
+            "Chọn lệnh Lưu và đặt tên tệp rõ ràng",
+            "Đóng máy không lưu",
+            "Xoá tất cả tệp",
+            "Rút điện ngay"
+          ],
+          "explanation": "Lưu tệp giúp mở và chỉnh sửa sản phẩm sau này.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-it-1-q02",
+          "text": "Một tên tệp dễ quản lí nên có đặc điểm gì?",
+          "correctAnswer": "Ngắn gọn và gợi nhớ nội dung",
+          "options": [
+            "Ngắn gọn và gợi nhớ nội dung",
+            "Chỉ có nhiều kí tự lạ",
+            "Trùng mọi tệp khác",
+            "Chứa mật khẩu"
+          ],
+          "explanation": "Tên tệp rõ ràng giúp tìm và sắp xếp sản phẩm.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-it-1-q03",
+          "text": "Khi lưu tệp vào thư mục, em nên chọn gì?",
+          "correctAnswer": "Thư mục phù hợp với môn học",
+          "options": [
+            "Thư mục phù hợp với môn học",
+            "Thư mục của người lạ",
+            "Nơi không biết đường dẫn",
+            "Bất kì tệp đang bị khoá"
+          ],
+          "explanation": "Phân loại theo thư mục giúp quản lí tệp.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-it-1-q04",
+          "text": "Trước khi dùng ảnh trên Internet trong bài tập, em nên làm gì?",
+          "correctAnswer": "Kiểm tra nguồn và quyền sử dụng",
+          "options": [
+            "Kiểm tra nguồn và quyền sử dụng",
+            "Luôn nhận là ảnh của mình",
+            "Công khai thông tin người khác",
+            "Chép mà không ghi nguồn"
+          ],
+          "explanation": "Tôn trọng bản quyền và nguồn hình ảnh khi làm sản phẩm.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-it-1-q05",
+          "text": "Để khôi phục nội dung vừa xóa nhầm trong phần mềm, lệnh thường dùng là gì?",
+          "correctAnswer": "Undo (Hoàn tác)",
+          "options": [
+            "Undo (Hoàn tác)",
+            "Save As (Lưu thành)",
+            "Print (In)",
+            "Open (Mở)"
+          ],
+          "explanation": "Undo thường đảo ngược thao tác vừa thực hiện.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    },
+    {
+      "topicId": "5-it-3",
+      "grade": 5,
+      "subject": "it",
+      "reviewStatus": "pending",
+      "practiceKind": "supplementary_multiple_choice",
+      "fullCompetencyAssessed": false,
+      "items": [
+        {
+          "id": "5-it-3-q01",
+          "text": "Khi lập kế hoạch làm mô hình, bước đầu phù hợp là gì?",
+          "correctAnswer": "Xác định mục đích và phác thảo thiết kế",
+          "options": [
+            "Xác định mục đích và phác thảo thiết kế",
+            "Cắt mọi vật liệu ngay",
+            "Không cần đo đạc",
+            "Chỉ chọn màu ngẫu nhiên"
+          ],
+          "explanation": "Xác định mục đích giúp lựa chọn vật liệu và cách làm phù hợp.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-it-3-q02",
+          "text": "Vật liệu nào thường phù hợp làm mô hình giấy đơn giản?",
+          "correctAnswer": "Bìa cứng",
+          "options": [
+            "Bìa cứng",
+            "Thuỷ tinh vỡ",
+            "Dây điện trần",
+            "Hoá chất lạ"
+          ],
+          "explanation": "Bìa cứng dễ tạo hình cho mô hình thủ công.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-it-3-q03",
+          "text": "Dùng kéo để cắt bìa, em cần làm gì?",
+          "correctAnswer": "Cắt đúng cách dưới hướng dẫn an toàn",
+          "options": [
+            "Cắt đúng cách dưới hướng dẫn an toàn",
+            "Đùa nghịch với kéo",
+            "Đưa mũi kéo về bạn",
+            "Chạy khi cầm kéo"
+          ],
+          "explanation": "Tuân thủ an toàn giúp phòng tránh bị thương.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-it-3-q04",
+          "text": "Khi mô hình chưa đứng vững, cách xử lý nào hợp lí?",
+          "correctAnswer": "Quan sát, tìm nguyên nhân rồi điều chỉnh",
+          "options": [
+            "Quan sát, tìm nguyên nhân rồi điều chỉnh",
+            "Đập bỏ mọi thứ",
+            "Giấu lỗi không sửa",
+            "Sử dụng vật sắc nhọn bừa bãi"
+          ],
+          "explanation": "Thử nghiệm và điều chỉnh là một phần của thiết kế.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        },
+        {
+          "id": "5-it-3-q05",
+          "text": "Để đánh giá một mô hình, nên xem tiêu chí nào?",
+          "correctAnswer": "Có hoạt động đúng mục đích và an toàn không",
+          "options": [
+            "Có hoạt động đúng mục đích và an toàn không",
+            "Chỉ xem giá đắt hay rẻ",
+            "Chỉ xem vật liệu nhiều hay ít",
+            "Chỉ xem màu yêu thích"
+          ],
+          "explanation": "Sản phẩm cần phù hợp mục đích, an toàn và chắc chắn.",
+          "hint": "Đọc kĩ yêu cầu; đây là câu hỏi bổ trợ, không thay cho bài thực hành."
+        }
+      ]
+    }
+  ]
+}
