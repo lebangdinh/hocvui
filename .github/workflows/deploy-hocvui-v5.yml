@@ -67,3 +67,20 @@ jobs:
         continue-on-error: true
       - uses: actions/deploy-pages@v4
         id: deployment
+      - name: Smoke-test public URL and JavaScript bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          site="https://lebangdinh.github.io/hocvui/"
+          for attempt in {1..12}; do
+            html="$(curl -fsSL --connect-timeout 10 --max-time 25 "$site" || true)"
+            js="$(printf '%s' "$html" | grep -oE '/hocvui/assets/[^"]+\\.js' | head -n1 || true)"
+            if [[ -n "$js" ]] && curl -fsSL --connect-timeout 10 --max-time 35 -o /dev/null "https://lebangdinh.github.io$js"; then
+              echo "PASS: Học Vui V5 HTML and JS reachable at $site"
+              exit 0
+            fi
+            echo "Waiting for GitHub Pages CDN, attempt $attempt/12"
+            sleep 5
+          done
+          echo "FAIL: Built Học Vui V5 not yet visible at public URL"
+          exit 1
