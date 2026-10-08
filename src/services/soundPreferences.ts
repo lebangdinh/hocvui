@@ -8,6 +8,7 @@ export type SoundPreferences = {
   praise: boolean;
   praiseVolume: number;
   explanation: boolean;
+  voiceId: string;
 };
 
 const STORAGE_KEY = 'hocvui.sound.v2';
@@ -18,7 +19,8 @@ const defaults: SoundPreferences = {
   effectsVolume: 0.08,
   praise: true,
   praiseVolume: 0.3,
-  explanation: false
+  explanation: false,
+  voiceId: 'auto'
 };
 
 function initialPrefs(): SoundPreferences {
@@ -30,6 +32,7 @@ function initialPrefs(): SoundPreferences {
       const value = stored[key];
       if (typeof value !== typeof defaults[key]) continue;
       if (typeof value === 'number' && (!Number.isFinite(value) || value < 0 || value > 1)) continue;
+      if (key === 'voiceId' && (typeof value !== 'string' || value.length > 250)) continue;
       (combined as any)[key] = value;
     }
     return combined;
