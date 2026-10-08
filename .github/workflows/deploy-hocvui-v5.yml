@@ -1,0 +1,83 @@
+name: Deploy Học Vui V5 to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Download pinned V5 source archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p app
+          gh release download v5-source-20261008 \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern "Hoc_Vui_V5_KetNoi_Firebase_hoc-vui-tieu-hoc-2026.zip" \
+            --dir "$RUNNER_TEMP"
+          printf '%s  %s\n' \
+            'e2c1488490ebf7cf356f9f56679d25dbe55b34ac21caecd336cb2ce68b2cb3ad' \
+            "$RUNNER_TEMP/Hoc_Vui_V5_KetNoi_Firebase_hoc-vui-tieu-hoc-2026.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/Hoc_Vui_V5_KetNoi_Firebase_hoc-vui-tieu-hoc-2026.zip" -d app
+
+      - name: Validate Firebase project isolation
+        working-directory: app
+        env:
+          HOC_VUI_STAGING_PROJECT_ID: hoc-vui-tieu-hoc-2026
+        run: node scripts/assert-deploy-config.cjs
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci --no-audit --no-fund
+
+      - name: Test content and permissions (mocked)
+        working-directory: app
+        run: npm run test:offline
+
+      - name: Type-check V5
+        working-directory: app
+        run: npm run lint
+
+      - name: Build for /hocvui/
+        working-directory: app
+        env:
+          VITE_BASE_PATH: /hocvui/
+          VITE_USE_FIREBASE_EMULATORS: 'false'
+        run: |
+          npm run build
+          test -f dist/index.html
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/dist
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
