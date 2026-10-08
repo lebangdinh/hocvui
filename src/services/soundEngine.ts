@@ -12,29 +12,59 @@ export const PRAISES = [
   'Con tiến bộ rồi!'
 ] as const;
 
-// Short, soft UI sounds. Never stack a loud chime over spoken praise.
-const soundUrls = {
-  correct: 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3',
-  incorrect: 'https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3',
-  finish: 'https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3',
-  move: 'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3',
-  shoot: 'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3',
-  explosion: 'https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3',
-  gameOver: 'https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3',
-  flip: 'https://assets.mixkit.co/active_storage/sfx/2017/2017-preview.mp3'
+// Generate mellow feedback locally instead of downloading loud external MP3s.
+// Effects are deliberately short; all sound remains optional.
+const EFFECT_NOTES = {
+  correct: [523, 659],
+  incorrect: [392, 349],
+  finish: [523, 659, 784],
+  move: [420],
+  shoot: [510],
+  explosion: [300, 350],
+  gameOver: [392, 329],
+  flip: [480]
 } as const;
 
-export type EffectKind = keyof typeof soundUrls;
+export type EffectKind = keyof typeof EFFECT_NOTES;
+let sharedContext: AudioContext | null = null;
+const lastPlayed: Partial<Record<EffectKind, number>> = {};
 
 export function playEffect(kind: EffectKind): HTMLAudioElement | null {
   const pref = getSoundPreferences();
-  if (!pref.effects || pref.effectsVolume === 0) return null;
-  const audio = new Audio(soundUrls[kind]);
-  audio.volume = Math.max(.001, Math.min(.14, pref.effectsVolume));
-  void audio.play().catch(() => undefined);
-  return audio;
+  if (!pref.effects || pref.effectsVolume <= 0 || typeof window === 'undefined') return null;
+  const ctor = window.AudioContext || (window as Window & {webkitAudioContext?: typeof AudioContext}).webkitAudioContext;
+  if (!ctor) return null;
+  const now = performance.now();
+  const gap = kind === 'shoot' ? 115 : kind === 'move' ? 90 : 80;
+  if (lastPlayed[kind] && now - lastPlayed[kind]! < gap) return null;
+  lastPlayed[kind] = now;
+  try {
+    if (!sharedContext || sharedContext.state === 'closed') sharedContext = new ctor();
+    const ctx = sharedContext;
+    if (ctx.state === 'suspended') void ctx.resume().catch(() => undefined);
+    const notes = EFFECT_NOTES[kind];
+    const peak = Math.min(.032, Math.max(.002, pref.effectsVolume * .25));
+    const duration = kind === 'shoot' || kind === 'move' ? .075 : .13;
+    notes.forEach((frequency, index) => {
+      const start = ctx.currentTime + index * (kind === 'finish' ? .095 : .065);
+      const oscillator = ctx.createOscillator();
+      const envelope = ctx.createGain();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(frequency, start);
+      envelope.gain.setValueAtTime(.0001, start);
+      envelope.gain.exponentialRampToValueAtTime(peak, start + .012);
+      envelope.gain.exponentialRampToValueAtTime(.0001, start + duration);
+      oscillator.connect(envelope);
+      envelope.connect(ctx.destination);
+      oscillator.start(start);
+      oscillator.stop(start + duration + .005);
+      oscillator.onended = () => { oscillator.disconnect(); envelope.disconnect(); };
+    });
+  } catch {
+    // Sound must never interrupt a child's learning or gameplay.
+  }
+  return null;
 }
-
 
 let activePraise: HTMLAudioElement | null = null;
 let activeSpeech: SpeechSynthesisUtterance | null = null;
