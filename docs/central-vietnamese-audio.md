@@ -1,13 +1,18 @@
-# Giọng khen tiếng Việt nữ miền Trung – Học Vui
+# Âm thanh Học Vui – giọng tiếng Việt không cần API key
 
-## Hoạt động hiện tại
+## Đã tích hợp trên web
 
-- Các câu khen ngắn được hiển thị bằng chữ trên màn hình.
-- Không tự phát giọng máy của trình duyệt sau mỗi câu trả lời.
-- Nhạc nền, hiệu ứng, lời khen và đọc giải thích có công tắc riêng, lưu trên trình duyệt.
-- Nhạc nền tắt mặc định. Hiệu ứng mặc định chỉ ở mức 8%.
-- Nút nghe giải thích chỉ hoạt động sau khi phụ huynh chủ động bật, và yêu cầu thiết bị có giọng tiếng Việt. Giọng giải thích **không cam kết là miền Trung**.
-- Giọng khen nữ miền Trung **chỉ hoạt động khi cả 8 MP3 thật đã được tạo**; không giả mạo giọng bằng TTS tiếng nước ngoài.
+- Học Vui dò danh sách giọng **vi-VN thực sự có trên thiết bị** bằng Web Speech API.
+- Khi có nhiều giọng, tự ưu tiên Hoài My (nữ) hoặc các giọng có dấu hiệu tự nhiên; có danh sách chọn giọng và nút **Nghe thử giọng**.
+- Lời khen chỉ gồm 8 câu ngắn, tốc độ chậm vừa, âm lượng tối đa 45%. Không chọn nhầm tiếng Anh để đọc tiếng Việt.
+- Máy không có giọng Việt: vẫn hiển thị lời khen bằng chữ và dùng tín hiệu nhẹ, không giả vờ là tiếng Việt hoặc âm thanh giọng miền Trung.
+- Các âm báo trong game/bài học được tạo tại chỗ bằng Web Audio với sóng sin dịu, không còn cần MP3 hiệu ứng bên ngoài.
+- Nhạc nền tắt mặc định. Lời khen, nhạc, hiệu ứng và đọc giải thích có công tắc, âm lượng tùy chỉnh và lưu trên máy.
+- Trên điện thoại, danh sách giọng có thể khác với máy tính. Chỉ những giọng được thiết bị liệt kê mới sử dụng được. Không bảo đảm phương ngữ miền Trung nếu không có giọng thực tế tương ứng.
+
+## Tùy chọn nâng cao: bộ MP3 giọng Mỹ An miền Trung
+
+Tài khoản FPT.AI và khóa API **không cần thiết để dùng chế độ giọng có sẵn**. Chỉ cần khi muốn mọi thiết bị phát cùng một giọng miền Trung đã được cấp phép. Quy trình dưới đây là tùy chọn.
 
 ## Tạo bộ MP3 Mỹ An của FPT.AI (một lần, thủ công)
 
