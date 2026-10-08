@@ -10,6 +10,7 @@ interface AuthContextType {
   role: 'parent' | 'reviewer' | 'admin';
   profile: UserProfile | null;
   profiles: UserProfile[];
+  profilesError: string | null;
   loading: boolean;
   isAuthReady: boolean;
   selectProfile: (profile: UserProfile | null) => void;
@@ -27,6 +28,7 @@ const AuthContext = createContext<AuthContextType>({
   role: 'parent',
   profile: null,
   profiles: [],
+  profilesError: null,
   loading: true,
   isAuthReady: false,
   selectProfile: () => {},
@@ -44,6 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
+  const [profilesError, setProfilesError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuthReady, setIsAuthReady] = useState(false);
 
@@ -52,6 +55,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (unsubscribeProfiles) { unsubscribeProfiles(); unsubscribeProfiles = null; }
       setUser(firebaseUser);
+      setProfilesError(null);
       setIsAuthReady(true);
       
       if (firebaseUser) {
@@ -65,6 +69,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         
         // Listen to all profiles
         unsubscribeProfiles = onSnapshot(profilesRef, (snapshot) => {
+          setProfilesError(null);
           const profilesData = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as UserProfile));
           setProfiles(profilesData);
           
@@ -75,7 +80,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             return updated || null;
           });
         }, (error) => {
-          console.error('Unable to subscribe to student profiles:', error);
+          console.error('Unable to subscribe to student profiles:', error.code);
+          setProfilesError(error.code === 'permission-denied'
+            ? 'Firebase chưa cho phép đọc hồ sơ. Cần xuất bản Firestore Rules của Học Vui V5.'
+            : 'Không tải được hồ sơ học sinh. Vui lòng kiểm tra kết nối và thử lại.');
           setLoading(false);
         });
 
@@ -190,6 +198,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       role,
       profile, 
       profiles, 
+      profilesError,
       loading, 
       isAuthReady, 
       selectProfile, 
