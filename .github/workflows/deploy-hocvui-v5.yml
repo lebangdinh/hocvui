@@ -32,6 +32,8 @@ jobs:
         run: npm run test:offline
       - name: Type-check
         run: npm run lint
+      - name: Verify games and Vietnamese audio safety
+        run: node scripts/test-games-and-sound.cjs
       - name: Build website at /hocvui/
         env:
           VITE_BASE_PATH: /hocvui/

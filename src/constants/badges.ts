@@ -75,8 +75,8 @@ export const BADGES = {
   },
   puzzle_master: {
     id: 'puzzle_master',
-    name: 'Giải Đố Siêu Tốc',
-    description: 'Hoàn thành trò chơi xếp hình',
+    name: 'Thợ Săn Sao',
+    description: 'Bắt đủ 12 ngôi sao trong trò Bắt Sao Vui Nhộn',
     icon: Star,
     color: 'text-indigo-500',
     bgColor: 'bg-indigo-100'

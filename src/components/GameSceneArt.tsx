@@ -41,24 +41,22 @@ export const GameSceneArt: React.FC<Props> = ({ type, className = '' }) => {
       </g>
       {type === 'puzzle' && (
         <g filter={'url(#' + id + '-shadow)'}>
-          <g transform="rotate(-11 214 124)">
-            <rect x="110" y="51" width="112" height="112" rx="23" fill="#FC6B64"/>
-            <rect x="115" y="51" width="102" height="100" rx="20" fill="#FFBE74"/>
-            <circle cx="166" cy="51" r="17" fill="#FFBE74"/><circle cx="166" cy="51" r="8" fill="#FFDF9F"/>
-            <text x="167" y="121" fontSize="56" textAnchor="middle" fill="#9C3B3E" fontWeight="900">1</text>
+          <path d="M0 201Q100 163 240 208T480 185V256H0Z" fill="#8c92f0" opacity=".28"/>
+          <path d="M0 231Q140 201 247 222T480 199V256H0Z" fill="#fff" opacity=".2"/>
+          <g transform="rotate(-12 221 115)">
+            <path d="M217 28l23 47 52 8-38 38 9 53-46-25-47 25 9-53-38-38 52-8 24-47Z" fill="#F9AC38" stroke="#fff9d4" strokeWidth="9" strokeLinejoin="round"/>
+            <path d="M217 48l18 36 39 6-29 29 7 37-35-19-35 19 7-37-29-29 39-6 18-36Z" fill="#FFE477"/>
+            <ellipse cx="203" cy="104" rx="5" ry="7" fill="#8b4e43"/><ellipse cx="229" cy="104" rx="5" ry="7" fill="#8b4e43"/>
+            <path d="M207 126Q216 135 226 126" stroke="#a86856" strokeWidth="5" strokeLinecap="round"/>
+            <ellipse cx="189" cy="118" rx="10" ry="5" fill="#ff9a9d" opacity=".65"/><ellipse cx="243" cy="118" rx="10" ry="5" fill="#ff9a9d" opacity=".65"/>
           </g>
-          <g transform="rotate(9 271 145)">
-            <rect x="217" y="89" width="116" height="112" rx="22" fill="#3F8CC7"/>
-            <rect x="219" y="88" width="108" height="104" rx="20" fill="#75D7FF"/>
-            <circle cx="271" cy="88" r="18" fill="#75D7FF"/>
-            <text x="271" y="159" fontSize="57" textAnchor="middle" fill="#145F9F" fontWeight="900">2</text>
+          <g fill="#fff8b0">
+            <path d="M105 64l8 17 19 3-14 13 4 18-17-9-17 9 4-18-14-13 19-3 8-17Z"/>
+            <path d="M352 99l11 23 25 3-18 18 5 25-23-12-23 12 4-25-18-18 26-3 11-23Z"/>
           </g>
-          <g transform="rotate(-5 351 107)">
-            <rect x="322" y="42" width="90" height="91" rx="19" fill="#8D60CC"/>
-            <rect x="322" y="42" width="85" height="84" rx="18" fill="#CBB4FF"/>
-            <text x="363" y="103" fontSize="48" textAnchor="middle" fill="#63439B" fontWeight="900">3</text>
+          <g stroke="#fff" strokeWidth="6" strokeLinecap="round">
+            <path d="M381 47v17m-9-9h18M99 162v18m-9-9h18M399 189v13m-7-7h14"/>
           </g>
-          <path d="M88 176l8 13 15 2-11 11 2 15-14-7-13 7 2-15-11-11 15-2 7-13Z" fill="#fff"/>
         </g>
       )}
       {type === 'chicken' && (

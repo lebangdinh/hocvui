@@ -26,6 +26,8 @@ import { getTopic, getSubjectAvailability } from '../constants/curriculum';
 import { makeLocalQuiz, hasLocalQuestionBank } from '../services/questionBank';
 import { useTopicApproval } from '../services/liveApproval';
 import confetti from 'canvas-confetti';
+import { SoundControls } from './SoundControls';
+import { playEffect, playPraise, PRAISES, speakExplanation, stopSpokenAudio } from '../services/soundEngine';
 
 interface LearningModuleProps {
   subject: Subject;
@@ -35,24 +37,6 @@ interface LearningModuleProps {
   initialDifficulty?: 'easy' | 'medium' | 'hard';
   topicId?: string;
 }
-
-const SOUNDS = {
-  correct: 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3',
-  incorrect: 'https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3',
-  finish: 'https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3',
-  bg: 'https://assets.mixkit.co/music/preview/mixkit-happy-and-joyful-15.mp3'
-};
-
-const PRAISES = [
-  "Tuyệt vời quá bé ơi! 🌟",
-  "Bé giỏi quá đi mất! 👏",
-  "Đúng rồi! Bé thông minh thật đấy! 🧠✨",
-  "Xuất sắc luôn! Tiếp tục phát huy nhé! 🚀",
-  "Bé làm tốt lắm! Tặng bé một tràng pháo tay! 🎉",
-  "Câu trả lời hoàn hảo! Bé thật là siêu! 🏆",
-  "Đỉnh của chóp luôn bé ơi! 💎",
-  "Bé học nhanh quá, ba mẹ sẽ tự hào lắm đây! ❤️"
-];
 
 export const LearningModule: React.FC<LearningModuleProps> = ({ 
   subject, 
@@ -77,50 +61,13 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
   const [newBadges, setNewBadges] = useState<BadgeId[]>([]);
   const [praise, setPraise] = useState<string>("");
   const [hintUsed, setHintUsed] = useState(false);
-  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
-  const [musicVolume, setMusicVolume] = useState(0.2);
-  const [isSpeechEnabled, setIsSpeechEnabled] = useState(true);
+  const [showAudioSettings, setShowAudioSettings] = useState(false);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>(initialDifficulty || 'medium');
   const [timeLeft, setTimeLeft] = useState(30);
-  const bgMusicRef = useRef<HTMLAudioElement | null>(null);
 
-  const playSound = useCallback((type: keyof typeof SOUNDS) => {
-    if (type === 'bg') return null;
-    const audio = new Audio(SOUNDS[type]);
-    const volumes: Record<string, number> = {
-      correct: 0.2,
-      incorrect: 0.1,
-      finish: 0.2
-    };
-    audio.volume = volumes[type] || 0.2;
-    audio.play().catch(e => console.log('Audio play failed:', e));
-    return audio;
-  }, []);
 
-  useEffect(() => {
-    if (!bgMusicRef.current) {
-      bgMusicRef.current = new Audio(SOUNDS.bg);
-      bgMusicRef.current.loop = true;
-    }
-
-    if (isMusicPlaying) {
-      bgMusicRef.current.play().catch(e => console.log('Audio play failed:', e));
-    } else {
-      bgMusicRef.current.pause();
-    }
-
-    bgMusicRef.current.volume = musicVolume;
-
-    return () => {
-      if (bgMusicRef.current) {
-        bgMusicRef.current.pause();
-        bgMusicRef.current.currentTime = 0;
-      }
-      if (window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, [isMusicPlaying, musicVolume]);
+  const playSound = useCallback((type: 'correct' | 'incorrect' | 'finish') => playEffect(type), []);
+  useEffect(() => () => stopSpokenAudio(), []);
 
   useEffect(() => {
     const loadQuestions = async () => {
@@ -194,14 +141,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
     loadQuestions();
   }, [subject, grade, profile?.id, profile?.uid, initialDifficulty, topicId, mode, liveApproved]);
 
-  const speak = useCallback((text: string) => {
-    if (!isSpeechEnabled || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'vi-VN';
-    utterance.rate = 0.95;
-    window.speechSynthesis.speak(utterance);
-  }, [isSpeechEnabled]);
+  const speak = useCallback((text: string) => speakExplanation(text), []);
 
   const handleOptionSelect = (option: string) => {
     if (selectedOption) return;
@@ -212,10 +152,9 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
     
     if (correct) {
       setScore(s => s + 1);
-      const praiseText = PRAISES[Math.floor(Math.random() * PRAISES.length)];
-      setPraise(praiseText);
-      playSound('correct');
-      speak(`${praiseText}. Đáp án đúng là ${currentQuestion.correctAnswer}. ${currentQuestion.explanation}`);
+      const praiseIndex = Math.floor(Math.random() * PRAISES.length);
+      setPraise(PRAISES[praiseIndex]);
+      if (!playPraise(praiseIndex)) playSound('correct');
       confetti({
         particleCount: 100,
         spread: 70,
@@ -231,7 +170,6 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
       }]);
       setPraise("");
       playSound('incorrect');
-      speak(`Chưa chính xác rồi. Đáp án đúng là ${currentQuestion.correctAnswer}. ${currentQuestion.explanation}`);
     }
   };
 
@@ -340,14 +278,14 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
 
   const nextQuestion = useCallback(async () => {
     if (currentIndex < questions.length - 1) {
-      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      stopSpokenAudio();
       setCurrentIndex(i => i + 1);
       setSelectedOption(null);
       setIsCorrect(null);
       setPraise("");
       setHintUsed(false);
     } else {
-      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      stopSpokenAudio();
       setFinished(true);
       playSound('finish');
       await saveProgress();
@@ -478,39 +416,10 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
           <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">
             Câu hỏi {currentIndex + 1} / {questions.length}
           </span>
-          <div className="flex items-center gap-2 bg-gray-50 px-3 py-1 rounded-full border border-gray-100">
-            <button
-              onClick={() => setIsMusicPlaying(!isMusicPlaying)}
-              className="text-gray-500 hover:text-blue-500 transition-colors"
-            >
-              {isMusicPlaying ? <Pause size={16} /> : <Play size={16} />}
-            </button>
-            <div className="flex items-center gap-2 group relative">
-              <button 
-                onClick={() => setMusicVolume(musicVolume === 0 ? 0.2 : 0)}
-                className="text-gray-500 hover:text-blue-500 transition-colors"
-              >
-                {musicVolume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
-              </button>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={musicVolume}
-                onChange={(e) => setMusicVolume(parseFloat(e.target.value))}
-                className="w-16 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
-              />
-            </div>
-            <button
-              onClick={() => setIsSpeechEnabled(!isSpeechEnabled)}
-              className={`p-1.5 rounded-lg transition-colors ${isSpeechEnabled ? 'text-blue-500 bg-blue-50' : 'text-gray-400 bg-gray-50'}`}
-              title={isSpeechEnabled ? "Tắt đọc đáp án" : "Bật đọc đáp án"}
-            >
-              {isSpeechEnabled ? <Mic size={16} /> : <MicOff size={16} />}
-            </button>
-          </div>
-          {!selectedOption && !hintUsed && (
+          <button type="button" onClick={() => setShowAudioSettings(v=>!v)}
+             className="rounded-full border border-sky-100 bg-sky-50 px-3 py-2 text-xs font-black text-blue-600 hover:bg-sky-100"
+             aria-expanded={showAudioSettings}>♫ Âm thanh</button>
+           {!selectedOption && !hintUsed && (
             <button
               onClick={useHint}
               disabled={profile?.totalPoints! < 5}
@@ -555,7 +464,8 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
         </div>
       )}
 
-      <AnimatePresence mode="wait">
+      {showAudioSettings && <div className="mb-5"><SoundControls compact /></div>}
+       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
           initial={{ opacity: 0, x: 20 }}
@@ -702,9 +612,9 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                     </div>
                   </div>
                   <button
-                    onClick={() => speak(`Đáp án đúng là ${currentQuestion.correctAnswer}. ${currentQuestion.explanation}`)}
+                    onClick={() => { if (!speak(`Đáp án đúng là ${currentQuestion.correctAnswer}. ${currentQuestion.explanation}`)) setShowAudioSettings(true); }}
                     className={`p-3 rounded-2xl transition-all ${isCorrect ? 'bg-green-200 text-green-700 hover:bg-green-300' : 'bg-red-200 text-red-700 hover:bg-red-300'}`}
-                    title="Nghe lại đáp án"
+                    title="Đọc giải thích (cần bật giọng đọc trong Âm thanh)"
                   >
                     <Volume2 size={24} />
                   </button>
