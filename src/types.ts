@@ -1,3 +1,5 @@
+import type { Timestamp } from 'firebase/firestore';
+
 export type Subject = 'math' | 'vietnamese' | 'english' | 'ethics' | 'nature' | 'science' | 'history_geo' | 'it' | 'physical' | 'arts' | 'experiential';
 
 export interface UserProfile {
@@ -12,6 +14,8 @@ export interface UserProfile {
   createdAt: string;
   badges?: string[];
   favoriteBadge?: string;
+  deletedAt?: Timestamp;
+  deleteAfter?: Timestamp;
 }
 
 export interface Activity {
