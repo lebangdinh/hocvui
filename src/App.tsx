@@ -31,18 +31,40 @@ import SubjectDetailView from './components/SubjectDetailView';
 import { getGradeSubjects, CURRICULUM_META } from './constants/curriculum';
 
 const ProfileSelector = () => {
-  const { profiles, addProfile, selectProfile, deleteProfile, logout, role } = useAuth();
+  const { profiles, profilesError, addProfile, selectProfile, deleteProfile, logout, role } = useAuth();
   const [isAdding, setIsAdding] = useState(false);
   const [isManaging, setIsManaging] = useState(false);
   const [newName, setNewName] = useState('');
   const [newGrade, setNewGrade] = useState(2);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newName.trim()) return;
-    await addProfile(newName, newGrade);
-    setNewName('');
-    setIsAdding(false);
+    if (saving) return;
+    const name = newName.trim();
+    if (!name || name.length > 100) {
+      setSaveError('Tên học sinh phải có từ 1 đến 100 ký tự.');
+      return;
+    }
+    setSaveError(null);
+    setSaving(true);
+    try {
+      await addProfile(name, newGrade);
+      setNewName('');
+      setIsAdding(false);
+    } catch (error) {
+      const message = error instanceof Error ? error.message.toLowerCase() : String(error).toLowerCase();
+      setSaveError(
+        message.includes('permission-denied') || message.includes('insufficient permissions')
+          ? 'Firebase đang từ chối lưu. Quản trị viên cần xuất bản Firestore Rules của Học Vui V5.'
+          : message.includes('unavailable') || message.includes('network')
+            ? 'Không kết nối được Firebase. Hãy kiểm tra mạng rồi thử lại.'
+            : 'Chưa lưu được hồ sơ. Vui lòng thử lại hoặc báo người quản trị.'
+      );
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (isManaging && (role === 'admin' || role === 'reviewer')) {
@@ -68,6 +90,7 @@ const ProfileSelector = () => {
         </div>
 
         {(role === 'admin' || role === 'reviewer') && <button onClick={() => setIsManaging(true)} className="mb-5 w-full rounded-xl bg-indigo-700 p-3 font-bold text-white">Mở cổng duyệt bài (không cần hồ sơ học sinh)</button>}
+        {profilesError && <div role="alert" className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">{profilesError}</div>}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {profiles.map(p => (
             <div key={p.id} className="group relative">
@@ -120,9 +143,12 @@ const ProfileSelector = () => {
                 type="text"
                 placeholder="Tên của bé..."
                 value={newName}
-                onChange={e => setNewName(e.target.value)}
+                maxLength={100}
+                disabled={saving}
+                onChange={e => { setNewName(e.target.value); setSaveError(null); }}
                 className="w-full p-2 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-orange-500"
               />
+              {saveError && <p role="alert" className="text-sm font-semibold text-red-600">{saveError}</p>}
               <div className="flex gap-2">
                 <select
                   value={newGrade}
@@ -131,10 +157,11 @@ const ProfileSelector = () => {
                 >
                   {[1,2,3,4,5].map(g => <option key={g} value={g}>Lớp {g}</option>)}
                 </select>
-                <button type="submit" className="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-600 transition-colors">Lưu</button>
+                <button type="submit" disabled={saving} className="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-600 disabled:opacity-50 transition-colors">{saving ? 'Đang lưu...' : 'Lưu'}</button>
                 <button 
                   type="button" 
-                  onClick={() => setIsAdding(false)} 
+                  disabled={saving}
+                  onClick={() => { if (!saving) { setIsAdding(false); setSaveError(null); } }} 
                   className="px-4 py-2 text-gray-500 hover:bg-gray-100 rounded-lg font-bold transition-colors"
                 >
                   Hủy
