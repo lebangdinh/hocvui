@@ -16,6 +16,7 @@ import {
 import { useAuth } from '../AuthContext';
 import { BADGES } from '../constants/badges';
 import confetti from 'canvas-confetti';
+import { GameSceneArt, type GameArtType } from './GameSceneArt';
 
 const SOUNDS = {
   correct: 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3',
@@ -115,50 +116,67 @@ const THEMES: Theme[] = [
 ];
 
 interface GameCardProps {
+  game: GameArtType;
   title: string;
   description: string;
   icon: React.ReactNode;
   color: string;
+  tag: string;
   onClick: () => void;
 }
 
-const GameCard: React.FC<GameCardProps & { theme: Theme }> = ({ title, description, icon, color, onClick, theme }) => (
-  <motion.button
-    whileHover={{ 
-      scale: 1.05, 
-      y: -8,
-      rotateZ: 1,
-      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-    }}
-    whileTap={{ scale: 0.95 }}
-    onClick={onClick}
-    className={`p-6 rounded-[32px] ${theme.cardBg} border-2 border-transparent hover:border-${color}-300 shadow-sm transition-all text-left flex flex-col gap-4 group relative overflow-hidden`}
-  >
-    {/* Subtle animated background glow on hover */}
-    <motion.div 
-      initial={{ opacity: 0 }}
-      whileHover={{ opacity: 0.1 }}
-      className={`absolute inset-0 bg-${color}-500 pointer-events-none`}
-    />
-    
-    <div className={`w-14 h-14 rounded-2xl bg-${color}-50 flex items-center justify-center text-${color}-500 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300`}>
-      {icon}
-    </div>
-    <div className="relative z-10">
-      <h3 className={`text-xl font-black ${theme.textColor} mb-1 group-hover:text-${color}-600 transition-colors`}>{title}</h3>
-      <p className={`text-sm ${theme.secondaryTextColor} leading-relaxed`}>{description}</p>
-    </div>
-    <div className={`mt-auto flex items-center gap-2 text-${color}-500 font-bold text-sm relative z-10`}>
-      <span>Chơi ngay</span>
-      <motion.div
-        animate={{ x: [0, 4, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-      >
-        <Play size={14} fill="currentColor" />
-      </motion.div>
-    </div>
-  </motion.button>
-);
+const GAME_ACCENTS: Record<GameArtType, { hex: string; soft: string; category: string }> = {
+  puzzle: { hex: '#e96a2d', soft: '#fff1df', category: 'Tư duy logic' },
+  chicken: { hex: '#ee628a', soft: '#fff0f5', category: 'Phản xạ nhanh' },
+  airplane: { hex: '#347fe7', soft: '#e9f4ff', category: 'Phiêu lưu' },
+  racing: { hex: '#10996d', soft: '#e4faef', category: 'Khéo léo' },
+  tank: { hex: '#7667d9', soft: '#efedff', category: 'Thử thách' },
+  memory: { hex: '#db4b98', soft: '#fff0f7', category: 'Ghi nhớ' }
+};
+
+const GameCard: React.FC<GameCardProps & { theme: Theme }> = ({
+  game, title, description, icon, tag, onClick, theme
+}) => {
+  const accent = GAME_ACCENTS[game];
+  const dark = theme.id === 'dark' || theme.id === 'space';
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      whileHover={{ y: -7, scale: 1.015 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: 'spring', stiffness: 270, damping: 20 }}
+      aria-label={`Chơi ${title}`}
+      className="group relative flex flex-col overflow-hidden rounded-[28px] text-left shadow-[0_12px_28px_rgba(31,41,55,0.10)] hover:shadow-[0_20px_40px_rgba(31,41,55,0.19)] focus-visible:outline focus-visible:outline-[4px] focus-visible:outline-offset-4 focus-visible:outline-orange-500"
+      style={{ backgroundColor: dark ? '#202c47' : '#fff', border: dark ? '1px solid #465272' : '1px solid rgba(255,255,255,.85)' }}
+    >
+      <div className="relative aspect-[1.85/1] w-full overflow-hidden">
+        <GameSceneArt type={game} className="h-full w-full transition-transform duration-500 group-hover:scale-[1.06]" />
+        <div className="absolute left-4 top-4 rounded-full border border-white/50 bg-white/90 px-3 py-1 text-[11px] font-black tracking-wide text-slate-700 shadow-sm backdrop-blur">
+          {tag}
+        </div>
+      </div>
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-4">
+        <div className="mb-2 flex items-center gap-2">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: accent.soft, color: accent.hex }}>
+            {icon}
+          </div>
+          <span className="text-[11px] font-extrabold uppercase tracking-widest" style={{ color: accent.hex }}>
+            {accent.category}
+          </span>
+        </div>
+        <h3 className={`mb-1 text-[21px] font-black leading-tight tracking-tight ${dark ? 'text-white' : 'text-slate-800'}`}>{title}</h3>
+        <p className={`min-h-12 text-[13px] leading-relaxed ${dark ? 'text-slate-300' : 'text-slate-500'}`}>{description}</p>
+        <span
+          className="mt-4 inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-sm font-extrabold text-white shadow-md transition-transform group-hover:translate-x-1"
+          style={{ backgroundColor: accent.hex }}
+        >
+          Chơi ngay <Play size={13} fill="currentColor" />
+        </span>
+      </div>
+    </motion.button>
+  );
+};
 
 const colors = [
   { name: 'Đỏ rực', value: '#ef4444' },
@@ -211,9 +229,25 @@ const PuzzleGame = ({ theme }: { theme: Theme }) => {
     }
   }, [isWon]);
 
+  // Generate only solvable puzzles by walking from the completed board.
   const shuffle = () => {
-    const newTiles = [...tiles].sort(() => Math.random() - 0.5);
-    setTiles(newTiles);
+    const board = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+    let previousBlank = -1;
+    for (let step = 0; step < 80; step++) {
+      const blank = board.indexOf(0);
+      const row = Math.floor(blank / 3);
+      const col = blank % 3;
+      const neighbors = [
+        ...(row > 0 ? [blank - 3] : []),
+        ...(row < 2 ? [blank + 3] : []),
+        ...(col > 0 ? [blank - 1] : []),
+        ...(col < 2 ? [blank + 1] : [])
+      ].filter(index => index !== previousBlank);
+      const next = neighbors[Math.floor(Math.random() * neighbors.length)];
+      [board[blank], board[next]] = [board[next], board[blank]];
+      previousBlank = blank;
+    }
+    setTiles(board);
     setMoves(0);
     setIsWon(false);
   };
@@ -1624,7 +1658,7 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
   }, []);
 
   return (
-    <div className={`relative space-y-8 p-8 rounded-[40px] transition-colors duration-500 ${currentTheme.bgClass} overflow-hidden`}>
+    <div className={`relative space-y-8 p-4 sm:p-7 rounded-[32px] sm:rounded-[40px] transition-colors duration-500 ${currentTheme.bgClass} overflow-hidden`}>
       {/* Parallax Background Elements for Space/Dark Themes */}
       {(currentTheme.id === 'space' || currentTheme.id === 'dark') && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -1697,8 +1731,9 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
             </button>
           )}
           <div className="text-center sm:text-left">
-            <h2 className={`text-3xl font-bold ${currentTheme.textColor} mb-2`}>Khu Vui Chơi</h2>
-            <p className={currentTheme.secondaryTextColor}>Vừa học vừa chơi, thông minh tuyệt vời!</p>
+            <p className="mb-1 text-[11px] font-black uppercase tracking-[0.22em] text-orange-500">🎉 THẾ GIỚI GAME CỦA BÉ</p>
+            <h2 className={`text-3xl font-black tracking-tight sm:text-4xl ${currentTheme.textColor} mb-2`}>Khu Vui Chơi</h2>
+            <p className={currentTheme.secondaryTextColor}>6 trò chơi sắc màu · Rèn phản xạ, trí nhớ và tư duy</p>
           </div>
         </div>
 
@@ -1725,54 +1760,66 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6"
           >
             <GameCard 
               title="Xếp Hình Trí Tuệ"
-              description="Sắp xếp các ô số để hoàn thành bức tranh."
-              icon={<Puzzle size={28} />}
+              description="Di chuyển những mảnh ghép, chinh phục bàn số 1–8."
+              icon={<Puzzle size={21} strokeWidth={2.6} />}
               color="orange"
               onClick={() => setSelectedGame('puzzle')}
+              game="puzzle"
+              tag="Huy hiệu trí tuệ"
               theme={currentTheme}
             />
             <GameCard 
               title="Bắn Gà Vui Nhộn"
               description="Thử thách phản xạ nhanh nhẹn của bé."
-              icon={<Target size={28} />}
+              icon={<Target size={21} strokeWidth={2.6} />}
               color="red"
               onClick={() => setSelectedGame('chicken')}
+              game="chicken"
+              tag="Gà con vui nhộn"
               theme={currentTheme}
             />
             <GameCard 
               title="Phi Đội Gà Bay"
-              description="Điều khiển máy bay chiến đấu bảo vệ bầu trời."
-              icon={<Plane size={28} />}
+              description="Lái phi thuyền vượt thử thách giữa các vì sao."
+              icon={<Plane size={21} strokeWidth={2.6} />}
               color="blue"
               onClick={() => setSelectedGame('airplane')}
+              game="airplane"
+              tag="Khám phá bầu trời"
               theme={currentTheme}
             />
             <GameCard 
               title="Đua Xe Tốc Độ"
               description="Lái xe vượt qua các chướng ngại vật."
-              icon={<Car size={28} />}
+              icon={<Car size={21} strokeWidth={2.6} />}
               color="green"
               onClick={() => setSelectedGame('racing')}
+              game="racing"
+              tag="Tay lái siêu nhí"
               theme={currentTheme}
             />
             <GameCard 
-              title="Đại Chiến Xe Tăng"
-              description="Chiến thuật và kỹ năng bắn súng đỉnh cao."
-              icon={<Shield size={28} />}
+              title="Robot Vệ Binh"
+              description="Thử phản xạ và bảo vệ căn cứ trong thế giới robot."
+              icon={<Shield size={21} strokeWidth={2.6} />}
               color="indigo"
               onClick={() => setSelectedGame('tank')}
+              game="tank"
+              tag="Thử tài khéo léo"
               theme={currentTheme}
             />
             <GameCard 
               title="Thử Thách Trí Nhớ"
               description="Tìm các cặp hình giống nhau để chiến thắng."
-              icon={<Star size={28} />}
+              icon={<Star size={21} strokeWidth={2.6} />}
               color="pink"
               onClick={() => setSelectedGame('memory')}
+              game="memory"
+              tag="Luyện trí nhớ"
               theme={currentTheme}
             />
           </motion.div>
@@ -1797,6 +1844,19 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
               <ChevronLeft size={20} />
               Quay lại {onClose && !initialGame ? 'khu vui chơi' : 'trang chủ'}
             </button>
+
+            {selectedGame && (
+              <div className="relative mb-7 h-28 overflow-hidden rounded-[24px] sm:h-36">
+                <GameSceneArt type={selectedGame} className="h-full w-full" />
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 via-slate-900/15 to-transparent" />
+                <div className="absolute inset-y-0 left-5 flex flex-col justify-center sm:left-7">
+                  <span className="text-[10px] font-extrabold uppercase tracking-[0.19em] text-white/85">✨ Sẵn sàng thử sức?</span>
+                  <span className="mt-1 text-xl font-black text-white drop-shadow-md sm:text-2xl">
+                    {{ puzzle: 'Xếp Hình Trí Tuệ', chicken: 'Bắn Gà Vui Nhộn', airplane: 'Phi Đội Gà Bay', racing: 'Đua Xe Tốc Độ', tank: 'Robot Vệ Binh', memory: 'Thử Thách Trí Nhớ' }[selectedGame]}
+                  </span>
+                </div>
+              </div>
+            )}
 
             {selectedGame === 'puzzle' && <PuzzleGame theme={currentTheme} />}
             {(selectedGame === 'chicken' || selectedGame === 'airplane' || selectedGame === 'tank') && (
