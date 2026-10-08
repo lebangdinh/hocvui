@@ -34,6 +34,8 @@ jobs:
         run: npm run lint
       - name: Verify games and Vietnamese audio safety
         run: node scripts/test-games-and-sound.cjs
+      - name: Test truthful Study Bear fallback replies
+        run: npx --no-install tsx scripts/test-study-bear.ts
       - name: Build website at /hocvui/
         env:
           VITE_BASE_PATH: /hocvui/

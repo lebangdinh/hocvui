@@ -24,7 +24,7 @@ export async function generateQuestions(
 
 export async function chatWithAI(message: string, history: { role:'user'|'model'; parts:{ text:string }[] }[] = [], _grade = 2, profileId?: string): Promise<string> {
   if (!auth.currentUser || !profileId) throw new Error('Vui lòng đăng nhập và chọn hồ sơ học sinh.');
-  const call = httpsCallable<{profileId:string;message:string;history:{role:string;text:string}[]},{answer:string}>(functions, 'askStudyBear');
+  const call = httpsCallable<{profileId:string;message:string;history:{role:string;text:string}[]},{answer:string}>(functions, 'askStudyBear', { timeout: 12000 });
   const response = await call({ profileId, message,
     history:history.slice(-6).map(h => ({role:h.role, text:String(h.parts?.[0]?.text || '').slice(0,500)})) });
   return response.data.answer;
