@@ -11,7 +11,12 @@ const statements = [
   ['12 stars and no timer', games.includes('const GOAL = 12;') && games.includes('Không giới hạn thời gian')],
   ['Independent music, effects, praise and explanation', ['music:','effects:','praise:','explanation:'].every(k=>prefs.includes(k))],
   ['Short gentle praise and no automatic browser TTS', learning.includes('playPraise(praiseIndex)') && !learning.includes('window.speechSynthesis.speak(')],
-  ['Explanation requires explicit opt-in', engine.includes('!pref.explanation') && engine.includes('localVi')],
+  ['Explanation requires explicit opt-in and Vietnamese voice', engine.includes("type === 'praise' ? pref.praise : pref.explanation") && engine.includes("getPreferredVietnameseVoice()")],
+  ['No fallback to English voice for Vietnamese', engine.includes("filter(v => /^vi") && engine.includes("if (!voice || !synth) return false;")],
+  ['Effect cues synthesized quietly on-device', engine.includes("new ctor()") && engine.includes("oscillator.type = 'sine'") && !engine.includes('assets.mixkit.co')],
+  ['Female Vietnamese voice prioritized when available', engine.includes("hoai.?my") && engine.includes("rankVoice(b) - rankVoice(a)")],
+  ['Voice picker and preview are wired', read('src/components/SoundControls.tsx').includes("previewVietnameseVoice()") && read('src/components/SoundControls.tsx').includes("getVietnameseVoices()")],
+  ['Chosen voice is saved across sessions', prefs.includes("voiceId: 'auto'") && prefs.includes("localStorage.setItem(STORAGE_KEY")],
   ['Voice flag matches presence of all eight local MP3s', (() => {
     const installed = voice.includes('CENTRAL_VOICE_READY = true');
     const clips = Array.from({length:8},(_,i)=>`public/audio/vi-central/praise-${String(i+1).padStart(2,'0')}.mp3`);
