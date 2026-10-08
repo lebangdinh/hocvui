@@ -2,7 +2,7 @@ name: Verify and deploy Học Vui V5
 
 on:
   push:
-    branches: [main, v5-deploy-review]
+    branches: [main, v5-deploy-review, feat-profile-trash-30-days-20261008]
   workflow_dispatch:
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
         run: node scripts/test-games-and-sound.cjs
       - name: Test truthful Study Bear fallback replies
         run: npx --no-install tsx scripts/test-study-bear.ts
-      - name: Test atomic profile deletion and security rules
+      - name: Test 30-day recycle bin lifecycle and owner-only purge
         run: node scripts/test-profile-deletion.cjs
       - name: Build website at /hocvui/
         env:
