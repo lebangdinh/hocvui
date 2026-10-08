@@ -19,37 +19,9 @@ import confetti from 'canvas-confetti';
 import { GameSceneArt, type GameArtType } from './GameSceneArt';
 import { drawRacingTrack, drawRacingCar } from './RacingArt';
 import { drawArcadeBackground, drawArcadeHero, drawArcadeEnemy, drawArcadeProjectile } from './ArcadeArt';
+import { playEffect } from '../services/soundEngine';
 
-const SOUNDS = {
-  correct: 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3',
-  incorrect: 'https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3',
-  finish: 'https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3',
-  bg: 'https://assets.mixkit.co/music/preview/mixkit-happy-and-joyful-15.mp3',
-  move: 'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3',
-  shoot: 'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3', // Soft pop sound
-  explosion: 'https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3', // Magic sparkle sound
-  gameOver: 'https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3',
-  flip: 'https://assets.mixkit.co/active_storage/sfx/2017/2017-preview.mp3'
-};
-
-const playSound = (type: keyof typeof SOUNDS) => {
-  const audio = new Audio(SOUNDS[type]);
-  const volumes: Record<string, number> = {
-    bg: 0.05,
-    shoot: 0.1,
-    explosion: 0.1,
-    gameOver: 0.15,
-    correct: 0.2,
-    incorrect: 0.1,
-    finish: 0.2,
-    move: 0.1,
-    flip: 0.15
-  };
-  audio.volume = volumes[type] || 0.2;
-  if (type === 'bg') audio.loop = true;
-  audio.play().catch(e => console.log('Audio play failed:', e));
-  return audio;
-};
+const playSound = playEffect;
 
 type GameType = 'puzzle' | 'racing' | 'chicken' | 'airplane' | 'tank' | 'memory' | null;
 
@@ -1314,13 +1286,6 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useEffect(() => {
-    const bgMusic = playSound('bg');
-    return () => {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
-    };
-  }, []);
 
   return (
     <div className={`relative space-y-8 p-4 sm:p-7 rounded-[32px] sm:rounded-[40px] transition-colors duration-500 ${currentTheme.bgClass} overflow-hidden`}>
