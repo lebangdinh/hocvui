@@ -2,7 +2,7 @@
 type TrackTheme = 'light' | 'dark' | 'candy' | 'forest' | 'space' | string;
 type Context = CanvasRenderingContext2D;
 
-const rr = (ctx: Context, x: number, y: number, w: number, h: number, r: number, fill: string) => {
+const rr = (ctx: Context, x: number, y: number, w: number, h: number, r: number, fill: string | CanvasGradient) => {
   ctx.fillStyle = fill;
   ctx.beginPath();
   ctx.roundRect(x, y, w, h, r);
