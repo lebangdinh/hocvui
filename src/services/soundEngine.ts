@@ -1,5 +1,5 @@
 import { getSoundPreferences } from './soundPreferences';
-import { CENTRAL_VOICE_READY } from './voicePack';
+import { CENTRAL_VOICE_READY, PIPER_VOICE_READY } from './voicePack';
 
 export const PRAISES = [
   'Giỏi lắm, con!',
@@ -100,7 +100,7 @@ function rankVoice(voice: SpeechSynthesisVoice): number {
 export function getPreferredVietnameseVoice(): SpeechSynthesisVoice | null {
   const voices = getVietnameseVoices();
   const preferred = getSoundPreferences().voiceId;
-  return (preferred === 'auto' || preferred === 'central-pack'
+  return (preferred === 'auto' || preferred === 'central-pack' || preferred === 'piper-vi'
     ? null : voices.find(v => v.voiceURI === preferred)) || voices[0] || null;
 }
 
@@ -141,38 +141,51 @@ function speakVietnamese(text: string, type: 'praise' | 'explanation', force = f
   }
 }
 
-/** Preview the selected Vietnamese voice from a direct user click. */
+type RecordedVoice = 'vi-central' | 'vi-piper';
+
+function recordedPackChoice(): RecordedVoice | null {
+  const pref = getSoundPreferences();
+  if (pref.voiceId === 'central-pack') return CENTRAL_VOICE_READY ? 'vi-central' : null;
+  if (pref.voiceId === 'piper-vi') return PIPER_VOICE_READY ? 'vi-piper' : null;
+  if (pref.voiceId !== 'auto') return null;
+  if (CENTRAL_VOICE_READY) return 'vi-central';
+  if (PIPER_VOICE_READY) return 'vi-piper';
+  return null;
+}
+
+function playRecordedPraise(index: number, pack: RecordedVoice): boolean {
+  stopSpokenAudio();
+  const number = String(index + 1).padStart(2, '0');
+  const audio = new Audio(`${import.meta.env.BASE_URL}audio/${pack}/praise-${number}.mp3`);
+  audio.volume = Math.min(.45, getSoundPreferences().praiseVolume);
+  activePraise = audio;
+  audio.onended = () => { if (activePraise === audio) activePraise = null; };
+  const handleFailure = () => {
+    if (activePraise !== audio) return;
+    activePraise = null;
+    // If a bundled file fails unexpectedly, try a valid Vietnamese device
+    // voice. Never fall back to an English voice or reveal an empty success.
+    void speakVietnamese(PRAISES[index], 'praise');
+  };
+  audio.onerror = handleFailure;
+  void audio.play().catch(handleFailure);
+  return true;
+}
+
+/** A real, prerecorded Vietnamese voice on all devices; preview via user click. */
 export function previewVietnameseVoice(): boolean {
+  const pack = recordedPackChoice();
+  if (pack) return playRecordedPraise(0, pack);
   return speakVietnamese('Chào con! Hôm nay mình cùng học vui nhé!', 'praise', true);
 }
 
-/**
- * Use a licensed prerecorded central-Vietnamese clip if installed.
- * Otherwise select a *real* Vietnamese voice supplied by the device.
- * No API keys, voice impersonation or unknown-language synthesizers.
- */
+/** Prefer bundled licensed Vietnamese clips over OS-dependent speech voices. */
 export function playPraise(index: number): boolean {
   const pref = getSoundPreferences();
   if (!pref.praise || pref.praiseVolume <= 0) return false;
-  const indexSafe = (index % PRAISES.length + PRAISES.length) % PRAISES.length;
-  const usePack = CENTRAL_VOICE_READY && (pref.voiceId === 'auto' || pref.voiceId === 'central-pack');
-  if (!usePack) return speakVietnamese(PRAISES[indexSafe], 'praise');
-  stopSpokenAudio();
-  const number = String(indexSafe + 1).padStart(2, '0');
-  const audio = new Audio(`${import.meta.env.BASE_URL}audio/vi-central/praise-${number}.mp3`);
-  audio.volume = Math.min(.45, pref.praiseVolume);
-  activePraise = audio;
-  audio.onended = () => { if (activePraise === audio) activePraise = null; };
-  audio.onerror = () => {
-    if (activePraise === audio) activePraise = null;
-    // A missing/corrupt MP3 must never leave the child without feedback.
-    void speakVietnamese(PRAISES[indexSafe], 'praise');
-  };
-  void audio.play().catch(() => {
-    if (activePraise === audio) activePraise = null;
-    void speakVietnamese(PRAISES[indexSafe], 'praise');
-  });
-  return true;
+  const validIndex = (index % PRAISES.length + PRAISES.length) % PRAISES.length;
+  const pack = recordedPackChoice();
+  return pack ? playRecordedPraise(validIndex, pack) : speakVietnamese(PRAISES[validIndex], 'praise');
 }
 
 /** Explicit opt-in: read dynamic answer explanations in Vietnamese. */
