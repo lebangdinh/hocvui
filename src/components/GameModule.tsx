@@ -17,6 +17,7 @@ import { useAuth } from '../AuthContext';
 import { BADGES } from '../constants/badges';
 import confetti from 'canvas-confetti';
 import { GameSceneArt, type GameArtType } from './GameSceneArt';
+import { drawRacingTrack, drawRacingCar } from './RacingArt';
 
 const SOUNDS = {
   correct: 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3',
@@ -967,11 +968,17 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
   const [carColor2, setCarColor2] = useState('#3b82f6');
   const [carPattern2, setCarPattern2] = useState<'none' | 'stripes' | 'dots' | 'flames' | 'lightning'>('dots');
   const [customizingPlayer, setCustomizingPlayer] = useState(1);
+  const moveButton = (key: string, pressed: boolean) => { keys.current[key] = pressed; };
   const keys = React.useRef<Record<string, boolean>>({});
   const { addPoints, awardBadge } = useAuth();
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => { keys.current[e.code] = true; };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space'].includes(e.code)) {
+        e.preventDefault();
+      }
+      keys.current[e.code] = true;
+    };
     const handleKeyUp = (e: KeyboardEvent) => { keys.current[e.code] = false; };
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
@@ -1020,161 +1027,47 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
     let roadOffset = 0;
 
     const drawCar = (x: number, y: number, color: string, pattern: string, isPlayer: boolean) => {
-      ctx.save();
-      ctx.translate(x, y);
-      
-      // Dust effect for player
-      if (isPlayer && frameCount % 5 === 0) {
-        particles.push({
-          x: x + (Math.random() - 0.5) * 20,
-          y: y + 50,
-          vx: (Math.random() - 0.5) * 2,
-          vy: 2 + Math.random() * 2,
-          life: 0.5,
-          color: 'rgba(255, 255, 255, 0.3)'
-        });
-      }
-
-      // Shadow
-      ctx.fillStyle = 'rgba(0,0,0,0.4)';
-      ctx.beginPath();
-      ctx.roundRect(-20, 8, 40, 60, 12);
-      ctx.fill();
-
-      // Body - More aerodynamic shape
-      const grad = ctx.createLinearGradient(-18, 0, 18, 0);
-      grad.addColorStop(0, color);
-      grad.addColorStop(0.3, '#fff');
-      grad.addColorStop(0.7, '#fff');
-      grad.addColorStop(1, color);
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.roundRect(-18, 0, 36, 55, 10);
-      ctx.fill();
-
-      // Patterns
-      ctx.save();
-      ctx.clip();
-      ctx.fillStyle = 'rgba(0,0,0,0.2)';
-      if (pattern === 'stripes') {
-        for(let i=0; i<5; i++) ctx.fillRect(-20 + i*10, 0, 4, 60);
-      } else if (pattern === 'dots') {
-        for(let i=0; i<10; i++) {
-          ctx.beginPath();
-          ctx.arc((Math.random()-0.5)*30, Math.random()*50, 3, 0, Math.PI*2);
-          ctx.fill();
-        }
-      } else if (pattern === 'flames') {
-        ctx.fillStyle = 'rgba(255,100,0,0.4)';
-        ctx.beginPath();
-        ctx.moveTo(-15, 55);
-        ctx.lineTo(-10, 30); ctx.lineTo(-5, 45); ctx.lineTo(0, 20);
-        ctx.lineTo(5, 45); ctx.lineTo(10, 30); ctx.lineTo(15, 55);
-        ctx.fill();
-      } else if (pattern === 'lightning') {
-        ctx.strokeStyle = 'rgba(255,255,255,0.6)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(0, 10); ctx.lineTo(-10, 25); ctx.lineTo(5, 25); ctx.lineTo(-5, 45);
-        ctx.stroke();
-      }
-      ctx.restore();
-
-      // Windows
-      ctx.fillStyle = '#1e293b';
-      ctx.beginPath();
-      ctx.roundRect(-14, 10, 28, 15, 4); // Front
-      ctx.roundRect(-14, 35, 28, 10, 2); // Back
-      ctx.fill();
-      
-      // Window shine
-      ctx.fillStyle = 'rgba(255,255,255,0.2)';
-      ctx.fillRect(-10, 12, 4, 8);
-
-      // Lights
-      ctx.fillStyle = '#fff'; // Front lights
-      ctx.beginPath();
-      ctx.arc(-12, 5, 4, 0, Math.PI * 2);
-      ctx.arc(12, 5, 4, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Light glow
-      const lGrad = ctx.createRadialGradient(-12, 5, 0, -12, 5, 15);
-      lGrad.addColorStop(0, 'rgba(255,255,255,0.4)');
-      lGrad.addColorStop(1, 'transparent');
-      ctx.fillStyle = lGrad;
-      ctx.beginPath(); ctx.arc(-12, 5, 15, 0, Math.PI*2); ctx.fill();
-      ctx.beginPath(); ctx.arc(12, 5, 15, 0, Math.PI*2); ctx.fill();
-
-      ctx.fillStyle = '#ef4444'; // Rear lights
-      ctx.fillRect(-14, 50, 6, 3);
-      ctx.fillRect(8, 50, 6, 3);
-
-      // Wheels
-      ctx.fillStyle = '#111';
-      ctx.fillRect(-22, 10, 6, 12);
-      ctx.fillRect(16, 10, 6, 12);
-      ctx.fillRect(-22, 35, 6, 12);
-      ctx.fillRect(16, 35, 6, 12);
-
-      ctx.restore();
+      drawRacingCar(ctx, x, y, color, pattern, isPlayer, frameCount);
     };
 
     const gameLoop = () => {
       frameCount++;
-      roadOffset = (roadOffset + 8) % 100;
+      roadOffset += 8;
 
       // Handle Keyboard Input
       if (mode === 'single') {
-        if (keys.current['ArrowLeft'] || keys.current['KeyA']) player1X = Math.max(80, player1X - 6);
-        if (keys.current['ArrowRight'] || keys.current['KeyD']) player1X = Math.min(canvas.width - 80, player1X + 6);
+        if (keys.current['ArrowLeft'] || keys.current['KeyA']) player1X = Math.max(87, player1X - 6);
+        if (keys.current['ArrowRight'] || keys.current['KeyD']) player1X = Math.min(canvas.width - 87, player1X + 6);
       } else {
         // Player 1 (A/D)
         if (isP1Alive) {
-          if (keys.current['KeyA']) player1X = Math.max(80, player1X - 6);
-          if (keys.current['KeyD']) player1X = Math.min(canvas.width - 80, player1X + 6);
+          if (keys.current['KeyA']) player1X = Math.max(87, player1X - 6);
+          if (keys.current['KeyD']) player1X = Math.min(canvas.width - 87, player1X + 6);
         }
         // Player 2 (Arrows)
         if (isP2Alive) {
-          if (keys.current['ArrowLeft']) player2X = Math.max(80, player2X - 6);
-          if (keys.current['ArrowRight']) player2X = Math.min(canvas.width - 80, player2X + 6);
+          if (keys.current['ArrowLeft']) player2X = Math.max(87, player2X - 6);
+          if (keys.current['ArrowRight']) player2X = Math.min(canvas.width - 87, player2X + 6);
         }
       }
 
-      // Draw Road
-      ctx.fillStyle = '#334155';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Grass/Shoulders
-      ctx.fillStyle = theme.id === 'space' ? '#0f172a' : '#15803d';
-      ctx.fillRect(0, 0, 60, canvas.height);
-      ctx.fillRect(canvas.width - 60, 0, 60, canvas.height);
-      
-      // Road lines
-      ctx.strokeStyle = '#fff';
-      ctx.setLineDash([40, 40]);
-      ctx.lineDashOffset = -roadOffset;
-      ctx.lineWidth = 6;
-      ctx.beginPath();
-      ctx.moveTo(canvas.width / 2, 0);
-      ctx.lineTo(canvas.width / 2, canvas.height);
-      ctx.stroke();
-      
-      // Side lines
-      ctx.setLineDash([]);
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.moveTo(65, 0); ctx.lineTo(65, canvas.height);
-      ctx.moveTo(canvas.width - 65, 0); ctx.lineTo(canvas.width - 65, canvas.height);
-      ctx.stroke();
+      // Layered cartoon track with moving shoulders, foliage and racing curbs.
+      drawRacingTrack(ctx, canvas.width, canvas.height, roadOffset, frameCount, theme.id);
+      // Count actual distance over time, not just the number of traffic cars passed.
+      if (frameCount % 8 === 0) {
+        if (isP1Alive) setScore(m => m + 3);
+        if (isP2Alive) setScore2(m => m + 3);
+      }
 
-      // Spawn Obstacles
-      if (frameCount % 60 === 0) {
+      // Bright traffic enters one of three lanes. Difficulty rises gently.
+      if (frameCount % 76 === 0) {
+        const lanes = [117, canvas.width / 2, canvas.width - 117];
+        const lane = Math.floor(Math.random() * lanes.length);
         obstacles.push({
-          x: Math.random() * (canvas.width - 160) + 80,
-          y: -100,
-          speed: 4 + Math.random() * 3,
-          color: ['#1e293b', '#475569', '#94a3b8'][Math.floor(Math.random() * 3)],
+          x: lanes[lane],
+          y: -90,
+          speed: 4.3 + Math.min(3, frameCount / 2200) + Math.random() * 1.2,
+          color: ['#ffc857', '#8e82ec', '#ff8199', '#5fd1e3'][Math.floor(Math.random() * 4)],
           type: Math.floor(Math.random() * 3)
         });
       }
@@ -1209,10 +1102,7 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
 
         if (obstacles[i].y > canvas.height) {
           obstacles.splice(i, 1);
-          if (!gameOver) {
-            if (isP1Alive) setScore(s => s + 1);
-            if (isP2Alive) setScore2(s => s + 1);
-          }
+
         }
       }
 
@@ -1237,7 +1127,7 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
     const handleInput = (clientX: number, rect: DOMRect) => {
       if (mode === 'multi') return;
       const x = clientX - rect.left;
-      player1X = Math.max(80, Math.min(canvas.width - 80, x));
+      player1X = Math.max(87, Math.min(canvas.width - 87, x));
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -1392,9 +1282,9 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="flex justify-between w-full max-w-[400px] items-center px-4">
+      <div className="flex justify-between w-full max-w-[480px] items-center px-4 rounded-2xl bg-gradient-to-r from-sky-50 to-amber-50 py-3 border border-sky-100">
         {mode === 'single' ? (
-          <div className={`text-lg font-black text-${theme.accentColor}-500`}>Quãng đường: {score}m</div>
+          <div className={`text-lg font-black text-${theme.accentColor}-500`}>🏁 Quãng đường: {score}m</div>
         ) : (
           <div className="flex justify-between w-full">
             <div className="text-sm font-black text-blue-500">Người 1: {score}m</div>
@@ -1403,17 +1293,17 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
         )}
         {gameOver && <button onClick={() => { setGameOver(false); setScore(0); setScore2(0); }} className="text-sm font-bold text-blue-500">Chơi lại</button>}
       </div>
-      <div className="relative w-full max-w-[400px] aspect-[4/5] touch-none">
+      <div className="relative w-full max-w-[480px] aspect-[4/5] touch-none">
         <canvas 
           ref={canvasRef} 
           width={400} 
           height={500} 
-          className="bg-slate-800 rounded-3xl shadow-2xl w-full h-full object-contain"
+          className="bg-sky-200 rounded-3xl shadow-[0_22px_60px_rgba(14,48,83,.25)] border-[5px] border-white w-full h-full object-contain"
         />
         
         {gameOver && (
           <div className="absolute inset-0 bg-black/70 rounded-3xl flex flex-col items-center justify-center text-white p-6 text-center">
-            <h3 className="text-3xl font-black mb-2">Tai nạn rồi!</h3>
+            <h3 className="text-3xl font-black mb-2">🏁 Hoàn thành lượt đua!</h3>
             {mode === 'single' ? (
               <p className="text-xl mb-6">Bé đã đi được {score} mét.</p>
             ) : (
@@ -1435,6 +1325,21 @@ const RacingGame = ({ theme }: { theme: Theme }) => {
             </button>
           </div>
         )}
+      </div>
+      <div className="flex w-full max-w-[480px] justify-between gap-3 select-none">
+        <button type="button" aria-label={mode === 'single' ? 'Rẽ trái' : 'Người 1 rẽ trái'}
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); moveButton(mode === 'single' ? 'ArrowLeft' : 'KeyA', true); }}
+          onPointerUp={() => moveButton(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          onPointerCancel={() => moveButton(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          onLostPointerCapture={() => moveButton(mode === 'single' ? 'ArrowLeft' : 'KeyA', false)}
+          className="flex-1 rounded-2xl bg-sky-500 py-4 text-2xl font-black text-white shadow-[0_5px_0_#2360a4] active:translate-y-1 active:shadow-none touch-none">◀</button>
+        {mode === 'multi' && <span className="self-center text-xs font-black text-slate-500">P1 • P2: phím ← →</span>}
+        <button type="button" aria-label={mode === 'single' ? 'Rẽ phải' : 'Người 1 rẽ phải'}
+          onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); moveButton(mode === 'single' ? 'ArrowRight' : 'KeyD', true); }}
+          onPointerUp={() => moveButton(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          onPointerCancel={() => moveButton(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          onLostPointerCapture={() => moveButton(mode === 'single' ? 'ArrowRight' : 'KeyD', false)}
+          className="flex-1 rounded-2xl bg-sky-500 py-4 text-2xl font-black text-white shadow-[0_5px_0_#2360a4] active:translate-y-1 active:shadow-none touch-none">▶</button>
       </div>
       <div className="text-center text-sm opacity-70">
         {mode === 'single' ? (
