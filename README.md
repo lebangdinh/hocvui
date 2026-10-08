@@ -27,3 +27,5 @@ VITE_BASE_PATH=/hocvui/ npm run build
 Phiên bản web lớp 1 cũ ở nhánh `backup-hocvui-lop1-20261008`. Không xóa nhánh này. Để khôi phục, tạo pull request từ nhánh sao lưu vào `main` hoặc trả `main` về commit đã sao lưu.
 
 Không nhập khóa Gemini hoặc service-account JSON vào GitHub. Xem `docs/V5_TRIEN_KHAI_VA_TEST_FIREBASE.md` để cấu hình Functions bằng máy chủ được chủ dự án cấp quyền.
+
+> Trong thời gian chờ đổi **Settings → Pages → Source → GitHub Actions**, file `index.html` ở thư mục gốc tạm giữ giao diện lớp 1 để không làm gián đoạn website. V5 được build từ `vite-entry.html`; CI tự tạo `dist/index.html`. Sau khi đổi Pages sang GitHub Actions, chỉ nội dung `dist` sẽ được phát hành.

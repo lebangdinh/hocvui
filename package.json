@@ -16,7 +16,8 @@
     "test:offline": "node scripts/build-content-index.cjs && node scripts/prepare-functions.cjs && node scripts/validate-content.cjs && node scripts/security-and-coverage-test.cjs && node scripts/test-callables-mocked.cjs && node scripts/test-deploy-guard.cjs && node scripts/test-bank-runtime.cjs",
     "check:deploy": "node scripts/assert-deploy-config.cjs",
     "deploy:staging": "node scripts/deploy-staging.cjs",
-    "test:bank": "node scripts/test-bank-runtime.cjs"
+    "test:bank": "node scripts/test-bank-runtime.cjs",
+    "postbuild": "node scripts/rename-vite-html.cjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
