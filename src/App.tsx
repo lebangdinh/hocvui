@@ -29,6 +29,7 @@ import { BackgroundMusic } from './components/BackgroundMusic';
 import { EditorialAdmin } from './components/EditorialAdmin';
 import SubjectDetailView from './components/SubjectDetailView';
 import { getGradeSubjects, CURRICULUM_META } from './constants/curriculum';
+import { describeProfileDeletionError } from './services/profileDeletion';
 
 const ProfileSelector = () => {
   const { profiles, profilesError, addProfile, selectProfile, deleteProfile, logout, role } = useAuth();
@@ -38,6 +39,9 @@ const ProfileSelector = () => {
   const [newGrade, setNewGrade] = useState(2);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [deletingProfileId, setDeletingProfileId] = useState<string | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [deleteSuccess, setDeleteSuccess] = useState<string | null>(null);
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,6 +71,23 @@ const ProfileSelector = () => {
     }
   };
 
+  const handleDeleteProfile = async (studentId: string, displayName: string) => {
+    if (deletingProfileId) return;
+    if (!window.confirm(`Xóa vĩnh viễn hồ sơ và toàn bộ lịch sử học tập của bé ${displayName}? Thao tác này không thể hoàn tác.`)) return;
+    setDeletingProfileId(studentId);
+    setDeleteError(null);
+    setDeleteSuccess(null);
+    try {
+      await deleteProfile(studentId);
+      setDeleteSuccess(`Đã xóa hồ sơ ${displayName} và lịch sử học tập trên Firebase.`);
+    } catch (error) {
+      console.warn('Student profile deletion failed:', error instanceof Error ? error.message : 'unknown');
+      setDeleteError(describeProfileDeletionError(error));
+    } finally {
+      setDeletingProfileId(null);
+    }
+  };
+
   if (isManaging && (role === 'admin' || role === 'reviewer')) {
     return <div className="min-h-screen bg-indigo-50 p-6"><button onClick={() => setIsManaging(false)} className="mb-5 rounded-xl bg-white px-5 py-3 font-bold">← Về chọn học sinh</button><EditorialAdmin /></div>;
   }
@@ -91,12 +112,15 @@ const ProfileSelector = () => {
 
         {(role === 'admin' || role === 'reviewer') && <button onClick={() => setIsManaging(true)} className="mb-5 w-full rounded-xl bg-indigo-700 p-3 font-bold text-white">Mở cổng duyệt bài (không cần hồ sơ học sinh)</button>}
         {profilesError && <div role="alert" className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">{profilesError}</div>}
+        {deleteError && <div role="alert" className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">{deleteError}</div>}
+        {deleteSuccess && <div role="status" className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-semibold text-emerald-800">{deleteSuccess}</div>}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {profiles.map(p => (
             <div key={p.id} className="group relative">
               <button
                 onClick={() => selectProfile(p)}
-                className="w-full flex items-center gap-4 p-4 bg-orange-50 hover:bg-orange-100 rounded-2xl border-2 border-transparent hover:border-orange-300 transition-all text-left"
+                disabled={deletingProfileId !== null}
+                className="w-full flex items-center gap-4 p-4 bg-orange-50 hover:bg-orange-100 rounded-2xl border-2 border-transparent hover:border-orange-300 transition-all text-left disabled:opacity-60"
               >
                 <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center text-white">
                   <UserIcon size={24} />
@@ -117,11 +141,15 @@ const ProfileSelector = () => {
                 </div>
                 <ChevronRight className="text-orange-300" />
               </button>
-              <button 
-                onClick={() => { if (window.confirm('Xóa hồ sơ và toàn bộ lịch sử học tập của bé?')) deleteProfile(p.id); }}
-                className="absolute -top-2 -right-2 p-1.5 bg-white text-red-400 hover:text-red-600 rounded-full shadow-sm border border-red-100 opacity-0 group-hover:opacity-100 transition-opacity"
+              <button
+                type="button"
+                aria-label={`Xóa hồ sơ ${p.displayName}`}
+                title={`Xóa hồ sơ ${p.displayName}`}
+                onClick={() => { void handleDeleteProfile(p.id, p.displayName); }}
+                disabled={deletingProfileId !== null}
+                className="absolute -top-2 -right-2 rounded-full border border-red-100 bg-white p-2 text-red-500 shadow-sm transition-opacity hover:text-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-500 disabled:cursor-wait disabled:opacity-50 sm:opacity-0 sm:group-hover:opacity-100 sm:focus-visible:opacity-100"
               >
-                <Trash2 size={14} />
+                {deletingProfileId === p.id ? <span className="text-xs font-bold">...</span> : <Trash2 size={16} />}
               </button>
             </div>
           ))}
@@ -280,6 +308,29 @@ const Dashboard = () => {
   const [learningConfig, setLearningConfig] = useState<{ mode: 'practice' | 'quiz', difficulty?: 'easy' | 'medium' | 'hard', topicId?: string } | null>(null);
   const [activeGame, setActiveGame] = useState<string | null>(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<'profile' | 'account' | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleConfirmedDeletion = async () => {
+    if (!showDeleteConfirm || isDeleting) return;
+    setDeleteError(null);
+    setIsDeleting(true);
+    try {
+      if (showDeleteConfirm === 'profile' && profile) {
+        await deleteProfile(profile.id);
+      } else if (showDeleteConfirm === 'account') {
+        await deleteAccount();
+      }
+      setShowDeleteConfirm(null);
+    } catch (error) {
+      console.warn('Account settings deletion failed:', error instanceof Error ? error.message : 'unknown');
+      setDeleteError(showDeleteConfirm === 'profile'
+        ? describeProfileDeletionError(error)
+        : 'Chưa xóa được tài khoản. Máy chủ xóa tài khoản có thể chưa được triển khai; dữ liệu vẫn được giữ nguyên.');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -473,14 +524,14 @@ const Dashboard = () => {
 
                     <div className="pt-6 border-t border-gray-100 space-y-4">
                       <button 
-                        onClick={() => setShowDeleteConfirm('profile')}
+                        onClick={() => { setDeleteError(null); setShowDeleteConfirm('profile'); }}
                         className="w-full flex items-center justify-center gap-2 p-3 text-red-500 hover:bg-red-50 rounded-xl transition-colors font-bold border border-red-100"
                       >
                         <Trash2 size={18} />
                         Xóa hồ sơ này
                       </button>
                       <button 
-                        onClick={() => setShowDeleteConfirm('account')}
+                        onClick={() => { setDeleteError(null); setShowDeleteConfirm('account'); }}
                         className="w-full flex items-center justify-center gap-2 p-3 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors text-xs font-medium"
                       >
                         Xóa toàn bộ tài khoản và dữ liệu
@@ -516,23 +567,21 @@ const Dashboard = () => {
                           ? 'Mọi tiến độ học tập của bé sẽ bị xóa vĩnh viễn. Bé có chắc không?' 
                           : 'Tất cả hồ sơ và dữ liệu học tập sẽ biến mất mãi mãi. Bé có chắc không?'}
                       </p>
+                      {deleteError && <p role="alert" className="mb-4 rounded-xl bg-red-50 p-3 text-sm font-semibold text-red-700">{deleteError}</p>}
                       <div className="flex flex-col gap-3">
-                        <button 
-                          onClick={async () => {
-                            if (showDeleteConfirm === 'profile' && profile) {
-                              await deleteProfile(profile.id);
-                            } else if (showDeleteConfirm === 'account') {
-                              await deleteAccount();
-                            }
-                            setShowDeleteConfirm(null);
-                          }}
-                          className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-2xl transition-colors"
+                        <button
+                          type="button"
+                          disabled={isDeleting}
+                          onClick={() => { void handleConfirmedDeletion(); }}
+                          className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-2xl transition-colors disabled:cursor-wait disabled:opacity-60"
                         >
-                          Đồng ý xóa
+                          {isDeleting ? 'Đang xóa trên Firebase...' : 'Đồng ý xóa'}
                         </button>
-                        <button 
-                          onClick={() => setShowDeleteConfirm(null)}
-                          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-3 rounded-2xl transition-colors"
+                        <button
+                          type="button"
+                          disabled={isDeleting}
+                          onClick={() => { setDeleteError(null); setShowDeleteConfirm(null); }}
+                          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-3 rounded-2xl transition-colors disabled:opacity-50"
                         >
                           Quay lại
                         </button>

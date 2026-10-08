@@ -26,7 +26,10 @@ service cloud.firestore {
         allow update: if owner(uid) && goodProfile(request.resource.data, uid, profileId)
           && request.resource.data.uid == resource.data.uid && request.resource.data.id == resource.data.id
           && request.resource.data.keys().hasOnly(['id','uid','displayName','email','grade','totalPoints','level','createdAt','badges','favoriteBadge','subjectPoints']);
-        allow delete: if false; // Deletion requires callable to remove associated learning history.
+        // Only a parent may delete their own child's profile. The web app
+        // deletes this document together with the child's activities in one
+        // atomic batch. Other user profiles remain protected by owner(uid).
+        allow delete: if owner(uid) && resource.data.uid == uid && resource.data.id == profileId;
       }
     }
     match /activities/{id} {
