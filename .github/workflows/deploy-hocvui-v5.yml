@@ -60,5 +60,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Set GitHub Pages source to GitHub Actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${GITHUB_REPOSITORY}/pages" -f build_type=workflow
+        continue-on-error: true
       - uses: actions/deploy-pages@v4
         id: deployment
