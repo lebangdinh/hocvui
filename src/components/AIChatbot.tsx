@@ -1,216 +1,236 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { 
-  MessageCircle, 
-  Send, 
-  X, 
-  Minimize2, 
-  Sparkles, 
-  Loader2,
-  User,
-  Bot
-} from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { Bot, MessageCircle, Send, X, Minimize2, User, Loader2, RefreshCw } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { chatWithAI } from '../services/geminiService';
-import { cn } from '../lib/utils';
+import { getLocalStudyReply, unavailableAIMessage } from '../services/localStudyBear';
 import { useAuth } from '../AuthContext';
+import { cn } from '../lib/utils';
 
-interface Message {
+type Message = {
   role: 'user' | 'model';
   content: string;
-}
+  source?: 'local' | 'ai' | 'status';
+};
+
+type ChatTurn = { role: 'user' | 'model'; parts: { text: string }[] };
+type AIStatus = 'offline' | 'checking' | 'online';
+
+const WELCOME: Message = {
+  role: 'model',
+  source: 'local',
+  content: 'Chào bé! 🐻💛 Gấu giúp bé chào hỏi, làm phép tính đơn giản và tìm bài học nhé. Phần AI mở rộng chưa được kết nối, nên Gấu sẽ nói rõ những câu mình chưa trả lời được.'
+};
 
 export const AIChatbot: React.FC = () => {
   const { profile } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { 
-      role: 'model', 
-      content: 'Chào bé! Gấu Nhỏ Thông Thái đây! Bé có câu hỏi gì về bài học hôm nay hay cần Gấu Nhỏ giúp gì không nào? 🐻✨' 
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([WELCOME]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  // This Firebase project does not currently deploy the Gemini callable.
+  // Only show "online" after a successful real backend response.
+  const [aiStatus, setAiStatus] = useState<AIStatus>('offline');
+  const [connectionMessage, setConnectionMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const verifiedHistoryRef = useRef<ChatTurn[]>([]);
+  const lastCheckAtRef = useRef(0);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    if (isOpen) messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [isOpen, messages, isLoading]);
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
-
-    const userMessage = input.trim();
+  // Conversations never cross student profiles.
+  useEffect(() => {
+    setMessages([WELCOME]);
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    setAiStatus('offline');
+    setConnectionMessage('');
+    verifiedHistoryRef.current = [];
+  }, [profile?.id]);
+
+  const append = (content: string, source: Message['source'] = 'local') =>
+    setMessages(prev => [...prev, { role: 'model', content, source }]);
+
+  const sendMessage = async (text: string) => {
+    const message = text.trim().slice(0, 500);
+    if (!message || isLoading || aiStatus === 'checking') return;
+    setInput('');
+    setMessages(prev => [...prev, { role: 'user', content: message }]);
+
+    const localReply = getLocalStudyReply(message, profile?.grade || 2);
+    if (localReply) {
+      append(localReply.text);
+      return;
+    }
+
+    // Do not repeatedly call an undeployed endpoint and invent an answer.
+    if (aiStatus !== 'online') {
+      append(unavailableAIMessage(), 'status');
+      return;
+    }
+
+    if (!profile?.id) {
+      append('Gấu chưa thấy hồ sơ học sinh. Bé chọn hồ sơ rồi thử lại nhé!', 'status');
+      return;
+    }
+
     setIsLoading(true);
-
     try {
-      const history = messages.slice(1).map(msg => ({
-        role: msg.role,
-        parts: [{ text: msg.content }]
-      }));
-
-      const aiResponse = await chatWithAI(userMessage, history, profile?.grade || 2, profile?.id);
-      setMessages(prev => [...prev, { role: 'model', content: aiResponse || 'Gấu Nhỏ đang suy nghĩ một chút, bé hỏi lại nhé!' }]);
+      const history = verifiedHistoryRef.current.slice(-6);
+      const answer = await chatWithAI(message, history, profile.grade, profile.id);
+      if (typeof answer !== 'string' || !answer.trim()) throw new Error('empty-ai-answer');
+      verifiedHistoryRef.current = [
+        ...history,
+        { role: 'user', parts: [{ text: message }] },
+        { role: 'model', parts: [{ text: answer.slice(0, 500) }] }
+      ].slice(-6);
+      append(answer.slice(0, 2200), 'ai');
     } catch (error) {
-      console.error('Chat error:', error);
-      setMessages(prev => [...prev, { role: 'model', content: 'Ôi, Gấu Nhỏ bị hắt xì một cái nên quên mất rồi. Bé thử lại giúp Gấu Nhỏ nhé! 🍯' }]);
+      console.warn('Gấu Nhỏ AI unavailable:', error);
+      setAiStatus('offline');
+      setConnectionMessage('Kết nối AI bị gián đoạn. Bé vẫn có thể hỏi những câu cơ bản.');
+      append(unavailableAIMessage(), 'status');
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Checking is deliberate and truthful: never turn the green status on
+  // unless the authenticated Firebase callable has actually replied.
+  const checkConnection = async () => {
+    if (!profile?.id || aiStatus === 'checking' || isLoading) return;
+    if (Date.now() - lastCheckAtRef.current < 15_000) {
+      setConnectionMessage('Mình đợi một chút rồi kiểm tra lại nhé.');
+      return;
+    }
+    lastCheckAtRef.current = Date.now();
+    setAiStatus('checking');
+    setConnectionMessage('Đang kiểm tra kết nối AI…');
+    try {
+      const answer = await chatWithAI('Xin chào!', [], profile.grade, profile.id);
+      if (typeof answer !== 'string' || !answer.trim()) throw new Error('empty-ai-answer');
+      verifiedHistoryRef.current = [];
+      setAiStatus('online');
+      setConnectionMessage('Đã kết nối máy chủ AI. Bé có thể hỏi thêm về bài học.');
+      append('Gấu đã kết nối với AI học tập. Bé có thể hỏi một câu về bài học nhé! 🐻', 'status');
+    } catch (error) {
+      console.warn('Gấu Nhỏ connection check failed:', error);
+      setAiStatus('offline');
+      setConnectionMessage('AI mở rộng chưa hoạt động. Gấu vẫn giúp bé các câu hỏi đơn giản và hướng dẫn vào bài học.');
+    }
+  };
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-4 right-3 z-50 flex flex-col items-end sm:bottom-6 sm:right-6">
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9, transformOrigin: 'bottom right' }}
+          <motion.section
+            role="dialog"
+            aria-label="Gấu Nhỏ hỗ trợ học tập"
+            initial={{ opacity: 0, y: 16, scale: .97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="mb-4 w-[90vw] sm:w-[550px] h-[75vh] sm:h-[750px] bg-white rounded-[2.5rem] shadow-2xl border-4 border-blue-100 flex flex-col overflow-hidden"
+            exit={{ opacity: 0, y: 16, scale: .97 }}
+            className="mb-3 flex h-[min(76dvh,720px)] w-[calc(100vw-24px)] max-w-[540px] flex-col overflow-hidden rounded-3xl border border-sky-100 bg-white shadow-[0_22px_65px_rgba(20,45,88,.25)]"
           >
-            {/* Header */}
-            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 flex items-center justify-between text-white shadow-lg">
-              <div className="flex items-center gap-5">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-inner">
-                  <Bot size={36} />
-                </div>
-                <div>
-                  <h3 className="font-black text-2xl">Gấu Nhỏ Thông Thái</h3>
-                  <div className="flex items-center gap-2 text-sm font-bold opacity-90">
-                    <div className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse" />
-                    Đang sẵn sàng giúp bé!
-                  </div>
+            <div className="flex shrink-0 items-center justify-between gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-white sm:px-5 sm:py-4">
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/15">
+                  <Bot size={24} aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="truncate text-base font-black sm:text-lg">Gấu Nhỏ – bạn học của bé</h3>
+                  <p className="mt-0.5 text-[11px] font-medium text-white/90 sm:text-xs">
+                    <span className={cn('mr-1.5 inline-block h-2 w-2 rounded-full',
+                      aiStatus === 'online' ? 'bg-emerald-300' : aiStatus === 'checking' ? 'bg-amber-300' : 'bg-white/60')} />
+                    {aiStatus === 'online' ? 'AI đã kết nối' : aiStatus === 'checking' ? 'Đang kiểm tra AI' : 'Hỗ trợ cơ bản · AI chưa kết nối'}
+                  </p>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <button 
-                  onClick={() => setIsOpen(false)}
-                  className="p-2.5 hover:bg-white/10 rounded-xl transition-colors"
-                >
-                  <Minimize2 size={28} />
-                </button>
-                <button 
-                  onClick={() => setIsOpen(false)}
-                  className="p-2.5 hover:bg-white/10 rounded-xl transition-colors"
-                >
-                  <X size={28} />
-                </button>
+              <div className="flex shrink-0 gap-1">
+                <button type="button" aria-label="Thu nhỏ trò chuyện" onClick={() => setIsOpen(false)}
+                  className="rounded-xl p-2 hover:bg-white/15"><Minimize2 size={20} /></button>
+                <button type="button" aria-label="Đóng trò chuyện" onClick={() => setIsOpen(false)}
+                  className="rounded-xl p-2 hover:bg-white/15"><X size={22} /></button>
               </div>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-8 bg-slate-50/50">
-              {messages.map((msg, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: msg.role === 'user' ? 20 : -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className={cn(
-                    "flex gap-4 max-w-[92%]",
-                    msg.role === 'user' ? "ml-auto flex-row-reverse" : "mr-auto"
-                  )}
-                >
-                  <div className={cn(
-                    "w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 mt-1 shadow-sm",
-                    msg.role === 'user' ? "bg-blue-100 text-blue-600" : "bg-indigo-100 text-indigo-600"
-                  )}>
-                    {msg.role === 'user' ? <User size={24} /> : <Bot size={24} />}
-                  </div>
-                  <div className={cn(
-                    "p-5 rounded-3xl text-xl leading-relaxed shadow-md",
-                    msg.role === 'user' 
-                      ? "bg-blue-600 text-white rounded-tr-none" 
-                      : "bg-white text-slate-800 rounded-tl-none border border-slate-100"
-                  )}>
-                    <div className="prose prose-lg max-w-none prose-p:leading-relaxed prose-p:my-1">
+            {aiStatus !== 'online' && (
+              <div className="flex shrink-0 items-center justify-between gap-2 border-b border-amber-100 bg-amber-50 px-4 py-2 text-[11px] text-amber-900 sm:text-xs">
+                <span className="min-w-0">AI mở rộng chưa sẵn sàng. Gấu trả lời câu cơ bản tại chỗ.</span>
+                <button type="button" onClick={checkConnection} disabled={aiStatus === 'checking'}
+                  className="flex shrink-0 items-center gap-1 rounded-full border border-amber-200 bg-white px-2.5 py-1.5 font-bold hover:bg-amber-100 disabled:opacity-50">
+                  {aiStatus === 'checking' ? <Loader2 size={13} className="animate-spin" /> : <RefreshCw size={13} />}
+                  Kiểm tra AI
+                </button>
+              </div>
+            )}
+            {connectionMessage && <p role="status" className="shrink-0 bg-sky-50 px-4 py-2 text-[11px] text-slate-600">{connectionMessage}</p>}
+
+            <div className="min-h-0 flex-1 space-y-4 overflow-y-auto bg-slate-50/70 px-3 py-4 sm:px-5" aria-live="polite">
+              {messages.map((msg, index) => (
+                <motion.div key={index} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }}
+                  className={cn('flex max-w-[96%] items-start gap-2.5',
+                    msg.role === 'user' ? 'ml-auto flex-row-reverse' : 'mr-auto')}>
+                  <span className={cn('flex h-8 w-8 shrink-0 items-center justify-center rounded-xl shadow-sm',
+                    msg.role === 'user' ? 'bg-blue-100 text-blue-600' : 'bg-indigo-100 text-indigo-600')}>
+                    {msg.role === 'user' ? <User size={17} /> : <Bot size={17} />}
+                  </span>
+                  <div className={cn('min-w-0 max-w-[calc(100%-42px)] rounded-2xl px-3.5 py-3 text-sm leading-relaxed shadow-sm sm:px-4 sm:text-base',
+                    msg.role === 'user' ? 'rounded-tr-sm bg-blue-600 text-white'
+                      : 'rounded-tl-sm border border-slate-100 bg-white text-slate-800')}>
+                    <div className="prose prose-sm max-w-none break-words prose-p:my-1 prose-p:leading-relaxed sm:prose-base">
                       <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
                   </div>
                 </motion.div>
               ))}
               {isLoading && (
-                <div className="flex gap-4 mr-auto max-w-[90%]">
-                  <div className="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
-                    <Bot size={24} />
-                  </div>
-                  <div className="bg-white p-5 rounded-3xl rounded-tl-none border border-slate-100 shadow-md">
-                    <Loader2 size={24} className="animate-spin text-indigo-500" />
-                  </div>
+                <div role="status" className="flex items-center gap-2 text-xs text-slate-500">
+                  <Loader2 size={17} className="animate-spin" /> Gấu đang kiểm tra câu trả lời…
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
-            <div className="p-6 bg-white border-t border-slate-100">
-              <div className="relative flex items-center gap-4">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Hỏi Gấu Nhỏ gì đó đi bé..."
-                  className="flex-1 bg-slate-100 border-2 border-transparent rounded-2xl px-6 py-5 text-xl font-bold focus:ring-4 focus:ring-blue-400 focus:bg-white transition-all outline-none placeholder:text-slate-400"
-                />
-                <button
-                  onClick={handleSend}
-                  disabled={!input.trim() || isLoading}
-                  className={cn(
-                    "p-5 rounded-2xl transition-all shadow-xl",
-                    input.trim() && !isLoading 
-                      ? "bg-blue-600 text-white shadow-blue-200 hover:scale-105 active:scale-95" 
-                      : "bg-slate-200 text-slate-400 cursor-not-allowed"
-                  )}
-                >
-                  <Send size={28} />
-                </button>
+            <div className="shrink-0 border-t border-slate-100 bg-white px-3 py-3 sm:px-5">
+              <div className="mb-2 flex flex-wrap gap-2">
+                {['Chào gấu', '2 + 3 bằng bao nhiêu?', 'Làm sao học tốt'].map(prompt => (
+                  <button type="button" key={prompt} disabled={isLoading || aiStatus === 'checking'}
+                    onClick={() => { void sendMessage(prompt); }}
+                    className="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1.5 text-[11px] font-semibold text-blue-700 hover:bg-blue-100 disabled:opacity-50">
+                    {prompt}
+                  </button>
+                ))}
               </div>
-              <p className="text-sm text-slate-500 mt-4 text-center font-medium italic">
-                Gấu Nhỏ có thể nhầm lẫn một chút, bé hãy hỏi ba mẹ nếu không chắc nhé! 🐻❤️
+              <form className="flex items-center gap-2"
+                onSubmit={e => { e.preventDefault(); void sendMessage(input); }}>
+                <input type="text" value={input} maxLength={500} autoComplete="off"
+                  onChange={e => setInput(e.target.value)}
+                  placeholder="Bé muốn hỏi Gấu điều gì?"
+                  aria-label="Nhập câu hỏi cho Gấu Nhỏ"
+                  className="min-w-0 flex-1 rounded-xl border border-sky-200 bg-slate-50 px-3 py-3 text-sm text-slate-800 outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 sm:text-base"/>
+                <button type="submit" aria-label="Gửi câu hỏi"
+                  disabled={!input.trim() || isLoading || aiStatus === 'checking'}
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400">
+                  <Send size={19} />
+                </button>
+              </form>
+              <p className="mt-2 text-center text-[10px] text-slate-500 sm:text-xs">
+                Bé đừng gửi mật khẩu, địa chỉ hay số điện thoại nhé. Câu trả lời AI có thể chưa chính xác.
               </p>
             </div>
-          </motion.div>
+          </motion.section>
         )}
       </AnimatePresence>
 
-      {/* Floating Button */}
-      <motion.button
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          "w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all relative group",
-          isOpen 
-            ? "bg-slate-200 text-slate-600" 
-            : "bg-gradient-to-tr from-blue-500 to-indigo-600 text-white"
-        )}
-      >
-        {isOpen ? <X size={28} /> : (
-          <>
-            <MessageCircle size={28} />
-            <motion.div
-              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute -top-1 -right-1 bg-yellow-400 p-1 rounded-full shadow-lg"
-            >
-              <Sparkles size={12} className="text-white" />
-            </motion.div>
-          </>
-        )}
-        
-        {/* Tooltip */}
-        {!isOpen && (
-          <div className="absolute right-20 bg-white px-4 py-2 rounded-2xl shadow-xl border border-blue-50 text-blue-600 font-bold text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-            Hỏi Gấu Nhỏ nè! 🐻👋
-          </div>
-        )}
+      <motion.button whileHover={{ scale: 1.06 }} whileTap={{ scale: .95 }}
+        type="button" aria-label={isOpen ? 'Đóng Gấu Nhỏ' : 'Mở Gấu Nhỏ hỗ trợ học tập'}
+        onClick={() => setIsOpen(v => !v)}
+        className={cn('relative flex h-14 w-14 items-center justify-center rounded-full text-white shadow-xl',
+          isOpen ? 'bg-slate-500' : 'bg-gradient-to-tr from-blue-500 to-indigo-600')}>
+        {isOpen ? <X size={24} /> : <MessageCircle size={25} />}
+        {!isOpen && <span className="absolute -right-0.5 -top-0.5 rounded-full bg-yellow-400 p-1 text-xs">★</span>}
       </motion.button>
     </div>
   );
