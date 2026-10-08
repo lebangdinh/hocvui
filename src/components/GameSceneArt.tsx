@@ -16,7 +16,7 @@ export const GameSceneArt: React.FC<Props> = ({ type, className = '' }) => {
   };
   const [sky1, sky2] = skies[type];
   return (
-    <svg className={className} viewBox="0 0 480 256" fill="none" role="img" aria-label={'Hình minh họa trò chơi ' + type} xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 480 256" preserveAspectRatio="xMidYMid slice" fill="none" role="img" aria-label={'Hình minh họa trò chơi ' + type} xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id={id + '-sky'} x1="45" y1="0" x2="380" y2="256" gradientUnits="userSpaceOnUse">
           <stop stopColor={sky1} />
