@@ -4,7 +4,7 @@
 Runtime: GitHub Actions Ubuntu + piper-tts + ffmpeg. The ONNX model is downloaded
 only for the build and is never shipped to a child's browser.
 Model and licensing: https://huggingface.co/CakeByVPBank/piper-pgl-v4-vi_VN-version39_epoch39
-Model license: MIT; speech generated with the explicit femal​esouth-01 speaker (ID 4).
+Model license: MIT; speech generated with the explicit femalesouth-01 speaker (ID 4).
 """
 from __future__ import annotations
 import subprocess
@@ -37,7 +37,10 @@ def main() -> None:
         raise RuntimeError("Missing Piper model configuration JSON")
     OUT.mkdir(parents=True, exist_ok=True)
     voice = PiperVoice.load(MODEL)
-    if voice.config.num_speakers != 5:\n        raise RuntimeError(f"Expected five speakers, got {voice.config.num_speakers}")\n    # 4 is Yến Nhi (femalesouth-01), not default speaker 0 (female North).\n    config = SynthesisConfig(speaker_id=4, length_scale=1.06, noise_scale=0.62, noise_w_scale=0.8, volume=0.85)
+    if voice.config.num_speakers != 5:
+        raise RuntimeError(f"Expected five speakers, got {voice.config.num_speakers}")
+    # 4 is Yến Nhi (femalesouth-01), not default speaker 0 (female North).
+    config = SynthesisConfig(speaker_id=4, length_scale=1.06, noise_scale=0.62, noise_w_scale=0.8, volume=0.85)
     with tempfile.TemporaryDirectory(prefix="hocvui-piper-") as temp_dir:
         for number, phrase in enumerate(PHRASES, 1):
             wav_path = Path(temp_dir) / f"{number:02d}.wav"
