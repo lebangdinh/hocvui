@@ -80,11 +80,9 @@ export const AIChatbot: React.FC = () => {
       const history = verifiedHistoryRef.current.slice(-6);
       const answer = await chatWithAI(message, history, profile.grade, profile.id);
       if (typeof answer !== 'string' || !answer.trim()) throw new Error('empty-ai-answer');
-      verifiedHistoryRef.current = [
-        ...history,
-        { role: 'user', parts: [{ text: message }] },
-        { role: 'model', parts: [{ text: answer.slice(0, 500) }] }
-      ].slice(-6);
+      const userTurn: ChatTurn = { role: 'user', parts: [{ text: message }] };
+      const modelTurn: ChatTurn = { role: 'model', parts: [{ text: answer.slice(0, 500) }] };
+      verifiedHistoryRef.current = [...history, userTurn, modelTurn].slice(-6);
       append(answer.slice(0, 2200), 'ai');
     } catch (error) {
       console.warn('Gấu Nhỏ AI unavailable:', error);
@@ -179,7 +177,7 @@ export const AIChatbot: React.FC = () => {
                   <div className={cn('min-w-0 max-w-[calc(100%-42px)] rounded-2xl px-3.5 py-3 text-sm leading-relaxed shadow-sm sm:px-4 sm:text-base',
                     msg.role === 'user' ? 'rounded-tr-sm bg-blue-600 text-white'
                       : 'rounded-tl-sm border border-slate-100 bg-white text-slate-800')}>
-                    <div className="prose prose-sm max-w-none break-words prose-p:my-1 prose-p:leading-relaxed sm:prose-base">
+                    <div className={cn("prose prose-sm max-w-none break-words prose-p:my-1 prose-p:leading-relaxed sm:prose-base", msg.role === 'user' && "prose-invert")}>
                       <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
                   </div>
