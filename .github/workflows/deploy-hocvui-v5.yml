@@ -22,13 +22,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-          cache-dependency-path: app/package-lock.json
-
       - name: Download pinned V5 source archive
         env:
           GH_TOKEN: ${{ github.token }}
@@ -42,6 +35,13 @@ jobs:
             'e2c1488490ebf7cf356f9f56679d25dbe55b34ac21caecd336cb2ce68b2cb3ad' \
             "$RUNNER_TEMP/Hoc_Vui_V5_KetNoi_Firebase_hoc-vui-tieu-hoc-2026.zip" | sha256sum -c -
           unzip -q "$RUNNER_TEMP/Hoc_Vui_V5_KetNoi_Firebase_hoc-vui-tieu-hoc-2026.zip" -d app
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: app/package-lock.json
 
       - name: Validate Firebase project isolation
         working-directory: app
