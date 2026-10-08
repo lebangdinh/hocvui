@@ -1,5 +1,4 @@
 import { getSoundPreferences } from './soundPreferences';
-import { CENTRAL_VOICE_READY, SOUTHERN_VOICE_READY } from './voicePack';
 
 export const PRAISES = [
   'Giỏi lắm, con!',
@@ -66,7 +65,6 @@ export function playEffect(kind: EffectKind): HTMLAudioElement | null {
   return null;
 }
 
-let activePraise: HTMLAudioElement | null = null;
 let activeSpeech: SpeechSynthesisUtterance | null = null;
 
 function nativeSpeech(): SpeechSynthesis | null {
@@ -98,18 +96,14 @@ function rankVoice(voice: SpeechSynthesisVoice): number {
 }
 
 export function getPreferredVietnameseVoice(): SpeechSynthesisVoice | null {
-  const voices = getVietnameseVoices();
   const preferred = getSoundPreferences().voiceId;
-  return (preferred === 'auto' || preferred === 'central-pack' || preferred === 'south-vi' || preferred === 'piper-vi'
-    ? null : voices.find(v => v.voiceURI === preferred)) || voices[0] || null;
+  // The child must never hear synthetic praise unless a parent has explicitly
+  // selected and enabled a specific Vietnamese voice in Settings.
+  if (preferred === 'silent') return null;
+  return getVietnameseVoices().find(v => v.voiceURI === preferred) || null;
 }
 
 export function stopSpokenAudio(): void {
-  if (activePraise) {
-    activePraise.pause();
-    activePraise.currentTime = 0;
-    activePraise = null;
-  }
   nativeSpeech()?.cancel();
   activeSpeech = null;
 }
@@ -141,55 +135,19 @@ function speakVietnamese(text: string, type: 'praise' | 'explanation', force = f
   }
 }
 
-type RecordedVoice = 'vi-central' | 'vi-south';
-
-function recordedPackChoice(): RecordedVoice | null {
-  const pref = getSoundPreferences();
-  if (pref.voiceId === 'central-pack') return CENTRAL_VOICE_READY ? 'vi-central' : (SOUTHERN_VOICE_READY ? 'vi-south' : null);
-  // Old piper-vi selection is migrated transparently to the southern voice.
-  if (pref.voiceId === 'south-vi' || pref.voiceId === 'piper-vi') return SOUTHERN_VOICE_READY ? 'vi-south' : null;
-  if (pref.voiceId !== 'auto') return null;
-  if (SOUTHERN_VOICE_READY) return 'vi-south';
-  if (CENTRAL_VOICE_READY) return 'vi-central';
-  return null;
-}
-
-function playRecordedPraise(index: number, pack: RecordedVoice): boolean {
-  stopSpokenAudio();
-  const number = String(index + 1).padStart(2, '0');
-  const audio = new Audio(`${import.meta.env.BASE_URL}audio/${pack}/praise-${number}.mp3`);
-  audio.volume = Math.min(.45, getSoundPreferences().praiseVolume);
-  activePraise = audio;
-  audio.onended = () => { if (activePraise === audio) activePraise = null; };
-  const handleFailure = () => {
-    if (activePraise !== audio) return;
-    activePraise = null;
-    // If a bundled file fails unexpectedly, try a valid Vietnamese device
-    // voice. Never fall back to an English voice or reveal an empty success.
-    void speakVietnamese(PRAISES[index], 'praise');
-  };
-  audio.onerror = handleFailure;
-  void audio.play().catch(handleFailure);
-  return true;
-}
-
-/** A real, prerecorded Vietnamese voice on all devices; preview via user click. */
+/** Only play speech when a parent explicitly selects a Vietnamese device voice. */
 export function previewVietnameseVoice(): boolean {
-  const pack = recordedPackChoice();
-  if (pack) return playRecordedPraise(0, pack);
   return speakVietnamese('Chào con! Hôm nay mình cùng học vui nhé!', 'praise', true);
 }
 
-/** Prefer bundled licensed Vietnamese clips over OS-dependent speech voices. */
 export function playPraise(index: number): boolean {
   const pref = getSoundPreferences();
-  if (!pref.praise || pref.praiseVolume <= 0) return false;
+  if (!pref.praise || pref.voiceId === 'silent' || pref.praiseVolume <= 0) return false;
   const validIndex = (index % PRAISES.length + PRAISES.length) % PRAISES.length;
-  const pack = recordedPackChoice();
-  return pack ? playRecordedPraise(validIndex, pack) : speakVietnamese(PRAISES[validIndex], 'praise');
+  return speakVietnamese(PRAISES[validIndex], 'praise');
 }
 
-/** Explicit opt-in: read dynamic answer explanations in Vietnamese. */
+/** Read long explanations only when a matching Vietnamese device voice is selected. */
 export function speakExplanation(text: string): boolean {
   return speakVietnamese(text, 'explanation');
 }

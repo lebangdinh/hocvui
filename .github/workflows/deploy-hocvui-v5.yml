@@ -34,40 +34,13 @@ jobs:
         run: npm run lint
       - name: Verify games and Vietnamese audio safety
         run: node scripts/test-games-and-sound.cjs
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install offline Vietnamese speech synthesizer
-        run: |
-          python -m pip install --disable-pip-version-check "piper-tts==1.8.0" "imageio-ffmpeg==0.6.0"
-          python -c "from imageio_ffmpeg import get_ffmpeg_exe; print('FFmpeg:', get_ffmpeg_exe())"
-      - name: Download verified southern Vietnamese female voice
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p .cache/piper-vietnamese
-          prefix="https://huggingface.co/CakeByVPBank/piper-pgl-v4-vi_VN-version39_epoch39/resolve/main"
-          curl --fail --location --silent --show-error --retry 4 --retry-delay 3 --max-time 240 "$prefix/vi_VN-csa-voice-piper-v3-medium.onnx?download=true" -o .cache/piper-vietnamese/vi_VN-csa-voice-piper-v3-medium.onnx
-          echo "99424831c88afec929eba3aef83a1b3d92f261b0bdc771bc2458f7f1ba63b6d2  .cache/piper-vietnamese/vi_VN-csa-voice-piper-v3-medium.onnx" | sha256sum -c -
-          curl --fail --location --silent --show-error --retry 4 --max-time 120 "$prefix/vi_VN-csa-voice-piper-v3-medium.onnx.json" -o .cache/piper-vietnamese/vi_VN-csa-voice-piper-v3-medium.onnx.json
-          python -m json.tool .cache/piper-vietnamese/vi_VN-csa-voice-piper-v3-medium.onnx.json > /dev/null
-      - name: Generate eight southern female Yến Nhi praise clips
-        run: python scripts/generate-piper-voice.py
-      - name: Assert all downloadable voice assets exist
-        shell: bash
-        run: |
-          set -euo pipefail
-          for n in {01..08}; do test -s "public/audio/vi-south/praise-$n.mp3"; done
-          test -s public/audio/vi-south/ATTRIBUTION.txt
       - name: Build website at /hocvui/
         env:
           VITE_BASE_PATH: /hocvui/
           VITE_USE_FIREBASE_EMULATORS: 'false'
-          VITE_SOUTHERN_VOICE_READY: 'true'
         run: |
           npm run build
           test -s dist/index.html
-          for n in {01..08}; do test -s "dist/audio/vi-south/praise-$n.mp3"; done
           if grep -REn 'GEMINI_API_KEY|sk-[a-zA-Z0-9]{12,}' dist/assets; then
             echo 'Found possible secret in static bundle'; exit 1
           fi
@@ -99,8 +72,8 @@ jobs:
           for attempt in {1..12}; do
             html="$(curl -fsSL --connect-timeout 10 --max-time 25 "$site" || true)"
             js="$(printf '%s' "$html" | grep -oE '/hocvui/assets/[^"]+\.js' | head -n1 || true)"
-            if [[ -n "$js" ]] && curl -fsSL --connect-timeout 10 --max-time 35 -o /dev/null "https://lebangdinh.github.io$js" && curl -fsSL --connect-timeout 10 --max-time 35 -o /dev/null "${site}audio/vi-south/praise-01.mp3" && curl -fsSL --connect-timeout 10 --max-time 35 -o /dev/null "${site}audio/vi-south/praise-08.mp3"; then
-              echo "PASS: Học Vui V5, JavaScript and southern Vietnamese MP3s reachable at $site"
+            if [[ -n "$js" ]] && curl -fsSL --connect-timeout 10 --max-time 35 -o /dev/null "https://lebangdinh.github.io$js"; then
+              echo "PASS: Học Vui V5 HTML and JS reachable at $site"
               exit 0
             fi
             echo "Waiting for GitHub Pages CDN, attempt $attempt/12"
