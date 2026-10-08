@@ -17,12 +17,17 @@ const statements = [
   ['Female Vietnamese voice prioritized when available', engine.includes("hoai.?my") && engine.includes("rankVoice(b) - rankVoice(a)")],
   ['Voice picker and preview are wired', read('src/components/SoundControls.tsx').includes("previewVietnameseVoice()") && read('src/components/SoundControls.tsx').includes("getVietnameseVoices()")],
   ['Chosen voice is saved across sessions', prefs.includes("voiceId: 'auto'") && prefs.includes("localStorage.setItem(STORAGE_KEY")],
-  ['Bundled Piper voice prioritized on devices with no native Vietnamese voice', engine.includes("PIPER_VOICE_READY") && engine.includes("if (PIPER_VOICE_READY) return 'vi-piper'") && engine.includes("playRecordedPraise")],
-  ['Voice selector can preview bundled MP3', read('src/components/SoundControls.tsx').includes("Giọng nữ VAIS1000") && read('src/components/SoundControls.tsx').includes("!PIPER_VOICE_READY && voices.length===0")],
+  ['Bundled female southern voice preferred regardless of native device voices', engine.includes("SOUTHERN_VOICE_READY") && engine.includes("if (SOUTHERN_VOICE_READY) return 'vi-south'") && engine.includes("playRecordedPraise")],
+  ['Voice selector can preview southern MP3', read('src/components/SoundControls.tsx').includes("Cô Yến Nhi") && read('src/components/SoundControls.tsx').includes("!SOUTHERN_VOICE_READY && voices.length===0")],
+  ['Offline southern voice generator uses speaker 4', read('scripts/generate-piper-voice.py').includes("speaker_id=4") && read('scripts/generate-piper-voice.py').includes('"vi-south"')],
   ['Voice flag matches presence of all eight local MP3s', (() => {
-    const installed = voice.includes('CENTRAL_VOICE_READY = true');
-    const clips = Array.from({length:8},(_,i)=>`public/audio/vi-central/praise-${String(i+1).padStart(2,'0')}.mp3`);
-    return !installed || clips.every(f=>fs.existsSync(f) && fs.statSync(f).size>1500);
+    const central = voice.includes('CENTRAL_VOICE_READY = true');
+    const centralClips = Array.from({length:8},(_,i)=>`public/audio/vi-central/praise-${String(i+1).padStart(2,'0')}.mp3`);
+    const centralOK = !central || centralClips.every(f=>fs.existsSync(f) && fs.statSync(f).size>1500);
+    const southernBuild = process.env.VITE_SOUTHERN_VOICE_READY === 'true';
+    const southClips = Array.from({length:8},(_,i)=>`public/audio/vi-south/praise-${String(i+1).padStart(2,'0')}.mp3`);
+    const southOK = !southernBuild || southClips.every(f=>fs.existsSync(f) && fs.statSync(f).size>1500);
+    return centralOK && southOK;
   })()]
 ];
 for (const [name,passed] of statements) {

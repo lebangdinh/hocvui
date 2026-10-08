@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Generate 8 short Vietnamese praise clips with the independently hosted Piper voice.
+"""Generate 8 gentle praise clips with Piper speaker 4, Yến Nhi, female South Vietnamese.
 
 Runtime: GitHub Actions Ubuntu + piper-tts + ffmpeg. The ONNX model is downloaded
 only for the build and is never shipped to a child's browser.
-Model and dataset credits: https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/vi/vi_VN/vais1000/medium
-Dataset license: Creative Commons Attribution 4.0 (see docs/voice-attribution.md).
+Model and licensing: https://huggingface.co/CakeByVPBank/piper-pgl-v4-vi_VN-version39_epoch39
+Model license: MIT; speech generated with the explicit femalesouth-01 speaker (ID 4).
 """
 from __future__ import annotations
 import subprocess
@@ -27,17 +27,20 @@ PHRASES = (
     "Con tiến bộ rồi!",
 )
 ROOT = Path(__file__).resolve().parent.parent
-MODEL = ROOT / ".cache" / "piper-vietnamese" / "vi_VN-vais1000-medium.onnx"
-OUT = ROOT / "public" / "audio" / "vi-piper"
+MODEL = ROOT / ".cache" / "piper-vietnamese" / "vi_VN-csa-voice-piper-v3-medium.onnx"
+OUT = ROOT / "public" / "audio" / "vi-south"
 
 def main() -> None:
-    if not MODEL.is_file() or MODEL.stat().st_size < 60_000_000:
-        raise RuntimeError("Missing/invalid Piper VAIS1000 model. The workflow must download the verified ONNX first.")
+    if not MODEL.is_file() or MODEL.stat().st_size < 70_000_000:
+        raise RuntimeError("Missing/invalid Piper southern multi-speaker model.")
     if not MODEL.with_suffix(".onnx.json").is_file():
         raise RuntimeError("Missing Piper model configuration JSON")
     OUT.mkdir(parents=True, exist_ok=True)
     voice = PiperVoice.load(MODEL)
-    config = SynthesisConfig(length_scale=1.09, noise_scale=0.55, noise_w_scale=0.75, volume=0.9)
+    if voice.config.num_speakers != 5:
+        raise RuntimeError(f"Expected five speakers, got {voice.config.num_speakers}")
+    # 4 is Yến Nhi (femalesouth-01), not default speaker 0 (female North).
+    config = SynthesisConfig(speaker_id=4, length_scale=1.06, noise_scale=0.62, noise_w_scale=0.8, volume=0.85)
     with tempfile.TemporaryDirectory(prefix="hocvui-piper-") as temp_dir:
         for number, phrase in enumerate(PHRASES, 1):
             wav_path = Path(temp_dir) / f"{number:02d}.wav"
@@ -62,10 +65,10 @@ def main() -> None:
                 raise RuntimeError(f"Not an MP3 file: {mp3_path.name}")
             print(f"PASS: generated {mp3_path.name} ({mp3_path.stat().st_size} bytes)", flush=True)
     (OUT / "ATTRIBUTION.txt").write_text(
-        "Voice: Piper vi_VN-vais1000-medium (Vietnamese, one speaker).\n"
-        "Model source: https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/vi/vi_VN/vais1000/medium\n"
-        "Dataset: VAIS-1000 Vietnamese Speech Synthesis Corpus.\n"
-        "Dataset license: CC BY 4.0 https://creativecommons.org/licenses/by/4.0/\n"
+        "Voice: Yến Nhi (femalesouth-01, speaker ID 4), South Vietnamese female.\n"
+        "Model source: https://huggingface.co/CakeByVPBank/piper-pgl-v4-vi_VN-version39_epoch39\n"
+        "Model: Piper v3 five-speaker Vietnamese ONNX, generated synthetic training utterances.\n"
+        "Model license: MIT https://opensource.org/licenses/MIT\n"
         "Clips generated for Học Vui. Speech rate and loudness adjusted; source audio not redistributed.\n",
         encoding="utf-8",
     )
