@@ -204,156 +204,98 @@ const patterns = [
 ];
 
 // --- Simple Puzzle Game ---
-const PuzzleGame = ({ theme }: { theme: Theme }) => {
-  const [tiles, setTiles] = useState<number[]>([1, 2, 3, 4, 5, 6, 7, 8, 0]);
-  const [moves, setMoves] = useState(0);
-  const [isWon, setIsWon] = useState(false);
+// Easy, no-fail replacement for the sliding puzzle. Tap 12 friendly stars.
+const StarCatchGame = ({ theme }: { theme: Theme }) => {
+  const GOAL = 12;
   const [started, setStarted] = useState(false);
-
+  const [caught, setCaught] = useState(0);
+  const [starPosition, setStarPosition] = useState({ x: 50, y: 50 });
+  const [combo, setCombo] = useState(0);
   const { addPoints, awardBadge } = useAuth();
-  const tileStyles = [
-    ['#ffb25e','#ef6b3b'], ['#7de5da','#1e9eb2'], ['#d5a8ff','#8b65d9'],
-    ['#9fe993','#4fab75'], ['#ffc5d3','#e56896'], ['#91befb','#537fe2'],
-    ['#ffe68a','#e8a94a'], ['#9de6f3','#53adbf']
-  ] as const;
+  const awarded = React.useRef(false);
 
+  const nextPosition = React.useCallback(() => {
+    // Keep a large target entirely inside the board. No timers or penalties.
+    setStarPosition({ x: 16 + Math.random() * 68, y: 19 + Math.random() * 60 });
+  }, []);
 
-  useEffect(() => {
-    if (started) {
-      shuffle();
-    }
-  }, [started]);
-
-  useEffect(() => {
-    if (isWon) {
-      addPoints(50);
-      awardBadge('puzzle_master');
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#6366f1', '#f59e0b', '#22c55e']
-      });
-    }
-  }, [isWon]);
-
-  // Generate only solvable puzzles by walking from the completed board.
-  const shuffle = () => {
-    const board = [1, 2, 3, 4, 5, 6, 7, 8, 0];
-    let previousBlank = -1;
-    for (let step = 0; step < 80; step++) {
-      const blank = board.indexOf(0);
-      const row = Math.floor(blank / 3);
-      const col = blank % 3;
-      const neighbors = [
-        ...(row > 0 ? [blank - 3] : []),
-        ...(row < 2 ? [blank + 3] : []),
-        ...(col > 0 ? [blank - 1] : []),
-        ...(col < 2 ? [blank + 1] : [])
-      ].filter(index => index !== previousBlank);
-      const next = neighbors[Math.floor(Math.random() * neighbors.length)];
-      [board[blank], board[next]] = [board[next], board[blank]];
-      previousBlank = blank;
-    }
-    setTiles(board);
-    setMoves(0);
-    setIsWon(false);
+  const restart = () => {
+    awarded.current = false;
+    setCaught(0);
+    setCombo(0);
+    setStarted(true);
+    nextPosition();
   };
 
-  const moveTile = (index: number) => {
-    if (isWon) return;
-    const emptyIndex = tiles.indexOf(0);
-    const row = Math.floor(index / 3);
-    const col = index % 3;
-    const emptyRow = Math.floor(emptyIndex / 3);
-    const emptyCol = emptyIndex % 3;
+  useEffect(() => {
+    if (caught !== GOAL || awarded.current) return;
+    awarded.current = true;
+    void addPoints(30).catch(error => console.warn('Unable to award star points:', error));
+    void awardBadge('puzzle_master').catch(error => console.warn('Unable to award star badge:', error));
+    confetti({ particleCount: 85, spread: 85, origin: { y: .65 },
+      colors: ['#ffcd56', '#fd83ae', '#74d5f6', '#93e7b5'] });
+  }, [caught, addPoints, awardBadge]);
 
-    const isAdjacent = (Math.abs(row - emptyRow) === 1 && col === emptyCol) ||
-                      (Math.abs(col - emptyCol) === 1 && row === emptyRow);
-
-    if (isAdjacent) {
-      const newTiles = [...tiles];
-      [newTiles[index], newTiles[emptyIndex]] = [newTiles[emptyIndex], newTiles[index]];
-      setTiles(newTiles);
-      setMoves(m => m + 1);
-      playSound('move');
-      
-      if (newTiles.every((t, i) => t === (i + 1) % 9)) {
-        setIsWon(true);
-        playSound('finish');
-      }
-    }
+  const collectStar = () => {
+    if (!started || caught >= GOAL) return;
+    playSound('correct');
+    setCaught(value => Math.min(GOAL, value + 1));
+    setCombo(value => value + 1);
+    nextPosition();
   };
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="mx-auto flex w-full max-w-[580px] flex-col items-center gap-5 py-2">
       {!started ? (
-        <div className="flex flex-col items-center gap-6 py-12">
-          <div className={`w-24 h-24 bg-${theme.accentColor}-100 rounded-full flex items-center justify-center text-${theme.accentColor}-500`}>
-            <Puzzle size={48} />
+        <div className="flex flex-col items-center gap-5 py-8 text-center">
+          <div className="flex h-28 w-28 items-center justify-center rounded-[36px] bg-gradient-to-br from-yellow-200 to-orange-400 shadow-[0_12px_28px_rgba(238,158,53,.26)]">
+            <Star size={66} fill="#fff9c7" stroke="#fff" strokeWidth={2.5}/>
           </div>
-          <div className="text-center">
-            <h3 className={`text-2xl font-black ${theme.textColor}`}>Xếp hình trí tuệ</h3>
-            <p className={`${theme.secondaryTextColor} mt-1`}>Xếp những mảnh màu sắc từ 1 đến 8. Mỗi bước đưa bé tới chiến thắng!</p>
-          </div>
-          <button 
-            onClick={() => setStarted(true)}
-            className={`bg-${theme.accentColor}-500 text-white px-8 py-3 rounded-2xl font-bold text-lg shadow-lg hover:opacity-90 transition-all`}
-          >
-            Bắt đầu chơi
-          </button>
+          <h3 className={`text-3xl font-black ${theme.textColor}`}>Bắt Sao Vui Nhộn</h3>
+          <p className="max-w-sm text-center text-sm font-medium text-slate-500">Chạm vào 12 ngôi sao lấp lánh. Không giới hạn thời gian, không bị thua. Dành cho cả bé lớp 1!</p>
+          <button type="button" onClick={restart} className="rounded-full bg-orange-500 px-9 py-4 text-lg font-black text-white shadow-lg hover:bg-orange-600">🌟 Bắt đầu nào!</button>
         </div>
       ) : (
         <>
-          <div className="flex w-full max-w-[365px] items-center justify-between rounded-2xl border border-amber-100 bg-gradient-to-r from-amber-50 to-sky-50 px-4 py-3">
-            <span className="text-sm font-black text-slate-700">🧩 Số bước <span className="text-orange-600">{moves}</span></span>
-            <span className="text-xs font-extrabold text-emerald-700">✓ {tiles.filter((n, i) => n > 0 && n === i + 1).length}/8</span>
-            <button onClick={shuffle} className="rounded-full bg-white px-3 py-1.5 text-xs font-extrabold text-blue-600 shadow-sm hover:bg-blue-50">Trộn lại ↻</button>
+          <div className="flex w-full items-center justify-between rounded-2xl bg-amber-50 px-4 py-3">
+            <span className="text-lg font-black text-amber-700">⭐ {caught} / {GOAL}</span>
+            <span className="text-sm font-bold text-orange-500">{caught === GOAL ? 'Hoàn thành rồi!' : 'Chạm vào sao nhé!'}</span>
+            <button type="button" onClick={restart} className="rounded-full bg-white px-3 py-2 text-xs font-black text-amber-700 shadow">Chơi lại</button>
           </div>
-          
-          <div className="w-full max-w-[365px] rounded-[32px] border-[7px] border-orange-100 bg-gradient-to-br from-orange-50 via-amber-50 to-violet-100 p-3 shadow-[inset_0_5px_12px_rgba(82,58,110,.10),0_18px_40px_rgba(233,154,76,.20)]">
-            <div className="grid grid-cols-3 gap-2.5">
-            {tiles.map((tile, i) => {
-              const correct = tile !== 0 && tile === i + 1;
-              const [light, dark] = tile ? tileStyles[tile - 1] : ['#e5d8c6', '#ddd0c0'];
-              const blank = tile === 0;
-              return (
-                <motion.button
-                  key={i}
-                  type="button"
-                  aria-label={blank ? 'Ô trống' : `Ô số ${tile}`}
-                  disabled={blank || isWon}
-                  whileHover={!blank ? { scale: 1.06, y: -3 } : {}}
-                  whileTap={!blank ? { scale: .95, y: 2 } : {}}
-                  onClick={() => moveTile(i)}
-                  className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-[21px] border-2 transition-shadow focus-visible:outline focus-visible:outline-[4px] focus-visible:outline-offset-1 focus-visible:outline-blue-500 ${blank ? 'border-white/30 bg-stone-200/50 shadow-inner' : 'border-white/90 shadow-[0_6px_0_rgba(44,35,73,.18)]'}`}
-                  style={blank ? undefined : { background: `linear-gradient(155deg, ${light}, ${dark})` }}
-                >
-                  {!blank && <>
-                    <span className="absolute left-2 top-2 h-3 w-10 rotate-[-24deg] rounded-full bg-white/35 blur-[1px]" />
-                    <span className="absolute inset-x-[15%] bottom-0 h-4 rounded-full bg-white/10" />
-                    <span className="relative text-[34px] font-black text-white drop-shadow-[0_3px_0_rgba(32,36,64,.3)] sm:text-[44px]">{tile}</span>
-                    {correct && <span className="absolute right-1.5 top-1.5 rounded-full bg-emerald-500 px-1.5 py-0.5 text-[10px] font-black text-white shadow-sm">✓</span>}
-                  </>}
-                </motion.button>
-              );
-            })}
+          <div className="relative w-full overflow-hidden rounded-[32px] border-[5px] border-white bg-gradient-to-b from-sky-300 via-indigo-200 to-pink-200 shadow-[0_18px_45px_rgba(76,88,150,.19)]" style={{aspectRatio: '1 / .85'}}>
+            <div aria-hidden="true" className="absolute inset-0">
+              {[...Array(18)].map((_, i) => (
+                <span key={i} className="absolute rounded-full bg-white/65"
+                  style={{ left:`${(i * 37) % 95}%`, top:`${(i * 53) % 86}%`, height:i%4===0?7:4, width:i%4===0?7:4 }}/>
+              ))}
+              <div className="absolute -bottom-20 -left-12 h-48 w-72 rounded-full bg-violet-400/30 blur-2xl"/>
+              <div className="absolute -bottom-12 -right-10 h-40 w-64 rounded-full bg-pink-400/35 blur-xl"/>
             </div>
-          </div>
-
-          {isWon && (
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-center">
-              <Trophy className="text-yellow-500 mx-auto mb-2" size={48} />
-              <h3 className="text-2xl font-black text-green-600">Tuyệt vời!</h3>
-              <p className="text-gray-500">Bé đã hoàn thành trong {moves} bước.</p>
-              <button 
-                onClick={shuffle}
-                className={`mt-4 bg-${theme.accentColor}-500 text-white px-6 py-2 rounded-xl font-bold`}
+            {caught < GOAL ? (
+              <motion.button
+                key={combo}
+                type="button"
+                aria-label="Bắt ngôi sao"
+                initial={{ scale: .3, opacity: 0, rotate: -45 }}
+                animate={{ scale: [1, 1.08, 1], opacity: 1, rotate: [0, 8, 0] }}
+                transition={{ duration: .55 }}
+                whileTap={{ scale: .77 }}
+                onClick={collectStar}
+                className="absolute flex h-[78px] w-[78px] -translate-x-1/2 -translate-y-1/2 touch-manipulation items-center justify-center rounded-full bg-white/20 shadow-[0_0_28px_rgba(255,240,152,.85)] outline-offset-4 focus-visible:outline-4 focus-visible:outline-orange-500 sm:h-[94px] sm:w-[94px]"
+                style={{left: `${starPosition.x}%`, top: `${starPosition.y}%`}}
               >
-                Chơi lại
-              </button>
-            </motion.div>
-          )}
+                <Star size={70} fill="#ffe56d" stroke="#ffffff" strokeWidth={2.5} className="drop-shadow-[0_5px_6px_rgba(241,148,40,.45)]"/>
+              </motion.button>
+            ) : (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/30 px-5 text-center backdrop-blur-sm">
+                <div className="text-7xl">🏆</div>
+                <h4 className="mt-2 text-3xl font-black text-indigo-800">Bé giỏi quá!</h4>
+                <p className="mt-2 font-bold text-indigo-700">Bắt đủ 12 ngôi sao và được thưởng 30 điểm!</p>
+                <button type="button" onClick={restart} className="mt-5 rounded-full bg-orange-500 px-8 py-3 font-black text-white shadow-lg">Chơi thêm nhé! ⭐</button>
+              </div>
+            )}
+          </div>
+          <p className="text-center text-xs font-medium text-slate-500">Bé chỉ cần chạm vào sao hoặc dùng chuột nhấn vào sao.</p>
         </>
       )}
     </div>
@@ -1486,13 +1428,13 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
             className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6"
           >
             <GameCard 
-              title="Xếp Hình Trí Tuệ"
-              description="Di chuyển những mảnh ghép, chinh phục bàn số 1–8."
+              title="Bắt Sao Vui Nhộn"
+              description="Chạm vào những ngôi sao lấp lánh, chơi vui không sợ thua!"
               icon={<Puzzle size={21} strokeWidth={2.6} />}
               color="orange"
               onClick={() => setSelectedGame('puzzle')}
               game="puzzle"
-              tag="Huy hiệu trí tuệ"
+              tag="Dễ chơi · Lớp 1–5"
               theme={currentTheme}
             />
             <GameCard 
@@ -1575,13 +1517,13 @@ export const GameModule: React.FC<{ initialGame?: GameType, onClose?: () => void
                 <div className="absolute inset-y-0 left-5 flex flex-col justify-center sm:left-7">
                   <span className="text-[10px] font-extrabold uppercase tracking-[0.19em] text-white/85">✨ Sẵn sàng thử sức?</span>
                   <span className="mt-1 text-xl font-black text-white drop-shadow-md sm:text-2xl">
-                    {{ puzzle: 'Xếp Hình Trí Tuệ', chicken: 'Bắn Gà Vui Nhộn', airplane: 'Phi Đội Gà Bay', racing: 'Đua Xe Tốc Độ', tank: 'Robot Vệ Binh', memory: 'Thử Thách Trí Nhớ' }[selectedGame]}
+                    {{ puzzle: 'Bắt Sao Vui Nhộn', chicken: 'Bắn Gà Vui Nhộn', airplane: 'Phi Đội Gà Bay', racing: 'Đua Xe Tốc Độ', tank: 'Robot Vệ Binh', memory: 'Thử Thách Trí Nhớ' }[selectedGame]}
                   </span>
                 </div>
               </div>
             )}
 
-            {selectedGame === 'puzzle' && <PuzzleGame theme={currentTheme} />}
+            {selectedGame === 'puzzle' && <StarCatchGame theme={currentTheme} />}
             {(selectedGame === 'chicken' || selectedGame === 'airplane' || selectedGame === 'tank') && (
               <ShooterGame type={selectedGame as 'chicken' | 'airplane' | 'tank'} theme={currentTheme} />
             )}
