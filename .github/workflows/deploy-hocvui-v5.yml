@@ -39,9 +39,8 @@ jobs:
           python-version: '3.11'
       - name: Install offline Vietnamese speech synthesizer
         run: |
-          python -m pip install --disable-pip-version-check "piper-tts==1.8.0"
-          command -v ffmpeg
-          command -v ffprobe
+          python -m pip install --disable-pip-version-check "piper-tts==1.8.0" "imageio-ffmpeg==0.6.0"
+          python -c "from imageio_ffmpeg import get_ffmpeg_exe; print('FFmpeg:', get_ffmpeg_exe())"
       - name: Download verified Piper Vietnamese voice
         shell: bash
         run: |
