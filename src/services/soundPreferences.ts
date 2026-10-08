@@ -11,24 +11,30 @@ export type SoundPreferences = {
   voiceId: string;
 };
 
-const STORAGE_KEY = 'hocvui.sound.v2';
+// v3 is a safety reset: previous versions enabled an unpleasant synthetic
+// voice by default. Retain music/effect preferences, but never auto-play speech.
+const STORAGE_KEY = 'hocvui.sound.v3';
+const LEGACY_KEY = 'hocvui.sound.v2';
 const defaults: SoundPreferences = {
   music: false,
   musicVolume: 0.08,
   effects: true,
   effectsVolume: 0.08,
-  praise: true,
+  praise: false,
   praiseVolume: 0.3,
   explanation: false,
-  voiceId: 'auto'
+  voiceId: 'silent'
 };
 
 function initialPrefs(): SoundPreferences {
   if (typeof window === 'undefined') return defaults;
   try {
-    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const stored = JSON.parse(saved || localStorage.getItem(LEGACY_KEY) || '{}');
     const combined = { ...defaults };
     for (const key of Object.keys(defaults) as (keyof SoundPreferences)[]) {
+      // Legacy sound settings are not allowed to silently enable voices again.
+      if (!saved && (key === 'voiceId' || key === 'praise' || key === 'explanation')) continue;
       const value = stored[key];
       if (typeof value !== typeof defaults[key]) continue;
       if (typeof value === 'number' && (!Number.isFinite(value) || value < 0 || value > 1)) continue;
