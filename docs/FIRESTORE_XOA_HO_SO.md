@@ -1,31 +1,19 @@
-# Sửa chức năng xóa hồ sơ học sinh – Học Vui
+# Học Vui – Xóa hồ sơ theo Thùng rác 30 ngày
 
-## Tại sao bấm OK vẫn không xóa được?
+**Tài liệu này thay thế hướng dẫn xóa ngay lập tức trước đó.** Hồ sơ khi bấm Xóa ở trang chọn bé hoặc Cài đặt **không bị xóa vĩnh viễn**, mà chuyển vào Thùng rác và có thể khôi phục trong 30 ngày (gồm toàn bộ điểm, huy hiệu, lịch sử học tập).
 
-Website trước đây gọi Firebase Cloud Function `deleteChildProfile`, nhưng máy chủ Cloud Functions chưa được triển khai. Bộ `firestore.rules` cũ lại `allow delete: if false` đối với hồ sơ, nên người dùng không thể xóa trực tiếp. Giao diện chọn học sinh cũng không bắt lỗi từ lệnh xóa.
+Xem hướng dẫn chính thức: [THUNG_RAC_30_NGAY.md](THUNG_RAC_30_NGAY.md).
 
-## Bản sửa
+## Cần xuất bản Cloud Firestore Rules một lần
 
-- Chỉ tài khoản Google của **phụ huynh sở hữu hồ sơ** mới có quyền xóa hồ sơ đó. Không có quyền xóa hồ sơ của tài khoản khác.
-- Ứng dụng đọc toàn bộ `activities` của tài khoản hiện tại từ máy chủ, lọc `profileId` đúng với bé, rồi xóa lịch sử của bé cùng hồ sơ bằng **một Firestore atomic batch**.
-- Tối đa 400 bản ghi lịch sử trong một batch. Nếu vượt ngưỡng, ứng dụng dừng trước khi xóa bất cứ dữ liệu nào và yêu cầu hỗ trợ bằng máy chủ.
-- Sau khi máy chủ chấp nhận batch, ứng dụng xác nhận hồ sơ đã biến mất khỏi Firestore; nếu chưa chắc chắn, giao diện hiển thị trạng thái cần kiểm tra lại.
-- Từ màn hình chọn học sinh hoặc Cài đặt: có trạng thái Đang xóa, chống bấm lặp và thông báo lỗi rõ ràng. Không tự ẩn hồ sơ nếu Firebase chưa cho phép xóa.
+1. Mở https://console.firebase.google.com/project/hoc-vui-tieu-hoc-2026/firestore/databases/-default-/rules.
+2. Chọn đúng dự án `hoc-vui-tieu-hoc-2026`, database `(default)`, dịch vụ **Cloud Firestore**.
+3. Dán toàn bộ https://raw.githubusercontent.com/lebangdinh/hocvui/main/firestore.rules thay cho Rules cũ, chọn **Publier / Publish**.
+4. Đợi khoảng một phút, tải lại Học Vui bằng **Ctrl + Shift + R**.
+5. Thử quy trình Chuyển vào Thùng rác → Khôi phục trước bằng **hồ sơ thử**, không thử với dữ liệu thật chưa sao lưu.
 
-## BẮT BUỘC: Xuất bản Firestore Rules mới
+Nếu Rules mới chưa được xuất bản, Firebase có thể từ chối cả chuyển vào Thùng rác lẫn khôi phục. Không được thay bằng `allow read, write: if true`.
 
-GitHub Pages không thể tự triển khai Firestore Rules. Thao tác này cần quyền quản lý Firebase của chủ dự án.
+## Giới hạn miễn phí
 
-1. Truy cập [Firebase Console – Firestore Rules](https://console.firebase.google.com/project/hoc-vui-tieu-hoc-2026/firestore/databases/-default-/rules).
-2. Kiểm tra dự án đang chọn là **`hoc-vui-tieu-hoc-2026`**, dịch vụ **Cloud Firestore**, database **`(default)`**, tab **Rules / Règles**. Không dán ở Realtime Database.
-3. Mở [firestore.rules – Học Vui](https://raw.githubusercontent.com/lebangdinh/hocvui/main/firestore.rules), sao chép **toàn bộ nội dung**, thay nội dung Rules hiện tại và bấm **Publish / Publier**.
-4. Đợi khoảng 1 phút, mở lại [Học Vui](https://lebangdinh.github.io/hocvui/), nhấn **Ctrl + Shift + R**. Chỉ bấm xóa nếu thật sự muốn xóa vĩnh viễn bé đó và lịch sử học tập.
-5. Sau khi xác nhận xóa, hồ sơ biến mất khỏi danh sách. Kiểm tra Firestore Data nếu cần: `users/{uid}/profiles/{profileId}` và các `activities` có `profileId` tương ứng.
-
-**Bảo mật:** Không thay rules bằng `allow read, write: if true`, không cho xóa toàn bộ bảng, không yêu cầu API key Gemini, không yêu cầu Blaze. Mã rules giữ quyền truy cập giới hạn đúng chủ hồ sơ, không mở dữ liệu riêng tư của bé khác.
-
-Nếu Rules mới chưa Publish hoặc chưa được áp dụng, giao diện sẽ báo lỗi rõ và batch bị từ chối nguyên vẹn. Không thể coi việc cập nhật GitHub là đã triển khai xong Firebase Rules.
-
-## Lưu ý
-
-Chức năng **Xóa toàn bộ tài khoản Google** vẫn phụ thuộc backend `deleteMyAccount` chưa triển khai và sẽ được báo chưa hoạt động, không nói xóa thành công. Để xoá khối lượng dữ liệu lớn vượt 400 hoạt động cần backend an toàn.
+Việc dọn vật lý hồ sơ quá 30 ngày hiện diễn ra khi có phụ huynh mở ứng dụng; nếu không ai mở, dữ liệu thực tế có thể được giữ lâu hơn. Hết hạn vẫn không thể khôi phục. Muốn tự xóa đúng lịch ngay cả lúc website đóng cần tác vụ máy chủ riêng.

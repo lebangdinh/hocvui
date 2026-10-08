@@ -2,9 +2,9 @@ import { collection, doc, getDocFromServer, getDocsFromServer, query, where, wri
 import { auth, db } from '../firebase';
 
 /**
- * A single Firestore batch provides all-or-nothing deletion for a child
- * profile and its activity history. No backend or API key required.
- * Firestore rules must explicitly allow deletion of the owner's profile.
+ * Permanent deletion of a child ALREADY IN TRASH. A single Firestore batch
+ * deletes its history and profile atomically, preventing orphaned activities.
+ * Normal profile removal uses moveProfileToTrash, never this operation.
  */
 const MAX_ACTIVITIES_PER_BATCH = 400;
 
@@ -18,6 +18,9 @@ export async function removeProfileWithHistory(profileId: string): Promise<void>
   if (!profileSnap.exists()) throw new Error('Hồ sơ này đã được xóa hoặc không còn tồn tại.');
   if (profileSnap.data()?.uid !== user.uid || profileSnap.data()?.id !== profileId) {
     throw new Error('Bạn không có quyền xóa hồ sơ của tài khoản khác.');
+  }
+  if (!profileSnap.data()?.deletedAt || !profileSnap.data()?.deleteAfter) {
+    throw new Error('Chỉ xóa vĩnh viễn hồ sơ đã chuyển vào Thùng rác.');
   }
 
   // Query only the signed-in parent's history; Firestore rules prevent access
@@ -50,9 +53,11 @@ export function describeProfileDeletionError(error: unknown): string {
   const msg = error instanceof Error ? error.message : '';
 
   if (code.includes('permission-denied') || /permission.denied|insufficient permissions/i.test(msg)) {
-    return 'Firebase chưa cho phép xóa hồ sơ. Cần xuất bản Firestore Rules mới của Học Vui trước khi thử lại. Chưa có dữ liệu nào bị xóa.';
+    return 'Firebase chưa cho phép thao tác với Thùng rác. Anh cần xuất bản Firestore Rules mới của Học Vui. Không có dữ liệu nào bị xóa bởi thao tác bị từ chối.';
   }
   if (msg.includes('quá nhiều lượt học')) return msg;
+  if (msg.includes('hết thời hạn') || msg.includes('30 ngày') || msg.includes('đã được khôi phục')) return msg;
+  if (msg.includes('Firebase chưa xác nhận') || msg.includes('Hồ sơ đã nằm')) return msg;
   if (msg.includes('đã được xóa') || msg.includes('không còn tồn tại')) return msg;
   if (msg.includes('Máy chủ chưa xác nhận')) return msg;
   if (code.includes('unavailable') || code.includes('deadline-exceeded') || code.includes('network')) {

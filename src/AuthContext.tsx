@@ -4,19 +4,23 @@ import { doc, getDoc, setDoc, onSnapshot, collection, query, where, addDoc, dele
 import { auth, db, handleFirestoreError, OperationType, logout } from './firebase';
 import { UserProfile } from './types';
 import { eraseAccountServer } from './services/accountDeletion';
-import { removeProfileWithHistory } from './services/profileDeletion';
+import { moveProfileToTrash, restoreProfileFromTrash, purgeTrashedProfile, purgeExpiredTrashForSignedInParent, isTrashed } from './services/profileTrash';
 
 interface AuthContextType {
   user: FirebaseUser | null;
   role: 'parent' | 'reviewer' | 'admin';
   profile: UserProfile | null;
   profiles: UserProfile[];
+  trashProfiles: UserProfile[];
+  trashError: string | null;
   profilesError: string | null;
   loading: boolean;
   isAuthReady: boolean;
   selectProfile: (profile: UserProfile | null) => void;
   addProfile: (name: string, grade: number) => Promise<void>;
   deleteProfile: (profileId: string) => Promise<void>;
+  restoreProfile: (profileId: string) => Promise<void>;
+  purgeProfile: (profileId: string) => Promise<void>;
   deleteAccount: () => Promise<void>;
   setFavoriteBadge: (badgeId: string | null) => Promise<void>;
   addPoints: (points: number) => Promise<void>;
@@ -29,12 +33,16 @@ const AuthContext = createContext<AuthContextType>({
   role: 'parent',
   profile: null,
   profiles: [],
+  trashProfiles: [],
+  trashError: null,
   profilesError: null,
   loading: true,
   isAuthReady: false,
   selectProfile: () => {},
   addProfile: async () => {},
   deleteProfile: async () => {},
+  restoreProfile: async () => {},
+  purgeProfile: async () => {},
   deleteAccount: async () => {},
   setFavoriteBadge: async () => {},
   addPoints: async () => {},
@@ -47,19 +55,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
+  const [trashProfiles, setTrashProfiles] = useState<UserProfile[]>([]);
+  const [trashError, setTrashError] = useState<string | null>(null);
   const [profilesError, setProfilesError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuthReady, setIsAuthReady] = useState(false);
 
   useEffect(() => {
     let unsubscribeProfiles: (() => void) | null = null;
+    let trashCleanupTimer: ReturnType<typeof setInterval> | null = null;
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      let cleanupRequested = false;
+      if (trashCleanupTimer) { clearInterval(trashCleanupTimer); trashCleanupTimer = null; }
       if (unsubscribeProfiles) { unsubscribeProfiles(); unsubscribeProfiles = null; }
       setUser(firebaseUser);
       setProfilesError(null);
       setIsAuthReady(true);
       
       if (firebaseUser) {
+        // If the tab stays open for a long time, recheck expiry hourly.
+        trashCleanupTimer = setInterval(() => {
+          if (auth.currentUser?.uid !== firebaseUser.uid) return;
+          void purgeExpiredTrashForSignedInParent()
+            .then(() => setTrashError(null))
+            .catch(error => setTrashError(error instanceof Error ? error.message : 'Chưa dọn được Thùng rác quá hạn.'));
+        }, 60 * 60 * 1000);
         try {
           const token = await firebaseUser.getIdTokenResult();
           setRole(token.claims.role === 'admin' ? 'admin' : token.claims.role === 'reviewer' ? 'reviewer' : 'parent');
@@ -71,8 +91,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Listen to all profiles
         unsubscribeProfiles = onSnapshot(profilesRef, (snapshot) => {
           setProfilesError(null);
-          const profilesData = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as UserProfile));
+          const allProfiles = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as UserProfile));
+          const profilesData = allProfiles.filter(p => !isTrashed(p));
           setProfiles(profilesData);
+          setTrashProfiles(allProfiles.filter(p => isTrashed(p)));
+          if (!cleanupRequested && !snapshot.metadata.fromCache) {
+            cleanupRequested = true;
+            void purgeExpiredTrashForSignedInParent()
+              .then(() => setTrashError(null))
+              .catch(error => setTrashError(error instanceof Error ? error.message : 'Chưa dọn được Thùng rác quá hạn.'));
+          }
           
           // If current profile is not in the list anymore, reset it
           setProfile(prev => {
@@ -93,11 +121,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setRole('parent');
         setProfile(null);
         setProfiles([]);
+        setTrashProfiles([]);
+        setTrashError(null);
         setLoading(false);
       }
     });
 
-    return () => { unsubscribe(); if (unsubscribeProfiles) unsubscribeProfiles(); };
+    return () => {
+      unsubscribe();
+      if (unsubscribeProfiles) unsubscribeProfiles();
+      if (trashCleanupTimer) clearInterval(trashCleanupTimer);
+    };
   }, []);
 
   const selectProfile = (p: UserProfile | null) => {
@@ -133,10 +167,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const deleteProfile = async (profileId: string) => {
     if (!user) throw new Error('Bạn cần đăng nhập trước khi xóa hồ sơ.');
-    // Only clear the selected child AFTER all data is deleted and the server
-    // has confirmed it. Failures propagate to the visible error UI.
-    await removeProfileWithHistory(profileId);
+    await moveProfileToTrash(profileId);
     if (profile?.id === profileId) selectProfile(null);
+  };
+
+  const restoreProfile = async (profileId: string) => {
+    if (!user) throw new Error('Vui lòng đăng nhập.');
+    await restoreProfileFromTrash(profileId);
+  };
+
+  const purgeProfile = async (profileId: string) => {
+    if (!user) throw new Error('Vui lòng đăng nhập.');
+    await purgeTrashedProfile(profileId);
   };
 
   const deleteAccount = async () => {
@@ -197,12 +239,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       role,
       profile, 
       profiles, 
+      trashProfiles,
+      trashError,
       profilesError,
       loading, 
       isAuthReady, 
       selectProfile, 
       addProfile, 
       deleteProfile,
+      restoreProfile,
+      purgeProfile,
       deleteAccount,
       setFavoriteBadge,
       addPoints,

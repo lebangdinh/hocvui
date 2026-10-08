@@ -23,13 +23,36 @@ service cloud.firestore {
         allow read: if owner(uid) || isAdmin();
         allow create: if owner(uid) && goodProfile(request.resource.data, uid, profileId)
           && request.resource.data.keys().hasOnly(['id','uid','displayName','email','grade','totalPoints','level','createdAt','badges','favoriteBadge','subjectPoints']);
+        // Profiles normally have no trash fields. A parent can add them
+        // together to archive, or remove them together to restore within 30d.
+        // Other profile attributes (points, badges, class, etc.) are frozen
+        // while in Trash.
         allow update: if owner(uid) && goodProfile(request.resource.data, uid, profileId)
           && request.resource.data.uid == resource.data.uid && request.resource.data.id == resource.data.id
-          && request.resource.data.keys().hasOnly(['id','uid','displayName','email','grade','totalPoints','level','createdAt','badges','favoriteBadge','subjectPoints']);
-        // Only a parent may delete their own child's profile. The web app
-        // deletes this document together with the child's activities in one
-        // atomic batch. Other user profiles remain protected by owner(uid).
-        allow delete: if owner(uid) && resource.data.uid == uid && resource.data.id == profileId;
+          && request.resource.data.keys().hasOnly(['id','uid','displayName','email','grade','totalPoints','level','createdAt','badges','favoriteBadge','subjectPoints','deletedAt','deleteAfter'])
+          && (
+            (!resource.data.keys().hasAny(['deletedAt','deleteAfter'])
+             && !request.resource.data.keys().hasAny(['deletedAt','deleteAfter']))
+            ||
+            (!resource.data.keys().hasAny(['deletedAt','deleteAfter'])
+             && request.resource.data.keys().hasAll(['deletedAt','deleteAfter'])
+             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['deletedAt','deleteAfter'])
+             && request.resource.data.deletedAt is timestamp
+             && request.resource.data.deletedAt == request.time
+             && request.resource.data.deleteAfter is timestamp
+             && request.resource.data.deleteAfter >= request.time + duration.value(29, 'd')
+             && request.resource.data.deleteAfter <= request.time + duration.value(31, 'd'))
+            ||
+            (resource.data.keys().hasAll(['deletedAt','deleteAfter'])
+             && resource.data.deleteAfter is timestamp
+             && resource.data.deleteAfter > request.time
+             && !request.resource.data.keys().hasAny(['deletedAt','deleteAfter'])
+             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['deletedAt','deleteAfter']))
+          );
+        // Physical deletion requires the child to be in Trash first.
+        // The client batches it with the child's activities to avoid orphans.
+        allow delete: if owner(uid) && resource.data.uid == uid && resource.data.id == profileId
+          && resource.data.keys().hasAll(['deletedAt','deleteAfter']);
       }
     }
     match /activities/{id} {
@@ -38,6 +61,7 @@ service cloud.firestore {
           && a.userId == request.auth.uid && a.profileId is string && a.profileId.size() <= 128
           && exists(/databases/$(database)/documents/users/$(request.auth.uid)/profiles/$(a.profileId))
           && get(/databases/$(database)/documents/users/$(request.auth.uid)/profiles/$(a.profileId)).data.grade == a.grade
+          && !get(/databases/$(database)/documents/users/$(request.auth.uid)/profiles/$(a.profileId)).data.keys().hasAny(['deletedAt','deleteAfter'])
           && a.subject in ['math','vietnamese','english','ethics','nature','science','history_geo','it','physical','arts','experiential']
           && goodGrade(a.grade) && a.score is int && a.score >= 0
           && a.totalQuestions is int && a.totalQuestions > 0 && a.totalQuestions <= 30 && a.score <= a.totalQuestions
