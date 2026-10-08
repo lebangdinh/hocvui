@@ -3,7 +3,8 @@ import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { doc, getDoc, setDoc, onSnapshot, collection, query, where, addDoc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { auth, db, handleFirestoreError, OperationType, logout } from './firebase';
 import { UserProfile } from './types';
-import { removeProfileServer, eraseAccountServer } from './services/accountDeletion';
+import { eraseAccountServer } from './services/accountDeletion';
+import { removeProfileWithHistory } from './services/profileDeletion';
 
 interface AuthContextType {
   user: FirebaseUser | null;
@@ -131,13 +132,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const deleteProfile = async (profileId: string) => {
-    if (!user) return;
-    try {
-      await removeProfileServer(profileId);
-      if (profile?.id === profileId) selectProfile(null);
-    } catch (error) {
-      handleFirestoreError(error, OperationType.DELETE, `users/${user.uid}/profiles/${profileId}`);
-    }
+    if (!user) throw new Error('Bạn cần đăng nhập trước khi xóa hồ sơ.');
+    // Only clear the selected child AFTER all data is deleted and the server
+    // has confirmed it. Failures propagate to the visible error UI.
+    await removeProfileWithHistory(profileId);
+    if (profile?.id === profileId) selectProfile(null);
   };
 
   const deleteAccount = async () => {
