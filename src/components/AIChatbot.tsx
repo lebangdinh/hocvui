@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Bot, MessageCircle, Send, X, Minimize2, User, Loader2, RefreshCw } from 'lucide-react';
+import { Bot, MessageCircle, Send, X, Minimize2, User, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { chatWithAI } from '../services/geminiService';
 import { getLocalStudyReply, unavailableAIMessage } from '../services/localStudyBear';
@@ -14,12 +14,12 @@ type Message = {
 };
 
 type ChatTurn = { role: 'user' | 'model'; parts: { text: string }[] };
-type AIStatus = 'offline' | 'checking' | 'online';
+type AIStatus = 'idle' | 'offline' | 'checking' | 'online';
 
 const WELCOME: Message = {
   role: 'model',
   source: 'local',
-  content: 'Chào bé! 🐻💛 Gấu giúp bé chào hỏi, làm phép tính đơn giản và tìm bài học nhé. Bé bấm Kiểm tra AI để kết nối phần hỗ trợ bài học nhé.'
+  content: 'Chào bé! 🐻💛 Gấu giúp bé chào hỏi, làm phép tính đơn giản và tìm bài học nhé. Bé cứ nhập câu hỏi, Gấu sẽ giúp bé tìm hiểu bài nhé.'
 };
 
 export const AIChatbot: React.FC = () => {
@@ -30,11 +30,11 @@ export const AIChatbot: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   // Only a real authenticated AI reply confirms the connection.
   // Only show "online" after a successful real backend response.
-  const [aiStatus, setAiStatus] = useState<AIStatus>('offline');
+  const [aiStatus, setAiStatus] = useState<AIStatus>('idle');
   const [connectionMessage, setConnectionMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const verifiedHistoryRef = useRef<ChatTurn[]>([]);
-  const lastCheckAtRef = useRef(0);
+  const pendingRef = useRef(false);
   const generationRef = useRef(0);
 
   useEffect(() => {
@@ -45,10 +45,10 @@ export const AIChatbot: React.FC = () => {
   useEffect(() => {
     generationRef.current++;
     setIsLoading(false);
-    lastCheckAtRef.current = 0;
+    pendingRef.current = false;
     setMessages([WELCOME]);
     setInput('');
-    setAiStatus('offline');
+    setAiStatus('idle');
     setConnectionMessage('');
     verifiedHistoryRef.current = [];
     return () => { generationRef.current++; };
@@ -59,7 +59,7 @@ export const AIChatbot: React.FC = () => {
 
   const sendMessage = async (text: string) => {
     const message = text.trim().slice(0, 500);
-    if (!message || isLoading || aiStatus === 'checking') return;
+    if (!message || pendingRef.current) return;
     setInput('');
     setMessages(prev => [...prev, { role: 'user', content: message }]);
 
@@ -69,18 +69,15 @@ export const AIChatbot: React.FC = () => {
       return;
     }
 
-    // Retry only after the user explicitly checks the AI connection.
-    if (aiStatus !== 'online') {
-      append(unavailableAIMessage(), 'status');
-      return;
-    }
-
     if (!profile?.id) {
       append('Gấu chưa thấy hồ sơ học sinh. Bé chọn hồ sơ rồi thử lại nhé!', 'status');
       return;
     }
 
+    pendingRef.current = true;
     setIsLoading(true);
+    setAiStatus('checking');
+    setConnectionMessage('');
     const generation = generationRef.current;
     try {
       const history = verifiedHistoryRef.current.slice(-6);
@@ -90,6 +87,7 @@ export const AIChatbot: React.FC = () => {
       const userTurn: ChatTurn = { role: 'user', parts: [{ text: message }] };
       const modelTurn: ChatTurn = { role: 'model', parts: [{ text: answer.slice(0, 500) }] };
       verifiedHistoryRef.current = [...history, userTurn, modelTurn].slice(-6);
+      setAiStatus('online');
       append(answer.slice(0, 2200), 'ai');
     } catch (error) {
       if (generation !== generationRef.current) return;
@@ -98,35 +96,10 @@ export const AIChatbot: React.FC = () => {
       setConnectionMessage('Kết nối AI bị gián đoạn. Bé vẫn có thể hỏi những câu cơ bản.');
       append(unavailableAIMessage(), 'status');
     } finally {
-      if (generation === generationRef.current) setIsLoading(false);
-    }
-  };
-
-  // Checking is deliberate and truthful: never turn the green status on
-  // unless the authenticated AI endpoint has actually replied.
-  const checkConnection = async () => {
-    if (!profile?.id || aiStatus === 'checking' || isLoading) return;
-    if (Date.now() - lastCheckAtRef.current < 15_000) {
-      setConnectionMessage('Mình đợi một chút rồi kiểm tra lại nhé.');
-      return;
-    }
-    lastCheckAtRef.current = Date.now();
-    setAiStatus('checking');
-    setConnectionMessage('Đang kiểm tra kết nối AI…');
-    const generation = generationRef.current;
-    try {
-      const answer = await chatWithAI('Xin chào!', [], profile.grade, profile.id);
-      if (generation !== generationRef.current) return;
-      if (typeof answer !== 'string' || !answer.trim()) throw new Error('empty-ai-answer');
-      verifiedHistoryRef.current = [];
-      setAiStatus('online');
-      setConnectionMessage('Đã kết nối máy chủ AI. Bé có thể hỏi thêm về bài học.');
-      append('Gấu đã kết nối với AI học tập. Bé có thể hỏi một câu về bài học nhé! 🐻', 'status');
-    } catch (error) {
-      if (generation !== generationRef.current) return;
-      console.warn('Gấu Nhỏ connection check failed:', error);
-      setAiStatus('offline');
-      setConnectionMessage('AI mở rộng chưa hoạt động. Gấu vẫn giúp bé các câu hỏi đơn giản và hướng dẫn vào bài học.');
+      if (generation === generationRef.current) {
+        pendingRef.current = false;
+        setIsLoading(false);
+      }
     }
   };
 
@@ -152,7 +125,7 @@ export const AIChatbot: React.FC = () => {
                   <p className="mt-0.5 text-[11px] font-medium text-white/90 sm:text-xs">
                     <span className={cn('mr-1.5 inline-block h-2 w-2 rounded-full',
                       aiStatus === 'online' ? 'bg-emerald-300' : aiStatus === 'checking' ? 'bg-amber-300' : 'bg-white/60')} />
-                    {aiStatus === 'online' ? 'AI đã kết nối' : aiStatus === 'checking' ? 'Đang kiểm tra AI' : 'Hỗ trợ cơ bản · AI chưa kết nối'}
+                    {aiStatus === 'online' ? 'AI đã kết nối' : aiStatus === 'checking' ? 'Đang hỏi AI…' : aiStatus === 'offline' ? 'AI tạm thời chưa kết nối' : 'Gấu sẵn sàng nhận câu hỏi'}
                   </p>
                 </div>
               </div>
@@ -164,16 +137,6 @@ export const AIChatbot: React.FC = () => {
               </div>
             </div>
 
-            {aiStatus !== 'online' && (
-              <div className="flex shrink-0 items-center justify-between gap-2 border-b border-amber-100 bg-amber-50 px-4 py-2 text-[11px] text-amber-900 sm:text-xs">
-                <span className="min-w-0">Bấm kiểm tra để dùng AI. Mỗi lần kiểm tra dùng 1 lượt.</span>
-                <button type="button" onClick={checkConnection} disabled={aiStatus === 'checking'}
-                  className="flex shrink-0 items-center gap-1 rounded-full border border-amber-200 bg-white px-2.5 py-1.5 font-bold hover:bg-amber-100 disabled:opacity-50">
-                  {aiStatus === 'checking' ? <Loader2 size={13} className="animate-spin" /> : <RefreshCw size={13} />}
-                  Kiểm tra AI
-                </button>
-              </div>
-            )}
             {connectionMessage && <p role="status" className="shrink-0 bg-sky-50 px-4 py-2 text-[11px] text-slate-600">{connectionMessage}</p>}
 
             <div className="min-h-0 flex-1 space-y-4 overflow-y-auto bg-slate-50/70 px-3 py-4 sm:px-5" aria-live="polite">

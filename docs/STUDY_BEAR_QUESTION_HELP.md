@@ -19,7 +19,8 @@ Việc tạo câu hỏi qua callable cũ không nằm trong đợt triển khai 
 4. Mở URL gốc. Phải thấy `phienBan: hocvui-ai-v1`, cả hai binding true.
    GET này không gọi AI và không chứng minh AI đã chạy.
 5. Khi giao diện mới đã lên GitHub Pages, đăng nhập và chọn hồ sơ học sinh,
-   bấm Kiểm tra AI. Sau vài giây hỏi một câu học tập; thử giải thích một câu sai.
+   gửi một câu học tập (ví dụ: Vì sao cây cần ánh sáng?). Gấu tự gọi AI khi
+   câu hỏi vượt phần trả lời cơ bản. Thử thêm giải thích một câu sai.
 
 Không bật Upgrade/billing. Free tier là hạn mức dùng chung tài khoản Cloudflare,
 không bảo đảm mọi tài khoản học sinh đều dùng đủ 40 lượt. Hết hạn mức nhà cung cấp
@@ -40,7 +41,8 @@ có thể kiểm tra riêng cấu hình log hiện có.
 Giới hạn 40 lần thử gọi AI/ngày/tài khoản, đặt lại theo ngày Việt Nam (UTC+7),
 giãn 2,5 giây. Một UPSERT có điều kiện và RETURNING bảo vệ đồng thời; lỗi D1
 không được bỏ qua. Lượt đã đặt trước vẫn tính nếu AI lỗi hoặc client hết thời gian.
-Bấm Kiểm tra AI cũng dùng một lượt. Phản hồi cũ bị bỏ khi đổi hồ sơ/rời câu.
+Không gọi AI khi mở khung chat và không có bước kiểm tra riêng; chỉ gọi khi
+gửi câu hỏi cần AI, để tránh tốn lượt kiểm tra. Phản hồi cũ bị bỏ khi đổi hồ sơ/rời câu.
 
 ## Kiểm tra và trạng thái
 
