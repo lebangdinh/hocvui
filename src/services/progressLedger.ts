@@ -1,18 +1,8 @@
 import { arrayUnion, collection, doc, runTransaction } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import type { Activity } from '../types';
+import { nextPointsAndLevel } from './pointsMath';
 
-/** Totals and levels must always be calculated from the same server snapshot. */
-export function nextPointsAndLevel(current: number, delta: number): { totalPoints: number; level: number } {
-  if (!Number.isSafeInteger(current) || !Number.isSafeInteger(delta)) {
-    throw new Error('Số điểm không hợp lệ, chưa thể lưu thay đổi.');
-  }
-  const totalPoints = current + delta;
-  if (!Number.isSafeInteger(totalPoints) || totalPoints < 0) {
-    throw new Error('Không đủ sao để thực hiện thao tác này.');
-  }
-  return { totalPoints, level: Math.floor(totalPoints / 1000) + 1 };
-}
 
 function profileRefOf(profileId: string) {
   const user = auth.currentUser;
