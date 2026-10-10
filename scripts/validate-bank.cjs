@@ -31,6 +31,39 @@ for (let grade = 1; grade <= 5; grade++) {
           assert.ok(q.explanation.length > 8);
           // Independent mathematical checks: comparisons, integer and decimal arithmetic,
           // multiplication/division, basic fractions and percent. Other cases are content review pending.
+          // Independently solve the new inverse/multi-step tasks from their displayed givens.
+          let hardExpected;
+          let h;
+          if ((h = q.text.match(/^Tìm số còn thiếu: (\d+) < \? < (\d+)$/))) {
+            assert.equal(+h[2] - +h[1], 2); hardExpected = +h[1] + 1;
+          } else if ((h = q.text.match(/^Tìm số còn thiếu: \? \+ ([\d,]+) = ([\d,]+)$/))) {
+            hardExpected = Math.round((Number(h[2].replace(',', '.')) - Number(h[1].replace(',', '.'))) * 10) / 10;
+          } else if ((h = q.text.match(/^Tìm số còn thiếu: (\d+) - \? = (\d+)$/))) {
+            hardExpected = +h[1] - +h[2];
+          } else if ((h = q.text.match(/^Tìm số còn thiếu: \? × (\d+) = (\d+)$/))) {
+            hardExpected = +h[2] / +h[1];
+          } else if ((h = q.text.match(/^Sợi dây dài (\d+) dm, cắt bớt (\d+) cm/))) {
+            hardExpected = +h[1] * 10 - +h[2];
+          } else if ((h = q.text.match(/^Có (\d+) viên bi. Lấy một phần (\d+) số bi/))) {
+            hardExpected = +h[1] / +h[2];
+          } else if ((h = q.text.match(/^Một hình chữ nhật có chu vi (\d+) cm, chiều dài (\d+) cm/))) {
+            hardExpected = +h[1] / 2 - +h[2]; assert.ok(hardExpected > 0 && hardExpected < +h[2]);
+          } else if ((h = q.text.match(/^Tìm phân số còn thiếu: \? \+ (\d+)\/(\d+) = (\d+)\/(\d+)$/))) {
+            const [n, d] = q.correctAnswer.split('/').map(Number);
+            assert.equal(d, +h[2]); assert.equal(d, +h[4]); assert.equal(n + +h[1], +h[3]); mathChecked++;
+          } else if ((h = q.text.match(/^Ngày đầu đọc (\d+) trang. Ngày sau đọc nhiều hơn ngày đầu (\d+) trang/))) {
+            hardExpected = +h[1] + (+h[1] + +h[2]);
+          } else if ((h = q.text.match(/^Món đồ giá (\d+) nghìn đồng, giảm (\d+)%/))) {
+            hardExpected = +h[1] - +h[1] * +h[2] / 100;
+          } else if ((h = q.text.match(/^Một hình hộp chữ nhật có thể tích (\d+) cm³, dài (\d+) cm, rộng (\d+) cm/))) {
+            hardExpected = +h[1] / +h[2] / +h[3];
+          } else if ((h = q.text.match(/^Xe đi (\d+) giờ, nghỉ 1 giờ rồi đi tiếp (\d+) giờ. Khi chạy, vận tốc luôn là (\d+) km/))) {
+            hardExpected = (+h[1] + +h[2]) * +h[3];
+          }
+          if (hardExpected !== undefined) {
+            assert.equal(Number(q.correctAnswer.replace(',', '.')), hardExpected);
+            assert.ok(hardExpected >= 0); mathChecked++;
+          }
           const m = q.text.match(/^Điền dấu thích hợp: (\d+) \? (\d+)$/);
           if (m) { assert.equal(q.correctAnswer, +m[1] > +m[2] ? '>' : +m[1] < +m[2] ? '<' : '='); mathChecked++; }
           const ar = q.text.match(/^(\d+) ([+×:\-]) (\d+) = \?$/);
@@ -67,6 +100,26 @@ for (let grade = 1; grade <= 5; grade++) {
           const f3 = q.text.match(/^Một hình chia thành (\d+) phần bằng nhau, tô màu (\d+) phần\./);
           if (f3) {assert.equal(q.correctAnswer, `${f3[2]}/${f3[1]}`);mathChecked++;}
         }
+      }
+    }
+  }
+}
+// Use identical random seeds: a changed level must change the actual task, not just shuffle choices.
+for (let grade = 1; grade <= 5; grade++) {
+  for (const subject of curriculum.getGradeSubjects(grade)) {
+    for (const topic of curriculum.getTopics(grade, subject)) {
+      if (!bank.hasLocalQuestionBank(grade, subject, topic.id)) continue;
+      const levels = bank.getPracticeDifficulties(grade, subject, topic.id);
+      seed = 5678; const normal = bank.makeLocalQuiz(grade, subject, 'medium', topic.id);
+      seed = 5678; const hard = bank.makeLocalQuiz(grade, subject, 'hard', topic.id);
+      if (levels.includes('hard')) {
+        const normalTexts = new Set(normal.map(q => q.text));
+        assert.ok(hard.every(q => !normalTexts.has(q.text)), `Hard tasks overlap: ${topic.id}`);
+        const previewTexts = new Set(bank.getEditorialPreview(grade, subject, topic.id).map(q => q.text));
+        assert.ok(previewTexts.size > 0);
+      } else {
+        assert.equal(bank.resolvePracticeDifficulty(grade, subject, 'hard', topic.id), 'medium');
+        assert.deepEqual(hard, normal, 'Common bank must consistently normalize unsupported levels');
       }
     }
   }

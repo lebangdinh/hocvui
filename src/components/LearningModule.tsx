@@ -23,7 +23,7 @@ import { useAuth } from '../AuthContext';
 import { BADGES, BadgeId } from '../constants/badges';
 import { Activity } from '../types';
 import { getTopic, getSubjectAvailability } from '../constants/curriculum';
-import { makeLocalQuiz, hasLocalQuestionBank } from '../services/questionBank';
+import { makeLocalQuiz, hasLocalQuestionBank, getPracticeDifficulties, resolvePracticeDifficulty } from '../services/questionBank';
 import { useTopicApproval } from '../services/liveApproval';
 import confetti from 'canvas-confetti';
 import { QuestionHelp } from './QuestionHelp';
@@ -65,7 +65,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
   const [praise, setPraise] = useState<string>("");
   const [hintUsed, setHintUsed] = useState(false);
   const [showAudioSettings, setShowAudioSettings] = useState(false);
-  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>(initialDifficulty || 'medium');
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>(() => resolvePracticeDifficulty(grade, subject, initialDifficulty || 'medium', topicId));
   const [timeLeft, setTimeLeft] = useState(30);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [saveError, setSaveError] = useState('');
@@ -95,7 +95,9 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
       }
       if (hasLocalQuestionBank(grade, subject, topicId)) {
         try {
-          setQuestions(makeLocalQuiz(grade, subject, initialDifficulty || 'medium', topicId));
+          const level = resolvePracticeDifficulty(grade, subject, initialDifficulty || 'medium', topicId);
+          setDifficulty(level);
+          setQuestions(makeLocalQuiz(grade, subject, level, topicId));
           setContentSource(liveApproved ? 'reviewed' : 'bank');
         } catch (error) {
           console.error('Không thể mở ngân hàng bài luyện:', error);
@@ -425,7 +427,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
           difficulty === 'medium' ? 'bg-blue-100 text-blue-600 border border-blue-200' :
           'bg-green-100 text-green-600 border border-green-200'
         }`}>
-          {difficulty === 'hard' ? 'Siêu nhân' : difficulty === 'medium' ? 'Thông thái' : 'Dễ thương'}
+          {getPracticeDifficulties(grade, subject, topicId).length === 1 ? 'Bài luyện chung' : difficulty === 'hard' ? 'Siêu nhân' : difficulty === 'medium' ? 'Thông thái' : 'Dễ thương'}
         </div>
       </div>
 

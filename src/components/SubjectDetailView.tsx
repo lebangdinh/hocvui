@@ -15,7 +15,7 @@ import { SUBJECT_CONFIG } from '../constants/subjects';
 import { useAuth } from '../AuthContext';
 import { BADGES } from '../constants/badges';
 import { getTopics, getSubjectAvailability } from '../constants/curriculum';
-import { hasLocalQuestionBank, getLocalQuestionCount } from '../services/questionBank';
+import { hasLocalQuestionBank, getLocalQuestionCount, getPracticeDifficulties, resolvePracticeDifficulty } from '../services/questionBank';
 import { useTopicApproval } from '../services/liveApproval';
 import { getTopicReview } from '../services/contentReview';
 
@@ -43,6 +43,8 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
   const liveApproved = useTopicApproval(selectedTopicId);
   const canQuiz = hasLocalQuestionBank(profile?.grade || 2, subject, selectedTopicId) && liveApproved;
   
+  const levels = getPracticeDifficulties(profile?.grade || 2, subject, selectedTopicId);
+  const effectiveDifficulty = resolvePracticeDifficulty(profile?.grade || 2, subject, difficulty, selectedTopicId);
   const subjectPoints = profile?.subjectPoints?.[subject] || 0;
   const level = Math.floor(subjectPoints / 100) + 1;
   const progress = (subjectPoints % 100);
@@ -89,21 +91,21 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
             ? `📚 Có bài soạn sẵn (${getLocalQuestionCount(profile?.grade || 2, subject, selectedTopicId)} câu/lượt) · ${liveApproved ? 'đã được giáo viên duyệt' : 'chưa thẩm định bởi giáo viên'}`
             : '✨ Chủ đề đang sử dụng AI để tạo bài · cần kiểm tra đáp án'}
         </div>
-        <fieldset className="mt-4">
+        {levels.length > 1 ? <fieldset className="mt-4">
           <legend className="mb-2 text-sm font-bold text-gray-800">Chọn mức luyện tập</legend>
-          <div className="grid grid-cols-3 gap-2">
+          <div className={`grid ${levels.length === 3 ? 'grid-cols-3' : 'grid-cols-2'} gap-2`}>
             {([
               ['easy', 'Dễ thương'], ['medium', 'Thông thái'], ['hard', 'Siêu nhân']
-            ] as const).map(([id, label]) => (
-              <label key={id} className={`cursor-pointer rounded-xl border-2 px-2 py-3 text-center text-xs sm:text-sm font-bold ${difficulty === id ? 'border-blue-500 bg-blue-50 text-blue-800' : 'border-gray-200 text-gray-600'}`}>
-                <input type="radio" name="difficulty" value={id} checked={difficulty === id}
+            ] as const).filter(([id]) => levels.includes(id)).map(([id, label]) => (
+              <label key={id} className={`cursor-pointer rounded-xl border-2 px-2 py-3 text-center text-xs sm:text-sm font-bold ${effectiveDifficulty === id ? 'border-blue-500 bg-blue-50 text-blue-800' : 'border-gray-200 text-gray-600'}`}>
+                <input type="radio" name="difficulty" value={id} checked={effectiveDifficulty === id}
                   onChange={() => setDifficulty(id)} className="mr-1 accent-blue-600" />
                 {label}
               </label>
             ))}
           </div>
-        </fieldset>
-        <button type="button" onClick={() => onStartLearning('practice', difficulty, selectedTopicId)}
+        </fieldset> : <p className="mt-4 text-sm text-slate-600"><b>Bài luyện chung</b> · Chủ đề này chưa có bộ câu hỏi phân theo độ khó.</p>}
+        <button type="button" onClick={() => onStartLearning('practice', effectiveDifficulty, selectedTopicId)}
           className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 text-lg font-black text-white shadow-sm hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600">
           <Play size={20} fill="currentColor" /> Bắt đầu luyện tập
         </button>
@@ -195,7 +197,7 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
               <motion.button
                 whileHover={{ scale: 1.03, y: -4 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => canQuiz && onStartLearning('quiz', difficulty, selectedTopicId)}
+                onClick={() => canQuiz && onStartLearning('quiz', effectiveDifficulty, selectedTopicId)}
                 disabled={!canQuiz}
                 title={!canQuiz ? 'Chỉ mở thử sức khi bài đã được giáo viên duyệt' : undefined}
                 className={`bg-white p-6 rounded-[32px] shadow-xl border-2 border-purple-50 flex flex-col gap-4 text-left group relative overflow-hidden ${!canQuiz ? 'opacity-55 cursor-not-allowed' : ''}`}

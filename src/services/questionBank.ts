@@ -50,6 +50,79 @@ function lessonMath(grade: Grade, topicIndex: number, idx: number, difficulty: D
     numericQuestion(text, ans, id, topic, explanation, step, hint, decimals);
   const word = (text: string, answer: string, distractors: string[], explanation: string, hint = 'Em nhớ lại đặc điểm của hình hoặc kiến thức đã học nhé!') =>
     makeQuestion(text, answer, distractors, explanation, hint, id, topic);
+  // Siêu nhân changes the reasoning task, not merely the numbers or timer.
+  if (difficulty === 'hard') {
+    switch (`${grade}-${topicIndex}`) {
+      case '1-0': case '2-0': case '3-0': {
+        const max = grade === 1 ? 19 : grade === 2 ? 998 : 99998;
+        const middle = r(2, max);
+        return num(`Tìm số còn thiếu: ${middle - 1} < ? < ${middle + 1}`, middle,
+          `Số đứng giữa ${middle - 1} và ${middle + 1} là ${middle}.`);
+      }
+      case '1-1': case '2-1': case '4-0': {
+        const max = grade === 1 ? 10 : grade === 2 ? 999 : 900000;
+        const total = r(4, max), known = r(1, total - 1), missing = total - known;
+        return idx % 2 === 0
+          ? num(`Tìm số còn thiếu: ? + ${known} = ${total}`, missing,
+              `Lấy tổng trừ số đã biết: ${total} - ${known} = ${missing}.`)
+          : num(`Tìm số còn thiếu: ${total} - ? = ${known}`, missing,
+              `Lấy số ban đầu trừ phần còn lại: ${total} - ${known} = ${missing}.`);
+      }
+      case '2-2': case '3-1': {
+        const factor = grade === 2 ? choose([2, 5]) : r(2, 9);
+        const count = r(2, grade === 2 ? 10 : 40);
+        return num(`Tìm số còn thiếu: ? × ${factor} = ${factor * count}`, count,
+          `Chia tích cho thừa số đã biết: ${factor * count} : ${factor} = ${count}.`);
+      }
+      case '2-3': {
+        const dm = r(2, 9), cut = r(1, 9);
+        return num(`Sợi dây dài ${dm} dm, cắt bớt ${cut} cm. Còn lại bao nhiêu cm?`, dm * 10 - cut,
+          `Đổi ${dm} dm = ${dm * 10} cm. Còn ${dm * 10} - ${cut} = ${dm * 10 - cut} cm.`);
+      }
+      case '3-2': {
+        const parts = 2 + idx % 8, each = r(2, 9);
+        return num(`Có ${parts * each} viên bi. Lấy một phần ${parts} số bi đó. Đã lấy bao nhiêu viên bi?`, each,
+          `Chia ${parts * each} viên thành ${parts} phần bằng nhau: ${parts * each} : ${parts} = ${each} viên.`);
+      }
+      case '3-3': {
+        const width = r(2, 11), length = r(width + 1, 15), perimeter = 2 * (width + length);
+        return num(`Một hình chữ nhật có chu vi ${perimeter} cm, chiều dài ${length} cm. Chiều rộng là bao nhiêu cm?`, width,
+          `Nửa chu vi là ${perimeter} : 2 = ${width + length} cm. Chiều rộng = ${width + length} - ${length} = ${width} cm.`);
+      }
+      case '4-1': {
+        const den = r(3, 12), known = r(1, den - 1), missing = r(1, den - 1), total = known + missing;
+        return word(`Tìm phân số còn thiếu: ? + ${known}/${den} = ${total}/${den}`, `${missing}/${den}`,
+          [`${total + known}/${den}`, `${missing + 1}/${den}`, `${missing}/${den + 1}`],
+          `Trừ hai phân số cùng mẫu: (${total} - ${known})/${den} = ${missing}/${den}.`);
+      }
+      case '4-3': {
+        const first = r(10, 30), more = r(2, 9);
+        return num(`Ngày đầu đọc ${first} trang. Ngày sau đọc nhiều hơn ngày đầu ${more} trang. Hai ngày đọc tất cả bao nhiêu trang?`, first * 2 + more,
+          `Ngày sau đọc ${first} + ${more} = ${first + more} trang. Hai ngày: ${first} + ${first + more} = ${first * 2 + more} trang.`);
+      }
+      case '5-0': {
+        const known = r(10, 199), missing = r(10, 199), total = known + missing;
+        const decimal = (n: number) => (n / 10).toFixed(1).replace('.', ',');
+        return num(`Tìm số còn thiếu: ? + ${decimal(known)} = ${decimal(total)}`, missing / 10,
+          `Lấy tổng trừ số đã biết: ${decimal(total)} - ${decimal(known)} = ${decimal(missing)}.`, .1, 'Đặt thẳng hàng dấu phẩy rồi thực hiện phép trừ.', 1);
+      }
+      case '5-1': {
+        const price = r(2, 20) * 100, pct = choose([10, 20, 25, 50]);
+        return num(`Món đồ giá ${price} nghìn đồng, giảm ${pct}%. Giá sau giảm là bao nhiêu nghìn đồng?`, price * (100 - pct) / 100,
+          `Giảm ${price} × ${pct} : 100 = ${price * pct / 100}. Giá còn ${price} - ${price * pct / 100} = ${price * (100 - pct) / 100} nghìn đồng.`, 10);
+      }
+      case '5-2': {
+        const width = r(2, 8), length = r(width + 1, 12), height = r(2, 9), volume = length * width * height;
+        return num(`Một hình hộp chữ nhật có thể tích ${volume} cm³, dài ${length} cm, rộng ${width} cm. Chiều cao là bao nhiêu cm?`, height,
+          `Diện tích đáy = ${length} × ${width} = ${length * width} cm². Chiều cao = ${volume} : ${length * width} = ${height} cm.`);
+      }
+      case '5-3': {
+        const speed = r(10, 60), first = r(1, 3), second = r(1, 3);
+        return num(`Xe đi ${first} giờ, nghỉ 1 giờ rồi đi tiếp ${second} giờ. Khi chạy, vận tốc luôn là ${speed} km/giờ. Tổng quãng đường là bao nhiêu km?`, speed * (first + second),
+          `Thời gian xe chạy là ${first} + ${second} = ${first + second} giờ, không tính giờ nghỉ. Quãng đường = ${speed} × ${first + second} = ${speed * (first + second)} km.`);
+      }
+    }
+  }
   switch (`${grade}-${topicIndex}`) {
     case '1-0': {
       const max = level === 0 ? 10 : 20;
@@ -306,9 +379,21 @@ export function getLocalQuestionCount(grade: number, subject: Subject, topicId?:
   if (extra) return Math.min(8, extra.items.length);
   return Math.min(8, LANGUAGE_BANK[subject]?.[grade as Grade]?.length || 0);
 }
+/** Only offer levels backed by distinct tasks. Static banks currently share one set. */
+export function getPracticeDifficulties(grade: number, subject: Subject, topicId?: string): Difficulty[] {
+  if (!hasLocalQuestionBank(grade, subject, topicId)) return ['easy', 'medium', 'hard'];
+  const id = getTopic(grade, subject, topicId)!.id;
+  if (subject !== 'math' || ['1-math-3', '4-math-3'].includes(id)) return ['medium'];
+  if (['1-math-1', '1-math-2', '2-math-1', '2-math-2'].includes(id)) return ['easy', 'medium', 'hard'];
+  return ['medium', 'hard'];
+}
+export function resolvePracticeDifficulty(grade: number, subject: Subject, difficulty: Difficulty, topicId?: string): Difficulty {
+  return getPracticeDifficulties(grade, subject, topicId).includes(difficulty) ? difficulty : 'medium';
+}
 export function makeLocalQuiz(grade: number, subject: Subject, difficulty: Difficulty, topicId?: string): Question[] {
   if (!hasLocalQuestionBank(grade, subject, topicId)) throw new Error('Chưa có bài luyện soạn sẵn cho chủ đề này.');
   const topic = getTopic(grade, subject, topicId)!;
+  difficulty = resolvePracticeDifficulty(grade, subject, difficulty, topicId);
   const topicIndex = Number(topic.id.split('-').pop()) - 1;
   if (subject === 'math') {
     const seen = new Set<string>();
@@ -336,8 +421,9 @@ export function getEditorialPreview(grade: number, subject: Subject, topicId: st
   const topic = getTopic(grade, subject, topicId)!;
   if (subject === 'math') {
     const index = Number(topic.id.split('-').pop()) - 1;
-    // Lưu ý: xem 20 mẫu không thể thẩm định vô hạn câu do thuật toán sinh ra.
-    return Array.from({length:20},(_,i)=>lessonMath(grade as Grade,index,i,'medium',topic.name));
+    // Lưu ý: xem 20 mẫu mỗi mức không thể thẩm định vô hạn câu do thuật toán sinh ra.
+    return getPracticeDifficulties(grade, subject, topicId).flatMap(level =>
+      Array.from({length:20},(_,i)=>lessonMath(grade as Grade,index,i,level,topic.name)));
   }
   const extra=extraPractice.topics.find(x=>x.topicId===topicId);
   if (extra) return extra.items.map(q=>({id:q.id,text:q.text,options:q.options,correctAnswer:q.correctAnswer,
