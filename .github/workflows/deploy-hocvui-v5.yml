@@ -44,6 +44,8 @@ jobs:
         run: npx --no-install tsx scripts/test-progress-integrity.ts
       - name: Test account isolation and safe activity serialization
         run: npx --no-install tsx scripts/test-session-and-activity.ts
+      - name: Test evidence-based parent reports and Vietnam calendar
+        run: npx --no-install tsx scripts/test-learning-report.ts
       - name: Build website at /hocvui/
         env:
           VITE_BASE_PATH: /hocvui/

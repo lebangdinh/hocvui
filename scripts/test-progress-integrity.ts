@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { vietnamDayKey } from '../src/services/learningReport';
 import { nextPointsAndLevel } from '../src/services/pointsMath';
 
 const equal = (before: number, change: number, expected: number, level: number) => {
@@ -43,7 +44,8 @@ assert.ok(report.includes("where('userId', '==', profile.uid)"));
 assert.ok(report.includes('item.profileId === profile.id'));
 assert.ok(!report.includes("where('profileId', '==', profile.id)"));
 assert.ok(!report.includes("orderBy('timestamp', 'desc')"));
-assert.ok(report.includes("format(date, 'yyyy-MM-dd')"));
+assert.equal(vietnamDayKey(new Date('2026-10-09T17:00:00Z')), '2026-10-10');
+assert.notEqual(vietnamDayKey(new Date('2025-10-09T17:00:00Z')), vietnamDayKey(new Date('2026-10-09T17:00:00Z')));
 assert.ok(report.includes('if (loadError)'));
 assert.ok(report.includes('return () => { cancelled = true; }'));
 console.log('PASS: reports isolate the current child, handle errors and compare full calendar days');
