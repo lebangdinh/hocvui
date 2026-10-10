@@ -7,10 +7,8 @@ import {
   Star, 
   Target,
   Gamepad2,
-  BookOpen,
   TrendingUp,
   GraduationCap,
-  ArrowRight
 } from 'lucide-react';
 import { Subject } from '../types';
 import { SUBJECT_CONFIG } from '../constants/subjects';
@@ -38,6 +36,7 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
   const config = SUBJECT_CONFIG[subject];
   const Icon = config.icon;
   const topics = getTopics(profile?.grade || 2, subject);
+  const [difficulty, setDifficulty] = React.useState<'easy' | 'medium' | 'hard'>('medium');
   const [selectedTopicId, setSelectedTopicId] = React.useState(topics[0]?.id || '');
   React.useEffect(() => { setSelectedTopicId(topics[0]?.id || ''); }, [profile?.grade, subject]);
   const review = getTopicReview(profile?.grade || 2, subject, selectedTopicId);
@@ -54,11 +53,12 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
   return (
     <div className="max-w-4xl mx-auto p-4 sm:p-6 pb-20">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
+      <div className="flex items-center gap-3 mb-4">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={onBack}
+          aria-label="Quay lại danh sách môn học"
           className="p-2 rounded-full bg-white shadow-md text-gray-600 hover:text-gray-900"
         >
           <ChevronLeft size={24} />
@@ -68,7 +68,7 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
             <Icon size={32} />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-gray-900">{config.title}</h1>
+            <h1 className="text-2xl sm:text-3xl font-black text-gray-900">{config.title}</h1>
             <p className="text-gray-500 font-medium">{config.description}</p>
           </div>
         </div>
@@ -76,7 +76,7 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
 
       <div className="mb-6 rounded-3xl bg-white border border-orange-100 shadow-sm p-5 sm:p-6">
         <h2 className="font-black text-gray-800 mb-2">Chọn chủ đề · Lớp {profile?.grade || 2}</h2>
-        <p className="text-xs text-gray-500 mb-3">Các chủ đề định hướng theo CTGDPT 2018. Bài AI cần được phụ huynh/giáo viên kiểm tra nếu dùng để đánh giá chính thức.</p>
+
         {getSubjectAvailability(profile?.grade || 2, subject) === 'optional' &&
           <p className="text-sm text-amber-700 mb-3">Tiếng Anh lớp 1–2 hiện được xếp vào nội dung tự chọn theo chương trình áp dụng.</p>}
         <select aria-label="Chủ đề bài học" value={selectedTopicId} onChange={e => setSelectedTopicId(e.target.value)}
@@ -86,11 +86,32 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
         <p className="mt-2 text-xs text-gray-500">{topics.find(t => t.id === selectedTopicId)?.scope || ''}</p>
         <div className={`mt-3 text-xs font-bold px-3 py-2 rounded-xl ${hasLocalQuestionBank(profile?.grade || 2, subject, selectedTopicId) ? 'bg-emerald-50 text-emerald-700' : 'bg-indigo-50 text-indigo-700'}`}>
           {hasLocalQuestionBank(profile?.grade || 2, subject, selectedTopicId)
-            ? `📚 Có bài soạn sẵn (${getLocalQuestionCount(profile?.grade || 2, subject, selectedTopicId)} câu/lượt) · ${liveApproved ? 'đã có hồ sơ duyệt Firebase hợp lệ' : 'chưa thẩm định bởi giáo viên'}`
+            ? `📚 Có bài soạn sẵn (${getLocalQuestionCount(profile?.grade || 2, subject, selectedTopicId)} câu/lượt) · ${liveApproved ? 'đã được giáo viên duyệt' : 'chưa thẩm định bởi giáo viên'}`
             : '✨ Chủ đề đang sử dụng AI để tạo bài · cần kiểm tra đáp án'}
         </div>
-        <div className="mt-3 rounded-xl bg-slate-50 border border-slate-200 p-3 text-xs text-slate-700 space-y-1">
-          <p className="font-bold">📋 {liveApproved ? 'Đã có hồ sơ duyệt Firebase theo phiên bản hiện hành' : review.label}</p>
+        <fieldset className="mt-4">
+          <legend className="mb-2 text-sm font-bold text-gray-800">Chọn mức luyện tập</legend>
+          <div className="grid grid-cols-3 gap-2">
+            {([
+              ['easy', 'Dễ thương'], ['medium', 'Thông thái'], ['hard', 'Siêu nhân']
+            ] as const).map(([id, label]) => (
+              <label key={id} className={`cursor-pointer rounded-xl border-2 px-2 py-3 text-center text-xs sm:text-sm font-bold ${difficulty === id ? 'border-blue-500 bg-blue-50 text-blue-800' : 'border-gray-200 text-gray-600'}`}>
+                <input type="radio" name="difficulty" value={id} checked={difficulty === id}
+                  onChange={() => setDifficulty(id)} className="mr-1 accent-blue-600" />
+                {label}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+        <button type="button" onClick={() => onStartLearning('practice', difficulty, selectedTopicId)}
+          className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 text-lg font-black text-white shadow-sm hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600">
+          <Play size={20} fill="currentColor" /> Bắt đầu luyện tập
+        </button>
+        <details className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-3 text-xs text-slate-700">
+          <summary className="cursor-pointer py-1 font-bold">Thông tin học liệu dành cho phụ huynh</summary>
+          <div className="mt-3 space-y-2">
+          <p>Các chủ đề định hướng theo CTGDPT 2018. Phụ huynh/giáo viên cần kiểm tra nội dung trước khi dùng để đánh giá chính thức.</p>
+          <p className="font-bold">📋 {liveApproved ? 'Đã được giáo viên duyệt theo phiên bản hiện hành' : review.label}</p>
           {review.bookLesson ? <p><b>Mục lục SGK tham chiếu:</b> {review.bookLesson}</p> : <p>Chưa đối chiếu được đầu mục sách giáo khoa cho chủ đề này.</p>}
           {review.tocUrl && <a className="text-blue-600 underline" href={review.tocUrl} target="_blank" rel="noopener noreferrer">Tra cứu mục lục (nguồn tham khảo thứ cấp)</a>}
           {review.outcomeDraft && <p><b>Yêu cầu cần đạt (tóm lược tham chiếu):</b> {review.outcomeDraft}</p>}
@@ -98,11 +119,12 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
           {review.outcomeVerification === 'official_math_subject_checked_partial' && <p className="text-amber-800">Đã đối chiếu sơ bộ với văn bản chương trình môn Toán, chưa đối chiếu từng câu và chưa có giáo viên ký duyệt.</p>}
           {review.note && <p>{review.note}</p>}
           {!liveApproved && <p>Yêu cầu cần đạt và từng câu hỏi chưa được coi là đạt chuẩn cho đến khi có hồ sơ giáo viên duyệt.</p>}
-        </div>
+          </div>
+        </details>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Left Column: Progress & Stats */}
-        <div className="md:col-span-1 space-y-6">
+        <div className="md:col-span-1 space-y-6 order-2 md:order-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -155,40 +177,11 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
             </div>
           </motion.div>
 
-          {/* Difficulty Quick Selection */}
-          <div className="bg-white p-6 rounded-[32px] shadow-xl border-2 border-gray-50">
-            <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <Target size={20} className="text-red-500" />
-              Chọn thử thách
-            </h3>
-            <div className="grid grid-cols-1 gap-3">
-              {[
-                { id: 'easy', name: 'Dễ thương', color: 'bg-green-500', desc: 'Làm quen kiến thức' },
-                { id: 'medium', name: 'Thông thái', color: 'bg-blue-500', desc: 'Kiến thức trọng tâm' },
-                { id: 'hard', name: 'Siêu nhân', color: 'bg-red-500', desc: 'Nâng cao thử thách' }
-              ].map((d) => (
-                <motion.button
-                  key={d.id}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => onStartLearning('practice', d.id as any, selectedTopicId)}
-                  className="flex items-center gap-3 p-3 rounded-2xl border-2 border-gray-50 hover:border-gray-200 transition-all text-left"
-                >
-                  <div className={`w-10 h-10 ${d.color} rounded-xl flex items-center justify-center text-white shrink-0 shadow-sm`}>
-                    <Star size={20} />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-black text-gray-800">{d.name}</h4>
-                    <p className="text-[10px] text-gray-400 font-bold">{d.desc}</p>
-                  </div>
-                </motion.button>
-              ))}
-            </div>
-          </div>
+
         </div>
 
         {/* Right Column: Learning Modules & Games */}
-        <div className="md:col-span-2 space-y-6">
+        <div className="md:col-span-2 space-y-6 order-1 md:order-2">
           {/* Learning Modules */}
           <section>
             <div className="flex items-center justify-between mb-4 px-2">
@@ -197,33 +190,12 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
                 Mô-đun học tập
               </h3>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Practice */}
-              <motion.button
-                whileHover={{ scale: 1.03, y: -4 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => onStartLearning('practice', undefined, selectedTopicId)}
-                className="bg-white p-6 rounded-[32px] shadow-xl border-2 border-blue-50 flex flex-col gap-4 text-left group relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform" />
-                <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 relative z-10">
-                  <BookOpen size={28} />
-                </div>
-                <div className="relative z-10">
-                  <h4 className="text-lg font-black text-gray-800">Luyện tập</h4>
-                  <p className="text-xs text-gray-500 font-medium mb-4">Học kiến thức mới với độ khó tự động điều chỉnh.</p>
-                  <div className="flex items-center gap-2 text-blue-600 font-bold text-sm">
-                    <span>Bắt đầu ngay</span>
-                    <Play size={12} fill="currentColor" />
-                  </div>
-                </div>
-              </motion.button>
-
+            <div className="grid grid-cols-1 gap-4">
               {/* Quiz */}
               <motion.button
                 whileHover={{ scale: 1.03, y: -4 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => canQuiz && onStartLearning('quiz', undefined, selectedTopicId)}
+                onClick={() => canQuiz && onStartLearning('quiz', difficulty, selectedTopicId)}
                 disabled={!canQuiz}
                 title={!canQuiz ? 'Chỉ mở thử sức khi bài đã được giáo viên duyệt' : undefined}
                 className={`bg-white p-6 rounded-[32px] shadow-xl border-2 border-purple-50 flex flex-col gap-4 text-left group relative overflow-hidden ${!canQuiz ? 'opacity-55 cursor-not-allowed' : ''}`}
@@ -265,7 +237,7 @@ const SubjectDetailView: React.FC<SubjectDetailViewProps> = ({
                   </div>
                   <div>
                     <h4 className="font-black text-gray-800 capitalize">
-                      {gameType === 'puzzle' ? 'Xếp hình' : 
+                      {gameType === 'puzzle' ? 'Bắt sao vui nhộn' :
                        gameType === 'memory' ? 'Trí nhớ' : 
                        gameType === 'chicken' ? 'Bắn gà' : 
                        gameType === 'airplane' ? 'Phi đội' : 

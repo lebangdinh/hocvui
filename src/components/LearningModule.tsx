@@ -69,6 +69,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [saveError, setSaveError] = useState('');
   const savingRef = useRef(false);
+  const questionHeadingRef = useRef<HTMLHeadingElement>(null);
   const lessonActivityIdRef = useRef<string | null>(null);
   if (!lessonActivityIdRef.current) lessonActivityIdRef.current = doc(collection(db, 'activities')).id;
 
@@ -294,17 +295,6 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
     }
   }, [currentIndex, questions.length, playSound, saveProgress]);
 
-  // Auto-next after 6 seconds if correct
-  useEffect(() => {
-    let timer: any;
-    if (isCorrect === true) {
-      timer = setTimeout(() => {
-        nextQuestion();
-      }, 6000);
-    }
-    return () => clearTimeout(timer);
-  }, [isCorrect, nextQuestion]);
-
   const useHint = async () => {
     if (!profile || hintUsed || selectedOption || profile.totalPoints < 5) return;
     
@@ -346,7 +336,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
       >
         <Trophy className="mx-auto text-yellow-500 mb-4" size={80} />
         <h2 className="text-3xl font-bold text-gray-800 mb-2">Tuyệt vời!</h2>
-        {saveStatus === 'saving' && <p role="status" className="mb-3 rounded-xl bg-blue-50 p-3 text-sm font-semibold text-blue-800">Đang lưu kết quả và sao lên Firebase…</p>}
+        {saveStatus === 'saving' && <p role="status" className="mb-3 rounded-xl bg-blue-50 p-3 text-sm font-semibold text-blue-800">Đang lưu kết quả và sao…</p>}
         {saveStatus === 'saved' && <p role="status" className="mb-3 rounded-xl bg-emerald-50 p-3 text-sm font-semibold text-emerald-800">Đã lưu điểm, cấp và lịch sử học tập thành công.</p>}
         {saveStatus === 'error' && (
           <div role="alert" className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
@@ -397,13 +387,14 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
           }}
           className="w-full bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold transition-colors shadow-lg disabled:cursor-wait disabled:opacity-50"
         >
-          {saveStatus === 'saving' ? 'Đang lưu kết quả…' : 'Quay lại trang chủ'}
+          {saveStatus === 'saving' ? 'Đang lưu kết quả…' : 'Quay lại chọn bài'}
         </button>
       </motion.div>
     );
   }
 
   const currentQuestion = questions[currentIndex];
+  const answeredCount = currentIndex + (selectedOption !== null ? 1 : 0);
   const comparisonMatch = (contentSource === 'reviewed' || contentSource === 'bank') && subject === 'math'
     ? currentQuestion.text.match(/(\d+)\s+\?\s+(\d+)/)
     : null;
@@ -411,17 +402,18 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
     ? [getComparisonVisual(comparisonMatch[1]), getComparisonVisual(comparisonMatch[2])]
     : null;
   const compactComparison = comparisonSides?.every(Boolean) ?? false;
+  const shortOptions = currentQuestion.options.every(option => option.length <= 12);
   const comparisonOptions = compactComparison
     && currentQuestion.options.length === 3
     && currentQuestion.options.every(option => ['<', '>', '='].includes(option.trim()));
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-4 sm:p-7 rounded-3xl shadow-xl relative overflow-hidden">
-      <div className="text-[11px] text-gray-500 mb-4 pr-24">
+      <div className="text-[11px] text-gray-500 mb-3">
         {contentSource === 'bank' ? 'Ngân hàng bài luyện tự biên soạn · chưa đối chiếu từng bài SGK/chưa được giáo viên thẩm định' : contentSource === 'reviewed' ? 'Bài có hồ sơ giáo viên duyệt · cần kiểm tra xác thực trước khi dùng chính thức' : 'Câu hỏi do AI tạo theo chủ đề · phụ huynh nên rà soát đáp án'}
       </div>
       {/* Mode & Difficulty Badges */}
-      <div className="absolute top-0 right-0 flex gap-2 p-4">
+      <div className="flex flex-wrap gap-2 mb-3">
         <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${
           mode === 'quiz' ? 'bg-purple-100 text-purple-600 border border-purple-200' : 'bg-blue-100 text-blue-600 border border-blue-200'
         }`}>
@@ -437,7 +429,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
       </div>
 
       <div className={`flex flex-wrap justify-between items-center gap-2 ${compactComparison ? 'mb-4' : 'mb-8'}`}>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 min-w-0">
           <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">
             Câu hỏi {currentIndex + 1} / {questions.length}
           </span>
@@ -466,10 +458,10 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
             </div>
           )}
         </div>
-        <div className="h-2 w-32 bg-gray-100 rounded-full overflow-hidden">
+        <div role="progressbar" aria-label="Số câu đã trả lời" aria-valuemin={0} aria-valuemax={questions.length} aria-valuenow={answeredCount} aria-valuetext={`Đã trả lời ${answeredCount}/${questions.length} câu`} className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
           <div 
             className="h-full bg-blue-500 transition-all duration-300" 
-            style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
+            style={{ width: `${(answeredCount / questions.length) * 100}%` }}
           />
         </div>
       </div>
@@ -493,12 +485,18 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
        <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
+          onAnimationComplete={() => {
+            if (currentIndex > 0) {
+              questionHeadingRef.current?.focus({ preventScroll: true });
+              questionHeadingRef.current?.scrollIntoView({ block: 'nearest' });
+            }
+          }}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.3 }}
         >
-          <h2 className={`font-bold text-gray-800 leading-relaxed text-center ${compactComparison ? 'text-lg sm:text-xl mb-3' : 'text-2xl mb-6'}`}>
+          <h2 ref={questionHeadingRef} tabIndex={-1} className={`scroll-mt-32 font-bold text-gray-800 leading-relaxed text-center ${compactComparison ? 'text-lg sm:text-xl mb-3' : 'text-xl sm:text-2xl mb-4'}`}>
             {compactComparison ? 'Điền dấu thích hợp giữa hai số:' : currentQuestion.text}
           </h2>
           {compactComparison && comparisonSides && (
@@ -550,7 +548,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
             )}
           </AnimatePresence>
 
-          <div className={`grid mb-6 ${comparisonOptions ? 'grid-cols-3 gap-2 sm:gap-3' : 'grid-cols-1 gap-4'}`}>
+          <div className={`grid mb-6 ${comparisonOptions ? 'grid-cols-3 gap-2 sm:gap-3' : shortOptions ? 'grid-cols-2 gap-2 sm:gap-3' : 'grid-cols-1 gap-2 sm:gap-3'}`}>
             {currentQuestion.options.map((option, idx) => (
               <motion.button
                 key={idx}
@@ -572,7 +570,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                 }
                 onClick={() => handleOptionSelect(option)}
                 disabled={!!selectedOption}
-                className={`${comparisonOptions ? 'px-2 py-3 text-center justify-center sm:py-4' : 'p-4 text-left justify-between'} rounded-2xl border-2 transition-all flex items-center ${
+                className={`${comparisonOptions ? 'px-2 py-3 text-center justify-center sm:py-4' : 'p-3 sm:p-4 text-left justify-between gap-2'} rounded-2xl border-2 transition-all flex items-center ${
                   selectedOption === option
                     ? isCorrect 
                       ? 'border-green-500 bg-green-50' 
@@ -584,7 +582,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                         : 'border-gray-200 hover:border-blue-300 hover:bg-blue-50'
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 items-center gap-3 break-words">
                   <span className={`${comparisonOptions ? 'text-3xl sm:text-4xl' : 'text-xl'} font-bold`}>{option}</span>
                   {hintUsed && option === currentQuestion.correctAnswer && !selectedOption && (
                     <motion.div
@@ -618,10 +616,10 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="flex items-center gap-2 text-green-600 font-bold"
+                      className="flex shrink-0 items-center gap-1 text-green-600 font-bold"
                     >
                       <CheckCircle2 size={20} />
-                      <span>Đáp án đúng</span>
+                      <span className={comparisonOptions ? 'sr-only' : 'hidden sm:inline text-xs'}>Đáp án đúng</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -634,9 +632,10 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`p-6 rounded-3xl mb-8 ${isCorrect ? 'bg-green-50 border-2 border-green-100' : 'bg-red-50 border-2 border-red-100'}`}
+                role="status"
+                className={`p-4 sm:p-5 rounded-3xl mb-2 ${isCorrect ? 'bg-green-50 border-2 border-green-100' : 'bg-red-50 border-2 border-red-100'}`}
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-start justify-between gap-2 mb-3">
                   <div className="flex items-center gap-3">
                     <div className={`p-2 rounded-xl ${isCorrect ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
                       {isCorrect ? <Trophy size={24} /> : <Lightbulb size={24} />}
@@ -652,7 +651,8 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                   </div>
                   <button
                     onClick={() => { if (!speak(`Đáp án đúng là ${currentQuestion.correctAnswer}. ${currentQuestion.explanation}`)) setShowAudioSettings(true); }}
-                    className={`p-3 rounded-2xl transition-all ${isCorrect ? 'bg-green-200 text-green-700 hover:bg-green-300' : 'bg-red-200 text-red-700 hover:bg-red-300'}`}
+                    aria-label="Đọc giải thích"
+                    className={`shrink-0 p-3 rounded-2xl transition-all ${isCorrect ? 'bg-green-200 text-green-700 hover:bg-green-300' : 'bg-red-200 text-red-700 hover:bg-red-300'}`}
                     title="Đọc giải thích (cần bật giọng đọc trong Âm thanh)"
                   >
                     <Volume2 size={24} />
@@ -664,7 +664,7 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                 
                 <button
                   onClick={nextQuestion}
-                  className={`mt-6 w-full py-4 rounded-2xl font-black text-xl flex items-center justify-center gap-2 transition-all shadow-lg ${
+                  className={`mt-4 w-full py-3 rounded-2xl font-black text-xl flex items-center justify-center gap-2 transition-all shadow-lg ${
                     isCorrect 
                       ? 'bg-green-500 text-white hover:bg-green-600 shadow-green-200' 
                       : 'bg-blue-500 text-white hover:bg-blue-600 shadow-blue-200'
