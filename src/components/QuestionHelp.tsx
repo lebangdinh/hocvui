@@ -52,7 +52,7 @@ export function QuestionHelp({ question, userAnswer, profileId, grade, subject, 
 
   return <div className="mt-4 rounded-2xl border border-indigo-200 bg-white p-3 sm:p-4">
     <h5 className="font-bold text-indigo-900">Gấu Nhỏ giúp bé hiểu bài</h5>
-    <p className="mt-1 text-xs leading-relaxed text-gray-600">Gấu sẽ xem câu hỏi này, đáp án và lựa chọn của bé để giải thích thêm.</p>
+    <p className="mt-1 text-xs leading-relaxed text-gray-600">Câu hỏi, đáp án và lựa chọn của bé sẽ được gửi đến Cloudflare AI (Llama) để giải thích thêm.</p>
     {status !== 'ai' && <button type="button" disabled={status === 'loading'} onClick={() => { void explain(); }}
       className="mt-3 w-full rounded-xl bg-indigo-600 px-3 py-3 text-sm font-bold text-white hover:bg-indigo-700 disabled:opacity-60">
       {status === 'loading' ? 'Gấu đang xem câu này…' : status === 'unavailable' ? 'Thử kết nối AI lại' : 'Nhờ Gấu giải thích thêm'}

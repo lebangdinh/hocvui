@@ -19,7 +19,7 @@ type AIStatus = 'offline' | 'checking' | 'online';
 const WELCOME: Message = {
   role: 'model',
   source: 'local',
-  content: 'Chào bé! 🐻💛 Gấu giúp bé chào hỏi, làm phép tính đơn giản và tìm bài học nhé. Phần AI mở rộng chưa được kết nối, nên Gấu sẽ nói rõ những câu mình chưa trả lời được.'
+  content: 'Chào bé! 🐻💛 Gấu giúp bé chào hỏi, làm phép tính đơn giản và tìm bài học nhé. Bé bấm Kiểm tra AI để kết nối phần hỗ trợ bài học nhé.'
 };
 
 export const AIChatbot: React.FC = () => {
@@ -28,13 +28,14 @@ export const AIChatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([WELCOME]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // This Firebase project does not currently deploy the Gemini callable.
+  // Only a real authenticated AI reply confirms the connection.
   // Only show "online" after a successful real backend response.
   const [aiStatus, setAiStatus] = useState<AIStatus>('offline');
   const [connectionMessage, setConnectionMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const verifiedHistoryRef = useRef<ChatTurn[]>([]);
   const lastCheckAtRef = useRef(0);
+  const generationRef = useRef(0);
 
   useEffect(() => {
     if (isOpen) messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
@@ -42,12 +43,16 @@ export const AIChatbot: React.FC = () => {
 
   // Conversations never cross student profiles.
   useEffect(() => {
+    generationRef.current++;
+    setIsLoading(false);
+    lastCheckAtRef.current = 0;
     setMessages([WELCOME]);
     setInput('');
     setAiStatus('offline');
     setConnectionMessage('');
     verifiedHistoryRef.current = [];
-  }, [profile?.id]);
+    return () => { generationRef.current++; };
+  }, [profile?.uid, profile?.id]);
 
   const append = (content: string, source: Message['source'] = 'local') =>
     setMessages(prev => [...prev, { role: 'model', content, source }]);
@@ -64,7 +69,7 @@ export const AIChatbot: React.FC = () => {
       return;
     }
 
-    // Do not repeatedly call an undeployed endpoint and invent an answer.
+    // Retry only after the user explicitly checks the AI connection.
     if (aiStatus !== 'online') {
       append(unavailableAIMessage(), 'status');
       return;
@@ -76,26 +81,29 @@ export const AIChatbot: React.FC = () => {
     }
 
     setIsLoading(true);
+    const generation = generationRef.current;
     try {
       const history = verifiedHistoryRef.current.slice(-6);
       const answer = await chatWithAI(message, history, profile.grade, profile.id);
+      if (generation !== generationRef.current) return;
       if (typeof answer !== 'string' || !answer.trim()) throw new Error('empty-ai-answer');
       const userTurn: ChatTurn = { role: 'user', parts: [{ text: message }] };
       const modelTurn: ChatTurn = { role: 'model', parts: [{ text: answer.slice(0, 500) }] };
       verifiedHistoryRef.current = [...history, userTurn, modelTurn].slice(-6);
       append(answer.slice(0, 2200), 'ai');
     } catch (error) {
+      if (generation !== generationRef.current) return;
       console.warn('Gấu Nhỏ AI unavailable:', error);
       setAiStatus('offline');
       setConnectionMessage('Kết nối AI bị gián đoạn. Bé vẫn có thể hỏi những câu cơ bản.');
       append(unavailableAIMessage(), 'status');
     } finally {
-      setIsLoading(false);
+      if (generation === generationRef.current) setIsLoading(false);
     }
   };
 
   // Checking is deliberate and truthful: never turn the green status on
-  // unless the authenticated Firebase callable has actually replied.
+  // unless the authenticated AI endpoint has actually replied.
   const checkConnection = async () => {
     if (!profile?.id || aiStatus === 'checking' || isLoading) return;
     if (Date.now() - lastCheckAtRef.current < 15_000) {
@@ -105,14 +113,17 @@ export const AIChatbot: React.FC = () => {
     lastCheckAtRef.current = Date.now();
     setAiStatus('checking');
     setConnectionMessage('Đang kiểm tra kết nối AI…');
+    const generation = generationRef.current;
     try {
       const answer = await chatWithAI('Xin chào!', [], profile.grade, profile.id);
+      if (generation !== generationRef.current) return;
       if (typeof answer !== 'string' || !answer.trim()) throw new Error('empty-ai-answer');
       verifiedHistoryRef.current = [];
       setAiStatus('online');
       setConnectionMessage('Đã kết nối máy chủ AI. Bé có thể hỏi thêm về bài học.');
       append('Gấu đã kết nối với AI học tập. Bé có thể hỏi một câu về bài học nhé! 🐻', 'status');
     } catch (error) {
+      if (generation !== generationRef.current) return;
       console.warn('Gấu Nhỏ connection check failed:', error);
       setAiStatus('offline');
       setConnectionMessage('AI mở rộng chưa hoạt động. Gấu vẫn giúp bé các câu hỏi đơn giản và hướng dẫn vào bài học.');
@@ -155,7 +166,7 @@ export const AIChatbot: React.FC = () => {
 
             {aiStatus !== 'online' && (
               <div className="flex shrink-0 items-center justify-between gap-2 border-b border-amber-100 bg-amber-50 px-4 py-2 text-[11px] text-amber-900 sm:text-xs">
-                <span className="min-w-0">AI mở rộng chưa sẵn sàng. Gấu trả lời câu cơ bản tại chỗ.</span>
+                <span className="min-w-0">Bấm kiểm tra để dùng AI. Mỗi lần kiểm tra dùng 1 lượt.</span>
                 <button type="button" onClick={checkConnection} disabled={aiStatus === 'checking'}
                   className="flex shrink-0 items-center gap-1 rounded-full border border-amber-200 bg-white px-2.5 py-1.5 font-bold hover:bg-amber-100 disabled:opacity-50">
                   {aiStatus === 'checking' ? <Loader2 size={13} className="animate-spin" /> : <RefreshCw size={13} />}
@@ -215,7 +226,7 @@ export const AIChatbot: React.FC = () => {
                 </button>
               </form>
               <p className="mt-2 text-center text-[10px] text-slate-500 sm:text-xs">
-                Bé đừng gửi mật khẩu, địa chỉ hay số điện thoại nhé. Câu trả lời AI có thể chưa chính xác.
+                Câu hỏi được gửi đến Cloudflare AI (Llama). Bé đừng gửi thông tin riêng tư nhé. AI có thể trả lời sai.
               </p>
             </div>
           </motion.section>

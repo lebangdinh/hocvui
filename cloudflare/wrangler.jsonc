@@ -1,0 +1,9 @@
+{
+  "name": "hocvui-gau-nho",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-10",
+  "account_id": "77ffda86ef0a56177e5a8859e743db62",
+  "ai": { "binding": "AI" },
+  "d1_databases": [{ "binding": "DB", "database_name": "hocvui-ai-quota", "database_id": "319565c1-ddae-40ba-9e33-f4d12d3f40b3" }],
+  "observability": { "enabled": false }
+}

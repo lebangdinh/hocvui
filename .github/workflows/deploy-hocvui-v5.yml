@@ -30,6 +30,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Test content and mocked permissions
         run: npm run test:offline
+      - name: Test authenticated Cloudflare AI gateway
+        run: node scripts/test-cloudflare-worker.mjs
       - name: Type-check
         run: npm run lint
       - name: Verify games and Vietnamese audio safety
