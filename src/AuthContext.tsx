@@ -65,33 +65,48 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     let unsubscribeProfiles: (() => void) | null = null;
     let trashCleanupTimer: ReturnType<typeof setInterval> | null = null;
+    let authGeneration = 0;
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      const generation = ++authGeneration;
       let cleanupRequested = false;
       if (trashCleanupTimer) { clearInterval(trashCleanupTimer); trashCleanupTimer = null; }
       if (unsubscribeProfiles) { unsubscribeProfiles(); unsubscribeProfiles = null; }
+      // Never display one parent's private student list to another account
+      // while the next Firestore listener is still initializing.
       setUser(firebaseUser);
+      setRole('parent');
+      setProfile(null);
+      setProfiles([]);
+      setTrashProfiles([]);
+      setTrashError(null);
       setProfilesError(null);
+      setLoading(!!firebaseUser);
       setIsAuthReady(true);
-      
+
       if (firebaseUser) {
         // If the tab stays open for a long time, recheck expiry hourly.
         trashCleanupTimer = setInterval(() => {
           if (auth.currentUser?.uid !== firebaseUser.uid) return;
           void purgeExpiredTrashForSignedInParent()
-            .then(() => setTrashError(null))
-            .catch(error => setTrashError(error instanceof Error ? error.message : 'Chưa dọn được Thùng rác quá hạn.'));
+            .then(() => { if (generation === authGeneration) setTrashError(null); })
+            .catch(error => { if (generation === authGeneration) setTrashError(error instanceof Error ? error.message : 'Chưa dọn được Thùng rác quá hạn.'); });
         }, 60 * 60 * 1000);
         try {
           const token = await firebaseUser.getIdTokenResult();
+          if (generation !== authGeneration || auth.currentUser?.uid !== firebaseUser.uid) return;
           setRole(token.claims.role === 'admin' ? 'admin' : token.claims.role === 'reviewer' ? 'reviewer' : 'parent');
         } catch {
+          if (generation !== authGeneration || auth.currentUser?.uid !== firebaseUser.uid) return;
           setRole('parent');
         }
+        if (generation !== authGeneration || auth.currentUser?.uid !== firebaseUser.uid) return;
         const profilesRef = collection(db, 'users', firebaseUser.uid, 'profiles');
         
         // Listen to all profiles
         unsubscribeProfiles = onSnapshot(profilesRef, (snapshot) => {
+          if (generation !== authGeneration || auth.currentUser?.uid !== firebaseUser.uid) return;
           setProfilesError(null);
+          setLoading(false);
           const allProfiles = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as UserProfile));
           const profilesData = allProfiles.filter(p => !isTrashed(p));
           setProfiles(profilesData);
@@ -99,8 +114,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           if (!cleanupRequested && !snapshot.metadata.fromCache) {
             cleanupRequested = true;
             void purgeExpiredTrashForSignedInParent()
-              .then(() => setTrashError(null))
-              .catch(error => setTrashError(error instanceof Error ? error.message : 'Chưa dọn được Thùng rác quá hạn.'));
+              .then(() => { if (generation === authGeneration) setTrashError(null); })
+              .catch(error => { if (generation === authGeneration) setTrashError(error instanceof Error ? error.message : 'Chưa dọn được Thùng rác quá hạn.'); });
           }
           
           // If current profile is not in the list anymore, reset it
@@ -110,6 +125,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             return updated || null;
           });
         }, (error) => {
+          if (generation !== authGeneration || auth.currentUser?.uid !== firebaseUser.uid) return;
           console.error('Unable to subscribe to student profiles:', error.code);
           setProfilesError(error.code === 'permission-denied'
             ? 'Firebase chưa cho phép đọc hồ sơ. Cần xuất bản Firestore Rules của Học Vui V5.'
@@ -117,7 +133,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setLoading(false);
         });
 
-        setLoading(false);
       } else {
         setRole('parent');
         setProfile(null);
@@ -129,6 +144,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
 
     return () => {
+      authGeneration++;
       unsubscribe();
       if (unsubscribeProfiles) unsubscribeProfiles();
       if (trashCleanupTimer) clearInterval(trashCleanupTimer);

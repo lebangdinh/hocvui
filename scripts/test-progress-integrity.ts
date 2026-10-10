@@ -26,10 +26,10 @@ const report = read('src/components/ReportModule.tsx');
 
 assert.match(ledger, /await runTransaction\(db, async tx =>/);
 assert.match(ledger, /const snap = await tx\.get\(ref\)/);
-assert.match(ledger, /tx\.set\(activityRef, activity\)/);
+assert.match(ledger, /tx\.set\(activityRef, prepareLessonActivity\(activity\)\)/);
 assert.match(ledger, /tx\.update\(ref, \{/);
 assert.match(ledger, /subjectPoints: oldSubjectPoints/);
-assert.ok(ledger.indexOf('tx.set(activityRef, activity)') < ledger.indexOf('tx.update(ref, {'));
+assert.ok(ledger.indexOf('tx.set(activityRef, prepareLessonActivity(activity))') < ledger.indexOf('tx.update(ref, {'));
 assert.ok(auth.includes('await changeStudentPoints(profile.id, points)'));
 assert.ok(!auth.includes('profile.totalPoints + points'));
 assert.ok(lesson.includes('await commitStudentLesson('));

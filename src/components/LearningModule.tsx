@@ -206,6 +206,14 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
         collection(db, 'activities'),
         where('userId', '==', profile.uid)
       ));
+      // A network timeout may happen after the server has already committed.
+      // Check the stable lesson ID before retrying so the child never earns
+      // the same lesson twice or sees a false failure on a successful save.
+      if (historySnap.docs.some(item => item.id === lessonActivityIdRef.current)) {
+        setNewBadges([]);
+        setSaveStatus('saved');
+        return;
+      }
       const myHistory = historySnap.docs
         .map(item => item.data() as Activity)
         .filter(item => item.profileId === profile.id);
@@ -352,7 +360,9 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
         </p>
         <div className="flex items-center justify-center gap-2 mb-6 bg-yellow-50 py-2 px-4 rounded-full border border-yellow-100 w-fit mx-auto">
           <Star size={20} className="text-yellow-500 fill-yellow-500" />
-          <span className="font-black text-yellow-700 text-lg">+{totalXP} sao</span>
+          <span className="font-black text-yellow-700 text-lg">
+            {saveStatus === 'saved' ? `+${totalXP} sao đã lưu` : `Dự kiến +${totalXP} sao`}
+          </span>
         </div>
 
         {newBadges.length > 0 && (
@@ -379,10 +389,15 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
         )}
 
         <button
-          onClick={onClose}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold transition-colors shadow-lg"
+          type="button"
+          disabled={saveStatus === 'saving'}
+          onClick={() => {
+            if (saveStatus !== 'saved' && !window.confirm('Kết quả bài học chưa được lưu lên Firebase. Nếu rời bây giờ, bé có thể mất sao và lịch sử vừa học. Anh/chị vẫn muốn rời không?')) return;
+            onClose();
+          }}
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold transition-colors shadow-lg disabled:cursor-wait disabled:opacity-50"
         >
-          Quay lại trang chủ
+          {saveStatus === 'saving' ? 'Đang lưu kết quả…' : 'Quay lại trang chủ'}
         </button>
       </motion.div>
     );

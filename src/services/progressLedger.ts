@@ -2,6 +2,7 @@ import { arrayUnion, collection, doc, runTransaction } from 'firebase/firestore'
 import { auth, db } from '../firebase';
 import type { Activity } from '../types';
 import { nextPointsAndLevel } from './pointsMath';
+import { prepareLessonActivity } from './lessonActivity';
 
 
 function profileRefOf(profileId: string) {
@@ -69,7 +70,7 @@ export async function commitStudentLesson(
     const currentBadges: string[] = Array.isArray(data!.badges) ? data!.badges : [];
     const newBadges = [...new Set(candidateBadges)].filter(id => !currentBadges.includes(id));
 
-    tx.set(activityRef, activity);
+    tx.set(activityRef, prepareLessonActivity(activity));
     tx.update(ref, {
       ...next,
       subjectPoints: oldSubjectPoints,

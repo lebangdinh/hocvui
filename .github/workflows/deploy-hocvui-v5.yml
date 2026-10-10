@@ -42,6 +42,8 @@ jobs:
         run: node scripts/test-profile-deletion.cjs
       - name: Test atomic progress saving and report safety
         run: npx --no-install tsx scripts/test-progress-integrity.ts
+      - name: Test account isolation and safe activity serialization
+        run: npx --no-install tsx scripts/test-session-and-activity.ts
       - name: Build website at /hocvui/
         env:
           VITE_BASE_PATH: /hocvui/
