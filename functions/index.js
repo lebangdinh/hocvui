@@ -7,6 +7,7 @@ const { getFirestore, FieldValue } = require('firebase-admin/firestore');
 const { GoogleGenAI, Type } = require('@google/genai');
 const alignment = require('./content/alignment-review-queue.json');
 const fingerprint = require('./content/bank-fingerprint.json');
+const { validateStudyQuestion, questionInstruction } = require('./studyQuestion.cjs');
 const extraBankIds = require('./content/extra-bank-topic-ids.json');
 
 const app = initializeApp();
@@ -105,8 +106,11 @@ exports.generatePracticeQuestions = onCall(opts, async req => {
 
 exports.askStudyBear = onCall(opts, async req => {
   const uid = signedIn(req);
-  const { profileId, message, history = [] } = req.data || {};
+  const { profileId, message, history = [], questionContext } = req.data || {};
   const profile = await ownedProfile(uid, profileId);
+  if (profile.deletedAt || profile.grade < 1 || profile.grade > 5) {
+    throw new HttpsError('permission-denied', 'Hồ sơ không còn khả dụng để hỏi bài.');
+  }
   if (!str(message, 500) || !Array.isArray(history) || history.length > 6) {
     throw new HttpsError('invalid-argument', 'Nội dung trò chuyện quá dài hoặc không hợp lệ.');
   }
@@ -114,14 +118,19 @@ exports.askStudyBear = onCall(opts, async req => {
     if (!['user','model'].includes(x?.role) || !str(x?.text, 500)) throw new HttpsError('invalid-argument', 'Lịch sử trò chuyện không hợp lệ.');
     return {role:x.role,parts:[{text:x.text}]};
   });
+  const exercise = questionContext === undefined ? null : validateStudyQuestion(questionContext, profile.grade, getTopic);
+  // Contextual explanations are single-turn: no unrelated conversation or child history.
+  if (exercise && history.length) throw new HttpsError('invalid-argument', 'Giải thích câu sai không dùng lịch sử trò chuyện.');
   await quota(uid, 'chat', 40, 2500);
   try {
     const chat = getAI().chats.create({model:'gemini-2.5-flash', history:safeHistory,
-      config:{systemInstruction:`Bạn là Gấu Nhỏ Thông Thái, trợ lý học tập dành cho học sinh tiểu học Việt Nam lớp ${profile.grade}. Câu trả lời tích cực, dễ hiểu, ngắn gọn và phù hợp độ tuổi. Không yêu cầu bé cung cấp tên đầy đủ, địa chỉ, số điện thoại hay thông tin cá nhân. Nếu bé gặp nguy hiểm, khuyến khích tìm cha mẹ hoặc thầy cô. Không tự nhận nội dung AI là đáp án đã được thẩm định.`}});
-    const response = await chat.sendMessage({message});
+      config:{maxOutputTokens: 900, temperature: 0.3, systemInstruction:`Bạn là Gấu Nhỏ Thông Thái, trợ lý học tập dành cho học sinh tiểu học Việt Nam lớp ${profile.grade}. Câu trả lời tích cực, dễ hiểu, ngắn gọn và phù hợp độ tuổi. Không yêu cầu bé cung cấp tên đầy đủ, địa chỉ, số điện thoại hay thông tin cá nhân. Nếu bé gặp nguy hiểm, khuyến khích tìm cha mẹ hoặc thầy cô. Không tự nhận nội dung AI là đáp án đã được thẩm định. ${exercise ? questionInstruction : ''}`}});
+    const response = await chat.sendMessage({message: exercise
+      ? `Giải thích câu sai dưới đây. Dữ liệu tham khảo JSON:\n${JSON.stringify(exercise)}`
+      : message});
     const answer = String(response.text || '').slice(0, 2200);
     if (!answer) throw Error('empty answer');
-    return { answer, reviewStatus:'ai_unverified' };
+    return { answer, reviewStatus:'ai_unverified', contextApplied: !!exercise };
   } catch (e) {
     if (e instanceof HttpsError) throw e;
     console.error('Study bear error', e?.message || e);

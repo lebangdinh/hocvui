@@ -22,10 +22,21 @@ export async function generateQuestions(
   return result.data.questions;
 }
 
-export async function chatWithAI(message: string, history: { role:'user'|'model'; parts:{ text:string }[] }[] = [], _grade = 2, profileId?: string): Promise<string> {
+export interface StudyQuestionContext {
+  subject: Subject;
+  topicId: string;
+  question: Pick<Question, 'text' | 'options' | 'correctAnswer' | 'explanation'>;
+  userAnswer: string;
+}
+
+export async function chatWithAI(message: string, history: { role:'user'|'model'; parts:{ text:string }[] }[] = [], _grade = 2, profileId?: string, questionContext?: StudyQuestionContext): Promise<string> {
   if (!auth.currentUser || !profileId) throw new Error('Vui lòng đăng nhập và chọn hồ sơ học sinh.');
-  const call = httpsCallable<{profileId:string;message:string;history:{role:string;text:string}[]},{answer:string}>(functions, 'askStudyBear', { timeout: 12000 });
+  const call = httpsCallable<{profileId:string;message:string;history:{role:string;text:string}[];questionContext?:StudyQuestionContext},{answer:string;contextApplied?:boolean}>(functions, 'askStudyBear', { timeout: questionContext ? 20000 : 12000 });
   const response = await call({ profileId, message,
+    ...(questionContext ? { questionContext } : {}),
     history:history.slice(-6).map(h => ({role:h.role, text:String(h.parts?.[0]?.text || '').slice(0,500)})) });
+  if (questionContext && response.data.contextApplied !== true) {
+    throw new Error('Máy chủ chưa hỗ trợ giải thích theo câu hỏi.');
+  }
   return response.data.answer;
 }

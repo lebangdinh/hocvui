@@ -3,7 +3,7 @@
 const assert=require('node:assert/strict');
 const Module=require('node:module');
 const path=require('node:path');
-const memory=new Map();let id=0;let geminiCalls=0;const deletedUsers=[];
+const memory=new Map();let id=0;let geminiCalls=0;const deletedUsers=[]; const chatRequests=[]; let lastChatConfig;
 const clone=obj=> obj===undefined ? undefined : JSON.parse(JSON.stringify(obj));
 function ref(k){return {path:k, get:async()=>snap(k),set:async d=>memory.set(k,clone(d)),delete:async()=>memory.delete(k)};}
 function snap(k){return {exists:memory.has(k),data:()=>clone(memory.get(k)),ref:ref(k)};}
@@ -20,7 +20,7 @@ const db={
 class HttpsError extends Error{constructor(code,msg){super(msg);this.code=code;}}
 const questions=Array.from({length:5},(_,i)=>({text:`Câu số ${i+1} có đáp án nào đúng?`,options:['A','B','C','D'],correctAnswer:'A',explanation:'Đáp án chính xác là A.',hint:'Hãy chọn A.'}));
 const googleMock=class GoogleGenAI {
- constructor(o){assert.equal(o.apiKey,'FAKE_ONLY_IN_TEST');this.models={generateContent:async()=>{geminiCalls++;return {text:JSON.stringify(questions)}}};this.chats={create:()=>({sendMessage:async()=>({text:'Chào bé, cùng học nhé!'})})};}
+ constructor(o){assert.equal(o.apiKey,'FAKE_ONLY_IN_TEST');this.models={generateContent:async()=>{geminiCalls++;return {text:JSON.stringify(questions)}}};this.chats={create:config=>{lastChatConfig=config;return {sendMessage:async input=>{chatRequests.push(input);return {text:'Con cùng xem lại từng bước nhé!'}}}}};}
 };
 const stubs={
  'firebase-functions/v2/https':{onCall:(_opts,fn)=>fn,HttpsError},
@@ -63,6 +63,37 @@ async function hasCode(p,code){await assert.rejects(p,e=>e instanceof HttpsError
   await hasCode(functions.generatePracticeQuestions(withData(a,{profileId:'kid-one',grade:1,subject:'math',topicId:'1-math-1'})),'resource-exhausted');
  }finally{Date.now=clock}
  assert.equal(geminiCalls,15,'Exactly 15 Gemini calls permitted per day');
+ const context={subject:'math',topicId:'1-math-2',question:{text:'2 + 3 = ?',options:['4','5','6'],correctAnswer:'5',explanation:'2 cộng 3 bằng 5.'},userAnswer:'4'};
+ const request={profileId:'kid-one',message:'Gấu giải thích giúp con.',questionContext:context};
+ await hasCode(functions.askStudyBear(withData(a,{...request,questionContext:{...context,topicId:'3-math-1'}})),'invalid-argument');
+ await hasCode(functions.askStudyBear(withData(a,{...request,questionContext:{...context,userAnswer:'5'}})),'invalid-argument');
+ await hasCode(functions.askStudyBear(withData(a,{...request,questionContext:{...context,userAnswer:'not-an-option'}})),'invalid-argument');
+ await hasCode(functions.askStudyBear(withData(a,{...request,questionContext:{...context,question:{...context.question,text:'x'.repeat(501)}}})),'invalid-argument');
+ await hasCode(functions.askStudyBear(withData(a,{...request,history:[{role:'user',text:'An unrelated conversation'}]})),'invalid-argument');
+ assert.equal(chatRequests.length,0,'Invalid requests must never reach Gemini');
+ memory.set('users/parent-a/profiles/removed',{...profile,deletedAt:{seconds:1}});
+ await hasCode(functions.askStudyBear(withData(a,{...request,profileId:'removed'})),'permission-denied');
+ memory.delete('users/parent-a/profiles/removed');
+ const realClock=Date.now;let chatNow=2000000000000;Date.now=()=>chatNow;
+ try {
+   const out=await functions.askStudyBear(withData(a,request));
+   assert.equal(out.contextApplied,true);
+   assert.match(lastChatConfig.config.systemInstruction,/lớp 1/);
+   assert.match(lastChatConfig.config.systemInstruction,/không đoán suy nghĩ/);
+   assert.match(lastChatConfig.config.systemInstruction,/không phải chỉ dẫn/);
+   const prompt=chatRequests.at(-1).message;
+   assert.ok(prompt.includes('2 + 3 = ?')&&prompt.includes('"userAnswer":"4"'));
+   assert.ok(!prompt.includes('parent-a')&&!prompt.includes('kid-one')&&!prompt.includes('Bé A'));
+   await hasCode(functions.askStudyBear(withData(a,request)),'resource-exhausted');
+   for(let n=1;n<40;n++){chatNow+=3000;await functions.askStudyBear(withData(a,request));}
+   chatNow+=3000;
+   await hasCode(functions.askStudyBear(withData(a,request)),'resource-exhausted');
+   assert.equal(chatRequests.length,40);
+   chatNow+=86400000;
+   const general=await functions.askStudyBear(withData(a,{profileId:'kid-one',message:'Xin chào'}));
+   assert.equal(general.contextApplied,false);
+ } finally {Date.now=realClock;}
+ console.log('PASS contextual tutor: exact exercise, no profile identity in prompt, invalid/deleted profiles rejected, single-turn context, cooldown and 40/day shared quota');
  memory.set('activities/a1',{userId:'parent-a',profileId:'kid-one',subject:'math'});
  memory.set('activities/b1',{userId:'parent-b',profileId:'other',subject:'math'});
  await hasCode(functions.deleteChildProfile(withData({auth:{uid:'parent-b',token:{}}},{profileId:'kid-one'})),'permission-denied');

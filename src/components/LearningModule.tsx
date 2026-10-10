@@ -26,6 +26,7 @@ import { getTopic, getSubjectAvailability } from '../constants/curriculum';
 import { makeLocalQuiz, hasLocalQuestionBank } from '../services/questionBank';
 import { useTopicApproval } from '../services/liveApproval';
 import confetti from 'canvas-confetti';
+import { QuestionHelp } from './QuestionHelp';
 import { SoundControls } from './SoundControls';
 import { getComparisonVisual } from '../services/comparisonVisual';
 import { commitStudentLesson } from '../services/progressLedger';
@@ -661,7 +662,12 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
                 <p className={`text-lg leading-relaxed ${isCorrect ? 'text-green-700' : 'text-red-700'}`}>
                   {currentQuestion.explanation}
                 </p>
-                
+
+                {!isCorrect && currentQuestion.options.includes(selectedOption) && profile && topicId && (
+                  <QuestionHelp key={`${profile.uid}:${profile.id}:${currentQuestion.id}:${currentIndex}`}
+                    question={currentQuestion} userAnswer={selectedOption} profileId={profile.id}
+                    grade={grade} subject={subject} topicId={topicId} />
+                )}
                 <button
                   onClick={nextQuestion}
                   className={`mt-4 w-full py-3 rounded-2xl font-black text-xl flex items-center justify-center gap-2 transition-all shadow-lg ${
