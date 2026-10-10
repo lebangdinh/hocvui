@@ -2,7 +2,7 @@ name: Verify and deploy Học Vui V5
 
 on:
   push:
-    branches: [main, v5-deploy-review]
+    branches: [main, v5-deploy-review, stabilize-progress-report-20261010]
   workflow_dispatch:
 
 permissions:
@@ -40,6 +40,8 @@ jobs:
         run: npx --no-install tsx scripts/test-comparison-layout.ts
       - name: Test 30-day recycle bin lifecycle and owner-only purge
         run: node scripts/test-profile-deletion.cjs
+      - name: Test atomic progress saving and report safety
+        run: npx --no-install tsx scripts/test-progress-integrity.ts
       - name: Build website at /hocvui/
         env:
           VITE_BASE_PATH: /hocvui/
