@@ -22,7 +22,6 @@ const shuffle = <T,>(a: T[]): T[] => {
   }
   return x;
 };
-const gcd = (a: number, b: number): number => b === 0 ? a : gcd(b, a % b);
 const fraction = (a: number, b: number) => `${a}/${b}`;
 function makeQuestion(text: string, correct: string, options: string[], explanation: string, hint: string, id: string, topic: string): Question {
   const dedup = [...new Set([correct, ...options])];
@@ -94,7 +93,7 @@ function lessonMath(grade: Grade, topicIndex: number, idx: number, difficulty: D
     }
     case '2-3': {
       if (idx % 2 === 0) { const dm = r(1, 9); return num(`${dm} dm bằng bao nhiêu cm?`, dm * 10, `1 dm = 10 cm nên ${dm} dm = ${dm * 10} cm.`, 10); }
-      const h = r(1, 10); return num(`${h} giờ sau ${h} giờ là mấy giờ?`, h + h, `Sau ${h} giờ nữa, đồng hồ chỉ ${h + h} giờ.`);
+      const h = r(1, 10); return num(`Bây giờ là ${h} giờ. Sau ${h} giờ nữa là mấy giờ (theo cách tính 24 giờ)?`, h + h, `Sau ${h} giờ nữa, đồng hồ chỉ ${h + h} giờ.`);
     }
     case '3-0': { const a = r(1_000, 99_999), b = idx % 4 === 0 ? a : r(1_000, 99_999); return compareQuestion(a, b, id, topic); }
     case '3-1': {
@@ -102,13 +101,13 @@ function lessonMath(grade: Grade, topicIndex: number, idx: number, difficulty: D
       return idx % 2 === 0 ? num(`${y} × ${x} = ?`, x * y, `${y} nhân ${x} được ${x * y}.`) : num(`${x * y} : ${x} = ?`, y, `${x * y} chia ${x} được ${y}.`);
     }
     case '3-2': {
-      const n = r(2, 9), part = 1;
+      const n = 2 + idx % 8, part = 1;
       return word(`Một hình chia thành ${n} phần bằng nhau, tô màu ${part} phần. Đã tô màu một phần mấy của hình?`, fraction(part, n),
         [fraction(n, part), fraction(n - part, n), fraction(part, n + 1), fraction(part + 1, n)],
         `Tô màu ${part} trong ${n} phần bằng nhau nên viết là ${fraction(part, n)}.`, 'Tử số chỉ phần đã tô, mẫu số chỉ tổng số phần bằng nhau.');
     }
     case '3-3': {
-      const a = r(2, 12), b = r(2, 12);
+      const b = r(2, 11), a = r(b + 1, 12);
       return idx % 2 === 0 ? num(`Hình chữ nhật dài ${a} cm, rộng ${b} cm. Chu vi là bao nhiêu cm?`, 2 * (a + b), `Chu vi = (${a} + ${b}) × 2 = ${2 * (a + b)} cm.`, 2) :
         num(`Hình chữ nhật dài ${a} cm, rộng ${b} cm. Diện tích là bao nhiêu cm²?`, a * b, `Diện tích = ${a} × ${b} = ${a * b} cm².`);
     }
@@ -144,7 +143,7 @@ function lessonMath(grade: Grade, topicIndex: number, idx: number, difficulty: D
     }
     case '4-3': {
       const first = r(2, 9), second = r(2, 9);
-      return idx % 2 === 0 ? num(`Một lớp khảo sát có ${first} bạn thích bóng đá, ${second} bạn thích cầu lông. Tổng bao nhiêu bạn?`, first + second, `Cộng hai nhóm: ${first} + ${second} = ${first + second}.`) :
+      return idx % 2 === 0 ? num(`Khảo sát hai nhóm: ${first} bạn chỉ thích bóng đá, ${second} bạn chỉ thích cầu lông. Hai nhóm có tất cả bao nhiêu bạn?`, first + second, `Cộng hai nhóm: ${first} + ${second} = ${first + second}.`) :
         num(`Bảng số liệu: Thứ hai đọc ${first} trang, thứ ba đọc ${second} trang. Hai ngày đọc bao nhiêu trang?`, first + second, `Cộng số trang hai ngày: ${first} + ${second} = ${first + second}.`);
     }
     case '5-0': {
@@ -159,7 +158,7 @@ function lessonMath(grade: Grade, topicIndex: number, idx: number, difficulty: D
       return num(`${pct}% của ${base} là bao nhiêu?`, base * pct / 100, `${pct}% của ${base} = ${base} × ${pct} : 100 = ${base * pct / 100}.`, 10, 'Đổi phần trăm sang phân số có mẫu 100.');
     }
     case '5-2': {
-      const a = r(2, 9), b = r(2, 8), c = r(2, 7);
+      const b = r(2, 8), a = r(b + 1, 9), c = r(2, 7);
       return idx % 2 === 0 ? num(`Hình hộp chữ nhật có chiều dài ${a} cm, rộng ${b} cm, cao ${c} cm. Thể tích là bao nhiêu cm³?`, a * b * c, `Thể tích = ${a} × ${b} × ${c} = ${a * b * c} cm³.`) :
         num(`Hình lập phương cạnh ${a} cm có thể tích bao nhiêu cm³?`, a ** 3, `Thể tích = ${a} × ${a} × ${a} = ${a ** 3} cm³.`);
     }
@@ -264,7 +263,7 @@ const LANGUAGE_BANK: Partial<Record<Subject, Partial<Record<Grade, BankItem[]>>>
       ['“I like swimming.” có nghĩa là gì?', ['Tôi thích bơi','Tôi thích hát','Tôi thích chạy','Tôi thích đọc'], 'Tôi thích bơi', 'Swimming là bơi lội.'],
       ['“Monday” là thứ mấy?', ['Thứ hai','Thứ ba','Thứ tư','Chủ nhật'], 'Thứ hai', 'Monday là thứ hai.'],
       ['“Hospital” là nơi nào?', ['Bệnh viện','Trường học','Siêu thị','Bưu điện'], 'Bệnh viện', 'Hospital là bệnh viện.'],
-      ['Điền từ: “She ... football.”', ['plays','play','playing','played'], 'plays', 'Chủ ngữ she dùng động từ plays ở hiện tại đơn.'],
+      ['Điền từ ở thì hiện tại đơn: “She ... football every Sunday.”', ['plays','play','playing','played'], 'plays', 'Chủ ngữ she dùng động từ plays ở hiện tại đơn.'],
       ['“Where is the library?” hỏi gì?', ['Thư viện ở đâu','Mấy giờ rồi','Bạn tên gì','Bạn khỏe không'], 'Thư viện ở đâu', 'Where dùng để hỏi nơi chốn.'],
       ['“I go to school at seven.” nói điều gì?', ['Tôi đi học lúc 7 giờ','Tôi ngủ lúc 7 giờ','Tôi ăn lúc 7 giờ','Tôi chơi lúc 7 giờ'], 'Tôi đi học lúc 7 giờ', 'At seven là lúc bảy giờ.'],
       ['“Sunday” là ngày nào?', ['Chủ nhật','Thứ sáu','Thứ hai','Thứ bảy'], 'Chủ nhật', 'Sunday là chủ nhật.'],
@@ -301,7 +300,8 @@ export function hasLocalQuestionBank(grade: number, subject: Subject, topicId?: 
 }
 export function getLocalQuestionCount(grade: number, subject: Subject, topicId?: string): number {
   if (!hasLocalQuestionBank(grade, subject, topicId)) return 0;
-  if (subject === 'math') return 10;
+  // Một phần mấy: chỉ có tám mẫu 1/2 đến 1/9, không kéo dài đề bằng câu trùng.
+  if (subject === 'math') return getTopic(grade, subject, topicId)?.id === '3-math-3' ? 8 : 10;
   const extra = extraPractice.topics.find(entry => entry.topicId === getTopic(grade, subject, topicId)?.id);
   if (extra) return Math.min(8, extra.items.length);
   return Math.min(8, LANGUAGE_BANK[subject]?.[grade as Grade]?.length || 0);
@@ -312,7 +312,7 @@ export function makeLocalQuiz(grade: number, subject: Subject, difficulty: Diffi
   const topicIndex = Number(topic.id.split('-').pop()) - 1;
   if (subject === 'math') {
     const seen = new Set<string>();
-    return Array.from({ length: 10 }, (_, i) => {
+    const questions = Array.from({ length: getLocalQuestionCount(grade, subject, topicId) }, (_, i) => {
       let q = lessonMath(grade as Grade, topicIndex, i, difficulty, topic.name);
       // Hạn chế bài trùng chữ trong cùng một lượt; những chủ đề mẫu ngắn vẫn có thể lặp về kĩ năng.
       for (let retry = 0; retry < 30 && seen.has(q.text); retry++) {
@@ -321,6 +321,7 @@ export function makeLocalQuiz(grade: number, subject: Subject, difficulty: Diffi
       seen.add(q.text);
       return q;
     });
+    return shuffle(questions);
   }
   const extra = extraPractice.topics.find(entry => entry.topicId === topic.id && entry.grade === grade && entry.subject === subject);
   if (extra) return shuffle(extra.items).slice(0, 8).map(item =>
