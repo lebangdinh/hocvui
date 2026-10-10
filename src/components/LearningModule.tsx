@@ -18,7 +18,7 @@ import {
 import { Subject, Question } from '../types';
 import { generateQuestions } from '../services/geminiService';
 import { db, handleFirestoreError, OperationType } from '../firebase';
-import { collection, addDoc, doc, updateDoc, increment, getDocs, query, where, arrayUnion, orderBy, limit } from 'firebase/firestore';
+import { collection, doc, getDocs, getDocsFromServer, query, where, orderBy, limit } from 'firebase/firestore';
 import { useAuth } from '../AuthContext';
 import { BADGES, BadgeId } from '../constants/badges';
 import { Activity } from '../types';
@@ -28,6 +28,7 @@ import { useTopicApproval } from '../services/liveApproval';
 import confetti from 'canvas-confetti';
 import { SoundControls } from './SoundControls';
 import { getComparisonVisual } from '../services/comparisonVisual';
+import { commitStudentLesson } from '../services/progressLedger';
 import { playEffect, playPraise, PRAISES, speakExplanation, stopSpokenAudio } from '../services/soundEngine';
 
 interface LearningModuleProps {
@@ -65,6 +66,11 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
   const [showAudioSettings, setShowAudioSettings] = useState(false);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>(initialDifficulty || 'medium');
   const [timeLeft, setTimeLeft] = useState(30);
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [saveError, setSaveError] = useState('');
+  const savingRef = useRef(false);
+  const lessonActivityIdRef = useRef<string | null>(null);
+  if (!lessonActivityIdRef.current) lessonActivityIdRef.current = doc(collection(db, 'activities')).id;
 
 
   const playSound = useCallback((type: 'correct' | 'incorrect' | 'finish') => playEffect(type), []);
@@ -175,7 +181,10 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
   };
 
   const saveProgress = useCallback(async () => {
-    if (!profile) return;
+    if (!profile || savingRef.current || saveStatus === 'saved') return;
+    savingRef.current = true;
+    setSaveStatus('saving');
+    setSaveError('');
     const activity: Activity = {
       userId: profile.uid,
       profileId: profile.id,
@@ -189,69 +198,53 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
       topicId: getTopic(grade, subject, topicId)?.id,
       contentSource
     };
-    
+
     try {
-      await addDoc(collection(db, 'activities'), activity);
-      
-      // Check for badges
-      const unlockedBadges: BadgeId[] = [];
-      const currentBadges = profile.badges || [];
-
-      // 1. First lesson
-      if (!currentBadges.includes('first_lesson')) {
-        unlockedBadges.push('first_lesson');
+      // Only one simple userId filter is needed; composite indexes need not
+      // have been deployed to read this parent's own history.
+      const historySnap = await getDocsFromServer(query(
+        collection(db, 'activities'),
+        where('userId', '==', profile.uid)
+      ));
+      const myHistory = historySnap.docs
+        .map(item => item.data() as Activity)
+        .filter(item => item.profileId === profile.id);
+      const alreadyEarned = profile.badges || [];
+      const candidates: BadgeId[] = [];
+      if (!alreadyEarned.includes('first_lesson')) candidates.push('first_lesson');
+      if (score === questions.length && !alreadyEarned.includes('perfect_score')) candidates.push('perfect_score');
+      if (myHistory.length + 1 >= 10 && !alreadyEarned.includes('diligent')) candidates.push('diligent');
+      const subjectLessons = myHistory.filter(item => item.subject === subject).length + 1;
+      const masteryBadge = `${subject}_master` as BadgeId;
+      if (subjectLessons >= 5 && masteryBadge in BADGES && !alreadyEarned.includes(masteryBadge)) {
+        candidates.push(masteryBadge);
       }
-
-      // 2. Perfect score
-      if (score === questions.length && !currentBadges.includes('perfect_score')) {
-        unlockedBadges.push('perfect_score');
-      }
-
-      // 3. Cumulative badges (need to fetch history for this specific profile)
-      const q = query(
-        collection(db, 'activities'), 
-        where('userId', '==', profile.uid),
-        where('profileId', '==', profile.id)
-      );
-      const historySnap = await getDocs(q);
-      const history = historySnap.docs.map(d => d.data());
-      
-      const totalLessons = history.length;
-      const subjectLessons = history.filter(h => h.subject === subject).length;
-
-      if (totalLessons >= 10 && !currentBadges.includes('diligent')) {
-        unlockedBadges.push('diligent');
-      }
-
-      if (subjectLessons >= 5) {
-        const badgeId = `${subject}_master` as BadgeId;
-        if (badgeId in BADGES && !currentBadges.includes(badgeId)) {
-          unlockedBadges.push(badgeId);
-        }
-      }
-
-      setNewBadges(unlockedBadges);
 
       const xpPerCorrect = mode === 'quiz' ? 20 : 10;
       const difficultyMultiplier = difficulty === 'hard' ? 1.5 : difficulty === 'medium' ? 1.2 : 1;
-      const totalXP = Math.floor(score * xpPerCorrect * difficultyMultiplier);
-
-      const userRef = doc(db, 'users', profile.uid, 'profiles', profile.id);
-      const updates: any = {
-        totalPoints: increment(totalXP),
-        level: Math.floor((profile.totalPoints + totalXP) / 1000) + 1,
-        [`subjectPoints.${subject}`]: increment(totalXP)
-      };
-
-      if (unlockedBadges.length > 0) {
-        updates.badges = arrayUnion(...unlockedBadges);
-      }
-
-      await updateDoc(userRef, updates);
+      const earnedPoints = Math.floor(score * xpPerCorrect * difficultyMultiplier);
+      // The activity, total stars, subject stars, level and badges are
+      // committed as one transaction. A failed write saves none of them.
+      const earnedBadges = await commitStudentLesson(
+        activity, lessonActivityIdRef.current!, earnedPoints, candidates
+      );
+      setNewBadges(earnedBadges as BadgeId[]);
+      setSaveStatus('saved');
     } catch (error) {
-      handleFirestoreError(error, OperationType.WRITE, 'activities');
+      console.warn('Could not save lesson on Firebase:', error instanceof Error ? error.message : 'unknown');
+      const message = error instanceof Error ? error.message.toLowerCase() : '';
+      setSaveError(
+        message.includes('permission') || message.includes('quyền')
+          ? 'Firebase từ chối lưu bài học. Cần kiểm tra Firestore Rules.'
+          : message.includes('network') || message.includes('unavailable') || message.includes('offline')
+            ? 'Mất kết nối Firebase. Bé bấm “Thử lưu lại” khi có mạng.'
+            : 'Chưa lưu được điểm và lịch sử. Bé hãy bấm “Thử lưu lại”; dữ liệu không bị lưu nửa chừng.'
+      );
+      setSaveStatus('error');
+    } finally {
+      savingRef.current = false;
     }
-  }, [profile, subject, score, questions.length, grade, wrongQuestions, mode, difficulty, topicId, contentSource]);
+  }, [profile, subject, score, questions, grade, wrongQuestions, mode, difficulty, topicId, contentSource, saveStatus]);
 
   // Timer for Quiz mode
   useEffect(() => {
@@ -345,6 +338,15 @@ export const LearningModule: React.FC<LearningModuleProps> = ({
       >
         <Trophy className="mx-auto text-yellow-500 mb-4" size={80} />
         <h2 className="text-3xl font-bold text-gray-800 mb-2">Tuyệt vời!</h2>
+        {saveStatus === 'saving' && <p role="status" className="mb-3 rounded-xl bg-blue-50 p-3 text-sm font-semibold text-blue-800">Đang lưu kết quả và sao lên Firebase…</p>}
+        {saveStatus === 'saved' && <p role="status" className="mb-3 rounded-xl bg-emerald-50 p-3 text-sm font-semibold text-emerald-800">Đã lưu điểm, cấp và lịch sử học tập thành công.</p>}
+        {saveStatus === 'error' && (
+          <div role="alert" className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            <p className="mb-2 font-semibold">{saveError}</p>
+            <button type="button" onClick={() => { void saveProgress(); }}
+              className="rounded-xl bg-red-600 px-4 py-2 font-bold text-white hover:bg-red-700">Thử lưu lại</button>
+          </div>
+        )}
         <p className="text-xl text-gray-600 mb-2">
           Bạn đã hoàn thành bài học với số điểm: <span className="font-bold text-blue-600">{score}/{questions.length}</span>
         </p>
