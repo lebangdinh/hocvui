@@ -5,6 +5,7 @@ import { auth, db, handleFirestoreError, OperationType, logout } from './firebas
 import { UserProfile } from './types';
 import { eraseAccountServer } from './services/accountDeletion';
 import { moveProfileToTrash, restoreProfileFromTrash, purgeTrashedProfile, purgeExpiredTrashForSignedInParent, isTrashed } from './services/profileTrash';
+import { changeStudentPoints } from './services/progressLedger';
 
 interface AuthContextType {
   user: FirebaseUser | null;
@@ -203,20 +204,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const addPoints = async (points: number) => {
-    if (!user || !profile) return;
-    const profileRef = doc(db, 'users', user.uid, 'profiles', profile.id);
+    if (!user || !profile) throw new Error('Vui lòng chọn hồ sơ học sinh trước khi cộng hoặc trừ sao.');
     try {
-      const newTotalPoints = profile.totalPoints + points;
-      const newLevel = Math.floor(newTotalPoints / 1000) + 1;
-      
-      await updateDoc(profileRef, {
-        totalPoints: newTotalPoints,
-        level: newLevel
-      });
+      await changeStudentPoints(profile.id, points);
     } catch (error) {
       handleFirestoreError(error, OperationType.UPDATE, `users/${user.uid}/profiles/${profile.id}`);
     }
   };
+
 
   const awardBadge = async (badgeId: string) => {
     if (!user || !profile) return;
