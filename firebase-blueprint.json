@@ -1,0 +1,122 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user information and learning progress",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "grade": {
+          "type": "number",
+          "description": "Current grade level (e.g., 2)"
+        },
+        "totalPoints": {
+          "type": "number"
+        },
+        "level": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "badges": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "favoriteBadge": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "uid",
+        "displayName",
+        "grade"
+      ]
+    },
+    "Activity": {
+      "title": "Learning Activity",
+      "description": "Record of a completed learning session",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "profileId": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string",
+          "enum": [
+            "math",
+            "vietnamese",
+            "english",
+            "ethics",
+            "nature",
+            "science",
+            "history_geo",
+            "it",
+            "physical",
+            "arts",
+            "experiential"
+          ]
+        },
+        "score": {
+          "type": "number"
+        },
+        "totalQuestions": {
+          "type": "number"
+        },
+        "grade": {
+          "type": "number"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "profileId",
+        "subject",
+        "score",
+        "totalQuestions",
+        "grade",
+        "timestamp"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/profiles/{profileId}": {
+      "schema": "UserProfile",
+      "description": "Child profiles for a user"
+    },
+    "/activities/{activityId}": {
+      "schema": "Activity",
+      "description": "History of learning activities"
+    },
+    "/contentApprovals/{topicId}": {
+      "description": "Duyệt học liệu do Firebase Functions quản lý, không sửa trực tiếp từ client."
+    },
+    "/contentReviewAudit/{eventId}": {
+      "description": "Nhật ký chỉ đọc đối với admin/reviewer, backend ghi."
+    },
+    "/privateRateLimits/{limitId}": {
+      "description": "Giới hạn AI phía máy chủ, client không đọc ghi."
+    }
+  }
+}

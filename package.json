@@ -1,0 +1,53 @@
+{
+  "name": "hoc-vui-tieu-hoc-staging",
+  "private": true,
+  "version": "11.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3000 --host=0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit",
+    "predev": "node scripts/build-content-index.cjs && node scripts/validate-content.cjs",
+    "prebuild": "node scripts/build-content-index.cjs && node scripts/validate-content.cjs && node scripts/check-v11-clean.cjs",
+    "validate:content": "node scripts/build-content-index.cjs && node scripts/validate-content.cjs",
+    "review:report": "node scripts/review-content.cjs report",
+    "test:offline": "node scripts/build-content-index.cjs && node scripts/prepare-functions.cjs && node scripts/validate-content.cjs && node scripts/check-v11-clean.cjs && node scripts/security-and-coverage-test.cjs && node scripts/test-callables-mocked.cjs && node scripts/test-deploy-guard.cjs && node scripts/test-bank-runtime.cjs",
+    "check:deploy": "node scripts/assert-deploy-config.cjs",
+    "deploy:staging": "node scripts/deploy-staging.cjs",
+    "test:bank": "node scripts/test-bank-runtime.cjs",
+    "postbuild": "node scripts/rename-vite-html.cjs",
+    "test:audit": "npm run test:offline && node scripts/test-cloudflare-worker.mjs && node scripts/test-games-and-sound.cjs && node scripts/test-profile-deletion.cjs && node scripts/test-pending-lessons.cjs && node scripts/test-ui-regressions.cjs && node --import tsx scripts/test-runtime-guards.ts && node --import tsx scripts/test-progress-integrity.ts && node --import tsx scripts/test-session-and-activity.ts && node --import tsx scripts/test-learning-report.ts && node --import tsx scripts/test-study-bear.ts && node --import tsx scripts/test-comparison-layout.ts && npm run lint",
+    "test:v11": "node scripts/test-v11-navigation.cjs && node scripts/test-current-mixed-rotation.cjs && node scripts/test-v11-acceptance.cjs && node scripts/check-v11-clean.cjs",
+    "verify:v11-dist": "node scripts/verify-v11-dist.cjs",
+    "audit:bank": "node scripts/audit-v11-bank.cjs"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/canvas-confetti": "^1.9.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "canvas-confetti": "^1.9.4",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "firebase": "^12.11.0",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "recharts": "^3.8.0",
+    "tailwind-merge": "^3.5.0",
+    "vite": "^6.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "autoprefixer": "^10.4.21",
+    "react-test-renderer": "^19.2.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
