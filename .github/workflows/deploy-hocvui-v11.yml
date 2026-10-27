@@ -1,0 +1,104 @@
+name: Verify and deploy Học Vui V11
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hocvui-v11-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify source and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Verify isolated Firebase project
+        env:
+          HOC_VUI_STAGING_PROJECT_ID: hoc-vui-tieu-hoc-2026
+        run: npm run check:deploy
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Test content and mocked permissions
+        run: npm run test:offline
+      - name: Test authenticated Cloudflare AI gateway
+        run: node scripts/test-cloudflare-worker.mjs
+      - name: Test durable pending lesson recovery
+        run: node scripts/test-pending-lessons.cjs
+      - name: Test UI interactions and runtime guards
+        run: node scripts/test-ui-regressions.cjs && node --import tsx scripts/test-runtime-guards.ts
+      - name: Verify fresh question rotation, curated bank and navigation
+        run: npm run test:v11
+      - name: Type-check
+        run: npm run lint
+      - name: Verify games and Vietnamese audio safety
+        run: node scripts/test-games-and-sound.cjs
+      - name: Test truthful Study Bear fallback replies
+        run: npx --no-install tsx scripts/test-study-bear.ts
+      - name: Test bounded, compact number-comparison layout
+        run: npx --no-install tsx scripts/test-comparison-layout.ts
+      - name: Test 30-day recycle bin lifecycle and owner-only purge
+        run: node scripts/test-profile-deletion.cjs
+      - name: Test atomic progress saving and report safety
+        run: npx --no-install tsx scripts/test-progress-integrity.ts
+      - name: Test account isolation and safe activity serialization
+        run: npx --no-install tsx scripts/test-session-and-activity.ts
+      - name: Test evidence-based parent reports and Vietnam calendar
+        run: npx --no-install tsx scripts/test-learning-report.ts
+      - name: Build website at /hocvui/
+        env:
+          VITE_BASE_PATH: /hocvui/
+          VITE_USE_FIREBASE_EMULATORS: 'false'
+        run: |
+          npm run build
+          test -s dist/index.html
+          npm run verify:v11-dist
+          if grep -REn 'GEMINI_API_KEY|sk-[a-zA-Z0-9]{12,}' dist/assets; then
+            echo 'Found possible secret in static bundle'; exit 1
+          fi
+      - name: Upload compiled site for Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Publish GitHub Pages
+    needs: verify
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
+      - name: Smoke-test public URL and JavaScript bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          site="https://lebangdinh.github.io/hocvui/"
+          for attempt in {1..12}; do
+            html="$(curl -fsSL --connect-timeout 10 --max-time 25 "$site" || true)"
+            js="$(printf '%s' "$html" | grep -oE '/hocvui/assets/[^"]+\.js' | head -n1 || true)"
+            if [[ -n "$js" ]] && curl -fsSL --connect-timeout 10 --max-time 35 -o /dev/null "https://lebangdinh.github.io$js"; then
+              echo "PASS: Học Vui V11 HTML and JS reachable at $site"
+              exit 0
+            fi
+            echo "Waiting for GitHub Pages CDN, attempt $attempt/12"
+            sleep 5
+          done
+          echo "FAIL: Built Học Vui V11 not yet visible at public URL"
+          exit 1

@@ -1,0 +1,43 @@
+name: Prepare licensed central-Vietnamese praise voice
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  synthesize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check private TTS credential
+        env:
+          FPT_TTS_API_KEY: ${{ secrets.FPT_TTS_API_KEY }}
+        run: |
+          if [ -z "$FPT_TTS_API_KEY" ]; then
+            echo "Set repository Actions secret FPT_TTS_API_KEY first; never put it in source or chat."
+            exit 1
+          fi
+      - name: Generate FPT Mỹ An clips (female central Vietnamese)
+        env:
+          FPT_TTS_API_KEY: ${{ secrets.FPT_TTS_API_KEY }}
+        run: node scripts/generate-central-voice.cjs
+      - name: Commit voice pack
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/services/voicePack.ts public/audio/vi-central/
+          git diff --cached --quiet && exit 0
+          git commit -m "assets: add licensed central Vietnamese praise voice"
+          git push origin HEAD:main
+      - name: Trigger website rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy-hocvui-v5.yml --ref main

@@ -1,0 +1,3810 @@
+{
+  "version": "V11",
+  "approval": "AI sơ tuyển, không có chứng nhận giáo viên",
+  "method": "exact NFC + nhóm concept/passage + mẫu câu chuẩn hóa số và tên; nhóm cùng khuôn chỉ được cảnh báo, KHÔNG tự động loại",
+  "topicCount": 83,
+  "sourceQuestions": 2823,
+  "aiEnabled": 2823,
+  "held": 0,
+  "totalTemplateSuspectGroups": 0,
+  "totalNearDuplicatePairs": 376,
+  "topics": [
+    {
+      "topicId": "1-arts-1",
+      "grade": 1,
+      "subject": "arts",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-english-1",
+      "grade": 1,
+      "subject": "english",
+      "source": 45,
+      "aiEnabled": 45,
+      "held": 0,
+      "distinctExact": 45,
+      "distinctTaggedConcepts": 25,
+      "skillLabels": 25,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-english-2",
+      "grade": 1,
+      "subject": "english",
+      "source": 80,
+      "aiEnabled": 80,
+      "held": 0,
+      "distinctExact": 80,
+      "distinctTaggedConcepts": 40,
+      "skillLabels": 40,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-ethics-1",
+      "grade": 1,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-ethics-2",
+      "grade": 1,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-experiential-1",
+      "grade": 1,
+      "subject": "experiential",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-nature-1",
+      "grade": 1,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-nature-2",
+      "grade": 1,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-nature-3",
+      "grade": 1,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-physical-1",
+      "grade": 1,
+      "subject": "physical",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "grade": 1,
+      "subject": "vietnamese",
+      "source": 160,
+      "aiEnabled": 160,
+      "held": 0,
+      "distinctExact": 160,
+      "distinctTaggedConcepts": 160,
+      "skillLabels": 76,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 336,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-vietnamese-2",
+      "grade": 1,
+      "subject": "vietnamese",
+      "source": 75,
+      "aiEnabled": 75,
+      "held": 0,
+      "distinctExact": 75,
+      "distinctTaggedConcepts": 25,
+      "skillLabels": 1,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "1-vietnamese-3",
+      "grade": 1,
+      "subject": "vietnamese",
+      "source": 160,
+      "aiEnabled": 160,
+      "held": 0,
+      "distinctExact": 160,
+      "distinctTaggedConcepts": 160,
+      "skillLabels": 85,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 4,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-arts-1",
+      "grade": 2,
+      "subject": "arts",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-english-1",
+      "grade": 2,
+      "subject": "english",
+      "source": 60,
+      "aiEnabled": 60,
+      "held": 0,
+      "distinctExact": 60,
+      "distinctTaggedConcepts": 30,
+      "skillLabels": 30,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-english-2",
+      "grade": 2,
+      "subject": "english",
+      "source": 45,
+      "aiEnabled": 45,
+      "held": 0,
+      "distinctExact": 45,
+      "distinctTaggedConcepts": 25,
+      "skillLabels": 25,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-ethics-1",
+      "grade": 2,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-ethics-2",
+      "grade": 2,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-experiential-1",
+      "grade": 2,
+      "subject": "experiential",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-nature-1",
+      "grade": 2,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-nature-2",
+      "grade": 2,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-nature-3",
+      "grade": 2,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-physical-1",
+      "grade": 2,
+      "subject": "physical",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-vietnamese-1",
+      "grade": 2,
+      "subject": "vietnamese",
+      "source": 17,
+      "aiEnabled": 17,
+      "held": 0,
+      "distinctExact": 17,
+      "distinctTaggedConcepts": 17,
+      "skillLabels": 17,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-vietnamese-2",
+      "grade": 2,
+      "subject": "vietnamese",
+      "source": 160,
+      "aiEnabled": 160,
+      "held": 0,
+      "distinctExact": 160,
+      "distinctTaggedConcepts": 160,
+      "skillLabels": 160,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 1,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "grade": 2,
+      "subject": "vietnamese",
+      "source": 160,
+      "aiEnabled": 160,
+      "held": 0,
+      "distinctExact": 160,
+      "distinctTaggedConcepts": 160,
+      "skillLabels": 160,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 34,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-arts-1",
+      "grade": 3,
+      "subject": "arts",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-english-1",
+      "grade": 3,
+      "subject": "english",
+      "source": 40,
+      "aiEnabled": 40,
+      "held": 0,
+      "distinctExact": 40,
+      "distinctTaggedConcepts": 20,
+      "skillLabels": 20,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-english-2",
+      "grade": 3,
+      "subject": "english",
+      "source": 65,
+      "aiEnabled": 65,
+      "held": 0,
+      "distinctExact": 65,
+      "distinctTaggedConcepts": 35,
+      "skillLabels": 35,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-english-3",
+      "grade": 3,
+      "subject": "english",
+      "source": 65,
+      "aiEnabled": 65,
+      "held": 0,
+      "distinctExact": 65,
+      "distinctTaggedConcepts": 35,
+      "skillLabels": 35,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-ethics-1",
+      "grade": 3,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-ethics-2",
+      "grade": 3,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-experiential-1",
+      "grade": 3,
+      "subject": "experiential",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-it-1",
+      "grade": 3,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-it-2",
+      "grade": 3,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-it-3",
+      "grade": 3,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-nature-1",
+      "grade": 3,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-nature-2",
+      "grade": 3,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-nature-3",
+      "grade": 3,
+      "subject": "nature",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-physical-1",
+      "grade": 3,
+      "subject": "physical",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-vietnamese-1",
+      "grade": 3,
+      "subject": "vietnamese",
+      "source": 17,
+      "aiEnabled": 17,
+      "held": 0,
+      "distinctExact": 17,
+      "distinctTaggedConcepts": 17,
+      "skillLabels": 17,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-vietnamese-2",
+      "grade": 3,
+      "subject": "vietnamese",
+      "source": 160,
+      "aiEnabled": 160,
+      "held": 0,
+      "distinctExact": 160,
+      "distinctTaggedConcepts": 160,
+      "skillLabels": 160,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 1,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "3-vietnamese-3",
+      "grade": 3,
+      "subject": "vietnamese",
+      "source": 155,
+      "aiEnabled": 155,
+      "held": 0,
+      "distinctExact": 155,
+      "distinctTaggedConcepts": 155,
+      "skillLabels": 155,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-arts-1",
+      "grade": 4,
+      "subject": "arts",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-english-1",
+      "grade": 4,
+      "subject": "english",
+      "source": 61,
+      "aiEnabled": 61,
+      "held": 0,
+      "distinctExact": 61,
+      "distinctTaggedConcepts": 31,
+      "skillLabels": 31,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-english-2",
+      "grade": 4,
+      "subject": "english",
+      "source": 65,
+      "aiEnabled": 65,
+      "held": 0,
+      "distinctExact": 65,
+      "distinctTaggedConcepts": 35,
+      "skillLabels": 35,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-english-3",
+      "grade": 4,
+      "subject": "english",
+      "source": 65,
+      "aiEnabled": 65,
+      "held": 0,
+      "distinctExact": 65,
+      "distinctTaggedConcepts": 35,
+      "skillLabels": 35,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-ethics-1",
+      "grade": 4,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-ethics-2",
+      "grade": 4,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-experiential-1",
+      "grade": 4,
+      "subject": "experiential",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-history_geo-1",
+      "grade": 4,
+      "subject": "history_geo",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-history_geo-2",
+      "grade": 4,
+      "subject": "history_geo",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-history_geo-3",
+      "grade": 4,
+      "subject": "history_geo",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-it-1",
+      "grade": 4,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-it-2",
+      "grade": 4,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-it-3",
+      "grade": 4,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-physical-1",
+      "grade": 4,
+      "subject": "physical",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-science-1",
+      "grade": 4,
+      "subject": "science",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-science-2",
+      "grade": 4,
+      "subject": "science",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-science-3",
+      "grade": 4,
+      "subject": "science",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-vietnamese-1",
+      "grade": 4,
+      "subject": "vietnamese",
+      "source": 17,
+      "aiEnabled": 17,
+      "held": 0,
+      "distinctExact": 17,
+      "distinctTaggedConcepts": 17,
+      "skillLabels": 17,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-vietnamese-2",
+      "grade": 4,
+      "subject": "vietnamese",
+      "source": 122,
+      "aiEnabled": 122,
+      "held": 0,
+      "distinctExact": 122,
+      "distinctTaggedConcepts": 122,
+      "skillLabels": 122,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "4-vietnamese-3",
+      "grade": 4,
+      "subject": "vietnamese",
+      "source": 155,
+      "aiEnabled": 155,
+      "held": 0,
+      "distinctExact": 155,
+      "distinctTaggedConcepts": 155,
+      "skillLabels": 155,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-arts-1",
+      "grade": 5,
+      "subject": "arts",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-english-1",
+      "grade": 5,
+      "subject": "english",
+      "source": 65,
+      "aiEnabled": 65,
+      "held": 0,
+      "distinctExact": 65,
+      "distinctTaggedConcepts": 35,
+      "skillLabels": 35,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-english-2",
+      "grade": 5,
+      "subject": "english",
+      "source": 60,
+      "aiEnabled": 60,
+      "held": 0,
+      "distinctExact": 60,
+      "distinctTaggedConcepts": 30,
+      "skillLabels": 30,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-english-3",
+      "grade": 5,
+      "subject": "english",
+      "source": 65,
+      "aiEnabled": 65,
+      "held": 0,
+      "distinctExact": 65,
+      "distinctTaggedConcepts": 35,
+      "skillLabels": 35,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-ethics-1",
+      "grade": 5,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-ethics-2",
+      "grade": 5,
+      "subject": "ethics",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-experiential-1",
+      "grade": 5,
+      "subject": "experiential",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-history_geo-1",
+      "grade": 5,
+      "subject": "history_geo",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-history_geo-2",
+      "grade": 5,
+      "subject": "history_geo",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-history_geo-3",
+      "grade": 5,
+      "subject": "history_geo",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-it-1",
+      "grade": 5,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-it-2",
+      "grade": 5,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-it-3",
+      "grade": 5,
+      "subject": "it",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-physical-1",
+      "grade": 5,
+      "subject": "physical",
+      "source": 8,
+      "aiEnabled": 8,
+      "held": 0,
+      "distinctExact": 8,
+      "distinctTaggedConcepts": 8,
+      "skillLabels": 8,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-science-1",
+      "grade": 5,
+      "subject": "science",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-science-2",
+      "grade": 5,
+      "subject": "science",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-science-3",
+      "grade": 5,
+      "subject": "science",
+      "source": 9,
+      "aiEnabled": 9,
+      "held": 0,
+      "distinctExact": 9,
+      "distinctTaggedConcepts": 9,
+      "skillLabels": 9,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-vietnamese-1",
+      "grade": 5,
+      "subject": "vietnamese",
+      "source": 17,
+      "aiEnabled": 17,
+      "held": 0,
+      "distinctExact": 17,
+      "distinctTaggedConcepts": 17,
+      "skillLabels": 17,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-vietnamese-2",
+      "grade": 5,
+      "subject": "vietnamese",
+      "source": 32,
+      "aiEnabled": 32,
+      "held": 0,
+      "distinctExact": 32,
+      "distinctTaggedConcepts": 32,
+      "skillLabels": 32,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    },
+    {
+      "topicId": "5-vietnamese-3",
+      "grade": 5,
+      "subject": "vietnamese",
+      "source": 155,
+      "aiEnabled": 155,
+      "held": 0,
+      "distinctExact": 155,
+      "distinctTaggedConcepts": 155,
+      "skillLabels": 155,
+      "templateClusters": 0,
+      "nearDuplicatePairs": 0,
+      "exactDuplicateGroups": 0
+    }
+  ],
+  "templateSuspects": [],
+  "similarityAlerts": [
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6c3a1a75c2183e4ad3",
+      "secondId": "1-vietnamese-1-q-ff98b764054b09ac97",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6c3a1a75c2183e4ad3",
+      "secondId": "1-vietnamese-1-q-164ce21a5c4f4a1bd0",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6c3a1a75c2183e4ad3",
+      "secondId": "1-vietnamese-1-q-a3652502f65d974940",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6c3a1a75c2183e4ad3",
+      "secondId": "1-vietnamese-1-q-3bda2af846a25cd20c",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ff98b764054b09ac97",
+      "secondId": "1-vietnamese-1-q-164ce21a5c4f4a1bd0",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ff98b764054b09ac97",
+      "secondId": "1-vietnamese-1-q-a3652502f65d974940",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ff98b764054b09ac97",
+      "secondId": "1-vietnamese-1-q-3bda2af846a25cd20c",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-164ce21a5c4f4a1bd0",
+      "secondId": "1-vietnamese-1-q-a3652502f65d974940",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-164ce21a5c4f4a1bd0",
+      "secondId": "1-vietnamese-1-q-3bda2af846a25cd20c",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a3652502f65d974940",
+      "secondId": "1-vietnamese-1-q-3bda2af846a25cd20c",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-95bb28cda8e18a11c2",
+      "secondId": "1-vietnamese-1-q-9edf3d18db35581c45",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-95bb28cda8e18a11c2",
+      "secondId": "1-vietnamese-1-q-d0a8730f6407fb9fad",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-95bb28cda8e18a11c2",
+      "secondId": "1-vietnamese-1-q-adf08d3b28e86c74c4",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-95bb28cda8e18a11c2",
+      "secondId": "1-vietnamese-1-q-094510864b25bc2c23",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-9edf3d18db35581c45",
+      "secondId": "1-vietnamese-1-q-d0a8730f6407fb9fad",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-9edf3d18db35581c45",
+      "secondId": "1-vietnamese-1-q-adf08d3b28e86c74c4",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-9edf3d18db35581c45",
+      "secondId": "1-vietnamese-1-q-094510864b25bc2c23",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d0a8730f6407fb9fad",
+      "secondId": "1-vietnamese-1-q-adf08d3b28e86c74c4",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d0a8730f6407fb9fad",
+      "secondId": "1-vietnamese-1-q-094510864b25bc2c23",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-adf08d3b28e86c74c4",
+      "secondId": "1-vietnamese-1-q-094510864b25bc2c23",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-037ea9d99cab210f7f",
+      "secondId": "1-vietnamese-1-q-d949bd0ccc9b10eff3",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-037ea9d99cab210f7f",
+      "secondId": "1-vietnamese-1-q-576518d510b6242bb4",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-037ea9d99cab210f7f",
+      "secondId": "1-vietnamese-1-q-b086b85151577970a0",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d949bd0ccc9b10eff3",
+      "secondId": "1-vietnamese-1-q-576518d510b6242bb4",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d949bd0ccc9b10eff3",
+      "secondId": "1-vietnamese-1-q-b086b85151577970a0",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-576518d510b6242bb4",
+      "secondId": "1-vietnamese-1-q-b086b85151577970a0",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8f0c69e57cf096ebf9",
+      "secondId": "1-vietnamese-1-q-285ad2daf838276760",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8f0c69e57cf096ebf9",
+      "secondId": "1-vietnamese-1-q-2e0f6f2cd9ffb0edc4",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-285ad2daf838276760",
+      "secondId": "1-vietnamese-1-q-2e0f6f2cd9ffb0edc4",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-60a3e5abed225a1ab0",
+      "secondId": "1-vietnamese-1-q-54a8a8856b30e85d09",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-60a3e5abed225a1ab0",
+      "secondId": "1-vietnamese-1-q-bf128b6a27624a25ff",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54a8a8856b30e85d09",
+      "secondId": "1-vietnamese-1-q-bf128b6a27624a25ff",
+      "similarity": 0.714,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-bc45e2895680645789",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-4f1f756b147ec34189",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-bc45e2895680645789",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5afa26893b67180ab4",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bc45e2895680645789",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "secondId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "secondId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "secondId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "secondId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "secondId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-54fdcc5b533cf224ad",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "secondId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "secondId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "secondId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "secondId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f13e00be17866225ad",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "secondId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "secondId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "secondId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-5f4fcdee61fe258a4e",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "secondId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "secondId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-428a4860324ca3f91c",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-e9ca2e7a5ea17c8c05",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bed9fc4c441a5d672e",
+      "secondId": "1-vietnamese-1-q-04d8645565b657440f",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bed9fc4c441a5d672e",
+      "secondId": "1-vietnamese-1-q-c17429b2d07035393c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bed9fc4c441a5d672e",
+      "secondId": "1-vietnamese-1-q-056fc1920dce2a50de",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bed9fc4c441a5d672e",
+      "secondId": "1-vietnamese-1-q-9dbc99ba669c881c9a",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bed9fc4c441a5d672e",
+      "secondId": "1-vietnamese-1-q-ab0eb2031b59dbeb15",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bed9fc4c441a5d672e",
+      "secondId": "1-vietnamese-1-q-1269e4201726879107",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-bed9fc4c441a5d672e",
+      "secondId": "1-vietnamese-1-q-5fe31ff7604ecdeaaa",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3b31676d8328e0e020",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "secondId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-1aeecb28aaf1020db3",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "secondId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-18005b29711a3898a7",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d7a6f9a16a505c593d",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-04d8645565b657440f",
+      "secondId": "1-vietnamese-1-q-c17429b2d07035393c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-04d8645565b657440f",
+      "secondId": "1-vietnamese-1-q-056fc1920dce2a50de",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-04d8645565b657440f",
+      "secondId": "1-vietnamese-1-q-9dbc99ba669c881c9a",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-04d8645565b657440f",
+      "secondId": "1-vietnamese-1-q-ab0eb2031b59dbeb15",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-04d8645565b657440f",
+      "secondId": "1-vietnamese-1-q-1269e4201726879107",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-04d8645565b657440f",
+      "secondId": "1-vietnamese-1-q-5fe31ff7604ecdeaaa",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-8504beae6ca984aea0",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-29e2930d60329b4645",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-eefc2399d1da51963b",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ac9093a27fc84293ac",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-dbeac0d80059f57616",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-c17429b2d07035393c",
+      "secondId": "1-vietnamese-1-q-056fc1920dce2a50de",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-c17429b2d07035393c",
+      "secondId": "1-vietnamese-1-q-9dbc99ba669c881c9a",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-c17429b2d07035393c",
+      "secondId": "1-vietnamese-1-q-ab0eb2031b59dbeb15",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-c17429b2d07035393c",
+      "secondId": "1-vietnamese-1-q-1269e4201726879107",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-c17429b2d07035393c",
+      "secondId": "1-vietnamese-1-q-5fe31ff7604ecdeaaa",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-a768f9f8b28a41a7fe",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-78d31a848dac49983c",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-cb6322db62fd2b0b26",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-07f477cf0763effb77",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "secondId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6db4135bfb88dbc8c2",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "secondId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f8dd28f2be869a7fcf",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "secondId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-31a5fc3b1fd77aa987",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "secondId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-f2fd6fe8865f0ad04c",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "secondId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-7b99322bd0dadbce44",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "secondId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-3472c91968c8ecb2dd",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "secondId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-6b99b66ed0235f6323",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "secondId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-d2df762fce0a04e4bd",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-7ddc88270b5e08b86c",
+      "secondId": "1-vietnamese-1-q-115ef4f7f67fe74038",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-548c88bbafb07a6bc3",
+      "secondId": "1-vietnamese-1-q-351bbf73174d806cd2",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-056fc1920dce2a50de",
+      "secondId": "1-vietnamese-1-q-9dbc99ba669c881c9a",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-056fc1920dce2a50de",
+      "secondId": "1-vietnamese-1-q-ab0eb2031b59dbeb15",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-056fc1920dce2a50de",
+      "secondId": "1-vietnamese-1-q-1269e4201726879107",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-056fc1920dce2a50de",
+      "secondId": "1-vietnamese-1-q-5fe31ff7604ecdeaaa",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-9dbc99ba669c881c9a",
+      "secondId": "1-vietnamese-1-q-ab0eb2031b59dbeb15",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-9dbc99ba669c881c9a",
+      "secondId": "1-vietnamese-1-q-1269e4201726879107",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-9dbc99ba669c881c9a",
+      "secondId": "1-vietnamese-1-q-5fe31ff7604ecdeaaa",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ab0eb2031b59dbeb15",
+      "secondId": "1-vietnamese-1-q-1269e4201726879107",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-ab0eb2031b59dbeb15",
+      "secondId": "1-vietnamese-1-q-5fe31ff7604ecdeaaa",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-1",
+      "firstId": "1-vietnamese-1-q-1269e4201726879107",
+      "secondId": "1-vietnamese-1-q-5fe31ff7604ecdeaaa",
+      "similarity": 0.833,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-3",
+      "firstId": "1-vietnamese-3-q-51311939791efc6dfa",
+      "secondId": "1-vietnamese-3-q-0c039451b9c7520210",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-3",
+      "firstId": "1-vietnamese-3-q-51311939791efc6dfa",
+      "secondId": "1-vietnamese-3-q-022e934c664eb35f67",
+      "similarity": 0.864,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-3",
+      "firstId": "1-vietnamese-3-q-e943d6572ccf3ed4c6",
+      "secondId": "1-vietnamese-3-q-fc0ee76e6c38cff61f",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "1-vietnamese-3",
+      "firstId": "1-vietnamese-3-q-73c2a8fdf871c8e707",
+      "secondId": "1-vietnamese-3-q-9d5ab75fc37bdfe59a",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-2",
+      "firstId": "2-vietnamese-2-q-228ccef6603a74ebdb",
+      "secondId": "2-vietnamese-2-q-597d0f30168c2b4ecc",
+      "similarity": 0.739,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-a9c470e930c11fe41e",
+      "secondId": "2-vietnamese-3-q-50ea89959177620295",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-6754df559bdeafcf97",
+      "secondId": "2-vietnamese-3-q-71a39d52a0f93a56a7",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-6754df559bdeafcf97",
+      "secondId": "2-vietnamese-3-q-8e6c07b40fb8779ee9",
+      "similarity": 0.704,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-5798e8d5aa5e0ef1d5",
+      "secondId": "2-vietnamese-3-q-fae510dafa3429a119",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-5798e8d5aa5e0ef1d5",
+      "secondId": "2-vietnamese-3-q-48d91d92f887644485",
+      "similarity": 0.864,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-5798e8d5aa5e0ef1d5",
+      "secondId": "2-vietnamese-3-q-50ea89959177620295",
+      "similarity": 0.739,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-5798e8d5aa5e0ef1d5",
+      "secondId": "2-vietnamese-3-q-9e0f3e585a2e90a47a",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-b9c526db55b4b9d81a",
+      "secondId": "2-vietnamese-3-q-0fb0c82924c2dc688d",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-ace6baf7cb31bf62ac",
+      "secondId": "2-vietnamese-3-q-a51fc3c27e1e6ca1db",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-ace6baf7cb31bf62ac",
+      "secondId": "2-vietnamese-3-q-9e0f3e585a2e90a47a",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-ba7143fec274eb454f",
+      "secondId": "2-vietnamese-3-q-0fb0c82924c2dc688d",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-ba7143fec274eb454f",
+      "secondId": "2-vietnamese-3-q-910e0c34495c87228e",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-a920059227c1466b0d",
+      "secondId": "2-vietnamese-3-q-947e4209af7ffd2c29",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-542a365a832cdeafc8",
+      "secondId": "2-vietnamese-3-q-a55f743d78f0de37ee",
+      "similarity": 0.792,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-f5c61a09ec18cd6624",
+      "secondId": "2-vietnamese-3-q-00a6113a1e848e5408",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-f5c61a09ec18cd6624",
+      "secondId": "2-vietnamese-3-q-71a39d52a0f93a56a7",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-c9da502a6d4f0a749b",
+      "secondId": "2-vietnamese-3-q-50ea89959177620295",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-c9da502a6d4f0a749b",
+      "secondId": "2-vietnamese-3-q-00a6113a1e848e5408",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-a51fc3c27e1e6ca1db",
+      "secondId": "2-vietnamese-3-q-50ea89959177620295",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-a51fc3c27e1e6ca1db",
+      "secondId": "2-vietnamese-3-q-bcfca66a50f59e56a7",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-fae510dafa3429a119",
+      "secondId": "2-vietnamese-3-q-b351e64d5d2d5d7ef5",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-fae510dafa3429a119",
+      "secondId": "2-vietnamese-3-q-71a39d52a0f93a56a7",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-d227ff6cec06fb3b5e",
+      "secondId": "2-vietnamese-3-q-e9348489ae148d641d",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-d227ff6cec06fb3b5e",
+      "secondId": "2-vietnamese-3-q-50ea89959177620295",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-d227ff6cec06fb3b5e",
+      "secondId": "2-vietnamese-3-q-bcfca66a50f59e56a7",
+      "similarity": 0.72,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-d227ff6cec06fb3b5e",
+      "secondId": "2-vietnamese-3-q-00a6113a1e848e5408",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-d227ff6cec06fb3b5e",
+      "secondId": "2-vietnamese-3-q-71a39d52a0f93a56a7",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-3197cc3672d81325d0",
+      "secondId": "2-vietnamese-3-q-4f68bb77071d83d42f",
+      "similarity": 0.76,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-48d91d92f887644485",
+      "secondId": "2-vietnamese-3-q-50ea89959177620295",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-737ea457e6bc8b2dad",
+      "secondId": "2-vietnamese-3-q-00a6113a1e848e5408",
+      "similarity": 0.75,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-e9348489ae148d641d",
+      "secondId": "2-vietnamese-3-q-72a67b055b29b4830c",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-17edf7a513e29eac9f",
+      "secondId": "2-vietnamese-3-q-4411a9f1d18555213f",
+      "similarity": 0.76,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-50ea89959177620295",
+      "secondId": "2-vietnamese-3-q-9e0f3e585a2e90a47a",
+      "similarity": 0.708,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "2-vietnamese-3",
+      "firstId": "2-vietnamese-3-q-00a6113a1e848e5408",
+      "secondId": "2-vietnamese-3-q-71a39d52a0f93a56a7",
+      "similarity": 0.739,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    },
+    {
+      "topicId": "3-vietnamese-2",
+      "firstId": "3-vietnamese-2-q-dcaa3d552acb5c2bea",
+      "secondId": "3-vietnamese-2-q-4b48e7cdb5acf8dd35",
+      "similarity": 0.739,
+      "reason": "câu cùng đáp án và rất giống cấu trúc – KHÔNG kết luận là câu trùng"
+    }
+  ]
+}

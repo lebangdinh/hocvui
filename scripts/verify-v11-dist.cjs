@@ -1,0 +1,10 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
+assert.match(html,/<div\s+id=["']root["']\s*>/i,'Wrong entrypoint: this is not the React app.');
+assert.match(html,/\/hocvui\/assets\/[^"']+\.js/, 'Compiled JavaScript bundle missing or base path wrong. Set VITE_BASE_PATH=/hocvui/.');
+assert.doesNotMatch(html,/<title>Bé vui học .* Lớp 1<\/title>/,'Legacy root index.html detected. GitHub Pages must publish dist from Actions.');
+const files=fs.readdirSync(path.join(root,'dist/assets')).filter(x=>x.endsWith('.js'));
+assert.ok(files.some(f=>fs.readFileSync(path.join(root,'dist/assets',f),'utf8').includes('Học Vui V11')),'V11 badge not found in compiled JavaScript; wrong source/build.');
+console.log('PASS V11: compiled React entry, /hocvui/ asset path and V11 version badge.');

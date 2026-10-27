@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "subjectsTested": 45,
+  "focusedTopicsTested": 128,
+  "mixedSessions": 130,
+  "focusedSessions": 489,
+  "mixedQuestions": 955,
+  "focusedQuestions": 2724,
+  "exhaustionCases": 113,
+  "crossModeChecks": 45,
+  "heldUsed": 0,
+  "exactDuplicates": 0,
+  "conceptDuplicates": 0,
+  "profileIsolation": true,
+  "browserHistoryPersisted": true,
+  "notes": "Verifies exact text and configured concept gates. Full semantic equivalence still requires separate editorial review."
+}
