@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import type { Activity } from '../src/types';
 import { prepareLessonActivity } from '../src/services/lessonActivity';
+import { getLessonExitDecision } from '../src/services/lessonNavigation';
 
 const hasUndefined = (value: unknown): boolean => {
   if (value === undefined) return true;
@@ -52,7 +53,14 @@ assert.ok(ledger.includes('tx.set(activityRef, prepareLessonActivity(activity))'
 assert.ok(read('src/services/pendingLessons.ts').includes("where(documentId(), '==', id)"));
 assert.ok(learning.includes("setSaveStatus('saved')"));
 assert.ok(learning.includes('disabled={saveStatus === \'saving\'}'));
-assert.ok(learning.includes('Kết quả bài học chưa được lưu lên Firebase'));
+assert.ok(learning.includes('getLessonExitDecision({'));
+assert.ok(learning.includes('window.confirm(decision.confirmation)'));
+for (const destination of ['subject', 'home'] as const) {
+  const state = { loading: false, hasQuestions: true, finished: true, isSaving: false };
+  assert.match(getLessonExitDecision({ ...state, saveStatus: 'error' }, destination).confirmation!, /chưa được lưu/);
+  assert.equal(getLessonExitDecision({ ...state, saveStatus: 'saving' }, destination).blocked, true);
+  assert.equal(getLessonExitDecision({ ...state, saveStatus: 'saved' }, destination).confirmation, null);
+}
 assert.ok(learning.includes('Dự kiến +'));
 console.log('PASS: transactions sanitize activity data and retries detect already-committed lessons');
 

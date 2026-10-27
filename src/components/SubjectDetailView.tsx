@@ -18,7 +18,7 @@ import { getTopics, getSubjectAvailability } from '../constants/curriculum';
 import { hasLocalQuestionBank, getLocalQuestionCount, getPracticeDifficulties, resolvePracticeDifficulty, getUnseenQuestionCount, MIXED_TOPIC_ID } from '../services/questionBank';
 import { useTopicApproval } from '../services/liveApproval';
 import { isRotationHistoryPersistent } from '../services/questionRotation';
-import bankAudit from '../../content/v10-quality-audit.json';
+import bankAudit from '../../content/v11-quality-audit.json';
 import { getTopicReview } from '../services/contentReview';
 import { getAiScreening, isEligibleForAiPractice } from '../services/aiScreening';
 

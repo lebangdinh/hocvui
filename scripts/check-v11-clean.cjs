@@ -1,6 +1,21 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const root=path.resolve(__dirname,'..');
+// Check static JSON imports before TypeScript/build, including case-sensitive paths on Linux.
+function checkContentImports(dir) {
+ for (const ent of fs.readdirSync(dir, {withFileTypes:true})) {
+  const file=path.join(dir,ent.name);
+  if(ent.isDirectory()) { checkContentImports(file); continue; }
+  if(!/\.[cm]?[jt]sx?$/.test(ent.name))continue;
+  const source=fs.readFileSync(file,'utf8');
+  const imports=/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"](\.[^'"]+\.json)['"]/g;
+  for(const match of source.matchAll(imports)) {
+   if(!fs.existsSync(path.resolve(path.dirname(file),match[1])))
+    throw Error(`Thiếu dữ liệu JSON: ${path.relative(root,file)} → ${match[1]}`);
+  }
+ }
+}
+checkContentImports(path.join(root,'src'));
 const old=/^(?:v[6789][-_]|.*-v[6789][-_]|.*v[6789]-.*)$/i;
 const whitelist=new Set(['package-lock.json']);
 const targets=['content','scripts','docs','.github/workflows'];
