@@ -6,7 +6,7 @@ const learning = read('src/components/LearningModule.tsx');
 const engine = read('src/services/soundEngine.ts');
 const prefs = read('src/services/soundPreferences.ts');
 const controls = read('src/components/SoundControls.tsx');
-const workflow = read('.github/workflows/deploy-hocvui-v5.yml');
+const workflow = read('.github/workflows/deploy-hocvui-v11.yml');
 const statements = [
   ['Easy star game replaces difficult puzzle', games.includes('const StarCatchGame =') && !games.includes('const PuzzleGame =')],
   ['12 stars and no timer', games.includes('const GOAL = 12;') && games.includes('Không giới hạn thời gian')],

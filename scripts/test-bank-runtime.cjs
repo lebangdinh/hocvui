@@ -11,5 +11,5 @@ const go=(cmd,args)=>{
 };
 try {
  const success=go('tsc',['--outDir',tmp,'--module','commonjs','--target','ES2022','--moduleResolution','node','--esModuleInterop','--resolveJsonModule','--skipLibCheck','scripts/firebase-test-shim.d.ts','src/types.ts','src/constants/curriculum.ts','src/services/questionBank.ts']);
- if(success){go('node',['scripts/validate-bank.cjs',tmp]);go('node',['scripts/test-ai-screening.cjs']);}
+ if(success && go('node',['scripts/validate-bank.cjs',tmp])){go('node',['scripts/test-v11-acceptance.cjs']);}
 }finally{fs.rmSync(tmp,{recursive:true,force:true})}

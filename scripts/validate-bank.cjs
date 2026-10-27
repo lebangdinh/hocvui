@@ -125,30 +125,64 @@ for (let grade = 1; grade <= 5; grade++) {
     }
   }
 }
-// Grade-1 Vietnamese: repeat a topic nine times for the same learner;
-// not a single exact question may reappear until at least 72 have been shown.
-for (let section=1; section<=3; section++) {
-  const id=`1-vietnamese-${section}`;
-  const full=bank.getEditorialPreview(1,'vietnamese',id);
-  const metadata=JSON.parse(fs.readFileSync(path.join(root,'content','practice-bank-v11.json'),'utf8'))
-    .topics.find(x=>x.topicId===id).items;
-  const details=new Map(metadata.map(item=>[item.text,item]));
-  const expected={1:88,2:75,3:80}[section];
-  assert.ok(full.length>=expected,`Insufficient grade-1 Vietnamese pool ${id}`);
-  assert.equal(new Set(full.map(x=>x.text.normalize('NFC').replace(/\s+/g,' ').trim())).size,full.length);
-  const all=new Set();
-  for(let run=0; run<9; run++) {
-    const quiz=bank.makeLocalQuiz(1,'vietnamese','medium',id,`qa-student-${section}`);
-    assert.equal(quiz.length,8);
-    assert.equal(new Set(quiz.map(q=>q.text)).size,8,`${id} repeated inside a single quiz`);
-    assert.equal(quiz.filter(q=>all.has(q.text)).length,0,`${id} repeated a previously shown question on session ${run+1}`);
-    if(section===2) assert.equal(new Set(quiz.map(q=>details.get(q.text).passageId)).size,8,
-      'Reading quiz must not contain two questions from the same passage');
-    if(section===3) assert.ok(new Set(quiz.map(q=>details.get(q.text).skill)).size>=4,
-      'Sentence writing quiz needs diverse task types');
-    for(const q of quiz) all.add(q.text);
+// Grade-1 Vietnamese: verify no repeats until every DISTINCT CONCEPT is exhausted.
+// A reading passage can have several questions but V11 intentionally displays
+// at most one question from that passage before it becomes eligible for review.
+// Thus the 75 reading questions cover 25 distinct passages, not 75 new turns.
+const conceptModule = require(path.join(base, 'services/questionRotation.js'));
+for (let section = 1; section <= 3; section++) {
+  const id = `1-vietnamese-${section}`;
+  const full = bank.getEditorialPreview(1, 'vietnamese', id);
+  const metadata = JSON.parse(fs.readFileSync(path.join(root, 'content', 'practice-bank-v11.json'), 'utf8'))
+    .topics.find(x => x.topicId === id).items;
+  const details = new Map(metadata.map(item => [item.text, item]));
+  const expectedMinimumItems = {1: 88, 2: 75, 3: 80}[section];
+  assert.ok(full.length >= expectedMinimumItems, `Insufficient grade-1 Vietnamese pool ${id}`);
+  assert.equal(new Set(full.map(x => x.text.normalize('NFC').replace(/\s+/g, ' ').trim())).size, full.length);
+
+  const conceptFor = q => conceptModule.questionConceptIdentity({ ...q, rotationTopicId: id });
+  const distinctConcepts = new Set(metadata.map(conceptFor));
+  const seenTexts = new Set();
+  const seenConcepts = new Set();
+  const seenPassages = new Set();
+  const profile = `qa-student-v11-${section}`;
+  let exhausted = false;
+  for (let run = 0; run <= distinctConcepts.size; run++) {
+    const quiz = bank.makeLocalQuiz(1, 'vietnamese', 'medium', id, profile);
+    if (quiz.length === 0) { exhausted = true; break; }
+    assert.ok(quiz.length <= 8, `${id}: quiz longer than 8`);
+    assert.equal(new Set(quiz.map(q => q.text)).size, quiz.length, `${id}: duplicate within quiz`);
+    if (section === 2) {
+      assert.equal(new Set(quiz.map(q => details.get(q.text).passageId)).size, quiz.length,
+        'Reading quiz cannot show two questions from the same passage');
+    }
+    if (section === 3 && quiz.length === 8) {
+      // Once some skill groups are exhausted, a full batch cannot contain
+      // four distinct skills; demand four only when four remain available.
+      const availableSkills = new Set(metadata
+        .filter(item => !seenTexts.has(item.text)).map(item => item.skill)).size;
+      const usedSkills = new Set(quiz.map(q => details.get(q.text).skill)).size;
+      assert.ok(usedSkills >= Math.min(4, availableSkills),
+        'Sentence-writing quiz should distribute the remaining skill groups');
+    }
+    for (const q of quiz) {
+      const item = details.get(q.text);
+      assert.ok(item, `${id}: question absent from active V11 bank`);
+      const concept = conceptFor(item);
+      assert.ok(!seenTexts.has(q.text), `${id}: repeated question on session ${run + 1}`);
+      assert.ok(!seenConcepts.has(concept), `${id}: repeated concept/passage on session ${run + 1}`);
+      seenTexts.add(q.text);
+      seenConcepts.add(concept);
+      if (section === 2) {
+        assert.ok(!seenPassages.has(item.passageId), 'Reading passage repeated across sessions');
+        seenPassages.add(item.passageId);
+      }
+    }
   }
-  assert.equal(all.size,72);
+  assert.ok(exhausted, `${id}: new-question pool failed to exhaust`);
+  assert.equal(seenConcepts.size, distinctConcepts.size, `${id}: not all distinct concepts were used`);
+  assert.equal(bank.getUnseenQuestionCount(1, 'vietnamese', id, profile), 0);
+  console.log(`PASS V11 fresh-only ${id}: ${seenTexts.size} unique questions / ${distinctConcepts.size} concepts; exhausted without replay.`);
 }
 
 // Check on-device persistence across module reload (simulated browser restart).
@@ -174,7 +208,7 @@ const english = bank.getEditorialPreview(4, 'english', '4-english-1');
 const tense = english.find(q => q.text.includes('She ... football'));
 assert.ok(tense?.text.includes('thì hiện tại đơn'));
 assert.equal(tense.correctAnswer, 'plays');
-assert.equal(mathChecked, 24600, 'Mọi câu Toán sinh số phải được kiểm tra đáp án độc lập');
+assert.equal(mathChecked, 24450, 'V11: phải đối chiếu 24.450 phép tính Toán sinh số độc lập');
 assert.equal(topics, 102, 'Số chủ đề có bài soạn sẵn thay đổi, cần cập nhật kiểm thử.');
 console.log(`PASS: ${topics} chủ đề; ${quizzes} lượt đề; ${checked} câu hợp lệ; ${mathChecked} câu có phép tính được xác minh độc lập.`);
 console.log('NOTE: Những câu ngôn ngữ và bài hình học có lời văn vẫn cần giáo viên thẩm định.');

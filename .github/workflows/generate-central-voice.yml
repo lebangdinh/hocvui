@@ -40,4 +40,4 @@ jobs:
       - name: Trigger website rebuild
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy-hocvui-v5.yml --ref main
+        run: gh workflow run deploy-hocvui-v11.yml --ref main
